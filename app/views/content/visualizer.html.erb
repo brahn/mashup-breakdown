@@ -1,10 +1,17 @@
 <% content_for :page_javascript do %>
   <% javascript_tag do %>
-    track = allDayData[3];
-    $(document).ready(function () {
+
+    var setupTrack = function (track) {
       Controls.setup(track.duration);
-      YouTube.setup($("#yt-player-standin"), "ytPlayer", track.ytId);
-      Visualizer.setupTrack(track);
+      if (YouTube.isCreated()) {
+        YouTube.load(track.ytId);
+      } else {
+        YouTube.setup($("#yt-player-standin"), "ytPlayer", track.ytId);
+      }
+      Visualizer.setup(track);
+    };
+    $(document).ready(function () {
+      setupTrack(allDaySamplesData[0]);
     });
   <% end %>
 <% end %>

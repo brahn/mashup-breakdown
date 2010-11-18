@@ -1,4 +1,4 @@
-var allDayData = [
+var wikipediaData = [
   {title: "Oh No", ytId: "4bMM7tGV9MI", duration: 339, samples: [
     {artist: "Black Sabbath", title: "War Pigs", start: 3},
     {artist: "2Pac featuring K-Ci & JoJo", title: "How Do U Want It", start: 13},
@@ -234,4 +234,4 @@ var addEndTimesToSamples = function (album) {
   });
 };
 
-addEndTimesToSamples(allDayData);
+addEndTimesToSamples(wikipediaData);

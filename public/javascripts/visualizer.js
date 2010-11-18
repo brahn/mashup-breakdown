@@ -11,7 +11,7 @@ var Visualizer = (function () {
   var WIDTH_MULTIPLIER = 1;
 
   var setupSamplesDiv = function () {
-    samplesDiv = $("#samples").width((WIDTH_MULTIPLIER * 100) + "%");
+    samplesDiv = $("#samples").width((WIDTH_MULTIPLIER * 100) + "%").empty();
   };
 
 // ======================================
@@ -23,7 +23,7 @@ var Visualizer = (function () {
   // by start time). For each sample, put it in the first strip that
   // is available at the sample's start time.
 
-  var totalStrips = 0;
+  var totalStrips;
 
   // Checks if the supplied time is between the start and stop times of
   // of the sample.  optional parameter fudgeFactor expands (if positive)
@@ -36,6 +36,7 @@ var Visualizer = (function () {
 
   // This is inefficient, not that it matters.
   var setSampleStrips = function (track) {
+    totalStrips = 0;
     $.each(track.samples, function (index, sample) {
       // identify all strips already in use at sample start time
       var stripsInUse = {};
@@ -96,7 +97,7 @@ var Visualizer = (function () {
 
 // ===========================================
 
-  var setupTrack = function (track) {
+  var setup = function (track) {
     duration = track.duration;
     setupSamplesDiv();
     setSampleStrips(track);
@@ -104,7 +105,7 @@ var Visualizer = (function () {
   };
 
   return {
-    setupTrack: setupTrack,
+    setup: setup,
     setTime: setTime
   };
 

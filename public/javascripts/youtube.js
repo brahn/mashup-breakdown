@@ -199,6 +199,10 @@ var YouTube = (function () {
     return ytPlayer ? ytPlayer.getPlayerState() : undefined;
   };
 
+  var isCreated = function () {
+    return !!ytPlayer;
+  };
+
   var isPlaying = function () {
     return ytPlayer ? (ytPlayer.getPlayerState() === 1) : undefined;
   };
@@ -234,6 +238,7 @@ var YouTube = (function () {
     onYouTubePlayerReady: onYouTubePlayerReady,
     byteStatus: byteStatus,
     state: state,
+    isCreated: isCreated,
     isPlaying: isPlaying,
     currentTime: currentTime,
     duration: duration,

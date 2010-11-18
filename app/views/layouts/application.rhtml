@@ -2,7 +2,9 @@
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Mashup Visualizer</title>
+  <title>All Day Samples Visualizer</title>
+  <meta name="description"
+        content="A visual representation of the hundreds of samples used in 'All Day', Girl Talk's 5th album" />
   <script src="http://www.google.com/jsapi" type="text/javascript"></script>
   <% javascript_tag do %>
     google.load("jquery", "1.4.3");
@@ -16,22 +18,11 @@
   <%= javascript_include_tag "youtube" %>
   <%= javascript_include_tag "controls" %>
   <%= javascript_include_tag "visualizer" %>
-  <%= javascript_include_tag "all-day-data" %>
+  <%= javascript_include_tag "wikipedia-data" %>
+  <%= javascript_include_tag "alldaysamples-data" %>
   <%= stylesheet_link_tag 'visualizer' %>
   <%= yield :page_javascript %>
 
-  <% javascript_tag do %>
-    $(document).ready(function () {
-      $('#about-content').dialog({
-        autoOpen: false,
-        closeText: "[X]",
-        maxWidth: 400,
-        dialogClass: "my-dialog",
-        position: ["center", "center"],
-        draggable: false,
-      });
-    });
-  <% end %>
 <script type="text/javascript">
 
   var _gaq = _gaq || [];

@@ -11,8 +11,8 @@ var Controls = (function () {
   var bufferIndicator,
       positionIndicator,
       timeleft,
-      isPositionControlSetup = false,
-      manualSeek = false;
+      manualSeek = false,
+      areControlsSetup = false;
 
   // We track duration and currentTime for indicators separately from
   // YouTube, because we may want to use or update controls before YouTube
@@ -76,7 +76,6 @@ var Controls = (function () {
     });
     $(".player #handle-tail").height(16 + $('#samples').height()).
        css("opacity", 0.5).show();
-    isPositionControlSetup = true;
   };
 
   var setupPlayToggle = function () {
@@ -102,23 +101,29 @@ var Controls = (function () {
 
     duration = suppliedDuration;
 
-    // stash common elements
-    bufferIndicator = $('.player #buffer');
-    positionIndicator = $('.player #handle');
-    timeleft = $('.player #timeleft');
+    if (areControlsSetup) {
+      $('.player #gutter').slider("option", "max", duration);
+    } else {
+      // stash common elements
+      bufferIndicator = $('.player #buffer');
+      positionIndicator = $('.player #handle');
+      timeleft = $('.player #timeleft');
 
-    setupPlayToggle();
-    setupPositionControl();
-    updatePlaybackIndicators();
+      setupPlayToggle();
+      setupPositionControl();
+      updatePlaybackIndicators();
 
-    setInterval(function () {
-      updateBufferIndicator();
-      if (YouTube.isPlaying()) {
-        currentTime = YouTube.currentTime();
-        updatePlaybackIndicators();
-        Visualizer.setTime(currentTime);
-      }
-    }, PLAYBACK_INTERVAL_IN_MS);
+      setInterval(function () {
+        updateBufferIndicator();
+        if (YouTube.isPlaying()) {
+          currentTime = YouTube.currentTime();
+          updatePlaybackIndicators();
+          Visualizer.setTime(currentTime);
+        }
+      }, PLAYBACK_INTERVAL_IN_MS);
+      areControlsSetup = true;
+    }
+
   };
 
   return {
