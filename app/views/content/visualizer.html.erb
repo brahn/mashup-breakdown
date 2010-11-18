@@ -1,6 +1,8 @@
 <% content_for :page_javascript do %>
   <% javascript_tag do %>
 
+    var album = allDaySamplesData;
+
     var setupTrack = function (track) {
       Controls.setup(track.duration);
       if (YouTube.isCreated()) {
@@ -10,8 +12,20 @@
       }
       Visualizer.setup(track);
     };
+
+    var setupTrackSelect = function (album) {
+      $.each(album, function (index, track) {
+        $('#track-select').append("<option value='" + index + "'>" +
+          (index + 1) + ". " + track.title + "</option>");
+      });
+      $('#track-select').change(function () {
+        setupTrack(album[$(this).val()]);
+      });
+    };
+
     $(document).ready(function () {
-      setupTrack(allDaySamplesData[0]);
+      setupTrack(album[0]);
+      setupTrackSelect(allDaySamplesData);
     });
   <% end %>
 <% end %>
@@ -22,6 +36,8 @@
     ${artist} - ${title}
   </div>
 </script>
+
+<%= render :partial => "content/visualizer_header" %>
 
 <div id="yt-container">
   <div id="yt-player-standin"></div><%# gets replaced when player inserted %>

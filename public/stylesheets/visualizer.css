@@ -1,9 +1,4 @@
-body {
-  font-family: "Lucida Grande", "Arial";
-  font-size: 13px;
-  background: #000;
-  color: #FFF;
-}
+/* BASICS */
 
 a, a:visited, a:link, a:active, a:hover {
   color: #3E6FCC;
@@ -13,6 +8,37 @@ a, a:visited, a:link, a:active, a:hover {
 a:hover, a:active {
   color: #6699FF;
   text-decoration: none;
+}
+
+
+p, ul, ol {
+  margin-bottom: 1.5em;
+}
+
+li + li {
+  margin-top: 1.5em;
+
+}
+
+h1 {
+  font-size: 1.8em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+* + h1, * + h2 {
+  margin-top: 1.5em;
+}
+
+/* LAYOUT */
+
+body {
+  font-family: "Lucida Grande", "Arial";
+  font-size: 13px;
+  background: #000;
+  color: #FFF;
 }
 
 div#bd {
@@ -30,6 +56,28 @@ div#ft {
   left: 90px;
   right: 90px;
   font-size: 11px;
+}
+
+div#visualizer-header {
+  position: absolute;
+  top: -30px;
+  height: 20px;
+  left: 50px;
+  right: 90px;
+}
+
+/* VISUALIZER HEADER */
+
+div#visualizer-header h1 {
+  margin: 0 1em 0 0;
+  float: left;
+}
+
+div#visualizer-header select {
+  margin: 0 2em 0 0;
+  float: left;
+  position: relative;
+  top: 5px;
 }
 
 /* YOUTUBE */
@@ -246,25 +294,3 @@ div.text-content {
   max-width: 500px;
   line-height: 1.5em;
 }
-
-p, ul, ol {
-  margin-bottom: 1.5em;
-}
-
-li + li {
-  margin-top: 1.5em;
-
-}
-
-h1 {
-  font-size: 1.8em;
-}
-
-h2 {
-  font-size: 1.5em;
-}
-
-* + h1, * + h2 {
-  margin-top: 1.5em;
-}
-
