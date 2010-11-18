@@ -1,0 +1,26 @@
+<h1>Listing samples</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Artist</th>
+    <th>Start</th>
+    <th>Stop</th>
+  </tr>
+
+<% @samples.each do |sample| %>
+  <tr>
+    <td><%=h sample.title %></td>
+    <td><%=h sample.artist %></td>
+    <td><%=h sample.start %></td>
+    <td><%=h sample.stop %></td>
+    <td><%= link_to 'Show', sample %></td>
+    <td><%= link_to 'Edit', edit_sample_path(sample) %></td>
+    <td><%= link_to 'Destroy', sample, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New sample', new_sample_path %>

@@ -1,0 +1,23 @@
+<p>
+  <b>Title:</b>
+  <%=h @sample.title %>
+</p>
+
+<p>
+  <b>Artist:</b>
+  <%=h @sample.artist %>
+</p>
+
+<p>
+  <b>Start:</b>
+  <%=h @sample.start %>
+</p>
+
+<p>
+  <b>Stop:</b>
+  <%=h @sample.stop %>
+</p>
+
+
+<%= link_to 'Edit', edit_sample_path(@sample) %> |
+<%= link_to 'Back', samples_path %>

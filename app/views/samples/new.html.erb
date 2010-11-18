@@ -1,0 +1,27 @@
+<h1>New sample</h1>
+
+<% form_for(@sample) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :artist %><br />
+    <%= f.text_field :artist %>
+  </p>
+  <p>
+    <%= f.label :start %><br />
+    <%= f.text_field :start %>
+  </p>
+  <p>
+    <%= f.label :stop %><br />
+    <%= f.text_field :stop %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', samples_path %>

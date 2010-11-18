@@ -1,0 +1,222 @@
+body {
+  font-family: "Lucida Grande", "Arial";
+  font-size: 13px;
+  background: #000;
+}
+
+div#bd {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  left: 40px;
+  bottom: 40px;
+}
+
+/* YOUTUBE */
+
+div#yt-container {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  height: 98px;
+  width: 98px;
+  border: solid 1px #666;
+  background: #000;
+}
+
+div#yt-container div#yt-player-standin,
+div#yt-container div#yt-player {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: #000;
+}
+
+/* VISUALIZER */
+
+div#visualizer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* PLAYER
+   LIFTED FROM http://thebox.maxvoltar.com/ AND
+   http://neutroncreations.com/blog/building-a-custom-html5-audio-player-with-jquery/ */
+
+.player {
+  display: block;
+  height: 48px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  -webkit-box-shadow: 0 -1px 0 rgba(20, 30, 40, .75);
+  -moz-box-shadow: 0 -1px 0 rgba(20, 30, 40, .75);
+  -o-box-shadow: 0 -1px 0 rgba(20, 30, 40, .75);
+  box-shadow: 0 -1px 0 rgba(20, 30, 40, .75);
+  border-top: 1px solid #c2cbd4;
+  border-bottom: 1px solid #283541;
+  background: #939eaa;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(174, 185, 196, .9)), to(rgba(110, 124, 140, .9)), color-stop(.5, rgba(152, 164, 176, .9)),color-stop(.501, rgba(132, 145, 159, .9)));
+  background: -moz-linear-gradient(top, rgba(174, 185, 196, .9), rgba(152, 164, 176, .9) 50%, rgba(132, 145, 159, .9) 50.1%, rgba(110, 124, 140, .9));
+  background: linear-gradient(top, rgba(174, 185, 196, .9), rgba(152, 164, 176, .9) 50%, rgba(132, 145, 159, .9) 50.1%, rgba(110, 124, 140, .9));
+  cursor: default;
+}
+
+#playtoggle {
+	position: absolute;
+	top: 9px;
+	left: 10px;
+	width: 30px;
+	height: 30px;
+	background: url(/images/player.png) no-repeat -30px 0;
+	cursor: pointer;
+}
+
+#playtoggle.playing {
+	background-position: 0 0;
+}
+
+#playtoggle:active {
+	top: 10px;
+}
+
+#timeleft {
+  line-height: 48px;
+  position: absolute;
+  top: 0;
+  right: 40px;
+  width: 50px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 1px 0 #546374;
+}
+
+#gutter {
+  position: absolute;
+  top: 19px;
+  left: 50px;
+  right: 90px;
+  height: 6px;
+  padding: 2px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  background: #546374;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#242f3b), to(#516070));
+  background: -moz-linear-gradient(top, #242f3b, #516070);
+  background: linear-gradient(top, #242f3b, #516070);
+  -webkit-box-shadow: 0 1px 4px rgba(20, 30, 40, .75) inset, 0 1px 0 rgba(176, 187, 198, .5);
+  -moz-box-shadow: 0 1px 4px rgba(20, 30, 40, .75) inset, 0 1px 0 rgba(176, 187, 198, .5);
+  -o-box-shadow: 0 1px 4px rgba(20, 30, 40, .75) inset, 0 1px 0 rgba(176, 187, 198, .5);
+  box-shadow: 0 1px 4px rgba(20, 30, 40, .75) inset, 0 1px 0 rgba(176, 187, 198, .5);
+}
+
+#buffer-container {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 6px;
+}
+
+#buffer {
+  background: #fff;
+  background: #939eaa;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#eaeef1), to(#c7cfd8));
+  background: -moz-linear-gradient(top, #eaeef1, #c7cfd8);
+  background: linear-gradient(top, #eaeef1, #c7cfd8);
+  -webkit-box-shadow: 0 1px 0 #fff inset, 0 1px 0 #141e28;
+  -moz-box-shadow: 0 1px 0 #fff inset, 0 1px 0 #141e28;
+  -o-box-shadow: 0 1px 0 #fff inset, 0 1px 0 #141e28;
+  box-shadow: 0 1px 0 #fff inset, 0 1px 0 #141e28;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  display: block;
+  min-width: 6px;
+  height: 6px;
+  position: absolute;
+}
+
+#handle {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  background: url(/images/player.png) no-repeat -65px -5px;
+  cursor: pointer;
+}
+
+#handle-tail {
+  position: absolute;
+  top: 18px;
+  left: 9px;
+  width: 2px;
+  height: 500px; /* reset by js */
+  background: #3d8dec;
+}
+
+/* SAMPLES */
+
+div#samples-container {
+  position: absolute;
+  left: 50px;  /* match gutter */
+  right: 90px; /* match gutter */
+  top: 50px;
+  bottom: 50px;
+  overflow: visible;
+}
+
+div#samples {
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  top: 0px;
+  bottom: 0px;
+}
+
+div.sample-block {
+  display: block;
+  position: absolute;
+  background: #f2f5f2;
+  font-size: 11px;
+  padding: 5px;
+  color: #fff;
+  text-shadow: #546374 0px 1px 0px;
+  overflow: hidden;
+}
+
+div.strip-0 {
+  background: #f940d6;
+}
+
+div.strip-1 {
+  background: #3e6fcc;
+}
+
+div.strip-2 {
+  background: #f33a3a;
+}
+
+div.strip-3 {
+  background: #42ab9d;
+}
+
+div.strip-4 {
+  background: #c26710;
+}
+
+div.strip-5 {
+  background: #9fcf3f;
+}
+
+

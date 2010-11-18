@@ -1,0 +1,41 @@
+<% content_for :page_javascript do %>
+  <% javascript_tag do %>
+    track = allDayData[1];
+    $(document).ready(function () {
+      Controls.setup(track.duration);
+      YouTube.setup($("#yt-player-standin"), "ytPlayer", track.ytId);
+      Visualizer.setupTrack(track);
+    });
+  <% end %>
+<% end %>
+
+<%# templates used by jQuery.tmpl() plugin to render search results %>
+<script id="sample-block-template" type="text/x-jquery-tmpl">
+  <div class="sample-block">
+    ${artist} - ${title}
+  </div>
+</script>
+
+<div id="yt-container">
+  <div id="yt-player-standin"></div><%# gets replaced when player inserted %>
+</div>
+
+<div id="visualizer">
+  <div id="samples-container">
+    <div id="samples">
+    </div>
+  </div>
+  <div class="player">
+    <span id="playtoggle"></span>
+    <span id="gutter">
+      <span id="buffer-container">
+        <span id="buffer"></span>
+      </span>
+      <span id="handle" class="ui-slider-handle">
+        <span id="handle-tail" style="display:none"></span>
+      </span>
+    </span>
+    <span id="timeleft"></span>
+  </div>
+</div>
+

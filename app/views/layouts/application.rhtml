@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Mashup Visualizer</title>
+  <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+  <% javascript_tag do %>
+    google.load("jquery", "1.4.3");
+    google.load("jqueryui", "1.8.6");
+    google.load("swfobject", "2.1");
+  <% end %>
+  <%= javascript_include_tag "third/jquery.outerhtml" %>
+  <%= javascript_include_tag "third/jquery.scrollTo" %>
+  <%= javascript_include_tag "third/jquery.tmpl" %>
+  <%= javascript_include_tag "helpers" %>
+  <%= javascript_include_tag "youtube" %>
+  <%= javascript_include_tag "controls" %>
+  <%= javascript_include_tag "visualizer" %>
+  <%= javascript_include_tag "all-day-data" %>
+  <%= stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'visualizer' %>
+  <%= yield :page_javascript %>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', '<%= GOOGLE_ANALYTICS_ID %>']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+
+  <div id="hd">
+    <% if flash[:notice] %>
+      <p style="background: #CFC; color: #060">
+        <%= flash[:notice] %>
+      </p>
+    <% end %>
+  </div>
+  <div id="bd">
+    <%= yield %>
+  </div>
+  <div id="ft">
+  </div>
+
+</body>
+</html>

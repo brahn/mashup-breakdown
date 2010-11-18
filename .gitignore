@@ -1,0 +1,7 @@
+*~
+/log/*.log
+/tmp
+public/javascripts/*_packaged.js
+public/stylesheets/*_packaged.css
+debug.log
+log/*.log
