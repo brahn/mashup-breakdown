@@ -4,7 +4,10 @@
     var album = allDaySamplesData,
         currentTrackIndex;
 
-    var setupTrack = function (track) {
+    var setupTrack = function (trackIndex) {
+      currentTrackIndex = trackIndex;
+      $('#track-select').val(currentTrackIndex);
+      var track = album[currentTrackIndex]
       Controls.setup(track.duration);
       if (YouTube.isCreated()) {
         YouTube.load(track.ytId);
@@ -20,28 +23,29 @@
           (index + 1) + ". " + track.title + "</option>");
       });
       $('#track-select').change(function () {
-        setupTrack(album[$(this).val()]);
+        setupTrack($(this).val());
       });
     };
 
-    var maybeAdvanceTrack = function () {
-      if (currentTrackIndex >= album.length - 1) {
-        return;
+    var advanceTrack = function () {
+      if (currentTrackIndex < album.length) {
+        setupTrack(currentTrackIndex + 1);
       }
-      currentTrackIndex += 1;
-      $('#track-select').val(currentTrackIndex);
-      setupTrack(album[currentTrackIndex]);
     };
     YouTube.onStateChange.push(function (state) {
       if (state === 0) {
-        maybeAdvanceTrack();
+        advanceTrack();
       }
     });
 
+    var setupAlbum = function (specifiedAlbum) {
+      album = specifiedAlbum;
+      setupTrackSelect(album);
+    }
+
     $(document).ready(function () {
-      currentTrackIndex = 0;
-      setupTrack(album[currentTrackIndex]);
-      setupTrackSelect(allDaySamplesData);
+      setupAlbum(allDaySamplesData);
+      setupTrack(0);
     });
   <% end %>
 <% end %>
