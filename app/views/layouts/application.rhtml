@@ -17,9 +17,21 @@
   <%= javascript_include_tag "controls" %>
   <%= javascript_include_tag "visualizer" %>
   <%= javascript_include_tag "all-day-data" %>
-  <%= stylesheet_link_tag 'scaffold' %>
   <%= stylesheet_link_tag 'visualizer' %>
   <%= yield :page_javascript %>
+
+  <% javascript_tag do %>
+    $(document).ready(function () {
+      $('#about-content').dialog({
+        autoOpen: false,
+        closeText: "[X]",
+        maxWidth: 400,
+        dialogClass: "my-dialog",
+        position: ["center", "center"],
+        draggable: false,
+      });
+    });
+  <% end %>
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -33,6 +45,7 @@
   })();
 
 </script>
+
 </head>
 <body>
 
@@ -46,8 +59,11 @@
   <div id="bd">
     <%= yield %>
   </div>
-  <div id="ft">
-  </div>
+  <% unless @hide_footer %>
+    <div id="ft">
+      <%= render :partial => "layouts/application_footer" %>
+    </div>
+  <% end %>
 
 </body>
 </html>

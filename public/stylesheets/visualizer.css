@@ -2,6 +2,17 @@ body {
   font-family: "Lucida Grande", "Arial";
   font-size: 13px;
   background: #000;
+  color: #FFF;
+}
+
+a, a:visited, a:link, a:active, a:hover {
+  color: #3E6FCC;
+  text-decoration: none;
+}
+
+a:hover, a:active {
+  color: #6699FF;
+  text-decoration: none;
 }
 
 div#bd {
@@ -9,17 +20,26 @@ div#bd {
   top: 40px;
   right: 40px;
   left: 40px;
-  bottom: 40px;
+  bottom: 90px;
+}
+
+div#ft {
+  position: absolute;
+  height: 90px;
+  bottom: 0px;
+  left: 90px;
+  right: 90px;
+  font-size: 11px;
 }
 
 /* YOUTUBE */
 
 div#yt-container {
   position: fixed;
-  bottom: 0px;
+  bottom: -0;
   left: 0px;
-  height: 98px;
-  width: 98px;
+  height: 88px;
+  width: 88px;
   border: solid 1px #666;
   background: #000;
 }
@@ -219,4 +239,32 @@ div.strip-5 {
   background: #9fcf3f;
 }
 
+
+/* TEXT CONTENT */
+
+div.text-content {
+  max-width: 500px;
+  line-height: 1.5em;
+}
+
+p, ul, ol {
+  margin-bottom: 1.5em;
+}
+
+li + li {
+  margin-top: 1.5em;
+
+}
+
+h1 {
+  font-size: 1.8em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+* + h1, * + h2 {
+  margin-top: 1.5em;
+}
 

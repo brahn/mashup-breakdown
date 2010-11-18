@@ -1,0 +1,15 @@
+<div style="position: absolute; left: 0px; bottom: 0px; padding: 10px;">
+  <%= link_to "All Day", "http://illegal-art.net/allday/", :target => "_blank" %>
+  by <%= link_to "Girl Talk", "http://www.facebook.com/girltalkmusic",
+         :target => "_blank" %>,
+  available under
+  <br />
+  <%= link_to "Creative Commons Attribution-Noncommercial License", "http://creativecommons.org/licenses/by-nc/3.0/us/", :target => "_blank" %>.  &nbsp;Sweet.
+</div>
+
+
+<div style="position: absolute; right: 0px; bottom: 0px; padding: 10px;">
+  <%= link_to_unless_current "About/Thanks", {:controller => "content",
+      :action => "about"}, {:target => "_blank"} %>
+</div>
+

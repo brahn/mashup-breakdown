@@ -1,6 +1,6 @@
 <% content_for :page_javascript do %>
   <% javascript_tag do %>
-    track = allDayData[1];
+    track = allDayData[3];
     $(document).ready(function () {
       Controls.setup(track.duration);
       YouTube.setup($("#yt-player-standin"), "ytPlayer", track.ytId);

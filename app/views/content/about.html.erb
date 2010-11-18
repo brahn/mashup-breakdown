@@ -1,0 +1,50 @@
+<div class="text-content" %>
+  <h1>About <%= link_to "All Day Visualizer", {:action => "visualizer"} %></h1>
+
+  <p>
+    <%= link_to "All Day", "http://illegal-art.net/allday/" %>
+    is the 5th album by the spectacular <%= link_to "Girl Talk",
+    "http://www.facebook.com/girltalkmusic" %>, composed
+    from samples of <%= link_to "372 songs",
+    "http://illegal-art.net/allday/samples.html" %> by other artists.
+    The <%= link_to "visualizer", {:controller => "content",
+    :action => "visualizer"} %> is an attempt to give a sense of
+    wtf is going on.
+  </p>
+  <p>
+    I've pulled the timing of the samples from
+    <%= link_to "Wikipedia",
+        "http://en.wikipedia.org/wiki/All_Day#Track_listing_and_samples_used" %>
+    and <%= link_to "AllDaySamples", "http://alldaysamples.com" %> (the
+    latter for sample end times).
+  </p>
+  <p>
+    &mdash; <%= link_to "@brahn", "http://twitter.com/brahn" %>
+  </p>
+
+  <h2>Thanks</h2>
+
+  <ul>
+    <li>
+      <%= link_to "Girl Talk", "http://www.facebook.com/girltalkmusic" %> for
+      the album, licensing it for remixing via
+      <%= link_to "Creative Commons", "http://creativecommons.org/licenses/by-nc/3.0/us/" %>, and being awesome.
+    </li>
+    <li>
+      Angela Watercutter at <%= link_to "Wired", "http://www.wired.com/" %> for
+      posting the inspiring 
+      <%= link_to "Beat-by-beat breakdown", "http://www.wired.com/special_multimedia/2008/pl_music_1609" %> of "What It's All About" off Girl Talk's
+      previous album.
+    </li>
+    <li>
+      <%= link_to "TheHPJC", "http://www.youtube.com/user/TheHPJC" %> for
+      posting the album to YouTube.
+    </li>
+    <li>
+      Ben Bodien at <%= link_to "Neutron Creations",
+      "http://neutroncreations.com/" %> for
+      his post about <%= link_to "building a custom playback widget",
+      "http://neutroncreations.com/blog/building-a-custom-html5-audio-player-with-jquery/" %>, from which a shamelessly stole the styling.
+    </li>
+  </ul>
+</div>
