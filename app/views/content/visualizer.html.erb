@@ -1,7 +1,8 @@
 <% content_for :page_javascript do %>
   <% javascript_tag do %>
 
-    var album = allDaySamplesData;
+    var album = allDaySamplesData,
+        currentTrackIndex;
 
     var setupTrack = function (track) {
       Controls.setup(track.duration);
@@ -23,8 +24,23 @@
       });
     };
 
+    var maybeAdvanceTrack = function () {
+      if (currentTrackIndex >= album.length - 1) {
+        return;
+      }
+      currentTrackIndex += 1;
+      $('#track-select').val(currentTrackIndex);
+      setupTrack(album[currentTrackIndex]);
+    };
+    YouTube.onStateChange.push(function (state) {
+      if (state === 0) {
+        maybeAdvanceTrack();
+      }
+    });
+
     $(document).ready(function () {
-      setupTrack(album[0]);
+      currentTrackIndex = 0;
+      setupTrack(album[currentTrackIndex]);
       setupTrackSelect(allDaySamplesData);
     });
   <% end %>
