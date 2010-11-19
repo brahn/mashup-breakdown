@@ -81,6 +81,7 @@ var Visualizer = (function () {
         right: asPercentage(1 - 1.0 * sample.end / trackDuration)
       }).
       tipsy({
+        trigger: 'hoverWithOverride',
         gravity: 'c',
         html: true,
         fallback: sample.artist + "<br />" + sample.title
@@ -88,7 +89,7 @@ var Visualizer = (function () {
   };
 
   var activateBlock = function (block, animate) {
-    block.tipsy("show");
+    block.tipsy("showWithOverride");
     if (animate) {
       block.stop().animate({opacity: 1});
     } else {
@@ -97,6 +98,7 @@ var Visualizer = (function () {
   };
 
   var deactivateBlock = function (block, animate) {
+    block.tipsy("hide");
     if (animate) {
       block.stop().animate({opacity: 0.2}, function () {
         block.tipsy("hide");
@@ -146,6 +148,10 @@ var Visualizer = (function () {
   var setup = function (specifiedTrack) {
     track = specifiedTrack;
     duration = track.duration;
+    // make sure track samples are sorted by start time
+    track.samples.sort(function (a, b) {
+      return a.start - b.start;
+    });
     setupSamplesDiv();
     setSampleStrips();
     setupSampleBlocks();
