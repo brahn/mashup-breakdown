@@ -276,6 +276,9 @@ var convertToAlbumFormat = function (data) {
         title: sampleArray[3]
       });
     });
+    track.samples.sort(function (a, b) {
+      a.start - b.start;
+    });
     album.push(track);
   });
   return album;

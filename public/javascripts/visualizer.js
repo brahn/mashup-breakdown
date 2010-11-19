@@ -14,6 +14,7 @@ var Visualizer = (function () {
   var WIDTH_MULTIPLIER = 1;
 
   var setupSamplesDiv = function () {
+    $('.tipsy').remove();
     samplesDiv = $("#samples").width((WIDTH_MULTIPLIER * 100) + "%").empty();
   };
 
@@ -70,17 +71,24 @@ var Visualizer = (function () {
   var blockHeight, blockVerticalPadding; // expressed as a %age of div#samples
 
   var createSampleBlock = function (sample, trackDuration) {
-    return $('#sample-block-template').tmpl(sample).css({
-      top: (sample.strip * blockHeight +
-             (2 * sample.strip + 1) * blockVerticalPadding) + "%",
-      height: blockHeight + "%",
-      left: asPercentage(1.0 * sample.start / trackDuration),
-      right: asPercentage(1 - 1.0 * sample.end / trackDuration)
-    }).addClass("strip-" + (sample.strip % 6));
+    return $('<div></div>').
+      addClass("sample-block strip-" + (sample.strip % 6)).
+      css({
+        top: (sample.strip * blockHeight +
+               (2 * sample.strip + 1) * blockVerticalPadding) + "%",
+        height: blockHeight + "%",
+        left: asPercentage(1.0 * sample.start / trackDuration),
+        right: asPercentage(1 - 1.0 * sample.end / trackDuration)
+      }).
+      tipsy({
+        gravity: 'c',
+        html: true,
+        fallback: sample.artist + "<br />" + sample.title
+      });
   };
 
   var activateBlock = function (block, animate) {
-    block.find("span").show();
+    block.tipsy("show");
     if (animate) {
       block.stop().animate({opacity: 1});
     } else {
@@ -91,10 +99,10 @@ var Visualizer = (function () {
   var deactivateBlock = function (block, animate) {
     if (animate) {
       block.stop().animate({opacity: 0.2}, function () {
-        block.find("span").hide();
+        block.tipsy("hide");
       });
     } else {
-      block.stop().css("opacity", 0.2).find("span").hide();
+      block.stop().css("opacity", 0.2).tipsy("hide");
     }
   };
 
