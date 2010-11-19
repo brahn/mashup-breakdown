@@ -3,6 +3,9 @@
 
 var Visualizer = (function () {
 
+  var track,
+      duration;
+
 // ======================================
 // SAMPLE DIV
 
@@ -35,7 +38,7 @@ var Visualizer = (function () {
   };
 
   // This is inefficient, not that it matters.
-  var setSampleStrips = function (track) {
+  var setSampleStrips = function () {
     totalStrips = 0;
     $.each(track.samples, function (index, sample) {
       // identify all strips already in use at sample start time
@@ -71,16 +74,36 @@ var Visualizer = (function () {
       top: (sample.strip * blockHeight +
              (2 * sample.strip + 1) * blockVerticalPadding) + "%",
       height: blockHeight + "%",
-      left: asPercentage(1.0 * sample.start / trackDuration) + "%",
-      right: asPercentage(1 - 1.0 * sample.end / trackDuration) + "%"
+      left: asPercentage(1.0 * sample.start / trackDuration),
+      right: asPercentage(1 - 1.0 * sample.end / trackDuration)
     }).addClass("strip-" + (sample.strip % 6));
   };
 
-  var setupSampleBlocks = function (track) {
+  var activateBlock = function (block, animate) {
+    block.find("span").show();
+    if (animate) {
+      block.stop().animate({opacity: 1});
+    } else {
+      block.stop().css("opacity", 1);
+    }
+  };
+
+  var deactivateBlock = function (block, animate) {
+    if (animate) {
+      block.stop().animate({opacity: 0.2}, function () {
+        block.find("span").hide();
+      });
+    } else {
+      block.stop().css("opacity", 0.2).find("span").hide();
+    }
+  };
+
+  var setupSampleBlocks = function () {
     blockVerticalPadding = VERTICAL_PADDING_PERCENTAGE / totalStrips;
     blockHeight = (100.0 - 2 * VERTICAL_PADDING_PERCENTAGE) / totalStrips;
     $.each(track.samples, function (index, sample) {
       sample.block = createSampleBlock(sample, track.duration);
+      deactivateBlock(sample.block);
       $('#samples').append(sample.block);
     });
   };
@@ -88,20 +111,36 @@ var Visualizer = (function () {
 // ==========================================
 // TIME-DEPENDENT EFFECTS
 
-  var duration;
+  var updateSampleActivity = function (time, animate) {
+    $.each(track.samples, function (index, sample) {
+      if (isTimeInSample(sample, time)) {
+        if (!sample.block.hasClass("active")) {
+          sample.block.addClass("active");
+          activateBlock(sample.block, animate);
+        }
+      } else if (sample.block.hasClass("active")) {
+        sample.block.removeClass("active");
+        deactivateBlock(sample.block, animate);
+      }
+    });
+  };
 
-  var setTime = function (time) {
-    samplesDiv.css("left",
-      -100.0 * (WIDTH_MULTIPLIER - 1) * (time / duration) + "%");
+  var setTime = function (time, animate) {
+    updateSampleActivity(time, animate);
+    if (WIDTH_MULTIPLIER !== 1) {
+      samplesDiv.css("left",
+        -100.0 * (WIDTH_MULTIPLIER - 1) * (time / duration) + "%");
+    }
   };
 
 // ===========================================
 
-  var setup = function (track) {
+  var setup = function (specifiedTrack) {
+    track = specifiedTrack;
     duration = track.duration;
     setupSamplesDiv();
-    setSampleStrips(track);
-    setupSampleBlocks(track);
+    setSampleStrips();
+    setupSampleBlocks();
   };
 
   return {

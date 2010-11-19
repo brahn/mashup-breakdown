@@ -30,8 +30,8 @@ var Controls = (function () {
     var bufferStart = 1.0 * byteStatus.startingAt / byteStatus.total;
     var bufferEnd = Math.min(1.0,
       1.0 * (byteStatus.startingAt + byteStatus.loaded) / byteStatus.total);
-    bufferIndicator.css("left", Math.round(100 * bufferStart) + "%");
-    bufferIndicator.css("right", Math.round(100 * (1 - bufferEnd)) + "%");
+    bufferIndicator.css("left", asPercentage(bufferStart));
+    bufferIndicator.css("right", asPercentage(1 - bufferEnd));
     bufferIndicator.show();
   };
 
@@ -40,16 +40,12 @@ var Controls = (function () {
       return;
     }
     // text indicating time remaining
-    var time = currentTime || 0,
-        rem = parseInt(duration - time, 10),
-        pos = (time / duration) * 100,
-        mins = Math.floor(rem / 60, 10),
-        secs = rem - mins * 60;
-    timeleft.text('-' + mins + ':' + (secs < 10 ? '0' + secs : secs));
+    timeleft.text(secToMmss(currentTime));
     // adjust position indicator if we aren't in the midst of a manual drag
     if (!manualSeek) {
+      var pos =
       positionIndicator.css({
-        left: pos + '%'
+        left: asPercentage((currentTime || 0.0) / duration)
       });
     }
   };
@@ -100,9 +96,11 @@ var Controls = (function () {
   var setupControls = function (suppliedDuration) {
 
     duration = suppliedDuration;
+//    updateDurationText();
 
     if (areControlsSetup) {
       $('.player #gutter').slider("option", "max", duration);
+      updatePlaybackIndicators();
     } else {
       // stash common elements
       bufferIndicator = $('.player #buffer');
@@ -118,7 +116,7 @@ var Controls = (function () {
         if (YouTube.isPlaying()) {
           currentTime = YouTube.currentTime();
           updatePlaybackIndicators();
-          Visualizer.setTime(currentTime);
+          Visualizer.setTime(currentTime, true);
         }
       }, PLAYBACK_INTERVAL_IN_MS);
       areControlsSetup = true;

@@ -5,8 +5,15 @@ var asPercentage = function (x, numDecimals) {
   if (numDecimals === undefined) {
     numDecimals = 1;
   }
-  return Math.round(100.0 * Math.pow(10, numDecimals) * x) /
-    Math.pow(10, numDecimals);
+  return (Math.round(100.0 * Math.pow(10, numDecimals) * x) /
+    Math.pow(10, numDecimals)) + "%";
+};
+
+var secToMmss = function (time) {
+  time = time ? parseInt(time, 10) : 0;
+  var mins = Math.floor(time / 60, 10),
+      secs = time - mins * 60;
+  return mins + ":" + (secs < 10 ? '0' + secs : secs);
 };
 
 var safeLogger = function (str) {
