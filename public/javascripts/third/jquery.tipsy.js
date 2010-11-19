@@ -74,7 +74,17 @@
             }
         },
         
+        showWithOverride: function () {
+            if (this.options.trigger == "hoverWithOverride") {
+              this.$element.data("tipsyOverrideHover", true);
+            }
+            this.show();
+        },
+
         hide: function() {
+            if (this.options.trigger == "hoverWithOverride") {
+              this.$element.data("tipsyOverrideHover", null);
+            }
             if (this.options.fade) {
                 this.tip().stop().fadeOut(function() { $(this).remove(); });
             } else {
@@ -152,7 +162,18 @@
         
         if (!options.live) this.each(function() { get(this); });
         
-        if (options.trigger != 'manual') {
+        if (options.trigger === 'hoverWithOverride') {
+          var binder = options.live ? 'live' : 'bind';
+            this[binder]('mouseenter', function () {
+              if (!$(this).data("tipsyOverrideHover")) {
+                enter.call(this);
+              }
+            })[binder]('mouseleave', function () {
+              if (!$(this).data("tipsyOverrideHover")) {
+                leave.call(this);
+              }
+            });
+        } else if (options.trigger != 'manual') {
             var binder   = options.live ? 'live' : 'bind',
                 eventIn  = options.trigger == 'hover' ? 'mouseenter' : 'focus',
                 eventOut = options.trigger == 'hover' ? 'mouseleave' : 'blur';
