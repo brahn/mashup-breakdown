@@ -14,6 +14,7 @@ var Manager = (function () {
     $('#track-select').val(currentTrackIndex);
     var track = album[currentTrackIndex];
     Controls.setup(track.duration);
+    Visualizer.setup(track);
     if (YouTube.isCreated()) {
       if (playWhenCued) {
         YouTube.load(track.ytId);
@@ -24,7 +25,6 @@ var Manager = (function () {
       YouTube.setup($("#yt-player-standin"), "ytPlayer", track.ytId,
         playWhenCued);
     }
-    Visualizer.setup(track);
   };
 
   var setupTrackSelect = function (album) {

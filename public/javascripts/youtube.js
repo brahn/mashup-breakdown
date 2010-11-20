@@ -87,7 +87,7 @@ var YouTube = (function () {
     ytPlayer = document.getElementById("ytPlayer");
     ytPlayer.addEventListener("onError", "YouTube.onError");
     ytPlayer.addEventListener("onStateChange", "YouTube.doOnStateChange");
-    if (playWhenCued) {
+    if (ytPlayWhenCued) {
       load(ytIdToCue);
     } else {
       cue(ytIdToCue);
