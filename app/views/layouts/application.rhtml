@@ -13,14 +13,16 @@
   <% end %>
   <%= javascript_include_tag "third/jquery.outerhtml" %>
   <%= javascript_include_tag "third/jquery.scrollTo" %>
-  <%= javascript_include_tag "third/jquery.tmpl" %>
+  <% if false %>
+    <%= javascript_include_tag "third/jquery.tmpl" %>
+  <% end %>
   <%= javascript_include_tag "third/jquery.tipsy" %>
   <%= javascript_include_tag "helpers" %>
   <%= javascript_include_tag "youtube" %>
   <%= javascript_include_tag "controls" %>
   <%= javascript_include_tag "visualizer" %>
-  <%= javascript_include_tag "wikipedia-data" %>
-  <%= javascript_include_tag "alldaysamples-data" %>
+  <%= javascript_include_tag "data/wikipedia" %>
+  <%= javascript_include_tag "data/alldaysamples" %>
   <%= stylesheet_link_tag "third/tipsy" %>
   <%= stylesheet_link_tag "visualizer" %>
   <%= yield :page_javascript %>

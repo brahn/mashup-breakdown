@@ -60,7 +60,7 @@ div#ft {
 
 div#visualizer-header {
   position: absolute;
-  top: -30px;
+  top: -33px;
   height: 20px;
   left: 50px;
   right: 90px;
@@ -292,5 +292,11 @@ div.strip-5 {
 
 div.text-content {
   max-width: 500px;
+  line-height: 1.5em;
+}
+
+/* TIPSY MODS */
+
+.tipsy {
   line-height: 1.5em;
 }
