@@ -1,7 +1,7 @@
 // From http://feedtheanimalssamples.s3.amazonaws.com/allday/sample_data.js
 // 2010-11-18 3:57PM ET
 
-var allDaySamplesData = [
+var allDaySamplesArray = [
  [ // track 1
   [ 3000, 130000, "Black Sabbath", "War Pigs", null ],
   [ 13000, 23000, "2Pac featuring K-Ci & JoJo", "How Do U Want It", null ],
@@ -255,30 +255,3 @@ var allDaySamplesData = [
   [ 191000, 311000, "UGK", "One Day", null ]
  ]
 ];
-
-// the above is not in our preferred format.  Let's fix that.
-// Use wikipediaData for track info
-
-var convertToAlbumFormat = function (data) {
-  var album = [];
-  $.each(data, function (index, trackArray) {
-    var track = {
-      title: trackData[index].title,
-      duration: trackData[index].duration,
-      ytId: trackData[index].ytId,
-      samples: []
-    };
-    $.each(trackArray, function (index, sampleArray) {
-      track.samples.push({
-        start: sampleArray[0] / 1000.0,
-        end: sampleArray[1] / 1000.0,
-        artist: sampleArray[2],
-        title: sampleArray[3]
-      });
-    });
-    album.push(track);
-  });
-  return album;
-};
-
-var albumFromAllDaySamples = convertToAlbumFormat(allDaySamplesData);

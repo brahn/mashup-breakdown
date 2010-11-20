@@ -1,45 +1,43 @@
 /*jslint indent:2, browser:true, onevar:false */
-/*global $, window, YouTube, asPercentage */
+/*global $, window, YouTube, Data, Controls, asPercentage */
 
-// Selecting tracks and data sources 
+// Selecting tracks and data sources
 
 var Manager = (function () {
-  // source can be "allDaySamples" or "wikipedia"
-  var source = "allDaySamples",
-      album,
-      currentTrackIndex;
 
-  var setupTrack = function (trackIndex, playWhenCued) {
+  // INITIAL_SOURCE can be "allDaySamples" or "wikipedia"
+  var INITIAL_SOURCE = "wikipedia";
+
+  var currentAlbum, currentTrackIndex;
+
+  var setDataSource = function (source, successFunc) {
+    $('#data-source-select').val(source);
+    Data.getAlbum(source, function (returnedAlbum) {
+      currentAlbum = returnedAlbum;
+      successFunc();
+    });
+  };
+
+  var setTrack = function (trackIndex, playWhenCued) {
     currentTrackIndex = parseInt(trackIndex);
     $('#track-select').val(currentTrackIndex);
-    var track = album[currentTrackIndex];
+    var track = Data.tracks()[currentTrackIndex];
     Controls.setup(track.duration);
-    Visualizer.setup(track);
-    if (YouTube.isCreated()) {
-      if (playWhenCued) {
-        YouTube.load(track.ytId);
-      } else {
-        YouTube.cue(track.ytId);
-      }
-    } else {
-      YouTube.setup($("#yt-player-standin"), "ytPlayer", track.ytId,
-        playWhenCued);
-    }
+    YouTube.setup($("#yt-player-standin"), "ytPlayer", track.ytId,
+      playWhenCued);
   };
 
-  var setupTrackSelect = function (album) {
-    $.each(album, function (index, track) {
-      $('#track-select').append("<option value='" + index + "'>" +
-        (index + 1) + ". " + track.title + "</option>");
-    });
-    $('#track-select').change(function () {
-      setupTrack($(this).val(), YouTube.isPlaying());
-    });
+  var updateVisualizer = function () {
+    Visualizer.setup(currentAlbum[currentTrackIndex].samples,
+      Data.tracks()[currentTrackIndex].duration);
+    Visualizer.setTime(Controls.getTime());
   };
 
+  // advancing to next track after a track completes
   var advanceTrack = function () {
-    if (currentTrackIndex < album.length) {
-      setupTrack(currentTrackIndex + 1, true);
+    if (currentTrackIndex < currentAlbum.length) {
+      setTrack(currentTrackIndex + 1, true);
+      updateVisualizer();
     }
   };
   YouTube.onStateChange.push(function (state) {
@@ -48,23 +46,34 @@ var Manager = (function () {
     }
   });
 
-  var setupAlbum = function (specifiedAlbum) {
-    album = specifiedAlbum;
-    setupTrackSelect(album);
+  // track selection drop-down
+  var setupTrackSelect = function () {
+    $.each(Data.tracks(), function (index, track) {
+      $('#track-select').append("<option value='" + index + "'>" +
+        (index + 1) + ". " + track.title + "</option>");
+    });
+    $('#track-select').change(function () {
+      setTrack($(this).val(), YouTube.isPlaying());
+      updateVisualizer();
+    });
+  };
+
+  // data source selection drop-down
+  var setupDataSourceSelect = function () {
+    $('#data-source-select').change(function () {
+      setDataSource($(this).val(), function () {
+        updateVisualizer();
+      });
+    });
   };
 
   $(document).ready(function () {
-    if (source === "allDaySamples") {
-      setupAlbum(albumFromAllDaySamples);
-      setupTrack(0);
-    } else {
-      $.get("/javascripts/data/wikipedia.txt", function (results) {
-        var albumFromWikipedia = parseWikipediaText(results);
-        addEndTimesToSamples(albumFromWikipedia);
-        setupAlbum(albumFromWikipedia);
-        setupTrack(0);
-      });
-    }
+    setupTrackSelect();
+    setupDataSourceSelect();
+    setDataSource(INITIAL_SOURCE, function () {
+      setTrack(0);
+      updateVisualizer();
+    });
   });
 
 }());

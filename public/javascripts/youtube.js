@@ -50,6 +50,16 @@ var YouTube = (function () {
       ytPlayWhenCued = null;
 
   var setup = function (divToReplace, playerObjectId, ytId, playWhenCued) {
+    if (isCreated()) {
+      // player has already been created, we don't need to do it again
+      if (playWhenCued) {
+        load(ytId);
+      } else {
+        cue(ytId);
+      }
+      return;
+    }
+    // create the player
     divToReplace = $(divToReplace);
     playerObjectId = playerObjectId || "ytPlayer";
     ytIdToCue = ytId || "Srmdij0CU1U";

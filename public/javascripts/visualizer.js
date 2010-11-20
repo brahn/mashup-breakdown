@@ -3,8 +3,7 @@
 
 var Visualizer = (function () {
 
-  var track,
-      duration;
+  var m_samples, m_duration;
 
 // ======================================
 // SAMPLE DIV
@@ -38,14 +37,21 @@ var Visualizer = (function () {
       (time <= (sample.end + fudgeFactor));
   };
 
+  var clearSampleStrips = function () {
+    $.each(m_samples, function (index, sample) {
+      sample.strip = undefined;
+    });
+  };
+
   // This is inefficient, not that it matters.
   var setSampleStrips = function () {
+    clearSampleStrips();
     totalStrips = 0;
-    $.each(track.samples, function (index, sample) {
+    $.each(m_samples, function (index, sample) {
       // identify all strips already in use at sample start time
       var stripsInUse = {};
-      $.each(track.samples, function (index, sample2) {
-        if (sample2.strip !== undefined &&
+      $.each(m_samples, function (index, sample2) {
+        if (sample2.strip !== undefined && sample2.strip !== null &&
           isTimeInSample(sample2, sample.start)) {
           stripsInUse[sample2.strip] = true;
         }
@@ -74,15 +80,15 @@ var Visualizer = (function () {
     return sample.artist + "<br />" + sample.title;
   };
 
-  var createSampleBlock = function (sample, trackDuration) {
+  var createSampleBlock = function (sample) {
     return $('<div></div>').
       addClass("sample-block strip-" + (sample.strip % 6)).
       css({
         top: (sample.strip * blockHeight +
                (2 * sample.strip + 1) * blockVerticalPadding) + "%",
         height: blockHeight + "%",
-        left: asPercentage(1.0 * sample.start / trackDuration),
-        right: asPercentage(1 - 1.0 * sample.end / trackDuration)
+        left: asPercentage(1.0 * sample.start / m_duration),
+        right: asPercentage(1 - 1.0 * sample.end / m_duration)
       }).
       tipsy({
         trigger: 'hoverWithOverride',
@@ -119,8 +125,8 @@ var Visualizer = (function () {
   var setupSampleBlocks = function () {
     blockVerticalPadding = VERTICAL_PADDING_PERCENTAGE / totalStrips;
     blockHeight = (100.0 - 2 * VERTICAL_PADDING_PERCENTAGE) / totalStrips;
-    $.each(track.samples, function (index, sample) {
-      sample.block = createSampleBlock(sample, track.duration);
+    $.each(m_samples, function (index, sample) {
+      sample.block = createSampleBlock(sample);
       deactivateBlock(sample.block);
       $('#samples').append(sample.block);
     });
@@ -130,7 +136,7 @@ var Visualizer = (function () {
 // TIME-DEPENDENT EFFECTS
 
   var updateSampleActivity = function (time, animate) {
-    $.each(track.samples, function (index, sample) {
+    $.each(m_samples, function (index, sample) {
       if (isTimeInSample(sample, time)) {
         if (!sample.block.hasClass("active")) {
           sample.block.addClass("active");
@@ -153,11 +159,11 @@ var Visualizer = (function () {
 
 // ===========================================
 
-  var setup = function (specifiedTrack) {
-    track = specifiedTrack;
-    duration = track.duration;
-    // make sure track samples are sorted by start time
-    track.samples.sort(function (a, b) {
+  var setup = function (samples, trackDuration) {
+    $('.tipsy').remove();
+    m_duration = trackDuration;
+    // make sure samples are sorted by start time
+    m_samples = samples.sort(function (a, b) {
       return a.start - b.start;
     });
     setupSamplesDiv();
