@@ -46,12 +46,12 @@ div#bd {
   top: 40px;
   right: 40px;
   left: 40px;
-  bottom: 90px;
+  bottom: 80px;
 }
 
 div#ft {
   position: absolute;
-  height: 90px;
+  height: 50px;
   bottom: 0px;
   left: 90px;
   right: 90px;
@@ -80,14 +80,33 @@ div#visualizer-header select {
   top: 5px;
 }
 
+/* FOOTER */
+
+div.footer-content {
+  position: absolute;
+  bottom: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+div.footer-right {
+  right: 0px;
+}
+
+div.footer-left {
+  left: 0px;
+}
+
+
+
 /* YOUTUBE */
 
 div#yt-container {
   position: fixed;
   bottom: -0;
   left: 0px;
-  height: 88px;
-  width: 88px;
+  height: 48px;
+  width: 48px;
   border: solid 1px #666;
   background: #000;
 }
@@ -240,7 +259,7 @@ div#samples-container {
   left: 50px;  /* match gutter */
   right: 90px; /* match gutter */
   top: 50px;
-  bottom: 50px;
+  bottom: 0px;
   overflow: visible;
 }
 

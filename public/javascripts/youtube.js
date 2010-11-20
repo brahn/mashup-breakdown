@@ -46,10 +46,12 @@ var YouTube = (function () {
 // ======================================================
 // PLAYER SET UP
 
+  var ytIdToCue = null;
+
   var setup = function (divToReplace, playerObjectId, ytId) {
     divToReplace = $(divToReplace);
     playerObjectId = playerObjectId || "ytPlayer";
-    ytId = ytId || "Srmdij0CU1U";
+    ytIdToCue = ytId || "Srmdij0CU1U";
     var playerWidth = divToReplace.width(),
         playerHeight = divToReplace.height();
     var playerid = "player1"; // used by onYouTubePlayerReady function
@@ -61,8 +63,8 @@ var YouTube = (function () {
     var atts = { id: playerObjectId };
     // All of the magic handled by SWFObject
     // http://code.google.com/p/swfobject/
-    swfobject.embedSWF("http://www.youtube.com/v/" + ytId +
-                       "?enablejsapi=1&playerapiid=" + playerid,
+    swfobject.embedSWF("http://www.youtube.com/apiplayer?" + 
+                       "enablejsapi=1&playerapiid=" + playerid,
                        divToReplace.attr("id"), playerWidth, playerHeight,
                        "8", null, null, params, atts);
   };
@@ -83,6 +85,7 @@ var YouTube = (function () {
     ytPlayer = document.getElementById("ytPlayer");
     ytPlayer.addEventListener("onError", "YouTube.onError");
     ytPlayer.addEventListener("onStateChange", "YouTube.doOnStateChange");
+    cue(ytIdToCue);
     sendEvent(onReady);
     logInfo();
   };
