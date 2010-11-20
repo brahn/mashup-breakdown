@@ -25,7 +25,7 @@ var safeLogger = function (str) {
 // swiped from prototype
 var $A = function $A(iterable) {if(!iterable)return[];if('toArray'in Object(iterable))return iterable.toArray();var length=iterable.length||0,results=new Array(length);while(length--)results[length]=iterable[length];return results;};
 
-var logErrorMessage = function (func, err) {
+var logErrorMessage = function (err) {
   safeLogger("callback function raised exception:");
   safeLogger("  " + err.message);
   if (console && console.log) {
@@ -51,7 +51,7 @@ var sendEvent = function (handlers) {
     try {
       handler.apply(null, args);
     } catch (err) {
-      logErrorMessage(x, err);
+      logErrorMessage(err);
     }
   });
 };
