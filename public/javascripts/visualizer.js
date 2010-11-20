@@ -90,21 +90,24 @@ var Visualizer = (function () {
   };
 
   var activateBlock = function (block, animate) {
-    block.tipsy("showWithOverride");
     if (animate) {
+      block.tipsy("enableFade");
+      block.tipsy("showWithOverride");
       block.stop().animate({opacity: 1});
     } else {
+      block.tipsy("disableFade");
+      block.tipsy("showWithOverride");
       block.stop().css("opacity", 1);
     }
   };
 
   var deactivateBlock = function (block, animate) {
-    block.tipsy("hide");
     if (animate) {
-      block.stop().animate({opacity: 0.2}, function () {
-        block.tipsy("hide");
-      });
+      block.tipsy("enableFade");
+      block.tipsy("hide");
+      block.stop().animate({opacity: 0.2});
     } else {
+      block.tipsy("disableFade");
       block.stop().css("opacity", 0.2).tipsy("hide");
     }
   };
