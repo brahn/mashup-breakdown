@@ -65,7 +65,7 @@
                 }
                 
                 $tip.css(tp).addClass('tipsy-' + gravity);
-                
+
                 if (this.options.fade) {
                     $tip.stop().css({opacity: 0, display: 'block', visibility: 'visible'}).animate({opacity: this.options.opacity});
                 } else {
@@ -139,19 +139,50 @@
             }
             return tipsy;
         }
-        
+
+        // if the tipHover option is set, and tooltip wasn't triggered
+        // manually, then tooltip doesn't hide the tip -- but sometimes
+        // leaving it does.  To implement, we need to a callback to
+        // $tip.mouseleave
+        function maybeAddTipMouseleave(tipsy) {
+          if (!options.tipHover || tipsy.$element.data("tipsyOverrideHover")) {
+            return;
+          }
+          tipsy.$tip.mouseleave(function (event) {
+            if (event.relatedTarget != tipsy.$element[0]) {
+              try {
+                leave.call(tipsy.$element[0]);
+              } catch (err) {
+                logErrorMessage(err);
+              }
+            }
+          });
+        };
+
         function enter() {
             var tipsy = get(this);
             tipsy.hoverState = 'in';
             if (options.delayIn == 0) {
                 tipsy.show();
+                maybeAddTipMouseleave(tipsy);
             } else {
-                setTimeout(function() { if (tipsy.hoverState == 'in') tipsy.show(); }, options.delayIn);
+                setTimeout(function() {
+                    if (tipsy.hoverState == 'in') {
+                        tipsy.show();
+                        maybeAddTipMouseleave(tipsy);
+                    }
+                }, options.delayIn);
             }
         };
-        
-        function leave() {
+
+        function leave(relatedTarget) {
             var tipsy = get(this);
+            // if relatedTarget is passed, check to make sure that it's not
+            // the tip element.  If it is, do nothing.
+            if (relatedTarget && (tipsy.$tip[0] == relatedTarget ||
+              $.contains(tipsy.$tip[0], relatedTarget))) {
+                return;
+            }
             tipsy.hoverState = 'out';
             if (options.delayOut == 0) {
                 tipsy.hide();
@@ -168,16 +199,18 @@
               if (!$(this).data("tipsyOverrideHover")) {
                 enter.call(this);
               }
-            })[binder]('mouseleave', function () {
+            })[binder]('mouseleave', function (event) {
               if (!$(this).data("tipsyOverrideHover")) {
-                leave.call(this);
+                leave.call(this, options.tipHover && event.relatedTarget);
               }
             });
         } else if (options.trigger != 'manual') {
             var binder   = options.live ? 'live' : 'bind',
                 eventIn  = options.trigger == 'hover' ? 'mouseenter' : 'focus',
                 eventOut = options.trigger == 'hover' ? 'mouseleave' : 'blur';
-            this[binder](eventIn, enter)[binder](eventOut, leave);
+            this[binder](eventIn, enter)[binder](eventOut, function (event) {
+              leave.call(this, options.tipHover && event.relatedTarget);
+            });
         }
         
         return this;
