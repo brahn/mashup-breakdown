@@ -69,10 +69,10 @@ var Controls = (function () {
         manualSeek = false;
         if (YouTube.isPlaying()) {
           currentTime = ui.value;
-          YouTube.seekTo(ui.value);
+          YouTube.seekTo(ui.value, true);
         } else {
           currentTime = ui.value;
-          YouTube.seekTo(ui.value);
+          YouTube.seekTo(ui.value, true);
           YouTube.pause();
         }
       }
@@ -103,6 +103,7 @@ var Controls = (function () {
   var setupControls = function (suppliedDuration) {
 
     duration = suppliedDuration;
+    currentTime = 0;
 //    updateDurationText();
 
     if (areControlsSetup) {
