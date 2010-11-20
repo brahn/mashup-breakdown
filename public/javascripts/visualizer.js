@@ -70,6 +70,10 @@ var Visualizer = (function () {
 
   var blockHeight, blockVerticalPadding; // expressed as a %age of div#samples
 
+  var tooltipHTML = function (sample) {
+    return sample.artist + "<br />" + sample.title;
+  };
+
   var createSampleBlock = function (sample, trackDuration) {
     return $('<div></div>').
       addClass("sample-block strip-" + (sample.strip % 6)).
@@ -85,7 +89,7 @@ var Visualizer = (function () {
         tipHover: true,
         gravity: 'c',
         html: true,
-        fallback: sample.artist + "<br />" + sample.title
+        fallback: tooltipHTML(sample)
       });
   };
 
