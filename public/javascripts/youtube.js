@@ -46,12 +46,14 @@ var YouTube = (function () {
 // ======================================================
 // PLAYER SET UP
 
-  var ytIdToCue = null;
+  var ytIdToCue = null,
+      ytPlayWhenCued = null;
 
-  var setup = function (divToReplace, playerObjectId, ytId) {
+  var setup = function (divToReplace, playerObjectId, ytId, playWhenCued) {
     divToReplace = $(divToReplace);
     playerObjectId = playerObjectId || "ytPlayer";
     ytIdToCue = ytId || "Srmdij0CU1U";
+    ytPlayWhenCued = playWhenCued;
     var playerWidth = divToReplace.width(),
         playerHeight = divToReplace.height();
     var playerid = "player1"; // used by onYouTubePlayerReady function
@@ -85,7 +87,11 @@ var YouTube = (function () {
     ytPlayer = document.getElementById("ytPlayer");
     ytPlayer.addEventListener("onError", "YouTube.onError");
     ytPlayer.addEventListener("onStateChange", "YouTube.doOnStateChange");
-    cue(ytIdToCue);
+    if (playWhenCued) {
+      load(ytIdToCue);
+    } else {
+      cue(ytIdToCue);
+    }
     sendEvent(onReady);
     logInfo();
   };

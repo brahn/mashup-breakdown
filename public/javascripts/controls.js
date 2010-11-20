@@ -67,7 +67,12 @@ var Controls = (function () {
       },
       stop: function (e, ui) {
         manualSeek = false;
-        YouTube.seekTo(ui.value);
+        if (YouTube.isPlaying()) {
+          YouTube.seekTo(ui.value);
+        } else {
+          YouTube.seekTo(ui.value);
+          YouTube.pause();
+        }
       }
     });
     $(".player #handle-tail").height(16 + $('#samples').height()).

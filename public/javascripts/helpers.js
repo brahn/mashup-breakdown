@@ -31,15 +31,15 @@ var logErrorMessage = function (err) {
   if (console && console.log) {
     console.log(err);
   }
-  if (BROWSER_TYPE == "safari") {
+  if ($.browser.safari) {
     safeLogger("  sourceURL: " + err.sourceURL);
     safeLogger("  line: " + err.line);
-  } else if (BROWSER_TYPE == "firefox") {
+  } else if ($.browser.mozilla) {
     safeLogger("  fileName: " + err.fileName);
     safeLogger("  lineNumber: " + err.lineNumber);
     // uncomment to get the stack
     //  safeLogger(err.stack);
-  } else if (BROWSER_TYPE == "chrome") {
+  } else if ($.browser.webkit) {
     safeLogger("error stack: ");
     safeLogger(err.stack);
   }

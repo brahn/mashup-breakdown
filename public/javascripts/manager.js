@@ -9,15 +9,20 @@ var Manager = (function () {
       album,
       currentTrackIndex;
 
-  var setupTrack = function (trackIndex) {
-    currentTrackIndex = trackIndex;
+  var setupTrack = function (trackIndex, playWhenCued) {
+    currentTrackIndex = parseInt(trackIndex);
     $('#track-select').val(currentTrackIndex);
     var track = album[currentTrackIndex];
     Controls.setup(track.duration);
     if (YouTube.isCreated()) {
-      YouTube.load(track.ytId);
+      if (playWhenCued) {
+        YouTube.load(track.ytId);
+      } else {
+        YouTube.cue(track.ytId);
+      }
     } else {
-      YouTube.setup($("#yt-player-standin"), "ytPlayer", track.ytId);
+      YouTube.setup($("#yt-player-standin"), "ytPlayer", track.ytId,
+        playWhenCued);
     }
     Visualizer.setup(track);
   };
@@ -28,13 +33,13 @@ var Manager = (function () {
         (index + 1) + ". " + track.title + "</option>");
     });
     $('#track-select').change(function () {
-      setupTrack($(this).val());
+      setupTrack($(this).val(), YouTube.isPlaying());
     });
   };
 
   var advanceTrack = function () {
     if (currentTrackIndex < album.length) {
-      setupTrack(currentTrackIndex + 1);
+      setupTrack(currentTrackIndex + 1, true);
     }
   };
   YouTube.onStateChange.push(function (state) {
