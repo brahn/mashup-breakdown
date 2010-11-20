@@ -82,6 +82,7 @@ var Visualizer = (function () {
       }).
       tipsy({
         trigger: 'hoverWithOverride',
+        tipHover: true,
         gravity: 'c',
         html: true,
         fallback: sample.artist + "<br />" + sample.title
