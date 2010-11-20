@@ -1,7 +1,9 @@
 <% content_for :page_javascript do %>
   <% javascript_tag do %>
 
-    var album = allDaySamplesData,
+    // source can be "allDaySample" or "wikipedia"
+    var source = "wikipedia",
+        album,
         currentTrackIndex;
 
     var setupTrack = function (trackIndex) {
@@ -44,8 +46,17 @@
     }
 
     $(document).ready(function () {
-      setupAlbum(allDaySamplesData);
-      setupTrack(0);
+      if (source === "allDaySamples") {
+        setupAlbum(albumFromAllDaySamples);
+        setupTrack(0);
+      } else {
+        $.get("/javascripts/data/wikipedia.txt", function (results) {
+          albumFromWikipedia = parseWikipediaText(results);
+          addEndTimesToSamples(albumFromWikipedia);
+          setupAlbum(albumFromWikipedia);
+          setupTrack(0);
+        });
+      }
     });
   <% end %>
 <% end %>

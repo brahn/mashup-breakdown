@@ -263,9 +263,9 @@ var convertToAlbumFormat = function (data) {
   var album = [];
   $.each(data, function (index, trackArray) {
     var track = {
-      title: wikipediaData[index].title,
-      duration: wikipediaData[index].duration,
-      ytId: wikipediaData[index].ytId,
+      title: trackData[index].title,
+      duration: trackData[index].duration,
+      ytId: trackData[index].ytId,
       samples: []
     };
     $.each(trackArray, function (index, sampleArray) {
@@ -276,12 +276,9 @@ var convertToAlbumFormat = function (data) {
         title: sampleArray[3]
       });
     });
-    track.samples.sort(function (a, b) {
-      a.start - b.start;
-    });
     album.push(track);
   });
   return album;
 };
 
-allDaySamplesData = convertToAlbumFormat(allDaySamplesData);
+var albumFromAllDaySamples = convertToAlbumFormat(allDaySamplesData);
