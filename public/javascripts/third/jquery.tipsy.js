@@ -19,6 +19,15 @@
     }
     
     Tipsy.prototype = {
+
+        enableFade: function () {
+          this.options.fade = true;
+        },
+
+        disableFade: function () {
+          this.options.fade = false;
+        },
+
         show: function() {
             var title = this.getTitle();
             if (title && this.enabled) {
