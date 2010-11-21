@@ -6,7 +6,7 @@
 var Manager = (function () {
 
   // INITIAL_SOURCE can be "allDaySamples" or "wikipedia"
-  var INITIAL_SOURCE = "wikipedia";
+  var INITIAL_SOURCE = "allDaySamples";
 
   var currentAlbum, currentTrackIndex;
 

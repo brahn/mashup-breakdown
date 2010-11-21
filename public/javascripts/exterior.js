@@ -4,6 +4,7 @@
 $(document).ready(function () {
 
   $('#about-dialog-container').dialog({
+    autoOpen: false,
     width: function () {
              return Math.min($('#samples').width(), 500);
            },
