@@ -1,8 +1,14 @@
 <div id="visualizer-header">
-  <h1>Girl Talk - All Day - Visualized</h1>
-  <select id="track-select"></select>
-  <select id="data-source-select">
-    <%= options_for_select [["Wikipedia", "wikipedia"],
-      ["AllDaySamples.com", "allDaySamples"]] %>
-  </select>
+  <h1>All Day by Girl Talk - Visual Breakdown</h1>
+  <div class="label-and-field">
+    <label for="track-select">Track</label>
+    <select id="track-select"></select>
+  </div>
+  <div class="label-and-field">
+    <label for="data-source-select">Sample info from</label>
+    <select id="data-source-select">
+      <%= options_for_select [["Wikipedia", "wikipedia"],
+        ["AllDaySamples.com", "allDaySamples"]] %>
+    </select>
+  </div>
 </div>
