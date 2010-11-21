@@ -1,15 +1,17 @@
 <div class="footer-content footer-left">
     <%= link_to "All Day", "http://illegal-art.net/allday/", :target => "_blank" %>
   by <%= link_to "Girl Talk", "http://www.facebook.com/girltalkmusic",
-         :target => "_blank" %>,
-  available under
-  <br />
-  <%= link_to "Creative Commons Attribution-Noncommercial License", "http://creativecommons.org/licenses/by-nc/3.0/us/", :target => "_blank" %>.  &nbsp;Sweet.
+         :target => "_blank" %>
+  is available under
+  <%= link_to "Creative Commons License", "http://creativecommons.org/licenses/by-nc/3.0/us/", :target => "_blank" %>. &nbsp;Sweet.  &nbsp;(This site is, too:
+  <%= link_to "CC BY-NC 3.0", "http://creativecommons.org/licenses/by-nc/3.0/us/", :target => "_blank" %>.)
+
 </div>
 
 
 <div class="footer-content footer-right">
-  <%= link_to_unless_current "About/Thanks", {:controller => "content",
-      :action => "about"}, {:target => "_blank"} %>
+  <%= link_to "About/Thanks",
+  {:controller => "content", :action => "about"},
+  {:id => "about-link", :target => "_blank"} %>
 </div>
 

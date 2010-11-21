@@ -1,13 +1,20 @@
 <div id="visualizer-header">
-  <h1>All Day by Girl Talk - Visual Breakdown</h1>
-  <div class="label-and-field">
-    <label for="track-select">Track</label>
+  <h1>
+    <span style="float: left">All Day by Girl Talk - Visual Breakdown</span>
+    <div style="float: right; position: relative; right: -41px">
+      <%= render :partial => "content/share_buttons" %>
+    </div>
+    <div style="clear:both"></div>
+  </h1>
+  <div class="label-and-field" id="track-select-container">
+    <label for="track-select" style="display:none">Track</label>
     <select id="track-select"></select>
   </div>
-  <div class="label-and-field">
+
+  <div class="label-and-field" id="data-source-select-container">
     <label for="data-source-select">Sample info from</label>
     <select id="data-source-select">
-      <%= options_for_select [["Wikipedia", "wikipedia"],
+      <%= options_for_select [["Wikipedia (missing sample lengths)", "wikipedia"],
         ["AllDaySamples.com", "allDaySamples"]] %>
     </select>
   </div>

@@ -50,7 +50,7 @@ var Manager = (function () {
   var setupTrackSelect = function () {
     $.each(Data.tracks(), function (index, track) {
       $('#track-select').append("<option value='" + index + "'>" +
-        (index + 1) + ". " + track.title + "</option>");
+        "Track " + (index + 1) + " - " + track.title + "</option>");
     });
     $('#track-select').change(function () {
       setTrack($(this).val(), YouTube.isPlaying());

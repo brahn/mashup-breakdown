@@ -1,5 +1,5 @@
 <div class="text-content" %>
-  <h1>About <%= link_to "All Day Visualizer", {:action => "visualizer"} %></h1>
+  <h1>About <%= link_to "All Day Breakdown", {:action => "visualizer"} %></h1>
 
   <p>
     <%= link_to "All Day", "http://illegal-art.net/allday/" %>
@@ -7,16 +7,20 @@
     "http://www.facebook.com/girltalkmusic" %>, composed
     from samples of <%= link_to "372 songs",
     "http://illegal-art.net/allday/samples.html" %> by other artists.
-    The <%= link_to "visualizer", {:controller => "content",
+    This <%= link_to "visual breakdown", {:controller => "content",
     :action => "visualizer"} %> is an attempt to give a sense of
-    wtf is going on.
+    what's going on.
   </p>
   <p>
-    I've pulled the timing of the samples from
+
+    I've gathered the information about the timing of the samples from
     <%= link_to "Wikipedia",
-        "http://en.wikipedia.org/wiki/All_Day#Track_listing_and_samples_used" %>
-    and <%= link_to "AllDaySamples", "http://alldaysamples.com" %> (the
-    latter for sample end times).
+    "http://en.wikipedia.org/wiki/All_Day#Track_listing_and_samples_used"
+    %> and from <%= link_to "AllDaySamples",
+    "http://alldaysamples.com" %>.  They disagree quite a bit, and you
+    can switch between the two.  As of this writing, Wikipedia only has
+    start times, not end times, so I've treated all samples as if they are
+    30 seconds long.
   </p>
   <p>
     &mdash; <%= link_to "@brahn", "http://twitter.com/brahn" %>
@@ -32,13 +36,17 @@
     </li>
     <li>
       Angela Watercutter at <%= link_to "Wired", "http://www.wired.com/" %> for
-      posting the inspiring 
+      posting the inspiring
       <%= link_to "Beat-by-beat breakdown", "http://www.wired.com/special_multimedia/2008/pl_music_1609" %> of "What It's All About" off Girl Talk's
       previous album.
     </li>
     <li>
       <%= link_to "TheHPJC", "http://www.youtube.com/user/TheHPJC" %> for
       posting the album to YouTube.
+    </li>
+    <li>Travis McLeskey at of <%= link_to "AllDaySamples",
+        "http://alldaysamples.com/" %> for including sample end times
+        in his data.
     </li>
     <li>
       Ben Bodien at <%= link_to "Neutron Creations",
