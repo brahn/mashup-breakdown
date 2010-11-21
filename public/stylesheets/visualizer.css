@@ -365,3 +365,7 @@ div.text-content {
   font-size: 12px;
 }
 
+div.text-content h3 {
+  margin-top: 3em;
+}
+

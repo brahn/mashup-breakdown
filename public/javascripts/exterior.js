@@ -10,7 +10,7 @@ $(document).ready(function () {
            },
     height: $('#samples').height(),
     title: "About",
-    draggable: false,
+    draggable: true,
     resizable: false,
     zIndex: 1000000 // need to cover tooltips
   });
