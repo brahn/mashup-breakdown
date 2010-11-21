@@ -10,7 +10,6 @@ $(document).ready(function () {
            },
     height: $('#samples').height(),
     title: "About",
-    modal: true,
     draggable: false,
     resizable: false,
     zIndex: 1000000 // need to cover tooltips
@@ -19,5 +18,8 @@ $(document).ready(function () {
   $('#about-link').click(function () {
     $('#about-dialog-container').dialog("open");
   });
+
+  var addr = "brahn" + "@" + "mashupbreakdown" + "." + "com";
+   $('#email-link').html('<a href="mailto:' + addr + '" target="_blank">' + addr + '</a>');
 
 });
