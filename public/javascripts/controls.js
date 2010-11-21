@@ -58,7 +58,7 @@ var Controls = (function () {
       value: 0,
       step: 0.01,
       orientation: "horizontal",
-      range: "min",
+      range: false,
       max: duration,
       animate: false,
       slide: function (e, ui) {

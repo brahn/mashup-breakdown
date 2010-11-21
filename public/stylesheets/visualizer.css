@@ -264,6 +264,7 @@ div#visualizer {
 }
 
 #handle {
+  border: none;
   position: absolute;
   top: -5px;
   left: 0;
@@ -350,3 +351,16 @@ div.text-content {
 .tipsy {
   line-height: 1.5em;
 }
+
+/* jQuery UI theme mod */
+
+/* webkit fix */
+.ui-dialog {
+  position: absolute;
+}
+
+/* knock out annoying theme background image */
+.ui-widget-content {
+  background-image: none;
+}
+
