@@ -42,6 +42,15 @@ body {
   minimum-width: 700px;
 }
 
+div#page {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  min-width: 760px;
+}
+
 div#bd {
   position: absolute;
   top: 80px;
@@ -55,7 +64,7 @@ div#ft {
   height: 50px;
   bottom: 0px;
   left: 90px;
-  right: 90px;
+  right: 40px;
   font-size: 11px;
 }
 
@@ -63,8 +72,8 @@ div#visualizer-header {
   position: absolute;
   top: -63px;
   height: 20px;
-  left: 50px;
-  right: 90px;
+  left: 0px;
+  right: 1px;
 }
 
 /* VISUALIZER HEADER */

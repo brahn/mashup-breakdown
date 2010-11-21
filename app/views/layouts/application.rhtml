@@ -45,21 +45,18 @@
 </head>
 <body>
 
-  <div id="hd">
-    <% if flash[:notice] %>
-      <p style="background: #CFC; color: #060">
-        <%= flash[:notice] %>
-      </p>
+  <div id="page">
+    <div id="hd">
+    </div>
+    <div id="bd">
+      <%= yield %>
+    </div>
+    <% unless @hide_footer %>
+      <div id="ft">
+        <%= render :partial => "layouts/application_footer" %>
+      </div>
     <% end %>
   </div>
-  <div id="bd">
-    <%= yield %>
-  </div>
-  <% unless @hide_footer %>
-    <div id="ft">
-      <%= render :partial => "layouts/application_footer" %>
-    </div>
-  <% end %>
 
 </body>
 </html>
