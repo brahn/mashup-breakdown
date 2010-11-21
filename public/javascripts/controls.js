@@ -50,6 +50,10 @@ var Controls = (function () {
     }
   };
 
+  var setHandleTailHeight = function () {
+    $(".player #handle-tail").height(24 + $('#samples').height());
+  };
+
   var setupPositionControl = function () {
     if (!duration) {
       return;
@@ -77,8 +81,8 @@ var Controls = (function () {
         }
       }
     });
-    $(".player #handle-tail").height(16 + $('#samples').height()).
-       css("opacity", 0.5).show();
+    setHandleTailHeight();
+    $(".player #handle-tail").css("opacity", 0.5).show();
   };
 
   var setupPlayToggle = function () {
@@ -135,6 +139,10 @@ var Controls = (function () {
   var getTime = function () {
     return currentTime;
   };
+
+  $(document).ready(function () {
+    $(window).resize(setHandleTailHeight);
+  });
 
   return {
     setup: setupControls,

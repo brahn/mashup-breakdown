@@ -12,8 +12,12 @@ var Visualizer = (function () {
 
   var WIDTH_MULTIPLIER = 1;
 
-  var setupSamplesDiv = function () {
+  var clearToolTips = function () {
     $('.tipsy').remove();
+  };
+
+  var setupSamplesDiv = function () {
+    clearToolTips();
     samplesDiv = $("#samples").width((WIDTH_MULTIPLIER * 100) + "%").empty();
   };
 
@@ -135,26 +139,31 @@ var Visualizer = (function () {
 // ==========================================
 // TIME-DEPENDENT EFFECTS
 
-  var updateSampleActivity = function (time, animate) {
+  var updateSampleActivity = function (time, animate, forceRedoEffect) {
     $.each(m_samples, function (index, sample) {
       if (isTimeInSample(sample, time)) {
-        if (!sample.block.hasClass("active")) {
+        if (!sample.block.hasClass("active") || forceRedoEffect) {
           sample.block.addClass("active");
           activateBlock(sample.block, animate);
         }
-      } else if (sample.block.hasClass("active")) {
+      } else if (sample.block.hasClass("active") || forceRedoEffect) {
         sample.block.removeClass("active");
         deactivateBlock(sample.block, animate);
       }
     });
   };
 
+  var currentTime;
+
   var setTime = function (time, animate) {
+    currentTime = time;
     updateSampleActivity(time, animate);
+/*
     if (WIDTH_MULTIPLIER !== 1) {
       samplesDiv.css("left",
         -100.0 * (WIDTH_MULTIPLIER - 1) * (time / duration) + "%");
     }
+*/
   };
 
 // ===========================================
@@ -170,6 +179,16 @@ var Visualizer = (function () {
     setSampleStrips();
     setupSampleBlocks();
   };
+
+  $(document).ready(function () {
+    $(window).resize(function () {
+      safeLogger(currentTime);
+      if (currentTime !== undefined) {
+        clearToolTips();
+        updateSampleActivity(currentTime, false, true);
+      }
+    });
+  });
 
   return {
     setup: setup,
