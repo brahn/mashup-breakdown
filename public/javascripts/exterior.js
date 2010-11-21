@@ -4,10 +4,15 @@
 $(document).ready(function () {
 
   $('#about-dialog-container').dialog({
-//    autoOpen: false,
-    width: $('#samples').width(),
+    width: function () {
+             return Math.min($('#samples').width(), 500);
+           },
     height: $('#samples').height(),
-    modal: true
+    title: "About",
+    modal: true,
+    draggable: false,
+    resizable: false,
+    zIndex: 1000000 // need to cover tooltips
   });
 
   $('#about-link').click(function () {

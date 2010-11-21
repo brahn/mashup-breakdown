@@ -1,13 +1,16 @@
 /* BASICS */
 
-a, a:visited, a:link, a:active, a:hover {
-  color: #3E6FCC;
+a, a:visited, a:link, a:active, a:hover, a:focus {
   text-decoration: none;
+  outline: none;
+}
+
+a, a:visited, a:link, a:focus {
+  color: #6699FF;
 }
 
 a:hover, a:active {
-  color: #6699FF;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 
@@ -339,13 +342,6 @@ div.strip-5 {
 }
 
 
-/* TEXT CONTENT */
-
-div.text-content {
-  max-width: 500px;
-  line-height: 1.5em;
-}
-
 /* TIPSY MODS */
 
 .tipsy {
@@ -362,5 +358,10 @@ div.text-content {
 /* knock out annoying theme background image */
 .ui-widget-content {
   background-image: none;
+}
+
+div.text-content {
+  line-height: 1.5em;
+  font-size: 12px;
 }
 
