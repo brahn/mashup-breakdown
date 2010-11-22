@@ -20,8 +20,6 @@ var Manager = (function () {
 
   var setTrack = function (trackIndex, playWhenCued) {
     currentTrackIndex = parseInt(trackIndex);
-    safeLogger("**********************************");
-    safeLogger("*** setting track = " + trackIndex + " ***" );
     $('#track-select').val(currentTrackIndex);
     var track = Data.tracks()[currentTrackIndex];
     Controls.setup(track.duration);
@@ -48,13 +46,10 @@ var Manager = (function () {
   YouTube.onStateChange.push(function (state) {
     if (state === 0) {
       var tempDateTime = new Date();
-      safeLogger("*** current track index: " + currentTrackIndex + " ***");
-      safeLogger("*** requesting advance ***");
       if (!lastAdvanceDateTime || (tempDateTime - lastAdvanceDateTime) >
            ADVANCE_HYSTERESIS_IN_SEC * 1000 )
       lastAdvanceDateTime = tempDateTime;
       safeLogger(lastAdvanceDateTime);
-      safeLogger("*** calling advance ***")
       advanceTrack();
     }
   });
