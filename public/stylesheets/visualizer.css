@@ -341,12 +341,37 @@ div.strip-5 {
   background: #9fcf3f;
 }
 
-
 /* TIPSY MODS */
 
 .tipsy {
   line-height: 1.5em;
 }
+
+/* follows .tipsy from third/tipsy.css, but avoids dynamic behavior */
+.tipsy-static {
+  display: block;
+  padding: 5px;
+  font-size: 10px;
+  position: absolute;
+  z-index: 100000;
+}
+
+#handle-time-point {
+  position: absolute;
+  bottom: 14px;
+  left: -14px;
+}
+
+#handle-time-point .tipsy-inner {
+  width: 28px;
+  border: solid 1px #fff;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+
+
+
 
 /* jQuery UI theme mod */
 

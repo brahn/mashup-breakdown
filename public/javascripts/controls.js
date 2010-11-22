@@ -10,6 +10,8 @@ var Controls = (function () {
 
   var bufferIndicator,
       positionIndicator,
+      handleTimePoint,
+      handleTimeText,
       timeleft,
       manualSeek = false,
       areControlsSetup = false;
@@ -50,6 +52,17 @@ var Controls = (function () {
     }
   };
 
+  var setupHandleTimePoint = function () {
+    handleTimePoint = $("#handle-time-point").addClass("tipsy-static").
+      html('<div class="tipsy-inner" id="handle-time-text"></div>').
+      css("opacity", 0.8);
+    handleTimeText = $("#handle-time-text").html("0:00");
+    $("#handle").mousedown(function () {
+      handleTimePoint.show();
+    });
+  };
+  $(document).ready(setupHandleTimePoint);
+
   var setHandleTailHeight = function () {
     $(".player #handle-tail").height(24 + $('#samples').height());
   };
@@ -67,10 +80,16 @@ var Controls = (function () {
       animate: false,
       slide: function (e, ui) {
         manualSeek = true;
+        handleTimePoint.show();
+        handleTimeText.html(secToMmss(ui.value));
         Visualizer.setTime(ui.value);
+        if (!YouTube.isPlaying()) {
+          timeleft.text(secToMmss(ui.value));
+        }
       },
       stop: function (e, ui) {
         manualSeek = false;
+        handleTimePoint.stop().fadeOut();
         if (YouTube.isPlaying()) {
           currentTime = ui.value;
           YouTube.seekTo(ui.value, true);
