@@ -88,7 +88,7 @@ var Data = (function () {
   var getAlbumFromWikipediaText = function (fileUrl, successFunc) {
     $.get(fileUrl, function (results) {
       var album = parseWikipediaText(results);
-//      addEndTimesToSamples(album);
+      addEndTimesToSamples(album);
       successFunc(album);
     });
   };
