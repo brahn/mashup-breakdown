@@ -112,7 +112,15 @@ div#visualizer-header div#header-links {
   font-weight: normal;
 }
 
+div#visualizer-header div#share-buttons-container {
+  float: right;
+  position: relative;
+  right: -14px;
+}
 
+div#visualizer-header div#share-buttons-container a {
+  color: #000;
+}
 
 /* FOOTER */
 
