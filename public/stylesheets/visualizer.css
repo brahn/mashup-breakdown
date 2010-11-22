@@ -54,6 +54,13 @@ div#page {
   min-width: 760px;
 }
 
+div#hd {
+  position: absolute;
+  top: 17px;
+  right: 40px;
+  left: 40px;
+}
+
 div#bd {
   position: absolute;
   top: 80px;
@@ -71,20 +78,34 @@ div#ft {
   font-size: 11px;
 }
 
+/* APPLICATION HEADER */
+
+div#hd h1 {
+  margin: 0 0 8px 0;
+  position: relative;
+}
+
+div#hd div#share-buttons-container {
+  float: right;
+  position: relative;
+  right: -14px;
+}
+
+div#hd div#share-buttons-container a {
+  color: #000;
+}
+
+/* VISUALIZER HEADER */
+
+
 div#visualizer-header {
   position: absolute;
-  top: -63px;
+  top: -28px;
   height: 20px;
   left: 0px;
   right: 1px;
 }
 
-/* VISUALIZER HEADER */
-
-div#visualizer-header h1 {
-  margin: 0 0 8px 0;
-  position: relative;
-}
 
 div#visualizer-header div.label-and-field {
   height: 18px;
@@ -104,6 +125,7 @@ div#visualizer-header select {
   margin: 0;
 }
 
+/*
 div#visualizer-header div#header-links {
   position: absolute;
   bottom: 0px;
@@ -111,16 +133,7 @@ div#visualizer-header div#header-links {
   font-size: 11px;
   font-weight: normal;
 }
-
-div#visualizer-header div#share-buttons-container {
-  float: right;
-  position: relative;
-  right: -14px;
-}
-
-div#visualizer-header div#share-buttons-container a {
-  color: #000;
-}
+*/
 
 /* FOOTER */
 

@@ -4,7 +4,7 @@
 <head>
   <% title = "Mashup Breakdown - Girl Talk - All Day" %>
   <% description = "Interactive breakdown of the hundreds of samples used in Girl Talk's new album 'All Day'" %>
-  <% meta_image_src = "/images/mashup-breakdown-thumbnail.png" %>
+  <% meta_image_src = "http://mashupbreakdown.com/images/mashup-breakdown-thumbnail.png" %>
   <title><%= title %></title>
   <meta name="description" content="<%= description %>" />
   <link rel="image_src" href="<%= meta_image_src %>" />
@@ -57,15 +57,14 @@
 
   <div id="page">
     <div id="hd">
+      <%= render :partial => "layouts/application_header" %>
     </div>
     <div id="bd">
       <%= yield %>
     </div>
-    <% unless @hide_footer %>
-      <div id="ft">
-        <%= render :partial => "layouts/application_footer" %>
-      </div>
-    <% end %>
+    <div id="ft">
+      <%= render :partial => "layouts/application_footer" %>
+    </div>
   </div>
 
 </body>
