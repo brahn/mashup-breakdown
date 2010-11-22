@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Auto-generate the public/404.html and public/500.html files
+# based on the standard application layout and contents of
+# app/web/views/content/400.rhtml and 500.rhtml files
+
+script/server -p 3009 &
+RAILSPID=$!
+sleep 10
+curl http://localhost:3009/content/visualizer > public/index.html
+kill $RAILSPID
+sleep 2
+echo "static visualizer refreshed"
+
+
