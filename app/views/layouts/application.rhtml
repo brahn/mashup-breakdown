@@ -2,9 +2,17 @@
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Mashup Breakdown - Girl Talk's All Day</title>
-  <meta name="description"
-        content="Interactive breakdown of the hundreds of samples used in Girl Talk's new album 'All Day'" />
+  <% title = "Mashup Breakdown - Girl Talk - All Day" %>
+  <% description = "Interactive breakdown of the hundreds of samples used in Girl Talk's new album 'All Day'" %>
+  <% meta_image_src = "/images/mixapp-breakdown-screenshot.png" %>
+  <title><%= title %></title>
+  <meta name="description" content="<%= description %>" />
+  <link rel="image_src" href="<%= meta_image_src %>" />
+  <%# facebook tags %>
+  <meta property="og:title" content="<%= title %>" />
+  <meta property="og:description" content="<%= description %>" />
+  <meta property="og:image" content="<%= meta_image_src %>" />
+
   <script src="http://www.google.com/jsapi" type="text/javascript"></script>
   <% javascript_tag do %>
     google.load("jquery", "1.4.4");
