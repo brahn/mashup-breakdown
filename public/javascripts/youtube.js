@@ -43,6 +43,22 @@ var YouTube = (function () {
     safeLogger("A YouTube error occured of type:" + errorCode);
   };
 
+  var monitorYouTubeSetup = function () {
+    safeLogger("Attempting to embed YouTube player");
+    setInterval(function () {
+      if (!ytPlayer) {
+        $("#yt-error-dialog").dialog("open");
+      }
+    }, 5000);
+  };
+
+  $(document).ready(function () {
+    $("#yt-error-dialog").dialog(dialogOptions({
+      title: "Dang!",
+      height: 200
+    }));
+  });
+
 // ======================================================
 // PLAYER SET UP
 
