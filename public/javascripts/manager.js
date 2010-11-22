@@ -40,7 +40,7 @@ var Manager = (function () {
 
   // advancing to next track after a track completes
   var advanceTrack = function () {
-    if (currentTrackIndex < currentAlbum.length) {
+    if (currentTrackIndex < currentAlbum.length - 1) {
       setTrack(currentTrackIndex + 1, true);
       updateVisualizer();
     }
