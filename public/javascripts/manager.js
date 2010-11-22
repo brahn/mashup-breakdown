@@ -12,8 +12,10 @@ var Manager = (function () {
 
   var setDataSource = function (source, successFunc) {
     $('#data-source-select').val(source);
+    $('#data-source-select-label').text("Loading ...");
     SampleData.getAlbum(source, function (returnedAlbum) {
       currentAlbum = returnedAlbum;
+      $('#data-source-select-label').text("Sample Info From");
       successFunc();
     });
   };
