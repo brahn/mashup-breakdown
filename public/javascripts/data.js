@@ -1,7 +1,10 @@
 /*jslint indent:2, browser:true, onevar:false */
-/*global $, window, YouTube, Data, Controls, asPercentage */
+/*global $, window, YouTube, Data, Controls, asPercentage, safeLogger, eachKey */
+/*global allDaySamplesArray */
 
-var Data = (function () {
+var temp;
+
+var SampleData = (function () {
 
 // ===========================================
 // TRACK DATA
@@ -33,13 +36,16 @@ var Data = (function () {
   var parseWikipediaText = function (text) {
     var album = [],
         currentTrack = null,
-        trackPattern = /(\d+). "(.*)"/,
+        trackPattern = /^(\d+)\. "(.*)"/,
         samplePattern = /(\d+):(\d+) - (\d+):(\d+) (.*) - "([^"]*)"/,
         samplePatternNoStop = /(\d+):(\d+) (.*) - "([^"]*)"/;
-    $.each(text.split('\n'), function (index, line) {
-      line = line.replace(/\[.*\]/g, "");
+    var lines = text.split('\n');
+    $.each(lines, function (index, line) {
+      safeLogger(line);
+      line = line.replace(/\[.*\] */g, "");
       var sampleResults = line.match(samplePattern);
       if (sampleResults) {
+        safeLogger("*** sample with stop time ***");
         currentTrack.samples.push({
           start: 60 * parseInt(sampleResults[1]) + parseInt(sampleResults[2]),
           stop: 60 * parseInt(sampleResults[3]) + parseInt(sampleResults[4]),
@@ -50,6 +56,7 @@ var Data = (function () {
       }
       sampleResults = line.match(samplePatternNoStop);
       if (sampleResults) {
+        safeLogger("*** sample without stop time ***");
         currentTrack.samples.push({
           start: 60 * parseInt(sampleResults[1]) + parseInt(sampleResults[2]),
           artist: sampleResults[3],
@@ -59,9 +66,10 @@ var Data = (function () {
       }
       var trackResults = line.match(trackPattern);
       if (trackResults) {
+        safeLogger("*** track ***");
         var trackIndex = parseInt(trackResults[1]) - 1;
         if (m_tracks.length > trackIndex) {
-          currentTrack = m_tracks[trackIndex];
+          currentTrack = shallowClone(m_tracks[trackIndex]);
         } else {
           currentTrack = {title: trackResults[2]};
         }
@@ -88,6 +96,18 @@ var Data = (function () {
   var getAlbumFromWikipediaText = function (fileUrl, successFunc) {
     $.get(fileUrl, function (results) {
       var album = parseWikipediaText(results);
+      addEndTimesToSamples(album);
+      successFunc(album);
+    });
+  };
+
+  var getLiveWikipedia = function (successFunc) {
+    var page = 'All_Day_(album)';
+    $.getJSON('http://en.wikipedia.org/w/api.php?action=parse&page=' +
+              encodeURIComponent(page) +
+              '&prop=text&format=json&callback=?', function (json) {
+      var text = $('<div></div>').html((json.parse.text["*"])).find('h3, ul').text();
+      var album = parseWikipediaText(text);
       addEndTimesToSamples(album);
       successFunc(album);
     });
@@ -146,6 +166,11 @@ var Data = (function () {
         m_albums[source] = resultingAlbum;
         successFunc(m_albums[source]);
       });
+    } else if (source === "live-wikipedia") {
+      getLiveWikipedia(function (resultingAlbum) {
+        m_albums[source] = resultingAlbum;
+        successFunc(m_albums[source]);
+      });
     } else {
       getAlbumFromWikipediaText("/javascripts/data/wikipedia.txt",
         function (resultingAlbum) {
@@ -170,8 +195,12 @@ var Data = (function () {
   };
 
   return {
-    getAlbumFromWikipediaText: getAlbumFromWikipediaText, // exposed for testing
+    // exposed for testing
+    getLiveWikipedia: getLiveWikipedia,
+    getAlbumFromWikipediaText: getAlbumFromWikipediaText,
     logAlbum: logAlbum,
+    albums: m_albums,
+
     tracks: tracks,
     getAlbum: getAlbum
   };

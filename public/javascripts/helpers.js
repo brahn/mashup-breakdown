@@ -56,12 +56,20 @@ var sendEvent = function (handlers) {
   });
 };
 
-var eachKey = function(obj, func) {
+var eachKey = function (obj, func) {
   for (var key in obj) {
     if (obj.hasOwnProperty(key)) {
       func(key, obj[key]);
     }
   }
+};
+
+var shallowClone = function (obj) {
+  var newObj = {};
+  eachKey(obj, function (key, val) {
+    newObj[key] = val;
+  });
+  return newObj;
 };
 
 // NOTE: DO NOT CALL UNTIL $(document).ready(), otherwise

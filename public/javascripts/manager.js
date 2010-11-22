@@ -1,5 +1,5 @@
 /*jslint indent:2, browser:true, onevar:false */
-/*global $, window, YouTube, Data, Controls, asPercentage */
+/*global $, window, YouTube, SampleData, Controls, asPercentage */
 
 // Selecting tracks and data sources
 
@@ -12,7 +12,7 @@ var Manager = (function () {
 
   var setDataSource = function (source, successFunc) {
     $('#data-source-select').val(source);
-    Data.getAlbum(source, function (returnedAlbum) {
+    SampleData.getAlbum(source, function (returnedAlbum) {
       currentAlbum = returnedAlbum;
       successFunc();
     });
@@ -21,7 +21,7 @@ var Manager = (function () {
   var setTrack = function (trackIndex, playWhenCued) {
     currentTrackIndex = parseInt(trackIndex);
     $('#track-select').val(currentTrackIndex);
-    var track = Data.tracks()[currentTrackIndex];
+    var track = SampleData.tracks()[currentTrackIndex];
     Controls.setup(track.duration);
     YouTube.setup($("#yt-player-standin"), "ytPlayer", track.ytId,
       playWhenCued);
@@ -29,7 +29,7 @@ var Manager = (function () {
 
   var updateVisualizer = function () {
     Visualizer.setup(currentAlbum[currentTrackIndex].samples,
-      Data.tracks()[currentTrackIndex].duration);
+      SampleData.tracks()[currentTrackIndex].duration);
     Visualizer.setTime(Controls.getTime());
   };
 
@@ -56,7 +56,7 @@ var Manager = (function () {
 
   // track selection drop-down
   var setupTrackSelect = function () {
-    $.each(Data.tracks(), function (index, track) {
+    $.each(SampleData.tracks(), function (index, track) {
       $('#track-select').append("<option value='" + index + "'>" +
         "Track " + (index + 1) + " - " + track.title + "</option>");
     });
