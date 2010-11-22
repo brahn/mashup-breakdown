@@ -37,12 +37,16 @@ var Controls = (function () {
     bufferIndicator.show();
   };
 
+  var updateTimeLeft = function (time) {
+    timeleft.text(secToMmss(time) + "/" + secToMmss(duration));
+  };
+
   var updatePlaybackIndicators = function () {
     if (!duration) {
       return;
     }
     // text indicating time remaining
-    timeleft.text(secToMmss(currentTime));
+    updateTimeLeft(currentTime);
     // adjust position indicator if we aren't in the midst of a manual drag
     if (!manualSeek) {
       var pos =
@@ -84,12 +88,12 @@ var Controls = (function () {
         handleTimeText.html(secToMmss(ui.value));
         Visualizer.setTime(ui.value);
         if (!YouTube.isPlaying()) {
-          timeleft.text(secToMmss(ui.value));
+          updateTimeLeft(ui.value);
         }
       },
       stop: function (e, ui) {
         manualSeek = false;
-        handleTimePoint.stop().fadeOut();
+        handleTimePoint.stop().fadeOut("fast");
         if (YouTube.isPlaying()) {
           currentTime = ui.value;
           YouTube.seekTo(ui.value, true);
