@@ -17,8 +17,8 @@ var secToMmss = function (time) {
 };
 
 var safeLogger = function (str) {
-  if (console && console.log) {
-    console.log(str);
+  if (window.console && window.console.log) {
+    window.console.log(str);
   }
 };
 
@@ -56,3 +56,28 @@ var sendEvent = function (handlers) {
   });
 };
 
+var eachKey = function(obj, func) {
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      func(key, obj[key]);
+    }
+  }
+};
+
+// NOTE: DO NOT CALL UNTIL $(document).ready(), otherwise
+// height and width will be wrong.
+var dialogOptions = function (newOptions) {
+  newOptions = newOptions || {};
+  var opts = { // defaults
+    autoOpen: false,
+    width: Math.min($('#samples').width(), 500),
+    height: Math.min($('#samples').height(), 400),
+    draggable: true,
+    resizable: false,
+    zIndex: 1000000 // need to cover tooltips
+  };
+  eachKey(newOptions, function (key, val) {
+    opts[key] = val;
+  });
+  return opts;
+};

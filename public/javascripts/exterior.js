@@ -3,17 +3,7 @@
 
 $(document).ready(function () {
 
-  $('#about-dialog-container').dialog({
-    autoOpen: false,
-    width: function () {
-             return Math.min($('#samples').width(), 500);
-           },
-    height: $('#samples').height(),
-    title: "About",
-    draggable: true,
-    resizable: false,
-    zIndex: 1000000 // need to cover tooltips
-  });
+  $('#about-dialog-container').dialog(dialogOptions({title: "About"}));
 
   $('#about-link').click(function () {
     $('#about-dialog-container').dialog("open");
