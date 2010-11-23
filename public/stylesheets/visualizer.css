@@ -202,7 +202,7 @@ div.footer-left {
 
 /* YOUTUBE */
 
-div#yt-container {
+div.flash-player-container {
   position: absolute;
   bottom: -78px;
   left: -38px;
@@ -212,14 +212,18 @@ div#yt-container {
   background: #000;
 }
 
-div#yt-container div#yt-player-standin,
-div#yt-container div#yt-player {
+div.flash-player-container div.flash-player-standin,
+div.flash-player-container div.flash-player {
   position: absolute;
   top: 0px;
   left: 0px;
   right: 0px;
   bottom: 0px;
   background: #000;
+}
+
+div#sc-container {
+  bottom: -128px;
 }
 
 /* VISUALIZER */

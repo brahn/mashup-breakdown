@@ -1,8 +1,16 @@
 <%= render :partial => "content/visualizer_header" %>
 
-<div id="yt-container">
-  <div id="yt-player-standin"></div><%# gets replaced when player inserted %>
+<div id="yt-container" class="flash-player-container">
+  <%# gets replaced when player inserted %>
+  <div id="yt-player-standin" class="flash-player"></div>
 </div>
+
+<div id="sc-container" class="flash-player-container">
+  <%# gets replaced when player inserted %>
+  <div id="sc-player-standin" class="flash-player"></div>
+</div>
+
+
 <div id="yt-error-dialog" style="display:none">
   <p>
     Hmm, the music won't play.
