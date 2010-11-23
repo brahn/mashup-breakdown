@@ -42,16 +42,18 @@ body {
   font-size: 13px;
   background: #000;
   color: #FFF;
-  minimum-width: 700px;
+  min-width: 700px;
 }
 
 div#page {
   position: absolute;
   top: 0px;
-  bottom: 0px;
   left: 0px;
   right: 0px;
-  min-width: 760px;
+}
+
+div.viewport-size {
+  bottom: 0px;
 }
 
 div#hd {
@@ -59,9 +61,15 @@ div#hd {
   top: 17px;
   right: 40px;
   left: 40px;
+  height: 35px;
 }
 
 div#bd {
+  margin: 80px 40px;
+}
+
+div.viewport-size div#bd {
+  margin: 0px;
   position: absolute;
   top: 80px;
   right: 40px;
@@ -73,9 +81,19 @@ div#ft {
   position: absolute;
   height: 50px;
   bottom: 0px;
-  left: 90px;
+  left: 40px;
   right: 40px;
   font-size: 11px;
+}
+
+div.viewport-size #hd,
+div.viewport-size #bd,
+div.viewport-size #ft {
+  min-width: 760px;
+}
+
+div.viewport-size #ft {
+  left: 90px;
 }
 
 /* APPLICATION HEADER */

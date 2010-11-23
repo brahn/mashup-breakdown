@@ -2,7 +2,7 @@
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <% title = "Mashup Breakdown - Girl Talk - All Day" %>
+  <% title = "Mashup Breakdown" + (@meta_title.blank? ? "" : " - " + @meta_title) %>
   <% description = "Interactive timeline identifying the samples in Girl Talk's new album 'All Day'" %>
   <% meta_image_src = "http://mashupbreakdown.com/images/mashup-breakdown-thumbnail.png" %>
   <title><%= title %></title>
@@ -57,7 +57,7 @@
 </head>
 <body>
 
-  <div id="page">
+  <div id="page" class="<%= @page_class %>">
     <div id="hd">
       <%= render :partial => "layouts/application_header" %>
     </div>
