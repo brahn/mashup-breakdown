@@ -88,12 +88,39 @@ div#hd h1 {
 div#hd div#share-buttons-container {
   float: right;
   position: relative;
-  right: -14px;
+  right: -6px;
 }
 
 div#hd div#share-buttons-container a {
   color: #000;
 }
+
+div#share-buttons-container a#fb-share-link {
+  display: block;
+  float: left;
+  width: 65px;
+  height: 20px;
+  text-decoration: none;
+  position: relative;
+  top: 2px;
+  background-image: url(/images/fb-share.png);
+}
+
+a#fb-share-link span.FBConnectButton {
+  display: none;
+}
+
+div#share-buttons-container a#comments-link {
+  display: block;
+  float: left;
+  width: 62px;
+  height: 20px;
+  text-decoration: none;
+  position: relative; 
+  top: 2px;
+  background-image: url(/images/feedback.png);
+}
+
 
 /* VISUALIZER HEADER */
 
@@ -399,6 +426,10 @@ div.strip-5 {
 /* webkit fix */
 .ui-dialog {
   position: absolute;
+}
+
+.ui-dialog .ui-dialog-content {
+  padding: 1em 2em;
 }
 
 /* knock out annoying theme background image */
