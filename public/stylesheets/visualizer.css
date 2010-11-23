@@ -46,13 +46,14 @@ body {
 }
 
 div#page {
+  margin: 0;
+}
+
+div.viewport-size {
   position: absolute;
   top: 0px;
   left: 0px;
   right: 0px;
-}
-
-div.viewport-size {
   bottom: 0px;
 }
 

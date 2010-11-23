@@ -78,8 +78,8 @@ var dialogOptions = function (newOptions) {
   newOptions = newOptions || {};
   var opts = { // defaults
     autoOpen: false,
-    width: Math.min($('#samples').width(), 500),
-    height: Math.min($('#samples').height(), 400),
+    width: Math.min($(window).height(), 500),
+    height: Math.min($(window).height(), 400),
     draggable: true,
     resizable: false,
     zIndex: 1000000 // need to cover tooltips
