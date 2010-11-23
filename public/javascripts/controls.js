@@ -121,8 +121,19 @@ var Controls = (function () {
     $("#playtoggle").click(function () {
       if (YouTube.isPlaying()) {
         YouTube.pause();
-      } else {
+      } else if (YouTube.isCreated()){
         YouTube.play();
+      } else {
+        // check again in 1 second
+        setInterval(function () {
+          if (YouTube.isCreated()) {
+            // It worked this time!  Play it.
+            YouTube.play();
+          } else {
+            // Problem.  Show it.
+            $('#yt-error-dialog').dialog("open");
+          }
+        }, 1000);
       }
     });
   };

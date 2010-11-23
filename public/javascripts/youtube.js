@@ -43,21 +43,15 @@ var YouTube = (function () {
     safeLogger("A YouTube error occured of type:" + errorCode);
   };
 
-  var monitorYouTubeSetup = function () {
+  var monitorYouTubeSetup = function (failureFunc) {
     safeLogger("Attempting to embed YouTube player");
-    setInterval(function () {
+    setTimeout(function () {
       if (!ytPlayer) {
-        $("#yt-error-dialog").dialog("open");
+        safeLogger("Failed to embed YouTube player");
+        failureFunc();
       }
     }, 5000);
   };
-
-  $(document).ready(function () {
-    $("#yt-error-dialog").dialog(dialogOptions({
-      title: "Dang!",
-      height: 200
-    }));
-  });
 
 // ======================================================
 // PLAYER SET UP
@@ -65,7 +59,8 @@ var YouTube = (function () {
   var ytIdToCue = null,
       ytPlayWhenCued = null;
 
-  var setup = function (divToReplace, playerObjectId, ytId, playWhenCued) {
+  var setup = function (divToReplace, playerObjectId, ytId, playWhenCued,
+    createPlayerFailureFunc) {
     if (isCreated()) {
       // player has already been created, we don't need to do it again
       if (playWhenCued) {
@@ -95,6 +90,7 @@ var YouTube = (function () {
                        "enablejsapi=1&playerapiid=" + playerid,
                        divToReplace.attr("id"), playerWidth, playerHeight,
                        "8", null, null, params, atts);
+    monitorYouTubeSetup(createPlayerFailureFunc);
   };
 
 

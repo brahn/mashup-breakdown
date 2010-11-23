@@ -5,18 +5,16 @@ $(document).ready(function () {
 
   $('#about-dialog-container').dialog(dialogOptions({title: "About"}));
 
-/*
-  setInterval(function () {
-    $('#comments-dialog').dialog(dialogOptions({
-      title: "Feedback",
-      width: 700
+  $(document).ready(function () {
+    $("#yt-error-dialog").dialog(dialogOptions({
+      title: "Dang!",
+      height: 250
     }));
-  }, 0);
+  });
 
   $('#comments-link').click(function () {
     $('#comments-dialog').dialog("open");
   });
-*/
 
   $('#about-link').click(function () {
     $('#about-dialog-container').dialog("open");

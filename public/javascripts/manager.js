@@ -26,7 +26,9 @@ var Manager = (function () {
     var track = SampleData.tracks()[currentTrackIndex];
     Controls.setup(track.duration);
     YouTube.setup($("#yt-player-standin"), "ytPlayer", track.ytId,
-      playWhenCued);
+      playWhenCued, function () {
+        $('#yt-error-dialog').dialog("open");
+      });
   };
 
   var updateVisualizer = function () {
