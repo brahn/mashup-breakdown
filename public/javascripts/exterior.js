@@ -5,19 +5,18 @@ $(document).ready(function () {
 
   $('#about-dialog-container').dialog(dialogOptions({title: "About"}));
 
-  var areCommentsSetup = false;
-  $('#comments-dialog').dialog(dialogOptions({
-    title: "Feedback",
-    open: function () {
-      if (!areCommentsSetup) {
-        $('#dialog-container').append($('#disqus-container'));
-      }
-    }
-  }));
+/*
+  setInterval(function () {
+    $('#comments-dialog').dialog(dialogOptions({
+      title: "Feedback",
+      width: 700
+    }));
+  }, 0);
 
   $('#comments-link').click(function () {
     $('#comments-dialog').dialog("open");
   });
+*/
 
   $('#about-link').click(function () {
     $('#about-dialog-container').dialog("open");

@@ -9,7 +9,29 @@
 
 <div class="footer-content footer-right">
   <%= link_to "About/Thanks/Contact", "#", {:id => "about-link"} %>
+<% if false %>
+   &nbsp;|&nbsp;
+  <%= link_to "Feedback", "#", {:id => "comments-link"} %>
+<% end %>
 </div>
+
+<% if false %>
+  <div id="comments-dialog" style="display:none">
+    <div id='disqus_thread'></div>
+      <script type='text/javascript'>
+      var disqus_shortname = 'mashupbreakdown'; // required
+      var disqus_identifier = 'all_day_2010_11_22';
+      var disqus_url = 'http://mashupbreakdown.com/';
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+      <a href='http://disqus.com' class='dsq-brlink'>blog comments powered by <span class='logo-disqus'>Disqus</span></a>
+  </div>
+<% end %>
 
 <div id="about-dialog-container" style="display:none">
   <div class="text-content" %>
