@@ -7,12 +7,10 @@
 </div>
 
 
-<div class="footer-content footer-right">
+<div class="footer-content footer-right" style="color: #888">
   <%= link_to "About/Thanks/Contact", "#", {:id => "about-link"} %>
-<% if false %>
-   &nbsp;|&nbsp;
-  <%= link_to "Feedback", "#", {:id => "comments-link"} %>
-<% end %>
+   &nbsp;&nbsp;|&nbsp;&nbsp;
+  <%= link_to_unless_current "Feedback", {:controller => "content", :action => "feedback"}, {:target => "_blank"} %>
 </div>
 
 <% if false %>

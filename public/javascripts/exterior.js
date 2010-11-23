@@ -12,10 +12,6 @@ $(document).ready(function () {
     }));
   });
 
-  $('#comments-link').click(function () {
-    $('#comments-dialog').dialog("open");
-  });
-
   $('#about-link').click(function () {
     $('#about-dialog-container').dialog("open");
   });
