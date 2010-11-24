@@ -18,9 +18,10 @@
   </p>
   <p>
     If you have a flash blocker, try disabling it.
+    Or you can just  try <%= link_to_function "reloading", "window.location.reload()" %>.
   </p>
-  <p> Or you can just
-    try <%= link_to_function "reloading", "window.location.reload()" %>.
+  <p>
+    If that doesn't help, please <%= link_to "leave feedback", {:controller => "content", :action => "feedback"}, {:target => "_blank"} %> (please include your browser and operating system) and I'll see what I can do!
   </p>
 </div>
 
