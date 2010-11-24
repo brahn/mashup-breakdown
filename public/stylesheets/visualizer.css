@@ -117,13 +117,31 @@ div#hd div#share-buttons-container a {
 div#share-buttons-container a#fb-share-link {
   display: block;
   float: left;
-  width: 65px;
+  width: 120px;
   height: 20px;
   text-decoration: none;
   position: relative;
   top: 2px;
   background-image: url(/images/fb-share.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
 }
+
+div#share-buttons-container a#fb-share-link span.fb_share_size_Small {
+  position: absolute;
+  left: 65px;
+  top: -8px;
+}
+
+div#share-buttons-container a#fb-share-link span.fb_share_count_nub_right  {
+  position: relative;
+  top: 11px;
+  left: 1px;
+  background: none;
+/*  background: url(/images/fb-nub.png); */
+}
+
+
 
 a#fb-share-link span.FBConnectButton {
   display: none;
