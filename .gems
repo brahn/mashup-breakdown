@@ -1,1 +1,2 @@
 rails -v 2.3.2
+hoptoad_notifier
