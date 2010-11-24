@@ -8,9 +8,18 @@ setTimeout(function() {document.getElementById("BF_WIDGET_1").appendChild(BF_WID
 })();
 </script>
 
+<% noun_phrase_options = ["interactive breakdown", "visual breakdown", "visualization"]
+   noun_phrase = noun_phrase_options[rand noun_phrase_options.length]
+   tweet_text_options = [
+"Fascinating #{noun_phrase} of hundreds of samples used in Girl Talk's new album",
+"See how Girl Talk's magic works! #{noun_phrase.capitalize} of hundreds of samples in the new album",
+"Check it out -- #{noun_phrase} of hundreds of samples in Girl Talk's new album"
+  ]
+tweet_text = tweet_text_options[rand tweet_text_options.length]
+%>
 <div style="margin-left: 10px; float: left">
 <%# from http://twitter.com/about/resources/tweetbutton %>
-<a href="http://twitter.com/share" class="twitter-share-button" data-url="http://mashupbreakdown.com" data-text="Hundreds of samples in Girl Talk's new album, with interactive breakdown" data-count="none" data-via="brahn">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<a href="http://twitter.com/share" class="twitter-share-button" data-url="http://mashupbreakdown.com" data-text="<%= tweet_text %>" data-count="horizontal" data-via="brahn">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 </div>
 
 <div style="margin-left: 10px; float: left">
@@ -21,7 +30,7 @@ setTimeout(function() {document.getElementById("BF_WIDGET_1").appendChild(BF_WID
 </div>
 
 
-<div style="margin-left: 10px; float: left">
+<div style="margin-left: 20px; float: left">
 <%# from http://developers.facebook.com/docs/reference/plugins/like %>
 <%# URL to Like is http://www.facebook.com/pages/Mashup-Breakdown/143007779084766?created %>
 <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FMashup-Breakdown%2F143007779084766&amp;layout=button_count&amp;show_faces=true&amp;width=90&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:20px;" allowTransparency="true"></iframe>
