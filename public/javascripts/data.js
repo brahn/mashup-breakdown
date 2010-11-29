@@ -48,7 +48,7 @@ var SampleData = (function () {
         safeLogger("*** sample with stop time ***");
         currentTrack.samples.push({
           start: 60 * parseInt(sampleResults[1]) + parseInt(sampleResults[2]),
-          stop: 60 * parseInt(sampleResults[3]) + parseInt(sampleResults[4]),
+          end: 60 * parseInt(sampleResults[3]) + parseInt(sampleResults[4]),
           artist: sampleResults[5],
           title: sampleResults[6]
         });
