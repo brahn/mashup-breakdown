@@ -85,6 +85,10 @@ var Visualizer = (function () {
   };
 
   var createSampleBlock = function (sample) {
+    // force samples to be represented as at least 1 second long
+    if (sample.end - sample.start < 1) {
+      sample.end = sample.start + 1;
+    }
     return $('<div></div>').
       addClass("sample-block strip-" + (sample.strip % 6)).
       css({
