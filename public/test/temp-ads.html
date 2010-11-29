@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Temp</title>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+  <script type="text/javascript" src="/javascripts/helpers.js"></script>
+  <script type="text/javascript" src="/javascripts/data/alldaysamples.js"></script>
+  <script>
+    $(document).ready(function () {
+      var output = $('#output');
+      $.each(allDaySamplesArray, function (index, track) {
+        output.append("<hr /><ul>");
+        $.each(track, function (index, sample) {
+          output.append('<li>' + secToMmss(sample[0]/1000) + ' - ' + secToMmss(sample[1]/1000) + ' ' + sample[2] + ' - "' + sample[3] + '"</li>');
+        });
+        output.append("</ul>");
+      });
+    });
+
+  </script>
+</head>
+<body style="font-family: sans-serif; font-size: 13px; line-height: 1.5em">
+
+<div id="output" style="padding-top: 100px;  padding-left: 50px">
+</div>
+
+</body>
+</html>
+

@@ -5,7 +5,18 @@
   </div>
 
   <div class="label-and-field" id="data-source-select-container">
-    <label for="data-source-select" id="data-source-select-label">Sample info from</label>
+    <label for="data-source-select" id="data-source-select-label">
+      <span id="data-source-loading-indicator" style="display:none">
+        Loading...
+      </span>
+      <span id="data-source-reload-link-container" style="display:none">
+        (<%= link_to_function "Reload", "",
+             {:id => "data-source-reload-link"} %>)
+      </span>
+      <span id="data-source-label-text">
+        Sample info from
+      </span>
+    </label>
     <select id="data-source-select">
       <%= options_for_select [
         ["Wikipedia (live)", "live-wikipedia"],

@@ -157,8 +157,8 @@ var SampleData = (function () {
   };
 
   // use sample data from a particular ource;
-  var getAlbum = function (source, successFunc) {
-    if (m_albums[source]) {
+  var getAlbum = function (source, forceReload, successFunc) {
+    if (m_albums[source] && !forceReload) {
       // we've already retrieved this album's data, so don't do it again.
       successFunc(m_albums[source]);
     } else if (source === "allDaySamples") {

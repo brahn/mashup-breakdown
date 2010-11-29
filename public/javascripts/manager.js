@@ -10,14 +10,18 @@ var Manager = (function () {
 
   var currentAlbum, currentTrackIndex;
 
-  var setDataSource = function (source, successFunc) {
-    $('#data-source-select').val(source);
-    $('#data-source-select-label').text("Loading ...");
-    SampleData.getAlbum(source, function (returnedAlbum) {
-      currentAlbum = returnedAlbum;
-      $('#data-source-select-label').text("Sample Info From");
+  var updateData = function (returnedAlbum, source, successFunc) {
+    currentAlbum = returnedAlbum;
+    $('#data-source-loading-indicator').hide();
+    $('#data-source-label-text').show();
+    if (source === "live-wikipedia") {
+      $('#data-source-reload-link-container').show();
+    } else {
+      $('#data-source-reload-link-container').hide();
+    }
+    if (successFunc) {
       successFunc();
-    });
+    }
   };
 
   var setTrack = function (trackIndex, playWhenCued) {
@@ -70,6 +74,16 @@ var Manager = (function () {
     });
   };
 
+  var setDataSource = function (source, successFunc) {
+    $('#data-source-select').val(source);
+    $('#data-source-reload-link-container').hide();
+    $('#data-source-label-text').hide();
+    $('#data-source-loading-indicator').show();
+    SampleData.getAlbum(source, false, function (returnedAlbum) {
+      updateData(returnedAlbum, source, successFunc);
+    });
+  };
+
   // data source selection drop-down
   var setupDataSourceSelect = function () {
     $('#data-source-select').change(function () {
@@ -79,9 +93,22 @@ var Manager = (function () {
     });
   };
 
+  var setupDataReloadLink = function () {
+    $('#data-source-reload-link').click(function () {
+      var source = $('#data-source-select').val();
+      $('#data-source-reload-link-container').hide();
+      $('#data-source-label-text').hide();
+      $('#data-source-loading-indicator').show();
+      SampleData.getAlbum(source, true, function (returnedAlbum) {
+        updateData(returnedAlbum, source, updateVisualizer);
+      });
+    });
+  };
+
   $(document).ready(function () {
     setupTrackSelect();
     setupDataSourceSelect();
+    setupDataReloadLink();
     setDataSource(INITIAL_SOURCE, function () {
       setTrack(0);
       updateVisualizer();
