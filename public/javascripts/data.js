@@ -38,7 +38,7 @@ var SampleData = (function () {
         currentTrack = null,
         trackPattern = /^(\d+)\. "(.*)"/,
         samplePattern = /(\d+):(\d+) - (\d+):(\d+) (.*) - "([^"]*)"/,
-        samplePatternNoStop = /(\d+):(\d+)( | - \?:\?\? )(.*) - "([^"]*)"/;
+        samplePatternNoStop = /(\d+):(\d+)(\s-\s\?:\?\?)?\s([^ -].*) - "([^"]*)"/;
     var lines = text.split('\n');
     $.each(lines, function (index, line) {
       safeLogger(line);
