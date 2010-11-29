@@ -177,7 +177,17 @@ var Visualizer = (function () {
     m_duration = trackDuration;
     // make sure samples are sorted by start time
     m_samples = samples.sort(function (a, b) {
-      return a.start - b.start;
+      if (a.start != b.start) {
+        return a.start - b.start;
+      } else if (a.end != b.end) {
+        return a.end - b.end;
+      } else if (a.artist !== b.artist) {
+        return (a.artist > b.artist) ? 1 : -1;
+      } else if (a.title < b.title) {
+        return (a.title > b.title) ? 1 : -1;
+      } else {
+        return -1;
+      }
     });
     setupSamplesDiv();
     setSampleStrips();
