@@ -5,8 +5,8 @@
 
 var Manager = (function () {
 
-  // INITIAL_SOURCE can be "allDaySamples" or "wikipedia"
-  var INITIAL_SOURCE = "allDaySamples";
+  // INITIAL_SOURCE can be "allDaySamples", "wikipedia", or "live-wikipedia"
+  var INITIAL_SOURCE = "wikipedia";
 
   var currentAlbum, currentTrackIndex;
 
