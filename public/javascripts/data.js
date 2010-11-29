@@ -38,7 +38,7 @@ var SampleData = (function () {
         currentTrack = null,
         trackPattern = /^(\d+)\. "(.*)"/,
         samplePattern = /(\d+):(\d+) - (\d+):(\d+) (.*) - "([^"]*)"/,
-        samplePatternNoStop = /(\d+):(\d+) (.*) - "([^"]*)"/;
+        samplePatternNoStop = /(\d+):(\d+)( | - \?:\?\? )(.*) - "([^"]*)"/;
     var lines = text.split('\n');
     $.each(lines, function (index, line) {
       safeLogger(line);
@@ -59,8 +59,8 @@ var SampleData = (function () {
         safeLogger("*** sample without stop time ***");
         currentTrack.samples.push({
           start: 60 * parseInt(sampleResults[1]) + parseInt(sampleResults[2]),
-          artist: sampleResults[3],
-          title: sampleResults[4]
+          artist: sampleResults[4],
+          title: sampleResults[5]
         });
         return;
       }
