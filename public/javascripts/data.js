@@ -24,7 +24,7 @@ var AlbumData = (function () {
 
   // store album data from different sources in m_albums. keys
   // * "wikipedia"
-  // * "allDaySamples"
+  // * "live-wikipedia"
   var m_albums = {};
 
 // ==========================================
@@ -111,42 +111,6 @@ var AlbumData = (function () {
     });
   };
 
-// ======================================
-// SAMPLE DATA FROM ALLDAYSAMPLES.COM
-// Assumes that data/alldaysamples.js has been called, and sets
-// the global variable allDaySamplesArray
-
-  // allDaySamplesArray the above is not in our preferred format.  Let's
-  // fix that.
-
-  var convertToAlbumFormat = function (data) {
-    var album = [];
-    $.each(data, function (index, trackArray) {
-      var track = {
-        title: m_tracks[index].title,
-        duration: m_tracks[index].duration,
-        ytId: m_tracks[index].ytId,
-        samples: []
-      };
-      $.each(trackArray, function (index, sampleArray) {
-        track.samples.push({
-          start: sampleArray[0] / 1000.0,
-          end: sampleArray[1] / 1000.0,
-          artist: sampleArray[2],
-          title: sampleArray[3]
-        });
-      });
-      album.push(track);
-    });
-    return album;
-  };
-
-  // Use a callback to match format of wikipedia get, which
-  // is actually ajax
-  var getAlbumFromAllDaySamples = function (successFunc) {
-    successFunc(convertToAlbumFormat(allDaySamplesArray));
-  };
-
 // =================================
 // INTERFACE
 
@@ -159,11 +123,6 @@ var AlbumData = (function () {
     if (m_albums[source] && !forceReload) {
       // we've already retrieved this album's data, so don't do it again.
       successFunc(m_albums[source]);
-    } else if (source === "allDaySamples") {
-      getAlbumFromAllDaySamples(function (resultingAlbum) {
-        m_albums[source] = resultingAlbum;
-        successFunc(m_albums[source]);
-      });
     } else if (source === "live-wikipedia") {
       getLiveWikipedia(function (resultingAlbum) {
         m_albums[source] = resultingAlbum;
@@ -194,8 +153,6 @@ var AlbumData = (function () {
 
   return {
     // exposed for testing
-    getLiveWikipedia: getLiveWikipedia,
-    getAlbumFromWikipediaText: getAlbumFromWikipediaText,
     logAlbum: logAlbum,
     albums: m_albums,
 
