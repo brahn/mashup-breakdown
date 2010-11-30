@@ -172,7 +172,7 @@ var Visualizer = (function () {
 
 // ===========================================
 
-  var setup = function (samples, trackDuration) {
+  var setup = function (samples, trackDuration, time) {
     $('.tipsy').remove();
     m_duration = trackDuration;
     // make sure samples are sorted by start time
@@ -192,6 +192,9 @@ var Visualizer = (function () {
     setupSamplesDiv();
     setSampleStrips();
     setupSampleBlocks();
+    if (time !== null && time !== undefined) {
+      setTime(time);
+    }
   };
 
   $(document).ready(function () {

@@ -37,8 +37,8 @@ var Manager = (function () {
 
   var updateVisualizer = function () {
     Visualizer.setup(currentAlbum[currentTrackIndex].samples,
-      SampleData.tracks()[currentTrackIndex].duration);
-    Visualizer.setTime(Controls.getTime());
+      SampleData.tracks()[currentTrackIndex].duration,
+      Controls.getTime());
   };
 
   var lastAdvanceDateTime = null,
