@@ -28,10 +28,9 @@ var AlbumData = (function () {
   var m_albums = {};
 
 // ==========================================
-// SAMPLE DATA FROM WIKIPEDIA
-// Assumes the existence of javascripts/data/wikipedia.txt
+// SAMPLE DATA FROM TEXT FILE
 
-  var parseWikipediaText = function (text) {
+  var parseText = function (text) {
     var album = [],
         currentTrack = null,
         trackPattern = /^(\d+)\. "(.*)"/,
@@ -91,21 +90,23 @@ var AlbumData = (function () {
   };
 
   // successFunc takes the resulting album object as an argument
-  var getAlbumFromWikipediaText = function (fileUrl, successFunc) {
+  var getAlbumFromText = function (fileUrl, successFunc) {
     $.get(fileUrl, function (results) {
-      var album = parseWikipediaText(results);
+      var album = parseText(results);
       addEndTimesToSamples(album);
       successFunc(album);
     });
   };
 
-  var getLiveWikipedia = function (successFunc) {
-    var page = 'All_Day_(album)';
+// ===============================================
+// SAMPLE DATA FROM WIKIPEDIA
+
+  var getAlbumFromWikipedia = function (page, successFunc) {
     $.getJSON('http://en.wikipedia.org/w/api.php?action=parse&page=' +
               encodeURIComponent(page) +
               '&prop=text&format=json&callback=?', function (json) {
       var text = $('<div></div>').html((json.parse.text["*"])).find('h3, ul').text();
-      var album = parseWikipediaText(text);
+      var album = parseText(text);
       addEndTimesToSamples(album);
       successFunc(album);
     });
@@ -124,12 +125,12 @@ var AlbumData = (function () {
       // we've already retrieved this album's data, so don't do it again.
       successFunc(m_albums[source]);
     } else if (source === "live-wikipedia") {
-      getLiveWikipedia(function (resultingAlbum) {
+      getAlbumFromWikipedia('All_Day_(album)', function (resultingAlbum) {
         m_albums[source] = resultingAlbum;
         successFunc(m_albums[source]);
       });
     } else {
-      getAlbumFromWikipediaText("/javascripts/data/wikipedia.txt",
+      getAlbumFromText("/javascripts/data/wikipedia.txt",
         function (resultingAlbum) {
         m_albums[source] = resultingAlbum;
         successFunc(m_albums[source]);

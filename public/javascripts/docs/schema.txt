@@ -25,8 +25,9 @@ SAMPLE objects have the following fields:
 
 ========
 SAMPLE DATA SOURCE objects have the following fields
-* name (unique identifier)
+* id (unique identifier)
 * friendlyText (what shows up in options)
 * type ("text" OR "wikipedia")
-* url
+* url (for text)
+* page (for wikipedia)
 
