@@ -4,6 +4,7 @@
 // interface for multiple types of media
 // calls YouTube and SCloud javascript objects as appropriate.
 
+/*
 var MediaPlayer = (function () {
 
   var MEDIA_SOURCE_TYPES = ["soundcloud", "youtube"];
@@ -170,3 +171,4 @@ var scAlbum = {
     scUrl: "http://soundcloud.com/user5904919/03-girl-talk-thats-right"
   }]
 };
+*/
