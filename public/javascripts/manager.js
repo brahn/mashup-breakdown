@@ -1,5 +1,5 @@
 /*jslint indent:2, browser:true, onevar:false */
-/*global $, window, YouTube, SampleData, Controls, asPercentage */
+/*global $, window, YouTube, AlbumData, PlaybackControls, asPercentage */
 
 // Selecting tracks and data sources
 
@@ -27,7 +27,7 @@ var Manager = (function () {
   var setTrack = function (trackIndex, playWhenCued) {
     currentTrackIndex = parseInt(trackIndex);
     $('#track-select').val(currentTrackIndex);
-    var track = SampleData.tracks()[currentTrackIndex];
+    var track = AlbumData.tracks()[currentTrackIndex];
     PlaybackControls.setup(track.duration);
     YouTube.setup($("#yt-player-standin"), "ytPlayer", track.ytId,
       playWhenCued, function () {
@@ -37,7 +37,7 @@ var Manager = (function () {
 
   var updateVisualizer = function () {
     Visualizer.setup(currentAlbum[currentTrackIndex].samples,
-      SampleData.tracks()[currentTrackIndex].duration,
+      AlbumData.tracks()[currentTrackIndex].duration,
       YouTube.currentTime() || 0);
   };
 
@@ -64,7 +64,7 @@ var Manager = (function () {
 
   // track selection drop-down
   var setupTrackSelect = function () {
-    $.each(SampleData.tracks(), function (index, track) {
+    $.each(AlbumData.tracks(), function (index, track) {
       $('#track-select').append("<option value='" + index + "'>" +
         "Track " + (index + 1) + " - " + track.title + "</option>");
     });
@@ -79,7 +79,7 @@ var Manager = (function () {
     $('#data-source-reload-link-container').hide();
     $('#data-source-label-text').hide();
     $('#data-source-loading-indicator').show();
-    SampleData.getAlbum(source, false, function (returnedAlbum) {
+    AlbumData.getAlbum(source, false, function (returnedAlbum) {
       updateData(returnedAlbum, source, successFunc);
     });
   };
@@ -99,7 +99,7 @@ var Manager = (function () {
       $('#data-source-reload-link-container').hide();
       $('#data-source-label-text').hide();
       $('#data-source-loading-indicator').show();
-      SampleData.getAlbum(source, true, function (returnedAlbum) {
+      AlbumData.getAlbum(source, true, function (returnedAlbum) {
         updateData(returnedAlbum, source, updateVisualizer);
       });
     });

@@ -2,9 +2,7 @@
 /*global $, window, YouTube, Data, Controls, asPercentage, safeLogger, eachKey */
 /*global allDaySamplesArray */
 
-var temp;
-
-var SampleData = (function () {
+var AlbumData = (function () {
 
 // ===========================================
 // TRACK DATA

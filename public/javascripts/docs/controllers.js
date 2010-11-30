@@ -16,6 +16,12 @@
   // call to set up for track of given duration
   var setup = function (duration) {};
 
+// =====================
+// AlbumData
+
+  // successFunc callback takes returned album as an argument
+  var get = function (sampleDataSource, successFunc) {};
+
 // ======================
 // MediaPlayer
 
@@ -60,12 +66,6 @@
 // YouTube, SCloud
 
 // Interfaces to YouTube and SoundCloud APIs.  Called only by MediaPlayer
-
-// =====================
-// SampleData
-
-  // successFunc callback takes returned album as an argument
-  var getAlbum = function (sampleDataSource, successFunc) {};
 
 // =====================
 // AlbumControls
