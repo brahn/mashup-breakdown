@@ -11,13 +11,10 @@
   var setup = function (samples, trackDuration, time) {};
 
 // ======================
-// TrackControls
+// PlaybackControls
 
   // call to set up for track of given duration
   var setup = function (duration) {};
-
-  // returns internal time
-  var getTime = function () {};
 
 // ======================
 // MediaPlayer

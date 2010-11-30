@@ -2,9 +2,9 @@
 /*global $, window, YouTube, safeLogger */
 
 // ===============================
-// CONTROLS
+// PLAYBACK CONTROLS
 
-var Controls = (function () {
+var PlaybackControls = (function () {
 
   var PLAYBACK_INTERVAL_IN_MS = 50;
 

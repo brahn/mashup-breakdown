@@ -28,7 +28,7 @@ var Manager = (function () {
     currentTrackIndex = parseInt(trackIndex);
     $('#track-select').val(currentTrackIndex);
     var track = SampleData.tracks()[currentTrackIndex];
-    Controls.setup(track.duration);
+    PlaybackControls.setup(track.duration);
     YouTube.setup($("#yt-player-standin"), "ytPlayer", track.ytId,
       playWhenCued, function () {
         $('#yt-error-dialog').dialog("open");
@@ -38,7 +38,7 @@ var Manager = (function () {
   var updateVisualizer = function () {
     Visualizer.setup(currentAlbum[currentTrackIndex].samples,
       SampleData.tracks()[currentTrackIndex].duration,
-      Controls.getTime());
+      YouTube.currentTime() || 0);
   };
 
   var lastAdvanceDateTime = null,
