@@ -11,16 +11,25 @@
   var setup = function (samples, trackDuration, time) {};
 
 // ======================
-// PlaybackControls
+// Controls
 
   // call to set up for track of given duration
-  var setup = function (duration) {};
+  var setupPlayback = function (duration) {};
 
 // =====================
 // AlbumData
 
-  // successFunc callback takes returned album as an argument
-  var get = function (sampleDataSource, successFunc) {};
+  // By default, checks the albumDataSource id and pulls a cached version
+  // of the source data if available.  This can be overridden by setting
+  // forceReload.
+  //
+  // callback function takes one argument (results), an object with
+  // two fields:
+  // * results.tracks -- array of track objects
+  // * results.samples -- album sample data object
+  var get = function (albumDataSource, forceReload, successFunc) {};
+
+  var clearCache = function () {};
 
 // ======================
 // MediaPlayer

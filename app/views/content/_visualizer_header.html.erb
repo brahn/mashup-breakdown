@@ -1,3 +1,19 @@
+<%# templates used by jQuery.tmpl() plugin to render search results %>
+<script id="track-option-template" type="text/x-jquery-tmpl">
+  {{each(index, track) tracks}}
+  <option value="${index}">
+    Track ${index + 1} - ${track.title}
+  </option>
+  {{/each}}
+</script>
+
+<%# templates used by jQuery.tmpl() plugin to render search results %>
+<script id="data-option-template" type="text/x-jquery-tmpl">
+  <option value="${id}">
+    ${prettyText}
+  </option>
+</script>
+
 <div id="visualizer-header">
   <div class="label-and-field" id="track-select-container">
     <label for="track-select" style="display:none">Track</label>
@@ -18,8 +34,6 @@
       </span>
     </label>
     <select id="data-source-select">
-      <%= options_for_select [["Wikipedia (Nov. 29)", "wikipedia"],
-        ["Wikipedia (live)", "live-wikipedia"]] %>
     </select>
   </div>
 </div>

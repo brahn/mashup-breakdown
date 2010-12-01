@@ -2,7 +2,7 @@
 ALBUM objects have the following fields:
 * title
 * artist
-* sourceType ("soundcloud" or "youtube") -- for now we assume all albums come
+* mediaType ("soundcloud" or "youtube") -- for now we assume all albums come
     from the same sourceType rather than cobbled together as tracks from
     different sources
 * tracks -- array of track objects
@@ -14,7 +14,14 @@ TRACK objects have the following fields:
 * artist (optional, defaults to album artist)
 * duration
 * sourceUrl OR sourceId
-* samples -- array of sample objects
+
+========
+ALBUM DATA SOURCE objects have the following fields
+* id (unique identifier)
+* prettyText (what shows up in options)
+* type ("text" OR "wikipedia")
+* url (for text)
+* pageName (for wikipedia)
 
 ========
 SAMPLE objects have the following fields:
@@ -23,11 +30,8 @@ SAMPLE objects have the following fields:
 * start (time in seconds from beginning of track)
 * end (time in seconds from beginning of track)
 
-========
-SAMPLE DATA SOURCE objects have the following fields
-* id (unique identifier)
-* friendlyText (what shows up in options)
-* type ("text" OR "wikipedia")
-* url (for text)
-* page (for wikipedia)
+TRACK SAMPLE DATA objects are arrays of sample objects corresponding
+to a given track.
 
+ALBUM SAMPLE DATA objects are arrays of track sample data objects
+corresponding to a given album.

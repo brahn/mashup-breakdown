@@ -1,10 +1,10 @@
 /*jslint indent:2, browser:true, onevar:false */
 /*global $, window, YouTube, safeLogger */
 
-// ===============================
-// PLAYBACK CONTROLS
+var Controls = (function () {
 
-var PlaybackControls = (function () {
+// ==============================
+// PLAYBACK CONTROLS
 
   var PLAYBACK_INTERVAL_IN_MS = 50;
 
@@ -138,7 +138,7 @@ var PlaybackControls = (function () {
     });
   };
 
-  var setupControls = function (suppliedDuration) {
+  var setupPlayback = function (suppliedDuration) {
 
     duration = suppliedDuration;
     currentTime = 0;
@@ -179,7 +179,7 @@ var PlaybackControls = (function () {
   });
 
   return {
-    setup: setupControls,
+    setupPlayback: setupPlayback,
     getTime: getTime
   };
 

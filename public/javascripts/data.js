@@ -1,13 +1,11 @@
 /*jslint indent:2, browser:true, onevar:false */
-/*global $, window, YouTube, Data, Controls, asPercentage, safeLogger, eachKey */
-/*global allDaySamplesArray */
+/*global $, window, YouTube, safeLogger, eachKey */
 
-var AlbumData = (function () {
-
-// ===========================================
-// TRACK DATA
-
-  var m_tracks = [
+var ALL_DAY_ALBUM = {
+  artist: "Girl Talk",
+  title: "All Day",
+  mediaType: "youtube",
+  tracks: [
     {title: "Oh No", ytId: "4bMM7tGV9MI", duration: 339},
     {title: "Let It Out", ytId: "FtsxfquYHf0", duration: 389},
     {title: "That's Right", ytId: "xVmXXWcfitw", duration: 323},
@@ -20,30 +18,46 @@ var AlbumData = (function () {
     {title: "Steady Shock", ytId: "p1pd69r1Il8", duration: 348},
     {title: "Triple Double", ytId: "i0yY0zxk-18", duration: 388},
     {title: "Every Day", ytId: "Bo5bBq2j2EE", duration: 311}
-  ];
+  ],
+  sampleDataSources: [
+    { id: "wikipedia-snapshot",
+      prettyText: "Wikipedia (Nov. 29)",
+      type: "text",
+      url: "/javascripts/data/wikipedia.txt"
+    },
+    { id: "wikipedia-live",
+      prettyText: "Wikipedia (live)",
+      type: "wikipedia",
+      pageName: "All_Day_(album)"
+    }
+  ]
+};
 
-  // store album data from different sources in m_albums. keys
-  // * "wikipedia"
-  // * "live-wikipedia"
-  var m_albums = {};
+var AlbumData = (function () {
+
+  // stores cached data for an album, keyed by data source id
+  var m_data = {};
+
+  var clearCache = function () {
+    m_data = {};
+  };
 
 // ==========================================
 // SAMPLE DATA FROM TEXT FILE
 
   var parseText = function (text) {
-    var album = [],
-        currentTrack = null,
+    var trackData = [],
+        sampleData = [],
+        currentTrackSamples = null,
         trackPattern = /^(\d+)\. "(.*)"/,
         samplePattern = /(\d+):(\d+) - (\d+):(\d+) (.*) - "([^"]*)"/,
         samplePatternNoStop = /(\d+):(\d+)(\s-\s\?:\?\?)?\s([^ -].*) - "([^"]*)"/;
     var lines = text.split('\n');
     $.each(lines, function (index, line) {
-      safeLogger(line);
       line = line.replace(/\[.*\] */g, "");
       var sampleResults = line.match(samplePattern);
       if (sampleResults) {
-        safeLogger("*** sample with stop time ***");
-        currentTrack.samples.push({
+        currentTrackSamples.push({
           start: 60 * parseInt(sampleResults[1]) + parseInt(sampleResults[2]),
           end: 60 * parseInt(sampleResults[3]) + parseInt(sampleResults[4]),
           artist: sampleResults[5],
@@ -53,8 +67,7 @@ var AlbumData = (function () {
       }
       sampleResults = line.match(samplePatternNoStop);
       if (sampleResults) {
-        safeLogger("*** sample without stop time ***");
-        currentTrack.samples.push({
+        currentTrackSamples.push({
           start: 60 * parseInt(sampleResults[1]) + parseInt(sampleResults[2]),
           artist: sampleResults[4],
           title: sampleResults[5]
@@ -63,102 +76,78 @@ var AlbumData = (function () {
       }
       var trackResults = line.match(trackPattern);
       if (trackResults) {
-        safeLogger("*** track ***");
-        var trackIndex = parseInt(trackResults[1]) - 1;
-        if (m_tracks.length > trackIndex) {
-          currentTrack = shallowClone(m_tracks[trackIndex]);
-        } else {
-          currentTrack = {title: trackResults[2]};
-        }
-        currentTrack.samples = [];
-        album.push(currentTrack);
+        trackData.push({
+          title: trackResults[2]
+        });
+        currentTrackSamples = [];
+        sampleData.push(currentTrackSamples);
       }
     });
-    return album;
+    return {
+      tracks: trackData,
+      samples: sampleData
+    };
   };
 
   // We don't have end times yet.  So for now, set all sample durations to 30
 
-  var addEndTimesToSamples = function (album) {
-    $.each(album, function (i, track) {
-      $.each(track.samples, function (j, sample) {
+  var addEndTimesToSamples = function (albumSamples, albumTracks) {
+    $.each(albumSamples, function (i, trackSamples) {
+      $.each(trackSamples, function (j, sample) {
         if (!sample.end) {
-          sample.end = Math.min(sample.start + 30, track.duration);
+          sample.end = Math.min(sample.start + 30, ALL_DAY_ALBUM.tracks[i].duration);
         }
       });
     });
   };
 
   // successFunc takes the resulting album object as an argument
-  var getAlbumFromText = function (fileUrl, successFunc) {
-    $.get(fileUrl, function (results) {
-      var album = parseText(results);
-      addEndTimesToSamples(album);
-      successFunc(album);
+  var getDataFromText = function (fileUrl, successFunc) {
+    $.get(fileUrl, function (text) {
+      var results = parseText(text);
+      addEndTimesToSamples(results.samples, results.tracks);
+      successFunc(results);
     });
   };
 
 // ===============================================
 // SAMPLE DATA FROM WIKIPEDIA
 
-  var getAlbumFromWikipedia = function (page, successFunc) {
+  var getDataFromWikipedia = function (pageName, successFunc) {
     $.getJSON('http://en.wikipedia.org/w/api.php?action=parse&page=' +
-              encodeURIComponent(page) +
+              encodeURIComponent(pageName) +
               '&prop=text&format=json&callback=?', function (json) {
       var text = $('<div></div>').html((json.parse.text["*"])).find('h3, ul').text();
-      var album = parseText(text);
-      addEndTimesToSamples(album);
-      successFunc(album);
+      var results = parseText(text);
+      addEndTimesToSamples(results.samples, results.tracks);
+      successFunc(results);
     });
   };
 
 // =================================
 // INTERFACE
 
-  var tracks = function () {
-    return m_tracks;
-  };
-
   // use sample data from a particular ource;
-  var getAlbum = function (source, forceReload, successFunc) {
-    if (m_albums[source] && !forceReload) {
+  var get = function (source, forceReload, successFunc) {
+    if (m_data[source.id] && !forceReload) {
       // we've already retrieved this album's data, so don't do it again.
-      successFunc(m_albums[source]);
-    } else if (source === "live-wikipedia") {
-      getAlbumFromWikipedia('All_Day_(album)', function (resultingAlbum) {
-        m_albums[source] = resultingAlbum;
-        successFunc(m_albums[source]);
+      successFunc(m_data[source.id]);
+    } else if (source.type === "wikipedia") {
+      getDataFromWikipedia(source.pageName, function (results) {
+        m_data[source.id] = results;
+        successFunc(results);
       });
-    } else {
-      getAlbumFromText("/javascripts/data/wikipedia.txt",
-        function (resultingAlbum) {
-        m_albums[source] = resultingAlbum;
-        successFunc(m_albums[source]);
+    } else if (source.type === "text") {
+      getDataFromText(source.url, function (results) {
+        m_data[source.id] = results;
+        successFunc(results);
       });
     }
   };
 
-  var logAlbum = function (album) {
-    $.each(album, function (trackIndex, track) {
-      safeLogger("****************");
-      safeLogger("Track " + (trackIndex + 1) + " - " + track.title);
-      $.each(track.samples, function (sampleIndex, sample) {
-        var str = "";
-        eachKey(sample, function (key, val) {
-          str += key + ": " + val + ";  ";
-        });
-        safeLogger(str);
-      });
-    });
-  };
-
   return {
-    // exposed for testing
-    logAlbum: logAlbum,
-    albums: m_albums,
-
-    tracks: tracks,
-    getAlbum: getAlbum
+    get: get,
+    clearCache: clearCache
   };
 
 }());
