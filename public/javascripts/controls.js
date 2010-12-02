@@ -157,9 +157,13 @@ var Controls = (function () {
     currentTime = MediaPlayer.getTime();
     updatePlaybackIndicators();
   });
-  MediaPlayer.onTrackChanged.push(function () {
-    setPlaybackDuration(MediaPlayer.getTrack().duration);
-  });
+
+  var refreshPlaybackControls = function () {
+    setPlaybackDuration(AlbumData.getData().tracks[MediaPlayer.getTrackIndex()].duration);
+  };
+
+  MediaPlayer.onTrackChanged.push(refreshPlaybackControls);
+  AlbumData.onDataChanged.push(refreshPlaybackControls);
 
   $(document).ready(function () {
     $(window).resize(setHandleTailHeight);
@@ -242,6 +246,7 @@ var Controls = (function () {
   var isDataSourceSelectorSetup = false;
 
   var setDataSourceOptions = function (sources) {
+    AlbumData.clearCache();
     m_sampleDataSources = sources;
     $('#data-source-select').html($('#data-option-template').
       tmpl(m_sampleDataSources));

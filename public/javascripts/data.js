@@ -33,6 +33,41 @@ var ALL_DAY_ALBUM = {
   ]
 };
 
+var FEED_THE_ANIMALS_ALBUM = {
+  artist: "Girl Talk",
+  title: "All Day",
+  mediaType: "youtube",
+  tracks: [
+    {ytId: "hkih8Q6y6UA", duration: 285},
+    {ytId: "OBD98Oeim4k", duration: 187},
+    {ytId: "LBQb_nvmecA", duration: 237},
+    {ytId: "3sjtJM3a5VY", duration: 255},
+    {ytId: "vspfl9SYIUs", duration: 222},
+    {ytId: "8nf53yhp1TQ", duration: 192},
+    {ytId: "MuvyP8yzLUY", duration: 201},
+    {ytId: "htctq11zVx0", duration: 252},
+    {ytId: "T-Pu3Glff00", duration: 260},
+    {ytId: "v3zdcoAePK8", duration: 203},
+    {ytId: "9w5YodoJ6nU", duration: 244},
+    {ytId: "iHwxUZyWcRY", duration: 286},
+    {ytId: "v6MaXIY5uAU", duration: 178},
+    {ytId: "YyVtrZ3KHOk", duration: 205}
+  ],
+  sampleDataSources: [
+    { id: "wikipedia-snapshot",
+      prettyText: "Wikipedia (Dec. 2)",
+      type: "text",
+      url: "/data/feed-the-animals.txt"
+    },
+    { id: "wikipedia-live",
+      prettyText: "Wikipedia (live)",
+      type: "wikipedia",
+      pageName: "Feed_the_Animals"
+    }
+  ]
+};
+
+
 var AlbumData = (function () {
 
   // stores cached data for an album, keyed by data source id
