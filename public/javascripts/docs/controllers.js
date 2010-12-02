@@ -54,11 +54,18 @@
 
   // access to player state
   var isCreated = function () {};
+  var isPlaying = function () {};
   var getAlbum = function () {};
   var getTrackIndex = function () {};
   var getTrack = function () {};
   var getTime = function () {};
-  var isPlaying = function () {};
+
+  // buffering status: returns an object with three fields:
+  // (follows YouTube's byte status stuff)
+  // * loaded
+  // * total
+  // * startingAt
+  var getByteStatus = function () {};
 
   // arrays of callbacks to album setup; callbacks take no arguments
   var onAlbumSetup = [];

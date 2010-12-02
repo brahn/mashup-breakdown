@@ -165,6 +165,10 @@ var MediaPlayer = (function () {
     return m_controllerObjs[m_album.mediaType].isCreated();
   };
 
+  var isPlaying = function () {
+    return m_controllerObjs[m_album.mediaType].isPlaying();
+  };
+
   var getAlbum = function () {
     return m_album;
   };
@@ -196,8 +200,16 @@ var MediaPlayer = (function () {
     return null;
   };
 
-  var isPlaying = function () {
-    return m_controllerObjs[m_album.mediaType].isPlaying();
+  var getBufferStatus = function () {
+    switch (m_album.mediaType) {
+    case "youtube":
+      return YouTube.byteStatus();
+      break;
+    case "soundcloud":
+      // XXX
+      break;
+    }
+    return {};
   };
 
   return {
@@ -213,11 +225,13 @@ var MediaPlayer = (function () {
     unmute: unmute,
 
     isCreated: isCreated,
+    isPlaying: isPlaying,
+
     getAlbum: getAlbum,
     getTrackIndex: getTrackIndex,
     getTrack: getTrack,
     getTime: getTime,
-    isPlaying: isPlaying,
+    getBufferStatus: getBufferStatus,
 
     onAlbumSetup: onAlbumSetup,
     onTrackChanged: onTrackChanged,

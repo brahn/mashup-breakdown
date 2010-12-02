@@ -25,14 +25,14 @@ var Controls = (function () {
       currentTime;
 
   var updateBufferIndicator = function () {
-    var byteStatus = YouTube.byteStatus();
-    if (!byteStatus.total || byteStatus.total < 0) {
+    var bufferStatus = MediaPlayer.getBufferStatus();
+    if (!bufferStatus.total || bufferStatus.total < 0) {
       bufferIndicator.hide();
       return;
     }
-    var bufferStart = 1.0 * byteStatus.startingAt / byteStatus.total;
+    var bufferStart = 1.0 * bufferStatus.startingAt / bufferStatus.total;
     var bufferEnd = Math.min(1.0,
-      1.0 * (byteStatus.startingAt + byteStatus.loaded) / byteStatus.total);
+      1.0 * (bufferStatus.startingAt + bufferStatus.loaded) / bufferStatus.total);
     bufferIndicator.css("left", asPercentage(bufferStart));
     bufferIndicator.css("right", asPercentage(1 - bufferEnd));
     bufferIndicator.show();
