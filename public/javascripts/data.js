@@ -45,7 +45,7 @@ var AlbumData = (function () {
     var trackData = [],
         sampleData = [],
         currentTrackSamples = null,
-        trackPattern = /^(\d+)\. "(.*)"/,
+        trackPattern = /^(\d+)\. "([^"]*)" - (\d+):(\d+)/,
         samplePattern = /(\d+):(\d+) - (\d+):(\d+) (.*) - "([^"]*)"/,
         samplePatternNoStop = /(\d+):(\d+)(\s-\s\?:\?\?)?\s([^ -].*) - "([^"]*)"/;
     var lines = text.split('\n');
@@ -74,7 +74,7 @@ var AlbumData = (function () {
       if (trackResults) {
         trackData.push({
           title: trackResults[2],
-          duration: ALL_DAY_ALBUM.tracks[trackData.length].duration           // XXX not the right way to do this
+          duration: 60 * parseInt(trackResults[3]) + parseInt(trackResults[4])
         });
         currentTrackSamples = [];
         sampleData.push(currentTrackSamples);
@@ -92,7 +92,7 @@ var AlbumData = (function () {
     $.each(albumSamples, function (i, trackSamples) {
       $.each(trackSamples, function (j, sample) {
         if (!sample.end) {
-          sample.end = Math.min(sample.start + 30, ALL_DAY_ALBUM.tracks[i].duration);
+          sample.end = Math.min(sample.start + 30, albumTracks[i].duration);
         }
       });
     });
