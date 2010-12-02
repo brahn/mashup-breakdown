@@ -204,13 +204,14 @@ var Controls = (function () {
     $('#data-source-label-text').hide();
     $('#data-source-loading-indicator').show();
     AlbumData.setSource(findSourceById(sourceId), forceReload);
-
   };
   // callback to change in data source, which results from setDataSource
   AlbumData.onDataChanged.push(function () {
+    var sourceId = AlbumData.getSource().id;
+    $('#data-source-select').val(sourceId);
     $('#data-source-loading-indicator').hide();
     $('#data-source-label-text').show();
-    if (AlbumData.getSource().id === "wikipedia-live") {
+    if (sourceId === "wikipedia-live") {
       $('#data-source-reload-link-container').show();
     } else {
       $('#data-source-reload-link-container').hide();
@@ -245,6 +246,12 @@ var Controls = (function () {
   var setupAlbum = function (album) {
     setDataSourceOptions(album.sampleDataSources);
     setTrackOptions(album.tracks);
+    MediaPlayer.setupAlbum(album, {
+      failureCallback: function () {
+        $("#media-error-dialog").dialog("open");
+      }
+    });
+
   };
 
   return {

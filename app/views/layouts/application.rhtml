@@ -31,14 +31,18 @@
   <%= javascript_include_tag "third/soundcloud.player.api.js" %>
   <%= javascript_include_tag "soundcloud" %>
   <%= javascript_include_tag "media" %>
-  <%= javascript_include_tag "controls" %>
   <%= javascript_include_tag "visualizer" %>
-  <%= javascript_include_tag "manager" %>
+  <%= javascript_include_tag "controls" %>
   <%= javascript_include_tag "exterior" %>
   <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/dark-hive/jquery-ui.css" %>
   <%= stylesheet_link_tag "third/tipsy" %>
   <%= stylesheet_link_tag "visualizer" %>
   <%= yield :page_javascript %>
+  <% javascript_tag do %>
+    $(document).ready(function () {
+      Controls.setupAlbum(ALL_DAY_ALBUM);
+    });
+  <% end %>
 
 <script type="text/javascript">
 
