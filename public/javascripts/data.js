@@ -21,7 +21,7 @@ var ALL_DAY_ALBUM = {
   ],
   sampleDataSources: [
     { id: "wikipedia-snapshot",
-      prettyText: "Wikipedia (Nov. 29)",
+      prettyText: "Wikipedia (Dec. 2)",
       type: "text",
       url: "/javascripts/data/wikipedia.txt"
     },
