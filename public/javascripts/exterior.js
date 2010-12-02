@@ -6,7 +6,7 @@ $(document).ready(function () {
   $('#about-dialog-container').dialog(dialogOptions({title: "About"}));
 
   $(document).ready(function () {
-    $("#yt-error-dialog").dialog(dialogOptions({
+    $("#media-error-dialog").dialog(dialogOptions({
       title: "Dang!",
       height: 250
     }));

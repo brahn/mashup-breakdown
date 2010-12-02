@@ -84,7 +84,7 @@ var MediaPlayer = (function () {
       YouTube.setup($("#yt-player-standin"), "ytPlayer",
         m_album.tracks[trackIndex].ytId,
         playImmediately, function () {
-          $('#yt-error-dialog').dialog("open");
+          $('#media-error-dialog').dialog("open");
         });
       break;
     case "soundcloud":
@@ -161,6 +161,10 @@ var MediaPlayer = (function () {
 // ==============================================================
 // GET INFORMATION ABOUT PLAYER
 
+  var isCreated = function () {
+    return m_controllerObjs[m_album.mediaType].isCreated();
+  };
+
   var getAlbum = function () {
     return m_album;
   };
@@ -208,6 +212,7 @@ var MediaPlayer = (function () {
     mute: mute,
     unmute: unmute,
 
+    isCreated: isCreated,
     getAlbum: getAlbum,
     getTrackIndex: getTrackIndex,
     getTrack: getTrack,

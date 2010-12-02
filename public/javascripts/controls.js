@@ -105,29 +105,28 @@ var Controls = (function () {
 
   var setupPlayToggle = function () {
     // change play toggle when youtube player state changes
-    YouTube.onStateChanged.push(function () {
-      if (YouTube.isPlaying()) {
+    MediaPlayer.onStateChanged.push(function () {
+      if (MediaPlayer.isPlaying()) {
         $("#playtoggle").addClass('playing');
       } else {
         $("#playtoggle").removeClass('playing');
       }
     });
-    // clicking play toggle changes state of youtube player
+    // clicking play toggle changes state of media player
     $("#playtoggle").click(function () {
-      // XXX move the below into MediaPlayer (use a toggle command?)
-      if (YouTube.isPlaying()) {
-        YouTube.pause();
-      } else if (YouTube.isCreated()) {
-        YouTube.play();
+      if (MediaPlayer.isPlaying()) {
+        MediaPlayer.pause();
+      } else if (MediaPlayer.isCreated()) {
+        MediaPlayer.play();
       } else {
         // check again in 1 second
         setInterval(function () {
-          if (YouTube.isCreated()) {
+          if (MediaPlayer.isCreated()) {
             // It worked this time!  Play it.
-            YouTube.play();
+            MediaPlayer.play();
           } else {
             // Problem.  Show it.
-            $('#yt-error-dialog').dialog("open");
+            $('#media-error-dialog').dialog("open");
           }
         }, 1000);
       }

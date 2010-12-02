@@ -37,7 +37,7 @@
   // options can carry the following optional fields (defaults in parens)
   // * playWhenCued (default)
   // * failureCallback (null function)
-  // * startAtTrack (0) XXX not yet implemented
+  // * startAtTrack (0)
   // * startAtTime (0) XXX not yet implemented
   var setupAlbum = function (album, options) {};
   var gotoTrack = function (trackIndex, playImmediately) {};
@@ -53,6 +53,7 @@
   var unMute = function () {};
 
   // access to player state
+  var isCreated = function () {};
   var getAlbum = function () {};
   var getTrackIndex = function () {};
   var getTrack = function () {};

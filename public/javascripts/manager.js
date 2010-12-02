@@ -8,7 +8,11 @@ var Manager = (function () {
   $(document).ready(function () {
     currentAlbum = ALL_DAY_ALBUM;
     Controls.setupAlbum(currentAlbum);
-    MediaPlayer.setupAlbum(currentAlbum);
+    MediaPlayer.setupAlbum(currentAlbum, {
+      failureCallback: function () {
+        $("#media-error-dialog").dialog("open");
+      }
+    });
   });
 
 }());

@@ -1,5 +1,5 @@
-/*jslint indent:2, browser:true, onevar:false regexp:false radix:global */
-/*false $, window, sendEvent, YouTube, safeLogger, eachKey */
+/*jslint indent:2, browser:true, onevar:false regexp:false */
+/*global $, window, sendEvent, safeLogger, eachKey */
 
 var ALL_DAY_ALBUM = {
   artist: "Girl Talk",

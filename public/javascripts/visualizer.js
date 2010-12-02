@@ -1,5 +1,5 @@
 /*jslint indent:2, browser:true, onevar:false */
-/*global $, window, YouTube, asPercentage, AlbumData, safeLogger */
+/*global $, window, MediaPlayer, asPercentage, AlbumData, safeLogger */
 
 var Visualizer = (function () {
 
@@ -205,7 +205,7 @@ var Visualizer = (function () {
     var currentData = AlbumData.getData();
     setup(currentData.samples[currentTrackIndex],
       currentData.tracks[currentTrackIndex].duration,
-      YouTube.currentTime());
+      MediaPlayer.getTime());
   };
   AlbumData.onDataChanged.push(refresh);
   MediaPlayer.onTrackChanged.push(refresh);
