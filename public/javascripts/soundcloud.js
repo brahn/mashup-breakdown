@@ -94,7 +94,6 @@ var SCloud = (function () {
       id: playerObjectId,
       name: playerObjectId
     };
-    console.log([divToReplace.attr("id"), playerWidth, playerHeight]);
     swfobject.embedSWF("http://player.soundcloud.com/player.swf",
       divToReplace.attr("id"), playerWidth, playerHeight, "9.0.0",
       "expressInstall.swf", flashvars, params, attributes);

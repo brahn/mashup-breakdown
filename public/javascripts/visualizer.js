@@ -1,5 +1,5 @@
 /*jslint indent:2, browser:true, onevar:false */
-/*global $, window, YouTube, asPercentage */
+/*global $, window, YouTube, asPercentage, AlbumData, safeLogger */
 
 var Visualizer = (function () {
 
@@ -177,9 +177,9 @@ var Visualizer = (function () {
     m_duration = trackDuration;
     // make sure samples are sorted by start time
     m_samples = samples.sort(function (a, b) {
-      if (a.start != b.start) {
+      if ((1.0 * a.start) !== (1.0 * b.start)) {
         return a.start - b.start;
-      } else if (a.end != b.end) {
+      } else if ((1.0 * a.end) !== (1.0 * b.end)) {
         return a.end - b.end;
       } else if (a.artist !== b.artist) {
         return (a.artist > b.artist) ? 1 : -1;
@@ -197,6 +197,19 @@ var Visualizer = (function () {
     }
   };
 
+  var refresh = function () {
+    var currentTrackIndex = MediaPlayer.getTrackIndex();
+    if (currentTrackIndex === null || currentTrackIndex === undefined) {
+      return;
+    }
+    var currentData = AlbumData.getData();
+    setup(currentData.samples[currentTrackIndex],
+      currentData.tracks[currentTrackIndex].duration,
+      YouTube.currentTime());
+  };
+  AlbumData.onDataChanged.push(refresh);
+  MediaPlayer.onTrackChanged.push(refresh);
+
   $(document).ready(function () {
     $(window).resize(function () {
       safeLogger(currentTime);
@@ -208,7 +221,6 @@ var Visualizer = (function () {
   });
 
   return {
-    setup: setup,
     setTime: setTime
   };
 

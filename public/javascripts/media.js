@@ -1,20 +1,42 @@
 /*jslint indent:2, browser:true, onevar:false */
-/*global $, window, YouTube, SCloud */
+/*global $, window, YouTube, SCloud, sendEvent, safeLogger */
 
 // interface for multiple types of media
 // calls YouTube and SCloud javascript objects as appropriate.
 
-/*
 var MediaPlayer = (function () {
 
   var MEDIA_SOURCE_TYPES = ["soundcloud", "youtube"];
 
   var m_controllerObjs = {
-        soundcloud: SCloud,
-        youtube: YouTube
-      };
+    soundcloud: SCloud,
+    youtube: YouTube
+  };
 
-  var m_album, m_trackNum; // currently playing album, track number
+  var m_album, m_trackIndex; // currently playing album, track number
+
+// =====================================
+// CALLBACKS
+
+  // Callback functions
+  var onAlbumSetup = [],
+      onTrackChanged = [],
+      onStateChanged = [];
+
+  YouTube.onReady.push(function () {
+    if (m_album.mediaType === "youtube") {
+      sendEvent(onAlbumSetup);
+      sendEvent(onTrackChanged);
+    }
+  });
+  // XXX need to do the same for SC
+
+  YouTube.onStateChanged.push(function () {
+    if (m_album.mediaType === "youtube") {
+      sendEvent(onStateChanged);
+    }
+  });
+  // XXX need to do the same for SC
 
 // =============================================================
 // ALBUM SETUP
@@ -23,44 +45,102 @@ var MediaPlayer = (function () {
   // options can carry the following optional fields (defaults in parens)
   // * playWhenCued (default)
   // * failureCallback (null function)
-  // * startAtTrack (0) XXX not yet implemented
+  // * startAtTrack (0)
   // * startAtTime (0) XXX not yet implemented
-  var setupAlbum = function (album, options) {
+  var setupAlbum = function (album, newOptions) {
+    var opts = $.extend({
+      playWhenCued: false, // defaults
+      failureCallback: function () {},
+      startAtTrack: 0,
+      startAtTime: 0
+    }, newOptions);
     m_album = album;
-    switch (m_album.sourceType) {
+    m_trackIndex = opts.startAtTrack;
+    switch (m_album.mediaType) {
     case "youtube":
       YouTube.setup($("#yt-player-standin"), "ytPlayer",
-        m_album.tracks[0].ytId, playWhenCued, createPlayerFailureFunc);
+        m_album.tracks[opts.startAtTrack].ytId, opts.playWhenCued,
+          opts.failureCallback);
       break;
     case "soundcloud":
       SCloud.setup($("#sc-player-standin"), "scPlayer",
-        m_album.tracks[0].scUrl, playWhenCued, createPlayerFailureFunc);
+        m_album.tracks[opts.startAtTrack].scUrl, opts.playWhenCued,
+        opts.failureCallback);
       break;
     default:
-      SafeLogger("bad album source type: ");
-      SafeLogger(album.source);
+      safeLogger("bad album source type: ");
+      safeLogger(album.source);
     }
   };
+
+// =================================================
+// CHANGING TRACKS
+
+  // manual transition
+
+  var gotoTrack = function (trackIndex, playImmediately) {
+    switch (m_album.mediaType) {
+    case "youtube":
+      YouTube.setup($("#yt-player-standin"), "ytPlayer",
+        m_album.tracks[trackIndex].ytId,
+        playImmediately, function () {
+          $('#yt-error-dialog').dialog("open");
+        });
+      break;
+    case "soundcloud":
+      // XXX TO DO
+      break;
+    }
+    m_trackIndex = trackIndex;
+    sendEvent(onTrackChanged);
+  };
+
+  // automatic transition
+
+  var lastAdvanceDateTime = null,
+      ADVANCE_HYSTERESIS_IN_SEC = 2;
+
+  var advanceTrack = function () {
+    if (m_trackIndex < m_album.tracks.length - 1) {
+      gotoTrack(m_trackIndex + 1, true);
+    }
+  };
+  YouTube.onStateChanged.push(function (state) {
+    if (state === 0) {
+      var tempDateTime = new Date();
+      if (!lastAdvanceDateTime || (tempDateTime - lastAdvanceDateTime) >
+           ADVANCE_HYSTERESIS_IN_SEC * 1000) {
+        lastAdvanceDateTime = tempDateTime;
+        advanceTrack();
+      }
+    }
+  });
+  // XXX need to do the same for SoundCloud
 
 // =============================================================
 // INTRA-TRACK PLAY CONTROL
 
   var play = function () {
-    m_controllerObjs[m_album.sourceType].play();
+    m_controllerObjs[m_album.mediaType].play();
   };
   var pause = function () {
-     m_controllerObjs[m_album.sourceType].pause();
+    m_controllerObjs[m_album.mediaType].pause();
   };
 
   // Seek to specified point in the current track.  (Time is in seconds)
-  // options can carry the following optional fields (defaults in parens)
-  // * allowSeekAhead (youtube-specific option)
-  var seekTo = function (seconds, options) {
-    options = options || {};
-    if (m_album.sourceType === "youtube") {
-      m_controllerObjs["youtube"].seekTo(seconds, options.allowSeekAhead);
-    } else if (m_album.sourceType === "soundcloud") {
-      m_controllerObjs["soundcloud"].seekTo(seconds);
+  var seekTo = function (seconds) {
+    switch (m_album.mediaType) {
+    case "youtube":
+      if (YouTube.isPlaying()) {
+        YouTube.seekTo(seconds, true);
+      } else {
+        YouTube.seekTo(seconds, true);
+        YouTube.pause();
+      }
+      break;
+    case "soundcloud":
+      // XXX TO DO
+      break;
     }
   };
 
@@ -68,77 +148,75 @@ var MediaPlayer = (function () {
 // VOLUME
 
   var setVolume = function (volume) {
-    m_controllerObjs[m_album.sourceType].setVolume(volume);
+    m_controllerObjs[m_album.mediaType].setVolume(volume);
   };
   var mute = function () {
-    return m_controllerObjs[m_album.sourceType].mute();
+    return m_controllerObjs[m_album.mediaType].mute();
   };
   var unmute = function () {
-    return m_controllerObjs[m_album.sourceType].unmute();
+    return m_controllerObjs[m_album.mediaType].unmute();
   };
 
 
 // ==============================================================
-// WORKING WITH ALBUMS (I.E. MULTIPLE TRACKS)
+// GET INFORMATION ABOUT PLAYER
 
-  // Get data about the currently playing album and track
-
-  var album = function () {
+  var getAlbum = function () {
     return m_album;
   };
 
-  var trackNum = function () {
-    return m_trackNum;
+  var getTrackIndex = function () {
+    return m_trackIndex;
   };
 
-  var track = function () {
+  var getTrack = function () {
     if (!m_album && !m_album.tracks) {
       return null;
     }
-    if (m_trackNum >= m_album.tracks.length || m_trackNum < 0) {
+    if (m_trackIndex >= m_album.tracks.length || m_trackIndex < 0) {
       safeLogger("trackNum out of range");
       return null;
     }
-    return m_album.tracks[m_trackNum];
+    return m_album.tracks[m_trackIndex];
   };
 
-
-
-
-
-  // Transition to specified track in the album
-  var gotoTrack = function (trackNum) {
-    // XXX TO DO
-    sendEvent(onTrackChange);
+  var getTime = function () {
+    switch (m_album.mediaType) {
+    case "youtube":
+      return YouTube.currentTime();
+      break;
+    case "soundcloud":
+      // XXX
+      break;
+    }
+    return null;
   };
 
-  // Callback functions for track transititions
-  var onTrackChange = [];
-
-  // XXX need each YT and SC to manage automatic track transitions
-
-
-
+  var isPlaying = function () {
+    return m_controllerObjs[m_album.mediaType].isPlaying();
+  };
 
   return {
+    setupAlbum: setupAlbum,
+    gotoTrack: gotoTrack,
+
     play: play,
     pause: pause,
     seekTo: seekTo,
+
     setVolume: setVolume,
     mute: mute,
     unmute: unmute,
 
-    setupAlbum: setupAlbum,
-    setTrack: setTrack,
-
-    album: album,
-    trackNum: trackNum,
-    track: track,
+    getAlbum: getAlbum,
+    getTrackIndex: getTrackIndex,
+    getTrack: getTrack,
+    getTime: getTime,
+    isPlaying: isPlaying,
 
     onAlbumSetup: onAlbumSetup,
-    onTrackChange: onTrackChange
-
-    
+    onTrackChanged: onTrackChanged,
+    onStateChanged: onStateChanged
 
     // XXX
     // Deal with buffering
@@ -150,6 +228,7 @@ var MediaPlayer = (function () {
 
 // Test data
 
+/*
 var ytAlbum = {};
 SampleData.getAlbum("wikipedia", function (results) {
   ytAlbum.tracks = results;

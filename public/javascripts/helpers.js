@@ -23,18 +23,29 @@ var safeLogger = function (str) {
 };
 
 // swiped from prototype
-var $A = function $A(iterable) {if(!iterable)return[];if('toArray'in Object(iterable))return iterable.toArray();var length=iterable.length||0,results=new Array(length);while(length--)results[length]=iterable[length];return results;};
+var $A = function (iterable) {
+  if (!iterable) {
+    return [];
+  }
+  if ('toArray' in Object(iterable)) {
+    return iterable.toArray();
+  }
+  var length = iterable.length || 0,
+      results = new Array(length);
+  while (length--) {
+    results[length] = iterable[length];
+  }
+  return results;
+};
 
 var logErrorMessage = function (err) {
   safeLogger("callback function raised exception:");
   safeLogger("  " + err.message);
-  if (console && console.log) {
-    console.log(err);
-  }
-  if ($.browser.safari) {
-    safeLogger("  sourceURL: " + err.sourceURL);
-    safeLogger("  line: " + err.line);
-  } else if ($.browser.mozilla) {
+//  if ($.browser.safari) {
+//    safeLogger("  sourceURL: " + err.sourceURL);
+//    safeLogger("  line: " + err.line);
+//  } else
+  if ($.browser.mozilla) {
     safeLogger("  fileName: " + err.fileName);
     safeLogger("  lineNumber: " + err.lineNumber);
     // uncomment to get the stack
@@ -47,7 +58,7 @@ var logErrorMessage = function (err) {
 
 var sendEvent = function (handlers) {
   var args = $A(arguments).slice(1);
-  $(handlers).each(function (index, handler) {
+  $.each(handlers, function (index, handler) {
     try {
       handler.apply(null, args);
     } catch (err) {
@@ -75,17 +86,13 @@ var shallowClone = function (obj) {
 // NOTE: DO NOT CALL UNTIL $(document).ready(), otherwise
 // height and width will be wrong.
 var dialogOptions = function (newOptions) {
-  newOptions = newOptions || {};
-  var opts = { // defaults
+  var opts = $.extend({ // defaults
     autoOpen: false,
     width: Math.min($(window).height(), 500),
     height: Math.min($(window).height(), 400),
     draggable: true,
     resizable: false,
     zIndex: 1000000 // need to cover tooltips
-  };
-  eachKey(newOptions, function (key, val) {
-    opts[key] = val;
-  });
+  }, newOptions);
   return opts;
 };

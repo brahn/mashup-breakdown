@@ -1,5 +1,5 @@
-/*jslint indent:2, browser:true, onevar:false */
-/*global $, window, YouTube, safeLogger, eachKey */
+/*jslint indent:2, browser:true, onevar:false regexp:false radix:global */
+/*false $, window, sendEvent, YouTube, safeLogger, eachKey */
 
 var ALL_DAY_ALBUM = {
   artist: "Girl Talk",
@@ -38,10 +38,6 @@ var AlbumData = (function () {
   // stores cached data for an album, keyed by data source id
   var m_data = {};
 
-  var clearCache = function () {
-    m_data = {};
-  };
-
 // ==========================================
 // SAMPLE DATA FROM TEXT FILE
 
@@ -77,7 +73,8 @@ var AlbumData = (function () {
       var trackResults = line.match(trackPattern);
       if (trackResults) {
         trackData.push({
-          title: trackResults[2]
+          title: trackResults[2],
+          duration: ALL_DAY_ALBUM.tracks[trackData.length].duration           // XXX not the right way to do this
         });
         currentTrackSamples = [];
         sampleData.push(currentTrackSamples);
@@ -127,26 +124,51 @@ var AlbumData = (function () {
 // =================================
 // INTERFACE
 
-  // use sample data from a particular ource;
-  var get = function (source, forceReload, successFunc) {
+  // Data source on which returned data is currently based.
+  var m_currentSource = null;
+
+  // callbacks to data changes
+  var onDataChanged = [];
+
+  var getSource = function () {
+    return m_currentSource;
+  };
+
+  var getData = function () {
+    return m_data[m_currentSource.id];
+  };
+
+  var clearCache = function () {
+    m_data = {};
+    m_currentSource = null;
+  };
+
+  // use sample data from a particular source;
+  var setSource = function (source, forceReload) {
     if (m_data[source.id] && !forceReload) {
       // we've already retrieved this album's data, so don't do it again.
-      successFunc(m_data[source.id]);
+      m_currentSource = source;
+      sendEvent(onDataChanged);
     } else if (source.type === "wikipedia") {
       getDataFromWikipedia(source.pageName, function (results) {
+        m_currentSource = source;
         m_data[source.id] = results;
-        successFunc(results);
+        sendEvent(onDataChanged);
       });
     } else if (source.type === "text") {
       getDataFromText(source.url, function (results) {
+        m_currentSource = source;
         m_data[source.id] = results;
-        successFunc(results);
+        sendEvent(onDataChanged);
       });
     }
   };
 
   return {
-    get: get,
+    onDataChanged: onDataChanged,
+    setSource: setSource,
+    getSource: getSource,
+    getData: getData,
     clearCache: clearCache
   };
 

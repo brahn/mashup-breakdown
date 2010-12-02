@@ -97,10 +97,10 @@ var YouTube = (function () {
   // callback arrays
 
   var onReady = [],
-      onStateChange = [];
+      onStateChanged = [];
 
   var doOnStateChange = function (state) {
-    sendEvent(onStateChange, state);
+    sendEvent(onStateChanged, state);
   };
 
   // This function must be defined (and globally available, I guess.)
@@ -277,7 +277,7 @@ var YouTube = (function () {
 
     // callback arrays
     onReady: onReady,
-    onStateChange: onStateChange,
+    onStateChanged: onStateChanged,
 
     // listeners for ytPlayer events, need to be globally available
     doOnStateChange: doOnStateChange,

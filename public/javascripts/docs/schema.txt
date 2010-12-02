@@ -13,7 +13,7 @@ TRACK objects have the following fields:
 * title
 * artist (optional, defaults to album artist)
 * duration
-* sourceUrl OR sourceId
+* scUrl OR ytId
 
 ========
 ALBUM DATA SOURCE objects have the following fields

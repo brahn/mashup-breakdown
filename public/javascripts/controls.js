@@ -1,5 +1,6 @@
 /*jslint indent:2, browser:true, onevar:false */
-/*global $, window, YouTube, safeLogger */
+/*global $, window, safeLogger, asPercentage, secToMmss */
+/*global YouTube, Visualizer, AlbumData, MediaPlayer */
 
 var Controls = (function () {
 
@@ -14,11 +15,11 @@ var Controls = (function () {
       handleTimeText,
       timeleft,
       manualSeek = false,
-      areControlsSetup = false;
+      arePlaybackControlsSetup = false;
 
   // We track duration and currentTime for indicators separately from
-  // YouTube, because we may want to use or update controls before YouTube
-  // has loaded, or when Youtube is not advancing.
+  // MediaPlayer, because we may want to use or update controls before
+  // MediaPlayer has loaded, or when MediaPlayer is not advancing.
 
   var duration,
       currentTime;
@@ -87,21 +88,15 @@ var Controls = (function () {
         handleTimePoint.show();
         handleTimeText.html(secToMmss(ui.value));
         Visualizer.setTime(ui.value);
-        if (!YouTube.isPlaying()) {
+        if (!MediaPlayer.isPlaying()) {
           updateTimeLeft(ui.value);
         }
       },
       stop: function (e, ui) {
         manualSeek = false;
         handleTimePoint.stop().fadeOut("fast");
-        if (YouTube.isPlaying()) {
-          currentTime = ui.value;
-          YouTube.seekTo(ui.value, true);
-        } else {
-          currentTime = ui.value;
-          YouTube.seekTo(ui.value, true);
-          YouTube.pause();
-        }
+        currentTime = ui.value;
+        MediaPlayer.seekTo(ui.value);
       }
     });
     setHandleTailHeight();
@@ -110,7 +105,7 @@ var Controls = (function () {
 
   var setupPlayToggle = function () {
     // change play toggle when youtube player state changes
-    YouTube.onStateChange.push(function () {
+    YouTube.onStateChanged.push(function () {
       if (YouTube.isPlaying()) {
         $("#playtoggle").addClass('playing');
       } else {
@@ -119,9 +114,10 @@ var Controls = (function () {
     });
     // clicking play toggle changes state of youtube player
     $("#playtoggle").click(function () {
+      // XXX move the below into MediaPlayer (use a toggle command?)
       if (YouTube.isPlaying()) {
         YouTube.pause();
-      } else if (YouTube.isCreated()){
+      } else if (YouTube.isCreated()) {
         YouTube.play();
       } else {
         // check again in 1 second
@@ -138,13 +134,10 @@ var Controls = (function () {
     });
   };
 
-  var setupPlayback = function (suppliedDuration) {
-
+  var setPlaybackDuration = function (suppliedDuration) {
     duration = suppliedDuration;
     currentTime = 0;
-//    updateDurationText();
-
-    if (areControlsSetup) {
+    if (arePlaybackControlsSetup) {
       $('.player #gutter').slider("option", "max", duration);
       updatePlaybackIndicators();
     } else {
@@ -159,28 +152,107 @@ var Controls = (function () {
 
       setInterval(function () {
         updateBufferIndicator();
-        if (YouTube.isPlaying()) {
-          currentTime = YouTube.currentTime();
+        if (MediaPlayer.isPlaying()) {
+          currentTime = MediaPlayer.getTime();
           updatePlaybackIndicators();
           Visualizer.setTime(currentTime, true);
         }
       }, PLAYBACK_INTERVAL_IN_MS);
-      areControlsSetup = true;
+      arePlaybackControlsSetup = true;
     }
-
   };
-
-  var getTime = function () {
-    return currentTime;
-  };
+  MediaPlayer.onTrackChanged.push(function () {
+    setPlaybackDuration(MediaPlayer.getTrack().duration);
+  });
 
   $(document).ready(function () {
     $(window).resize(setHandleTailHeight);
   });
 
+// ================================
+// TRACK SELECTOR
+
+  var isTrackSelectorSetup = false;
+
+  var setTrackOptions = function (tracks) {
+    $('#track-select').html($('#track-option-template').
+      tmpl({tracks: tracks})).val(0);
+    if (!isTrackSelectorSetup) {
+      $('#track-select').change(function () {
+        MediaPlayer.gotoTrack($(this).val());
+      });
+    }
+  };
+  // callback to update selector on track change
+  MediaPlayer.onTrackChanged.push(function () {
+    $('#track-select').val(MediaPlayer.getTrackIndex());
+  });
+
+// ================================
+// DATA SOURCE SELECTOR
+
+  var m_sampleDataSources = [];
+
+  var findSourceById = function (sourceId) {
+    for (var i = 0; i < m_sampleDataSources.length; i += 1) {
+      if (m_sampleDataSources[i].id === sourceId) {
+        return m_sampleDataSources[i];
+      }
+    }
+    return null;
+  };
+
+  var setDataSource = function (sourceId, forceReload) {
+    $('#data-source-select').val(sourceId);
+    $('#data-source-reload-link-container').hide();
+    $('#data-source-label-text').hide();
+    $('#data-source-loading-indicator').show();
+    AlbumData.setSource(findSourceById(sourceId), forceReload);
+
+  };
+  // callback to change in data source, which results from setDataSource
+  AlbumData.onDataChanged.push(function () {
+    $('#data-source-loading-indicator').hide();
+    $('#data-source-label-text').show();
+    if (AlbumData.getSource().id === "wikipedia-live") {
+      $('#data-source-reload-link-container').show();
+    } else {
+      $('#data-source-reload-link-container').hide();
+    }
+  });
+
+  var isDataSourceSelectorSetup = false;
+
+  var setDataSourceOptions = function (sources) {
+    m_sampleDataSources = sources;
+    $('#data-source-select').html($('#data-option-template').
+      tmpl(m_sampleDataSources)).
+      val(m_sampleDataSources[0].id);
+    if (!isDataSourceSelectorSetup) {
+      // set up selector
+      $('#data-source-select').change(function () {
+        setDataSource($(this).val(), false);
+      });
+      // set up reload link
+      $('#data-source-reload-link').click(function () {
+        setDataSource($('#data-source-select').val(), true);
+      });
+      isDataSourceSelectorSetup = true;
+    }
+    // when setting new data source options, go get the first data source
+    setDataSource(m_sampleDataSources[0].id);
+  };
+
+
+// =================================================
+
+  var setupAlbum = function (album) {
+    setDataSourceOptions(album.sampleDataSources);
+    setTrackOptions(album.tracks);
+  };
+
   return {
-    setupPlayback: setupPlayback,
-    getTime: getTime
+    setupAlbum: setupAlbum
   };
 
 }());

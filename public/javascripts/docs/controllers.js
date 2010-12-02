@@ -1,35 +1,32 @@
-// ========================
-// Visualizer
-
-  // for animation that has already been set up, jump to specified time.
-  // optionally, set argument 'animate' to animate transition (e.g. for
-  // standard time-advance while track is playing)
-  var setTime = function (time, animate) {};
-
-  // call to redraw samples.  Optionally, set argument 'time' to establish
-  // visualization as if mid-track
-  var setup = function (samples, trackDuration, time) {};
-
-// ======================
-// Controls
-
-  // call to set up for track of given duration
-  var setupPlayback = function (duration) {};
-
 // =====================
 // AlbumData
 
-  // By default, checks the albumDataSource id and pulls a cached version
-  // of the source data if available.  This can be overridden by setting
-  // forceReload.
-  //
-  // callback function takes one argument (results), an object with
-  // two fields:
+  // Provides the track and sample data for the current album.
+
+  // Set the data source object on which data is based.
+  // By default, data will be pulled from cache if it is available.
+  // To ignore cached version and reload data, set forceReload to true.
+  var setSource = function (source, forceReload) {};
+
+  // Returns current data _source_ object
+  var getSource = function () {};
+
+  // Returns current data.  The returned object has two fields:
   // * results.tracks -- array of track objects
   // * results.samples -- album sample data object
-  var get = function (albumDataSource, forceReload, successFunc) {};
+  var getData = function () {};
 
+  // Clear all cached data
   var clearCache = function () {};
+
+  // Callbacks to data change, which might result from setSource or
+  // reloadData.  Callbacks take no arguments.
+  var onDataChanged = [];
+
+// =====================
+// YouTube, SCloud
+
+// Interfaces to YouTube and SoundCloud APIs.  Called only by MediaPlayer
 
 // ======================
 // MediaPlayer
@@ -43,13 +40,13 @@
   // * startAtTrack (0) XXX not yet implemented
   // * startAtTime (0) XXX not yet implemented
   var setupAlbum = function (album, options) {};
+  var gotoTrack = function (trackIndex, playImmediately) {};
 
   var play = function () {};
   var pause = function () {};
   // keys for option object
   // * allowSeekAhead (youtube-specific)
   var seekTo = function (time, options) {};
-  var gotoTrack = function (trackNum) {};
 
   var setVolume = function (volume) {};
   var mute = function () {};
@@ -57,32 +54,37 @@
 
   // access to player state
   var getAlbum = function () {};
-  var getTrackNum = function () {};
-  var getCurrentTrack = function () {};
+  var getTrackIndex = function () {};
+  var getTrack = function () {};
   var getTime = function () {};
   var isPlaying = function () {};
 
-  // arrays of callback to album setup; callbacks take no arguments
+  // arrays of callbacks to album setup; callbacks take no arguments
   var onAlbumSetup = [];
 
-  // array of callbacks to track change; callbacks take new track number
-  var onTrackChange = [];
+  // array of callbacks to track change; callbacks take no arguments
+  // Note that these will *also* be called when the album is setup.
+  var onTrackChanged = [];
+
+  // arrays of callbacks to state change (i.e. start/stop); callbacks take
+  // no arguments
+  var onStateChanged = [];
 
   // XXX haven't dealt with buffering yet
 
 
-// =====================
-// YouTube, SCloud
+// ========================
+// Visualizer
 
-// Interfaces to YouTube and SoundCloud APIs.  Called only by MediaPlayer
+  // for animation that has already been set up, jump to specified time.
+  // optionally, set argument 'animate' to animate transition (e.g. for
+  // standard time-advance while track is playing)
+  var setTime = function (time, animate) {};
 
-// =====================
-// AlbumControls
+// ======================
+// Controls
 
-  // Track selector
-  // - Change in drop-down triggers changing tracks
-  // - Track transition from MediaPlayer changes selector
+  // setup selectors for tracks and data source options
+  var setupAlbum = function (album) {};
 
-  // Data selector
-  // - Change in drop-down gathers new sample data, updates *visualizer*
-  //   but not media player
+
