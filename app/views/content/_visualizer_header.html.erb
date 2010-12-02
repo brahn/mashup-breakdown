@@ -1,13 +1,4 @@
 <%# templates used by jQuery.tmpl() plugin to render search results %>
-<script id="track-option-template" type="text/x-jquery-tmpl">
-  {{each(index, track) tracks}}
-  <option value="${index}">
-    Track ${index + 1} - ${track.title}
-  </option>
-  {{/each}}
-</script>
-
-<%# templates used by jQuery.tmpl() plugin to render search results %>
 <script id="data-option-template" type="text/x-jquery-tmpl">
   <option value="${id}">
     ${prettyText}

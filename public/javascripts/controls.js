@@ -170,9 +170,20 @@ var Controls = (function () {
 
   var isTrackSelectorSetup = false;
 
+  var trackOptionText = function (title, trackIndex) {
+    if (title) {
+      return "Track " + (trackIndex + 1) + " - " + title;
+    } else {
+      return "Track " + (trackIndex + 1);
+    }
+  };
+
   var setTrackOptions = function (tracks) {
-    $('#track-select').html($('#track-option-template').
-      tmpl({tracks: tracks})).val(0);
+    $('#track-select').empty();
+    $.each(tracks, function (index, track) {
+      $('#track-select').append('<option value="' + index + '">' +
+        trackOptionText(track.title, index) + '</option>');
+    });
     if (!isTrackSelectorSetup) {
       $('#track-select').change(function () {
         MediaPlayer.gotoTrack($(this).val());
@@ -182,6 +193,16 @@ var Controls = (function () {
   // callback to update selector on track change
   MediaPlayer.onTrackChanged.push(function () {
     $('#track-select').val(MediaPlayer.getTrackIndex());
+  });
+
+  var refreshTrackOptionText = function (tracks) {
+    $.each(tracks, function (index, track) {
+      $('#track-select').find('option[value=' + index + ']').
+        html(trackOptionText(track.title, index));
+    });
+  };
+  AlbumData.onDataChanged.push(function () {
+    refreshTrackOptionText(AlbumData.getData().tracks);
   });
 
 // ================================
@@ -223,8 +244,7 @@ var Controls = (function () {
   var setDataSourceOptions = function (sources) {
     m_sampleDataSources = sources;
     $('#data-source-select').html($('#data-option-template').
-      tmpl(m_sampleDataSources)).
-      val(m_sampleDataSources[0].id);
+      tmpl(m_sampleDataSources));
     if (!isDataSourceSelectorSetup) {
       // set up selector
       $('#data-source-select').change(function () {
@@ -236,22 +256,22 @@ var Controls = (function () {
       });
       isDataSourceSelectorSetup = true;
     }
-    // when setting new data source options, go get the first data source
-    setDataSource(m_sampleDataSources[0].id);
   };
 
 
 // =================================================
 
   var setupAlbum = function (album) {
-    setDataSourceOptions(album.sampleDataSources);
-    setTrackOptions(album.tracks);
     MediaPlayer.setupAlbum(album, {
       failureCallback: function () {
         $("#media-error-dialog").dialog("open");
       }
     });
+    setDataSourceOptions(album.sampleDataSources);
+    setTrackOptions(album.tracks);
 
+    // when setting new data source options, go get the first data source
+    setDataSource(album.sampleDataSources[0].id);
   };
 
   return {
