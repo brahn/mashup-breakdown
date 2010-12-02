@@ -23,7 +23,7 @@ var ALL_DAY_ALBUM = {
     { id: "wikipedia-snapshot",
       prettyText: "Wikipedia (Dec. 2)",
       type: "text",
-      url: "/javascripts/data/wikipedia.txt"
+      url: "/data/all-day.txt"
     },
     { id: "wikipedia-live",
       prettyText: "Wikipedia (live)",
