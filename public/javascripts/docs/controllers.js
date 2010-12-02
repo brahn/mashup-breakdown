@@ -74,6 +74,10 @@
   // Note that these will *also* be called when the album is setup.
   var onTrackChanged = [];
 
+  // arrays of callbacks to media player time advancing (or otherwise changing)
+  // callbacks take no arguments
+  var onTimeChanged = [];
+
   // arrays of callbacks to state change (i.e. start/stop); callbacks take
   // no arguments
   var onStateChanged = [];

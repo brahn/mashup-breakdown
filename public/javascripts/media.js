@@ -19,14 +19,18 @@ var MediaPlayer = (function () {
 // CALLBACKS
 
   // Callback functions
-  var onAlbumSetup = [],
-      onTrackChanged = [],
+  var onTimeChanged = [],
+      onTrackChanged = [function () {
+        sendEvent(onTimeChanged);
+      }],
+      onAlbumSetup = [function () {
+        sendEvent(onTrackChanged);
+      }],
       onStateChanged = [];
 
   YouTube.onReady.push(function () {
     if (m_album.mediaType === "youtube") {
       sendEvent(onAlbumSetup);
-      sendEvent(onTrackChanged);
     }
   });
   // XXX need to do the same for SC
@@ -40,6 +44,19 @@ var MediaPlayer = (function () {
 
 // =============================================================
 // ALBUM SETUP
+
+  var isTimerSetup = false;
+
+  var PLAYBACK_INTERVAL_IN_MS = 50;
+
+  var setupTimerEvent = function () {
+    setInterval(function () {
+      if (isPlaying()) {
+        sendEvent(onTimeChanged);
+      }
+    }, PLAYBACK_INTERVAL_IN_MS);
+    isTimerSetup = true;
+  };
 
   // Initialize player with specified album.
   // options can carry the following optional fields (defaults in parens)
@@ -70,6 +87,9 @@ var MediaPlayer = (function () {
     default:
       safeLogger("bad album source type: ");
       safeLogger(album.source);
+    }
+    if (!isTimerSetup) {
+      setupTimerEvent();
     }
   };
 
@@ -235,11 +255,8 @@ var MediaPlayer = (function () {
 
     onAlbumSetup: onAlbumSetup,
     onTrackChanged: onTrackChanged,
+    onTimeChanged: onTimeChanged,
     onStateChanged: onStateChanged
-
-    // XXX
-    // Deal with buffering
-
   };
 
 

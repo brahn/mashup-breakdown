@@ -170,6 +170,10 @@ var Visualizer = (function () {
 */
   };
 
+  MediaPlayer.onTimeChanged.push(function () {
+    setTime(MediaPlayer.getTime(), true);
+  });
+
 // ===========================================
 
   var setup = function (samples, trackDuration, time) {

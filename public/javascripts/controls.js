@@ -7,8 +7,6 @@ var Controls = (function () {
 // ==============================
 // PLAYBACK CONTROLS
 
-  var PLAYBACK_INTERVAL_IN_MS = 50;
-
   var bufferIndicator,
       positionIndicator,
       handleTimePoint,
@@ -148,18 +146,17 @@ var Controls = (function () {
       setupPlayToggle();
       setupPositionControl();
       updatePlaybackIndicators();
-
-      setInterval(function () {
-        updateBufferIndicator();
-        if (MediaPlayer.isPlaying()) {
-          currentTime = MediaPlayer.getTime();
-          updatePlaybackIndicators();
-          Visualizer.setTime(currentTime, true);
-        }
-      }, PLAYBACK_INTERVAL_IN_MS);
       arePlaybackControlsSetup = true;
     }
   };
+  MediaPlayer.onTimeChanged.push(function () {
+    if (!arePlaybackControlsSetup) {
+      return;
+    }
+    updateBufferIndicator();
+    currentTime = MediaPlayer.getTime();
+    updatePlaybackIndicators();
+  });
   MediaPlayer.onTrackChanged.push(function () {
     setPlaybackDuration(MediaPlayer.getTrack().duration);
   });
