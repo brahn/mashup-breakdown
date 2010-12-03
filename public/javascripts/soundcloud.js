@@ -138,7 +138,7 @@ var SCloud = (function () {
   // trigger a onMediaDoneBuffering event when it’s fully available.
   var seekTo = function (seconds) {
     if (scPlayer) {
-      scPlayer.seekTo(seconds);
+      scPlayer.api_seekTo(seconds);
     }
   };
 
@@ -177,7 +177,8 @@ var SCloud = (function () {
 
   var bufferPercentLoaded = null;
 
-  $(document).bind('soundcloud.onMediaBuffering', function (player, data) {
+  $(document).bind('soundcloud:onMediaBuffering soundcloud:onMediaDoneBuffering', function (event, data) {
+    safeLogger("buffering: " + data.percent);
     bufferPercentLoaded = data.percent;
   });
 
