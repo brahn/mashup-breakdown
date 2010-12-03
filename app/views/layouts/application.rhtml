@@ -41,7 +41,8 @@
   <%= yield :page_javascript %>
   <% javascript_tag do %>
     $(document).ready(function () {
-      Controls.setupAlbum(ALL_DAY_ALBUM);
+      <%= setup_js_var "albumId", params[:album_id], "all-day" %>
+      Controls.setupAlbum(getAlbumById(albumId));
     });
   <% end %>
 

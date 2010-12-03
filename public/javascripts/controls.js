@@ -28,7 +28,7 @@ var Controls = (function () {
       bufferIndicator.hide();
       return;
     }
-    var bufferStart = Math.max(0.0, bufferStatus.fractionBuffered);
+    var bufferStart = Math.max(0.0, bufferStatus.fractionStartingAt);
     var bufferEnd = Math.min(1.0, bufferStatus.fractionBuffered +
       bufferStatus.fractionStartingAt);
     bufferIndicator.css("left", asPercentage(bufferStart));

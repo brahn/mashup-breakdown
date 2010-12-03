@@ -263,7 +263,8 @@ var MediaPlayer = (function () {
     switch (m_album.mediaType) {
     case "youtube":
       var ytByteStatus = YouTube.byteStatus();
-      if (ytByteStatus && !ytByteStatus.total) {
+      safeLogger(ytByteStatus);
+      if (ytByteStatus && ytByteStatus.total > 0) {
         return {
           fractionBuffered: ytByteStatus.loaded / ytByteStatus.total,
           fractionStartingAt: ytByteStatus.startingAt / ytByteStatus.total
