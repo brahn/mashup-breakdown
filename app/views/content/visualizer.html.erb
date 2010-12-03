@@ -1,5 +1,4 @@
 <%= render :partial => "content/visualizer_header" %>
-
 <div id="yt-container" class="flash-player-container">
   <%# gets replaced when player inserted %>
   <div id="yt-player-standin" class="flash-player"></div>
@@ -8,6 +7,8 @@
 <div id="sc-container" class="flash-player-container">
   <%# gets replaced when player inserted %>
   <div id="sc-player-standin" class="flash-player"></div>
+  <%= link_to "", "http://soundcloud.com", {:id => "sc-logo",
+      :target => "_blank"} %>
 </div>
 
 <div id="media-error-dialog" style="display:none">
