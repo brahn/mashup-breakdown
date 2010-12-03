@@ -263,6 +263,14 @@ var Controls = (function () {
     }
   };
 
+// ================================================
+// ALBUM TITLE DISPLAY
+
+  var setAlbumTitle = function (album) {
+    var titleStr = album.title + " by " + album.artist + " - Mashup Breakdown";
+    document.title = titleStr;
+    $('#page-title').text(titleStr);
+  };
 
 // =================================================
 
@@ -272,6 +280,7 @@ var Controls = (function () {
         $("#media-error-dialog").dialog("open");
       }
     });
+    setAlbumTitle(album);
     setDataSourceOptions(album.sampleDataSources);
     setTrackOptions(album.tracks);
 

@@ -96,3 +96,4 @@ var dialogOptions = function (newOptions) {
   }, newOptions);
   return opts;
 };
+

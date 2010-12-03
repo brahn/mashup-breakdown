@@ -32,7 +32,7 @@ var ALBUMS = [
   },
   { id: "feed-the-animals-youtube",
     artist: "Girl Talk",
-    title: "All Day",
+    title: "Feed the Animals",
     mediaType: "youtube",
     tracks: [
       {ytId: "hkih8Q6y6UA", duration: 285},
@@ -65,7 +65,7 @@ var ALBUMS = [
   },
   { id: "feed-the-animals-soundcloud",
     artist: "Girl Talk",
-    title: "All Day",
+    title: "Feed the Animals",
     mediaType: "soundcloud",
     tracks: [
       {scUrl: "http://soundcloud.com/brahn/01-play-your-part-pt-1", duration: 285},
