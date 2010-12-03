@@ -279,7 +279,12 @@ var Controls = (function () {
     setDataSource(album.sampleDataSources[0].id);
   };
 
+  var isManuallySeeking = function () {
+    return manualSeek;
+  };
+
   return {
+    isManuallySeeking: isManuallySeeking,
     setupAlbum: setupAlbum
   };
 

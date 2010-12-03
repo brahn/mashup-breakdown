@@ -99,4 +99,5 @@
   // setup selectors for tracks and data source options
   var setupAlbum = function (album) {};
 
+  var isManuallySeeking = function () {};
 
