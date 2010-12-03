@@ -200,15 +200,15 @@ var SCloud = (function () {
   var scState = null;
   $(document).bind("soundcloud:onMediaPlay", function () {
     scState = "playing";
-    sendEvent(onStateChanged);
+    sendEvent(onStateChanged, scState);
   });
   $(document).bind("soundcloud:onMediaPause", function () {
     scState = "paused";
-    sendEvent(onStateChanged);
+    sendEvent(onStateChanged, scState);
   });
   $(document).bind("soundcloud:onMediaEnd", function () {
     scState = "ended";
-    sendEvent(onStateChanged);
+    sendEvent(onStateChanged, scState);
   });
 
   var state = function () {
