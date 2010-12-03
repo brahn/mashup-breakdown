@@ -16,6 +16,31 @@ var YouTube = (function () {
 
   var ytPlayer = null;
 
+// ==========================================
+// CALLBACKS
+
+  // Callbacks to YouTube flash object creation.  Callbacks functions take
+  // no arguments.
+  var onReady = [];
+
+  // Callbacks to YouTube flash object state change.  See
+  // http://code.google.com/apis/youtube/js_api_reference.html#Events
+  // Callback functions take the state as the argument: possible
+  // values are unstarted (-1), ended (0), playing (1), paused (2),
+  // buffering (3), video cued (5).
+  var onStateChanged = [];
+
+  // Callbacks to a new video being loaded (including when player
+  // becomes ready).  Note that if a video is cued, and then re-cued,
+  // these callbacks still fire.
+  var onVideoChanged = [];
+
+  onStateChanged.push(function (state) {
+    if (state === 5) { // videoCued
+      sendEvent(onVideoChanged);
+    }
+  });
+
 // ============================================
 // MONITORING STATE OF PLAYER
 
@@ -57,56 +82,64 @@ var YouTube = (function () {
 // PLAYER SET UP
 
   var ytIdToCue = null,
-      ytPlayWhenCued = null;
+      ytPlayWhenCued = null,
+      ytPlayerObjectId = null;
 
-  var setup = function (divToReplace, playerObjectId, ytId, playWhenCued,
-    createPlayerFailureFunc) {
-    if (isCreated()) {
+  // options object can take the following fields (defaults)
+  // * ytId ("Srmdij0CU1U") -- id of video to be cued, default is test pattern
+  // * divToReplace ($("#yt-player-standin"));
+  // * playerObjectId ("yt-player")
+  // * playWhenCued (false)
+  // * failureCallback (null function)
+
+  var setup = function (options) {
+    var opts = $.extend({ // defaults
+      ytId: "Srmdij0CU1U",
+      divToReplace: $("#yt-player-standin"),
+      playerObjectId: "yt-player",
+      playWhenCued: false,
+      failureCallback: function () {}
+    }, options);
+    if (ytPlayer) {
       // player has already been created, we don't need to do it again
-      if (playWhenCued) {
-        load(ytId);
+      if (opts.playWhenCued) {
+        load(opts.ytId);
       } else {
-        cue(ytId);
+        cue(opts.ytId);
       }
       return;
     }
     // create the player
-    divToReplace = $(divToReplace);
-    playerObjectId = playerObjectId || "ytPlayer";
-    ytIdToCue = ytId || "Srmdij0CU1U";
-    ytPlayWhenCued = playWhenCued;
-    var playerWidth = divToReplace.width(),
-        playerHeight = divToReplace.height();
-    var playerid = "player1"; // used by onYouTubePlayerReady function
+    opts.divToReplace = $(opts.divToReplace);
+    ytPlayWhenCued = opts.playWhenCued;
+    ytPlayerObjectId = opts.playerObjectId;
+    ytIdToCue = opts.ytId;
+    var playerWidth = opts.divToReplace.width(),
+        playerHeight = opts.divToReplace.height();
 
+    var playerid = "player1"; // used by onYouTubePlayerReady function
     // allowScriptAccess lets Flash from another domain call JavaScript
     // wmode ensures that other divs can appear in front of flash object
     var params = { allowScriptAccess: "always", wmode: "transparent" };
     // The element id of the Flash embed
-    var atts = { id: playerObjectId };
+    var atts = { id: opts.playerObjectId };
     // All of the magic handled by SWFObject
     // http://code.google.com/p/swfobject/
-    swfobject.embedSWF("http://www.youtube.com/apiplayer?" + 
+    swfobject.embedSWF("http://www.youtube.com/apiplayer?" +
                        "enablejsapi=1&playerapiid=" + playerid,
-                       divToReplace.attr("id"), playerWidth, playerHeight,
+                       opts.divToReplace.attr("id"), playerWidth, playerHeight,
                        "8", null, null, params, atts);
-    monitorYouTubeSetup(createPlayerFailureFunc);
+    monitorYouTubeSetup(opts.failureCallback);
   };
-
-
-  // callback arrays
-
-  var onReady = [],
-      onStateChanged = [];
 
   var doOnStateChange = function (state) {
     sendEvent(onStateChanged, state);
   };
 
-  // This function must be defined (and globally available, I guess.)
+  // This function must be defined (and globally available).
   // It is called by youtube magic.
   var onYouTubePlayerReady = function (playerid) {
-    ytPlayer = document.getElementById("ytPlayer");
+    ytPlayer = document.getElementById(ytPlayerObjectId);
     ytPlayer.addEventListener("onError", "YouTube.onError");
     ytPlayer.addEventListener("onStateChange", "YouTube.doOnStateChange");
     if (ytPlayWhenCued) {
@@ -114,8 +147,9 @@ var YouTube = (function () {
     } else {
       cue(ytIdToCue);
     }
-    sendEvent(onReady);
     logInfo();
+    sendEvent(onReady);
+    sendEvent(onVideoChanged);
   };
 
 // ================================
@@ -131,6 +165,8 @@ var YouTube = (function () {
 // =================================
 // QUEUEING VIDEO
 
+  var onTrackChanged = [];
+
 
   // Loads the specified video's thumbnail and prepares the player to
   // play the video. The player does not request the FLV until
@@ -141,9 +177,9 @@ var YouTube = (function () {
     }
   };
 
-  var cueByUrl = function (ytURL) {
+  var cueByUrl = function (ytUrl) {
     if (ytPlayer) {
-      ytPlayer.cueVideoByUrl(ytURL);
+      ytPlayer.cueVideoByUrl(ytUrl);
     }
   };
 
@@ -215,15 +251,14 @@ var YouTube = (function () {
 // PLAYBACK STATUS
 
   var byteStatus = function () {
-    if (ytPlayer) {
-      return {
-        loaded: ytPlayer.getVideoBytesLoaded(),
-        total: ytPlayer.getVideoBytesTotal(),
-        startingAt: ytPlayer.getVideoStartBytes()
-      };
-    } else {
+    if (!ytPlayer) {
       return {};
     }
+    return {
+      total: ytPlayer.getVideoBytesTotal(),
+      loaded: ytPlayer.getVideoBytesLoaded(),
+      startingAt: ytPlayer.getVideoStartBytes()
+    };
   };
 
   var state = function () {
@@ -253,7 +288,7 @@ var YouTube = (function () {
 // ========================
 
   return {
-    logInfo: logInfo,
+    setup: setup,
     resize: resize,
     cue: cue,
     cueByUrl: cueByUrl,
@@ -265,7 +300,6 @@ var YouTube = (function () {
     setVolume: setVolume,
     mute: mute,
     unMute: unMute,
-    setup: setup,
     onYouTubePlayerReady: onYouTubePlayerReady,
     byteStatus: byteStatus,
     state: state,
@@ -277,9 +311,11 @@ var YouTube = (function () {
 
     // callback arrays
     onReady: onReady,
+    onVideoChanged: onTrackChanged,
     onStateChanged: onStateChanged,
 
-    // listeners for ytPlayer events, need to be globally available
+    // listeners for ytPlayer events, need to be globally available,
+    // though users shouldn't actually call them.
     doOnStateChange: doOnStateChange,
     onError: onError
   };

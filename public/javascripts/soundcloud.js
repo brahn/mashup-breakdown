@@ -12,172 +12,110 @@ var SCloud = (function () {
 // ============================================
 // MONITORING STATE OF PLAYER
 
-/*
-  var logInfo = function () {
-    if (!ytPlayer) {
-      safeLogger("No Youtube Player");
-      return;
-    }
-    if (!ytPlayer.getDuration) {
-      safeLogger("No YouTube Duration Info available");
-      return;
-    }
-    safeLogger("Player Info:" +
-      "\n videoDuration: " + ytPlayer.getDuration() +
-      "\n videoCurrentTime: ", ytPlayer.getCurrentTime() +
-      "\n bytesTotal: ", ytPlayer.getVideoBytesTotal() +
-      "\n startBytes: ", ytPlayer.getVideoStartBytes() +
-      "\n bytesLoaded: ", ytPlayer.getVideoBytesLoaded() +
-      "\n volume: ", ytPlayer.getVolume()
-    );
-  };
-
-  // This function is called when an error is thrown by the player
-  var onError = function (errorCode) {
-    safeLogger("A YouTube error occured of type:" + errorCode);
-  };
-
-  var monitorYouTubeSetup = function (failureFunc) {
-    safeLogger("Attempting to embed YouTube player");
+  var monitorPlayerSetup = function (failureFunc) {
+    safeLogger("Attempting to embed SoundCloud player");
     setTimeout(function () {
-      if (!ytPlayer) {
-        safeLogger("Failed to embed YouTube player");
+      if (!scPlayer) {
+        safeLogger("Failed to embed Soundcloud player");
         failureFunc();
       }
     }, 5000);
   };
 
-*/
-
 // ======================================================
 // PLAYER SET UP
 
+  var scPlayWhenCued = false,
+      scPlayerObjectId = null;
 
-
-/*
-  var ytIdToCue = null,
-      ytPlayWhenCued = null;
-*/
-
-  var setup = function (divToReplace, playerObjectId, ytId, playWhenCued,
-    createPlayerFailureFunc) {
-/*
-    if (isCreated()) {
+  // Creates the soundcloud flash object.
+  // options object can take the following fields (defaults)
+  // * scUrl ("http://soundcloud.com/forss/flickermood") -- url of track
+  //     to be cued, default track is mostly harmless
+  // * divToReplace ($("#sc-player-standin"));
+  // * playerObjectId ("sc-player")
+  // * playWhenCued (false)
+  // * failureCallback (null function)
+  var setup = function (options) {
+    var opts = $.extend({ // defaults
+      scUrl: "http://soundcloud.com/forss/flickermood",
+      divToReplace: $("#sc-player-standin"),
+      playerObjectId: "sc-player",
+      playWhenCued: false,
+      failureCallback: function () {}
+    }, options);
+    if (scPlayer) {
       // player has already been created, we don't need to do it again
-      if (playWhenCued) {
-        load(ytId);
+      if (opts.playWhenCued) {
+        loadByUrl(opts.scUrl);
       } else {
-        cue(ytId);
+        cueByUrl(opts.scUrl);
       }
       return;
     }
-*/
     // create the player
-    divToReplace = $(divToReplace);
-    playerObjectId = playerObjectId || "scPlayer";
-/*
-    ytIdToCue = ytId || "Srmdij0CU1U";
-    ytPlayWhenCued = playWhenCued;
-*/
-    var playerWidth = divToReplace.width(),
-        playerHeight = divToReplace.height();
+    opts.divToReplace = $(opts.divToReplace);
+    scPlayWhenCued = opts.playWhenCued;
+    scPlayerObjectId = opts.playerObjectId;
+    var playerWidth = opts.divToReplace.width(),
+        playerHeight = opts.divToReplace.height();
     var flashvars = {
       enable_api: true,
-      object_id: playerObjectId,
-      url: "http://soundcloud.com/forss/flickermood"
+      object_id: opts.playerObjectId,
+      url: opts.scUrl
     };
     var params = {
       allowscriptaccess: "always",
       wmode: "transparent"
     };
     var attributes = {
-      id: playerObjectId,
-      name: playerObjectId
+      id: opts.playerObjectId,
+      name: opts.playerObjectId
     };
     swfobject.embedSWF("http://player.soundcloud.com/player.swf",
-      divToReplace.attr("id"), playerWidth, playerHeight, "9.0.0",
+      opts.divToReplace.attr("id"), playerWidth, playerHeight, "9.0.0",
       "expressInstall.swf", flashvars, params, attributes);
-/*
-    monitorYouTubeSetup(createPlayerFailureFunc);
-*/
+    monitorPlayerSetup(opts.failureCallback);
   };
 
   // callback arrays
 
-  var onReady = [];
-/*
-  var onStateChange = [];
+  var onReady = [],
+      onTrackChanged = [];
 
-  var doOnStateChange = function (state) {
-    sendEvent(onStateChange, state);
-  };
-
-  // This function must be defined (and globally available, I guess.)
-  // It is called by youtube magic.
-*/
-
+  var firstReady = true;
   $(document).bind('soundcloud:onPlayerReady', function (event, data) {
-    scPlayer = document.getElementById("sc-player");
-/*
-    ytPlayer.addEventListener("onError", "YouTube.onError");
-    ytPlayer.addEventListener("onStateChange", "YouTube.doOnStateChange");
-    if (ytPlayWhenCued) {
-      load(ytIdToCue);
-    } else {
-      cue(ytIdToCue);
+    if (!scPlayer) {
+      scPlayer = document.getElementById("sc-player");
     }
-*/
-    sendEvent(onReady);
-/*
-    logInfo();
-*/
+    if (firstReady) {
+      sendEvent(onReady);
+      firstReady = false;
+    }
+    sendEvent(onTrackChanged);
+    if (scPlayWhenCued) {
+      play();
+    }
   });
 
-// ================================
-// VIDEO DISPLAY
-
-/*
-  var resize = function (width, height) {
-    if (ytPlayer) {
-      ytPlayer.width = width;
-      ytPlayer.height = height;
-    }
-  };
-*/
-
 // =================================
-// QUEUEING VIDEO
+// QUEUEING
 
-/*
-  // Loads the specified video's thumbnail and prepares the player to
-  // play the video. The player does not request the FLV until
-  // playVideo() or seekTo() is called.
-  var cue = function (ytId) {
-    if (ytPlayer) {
-      ytPlayer.cueVideoById(ytId);
+  var cueByUrl = function (scUrl) {
+    if (scPlayer) {
+      scPlayWhenCued = false;
+      scPlayer.api_load(scUrl);
     }
   };
 
-  var cueByUrl = function (ytURL) {
-    if (ytPlayer) {
-      ytPlayer.cueVideoByUrl(ytURL);
+  // cue and play when ready
+  var loadByUrl = function (scUrl) {
+    if (scUrl) {
+      scPlayWhenCued = true;
+      scPlayer.api_load(scUrl);
     }
   };
 
-  // load and play when ready
-  var load = function (ytId) {
-    if (ytPlayer) {
-      ytPlayer.loadVideoById(ytId);
-    }
-  };
-
-  var loadByUrl = function (ytURL) {
-    if (ytPlayer) {
-      ytPlayer.loadVideoByUrl(ytURL);
-    }
-  };
-
-*/
 
 // ==================================
 // PLAYER CONTROLS
@@ -235,99 +173,89 @@ var SCloud = (function () {
 
 
 // ========================
+// BUFFERING
+
+  var bufferPercentLoaded = null;
+
+  $(document).bind('soundcloud.onMediaBuffering', function (player, data) {
+    bufferPercentLoaded = data.percent;
+  });
+
+  var bufferStatus = function () {
+    return {
+      percentLoaded: bufferPercentLoaded
+    };
+  };
+
+// ===========================
 // PLAYBACK STATUS
 
-/*
-  var byteStatus = function () {
-    if (ytPlayer) {
-      return {
-        loaded: ytPlayer.getVideoBytesLoaded(),
-        total: ytPlayer.getVideoBytesTotal(),
-        startingAt: ytPlayer.getVideoStartBytes()
-      };
-    } else {
-      return {};
-    }
-  };
+  var onStateChanged = [];
 
-  var state = function () {
-    return ytPlayer ? ytPlayer.getPlayerState() : undefined;
-  };
-
-
-*/
   var isCreated = function () {
     return !!scPlayer;
   };
 
-/*
+  var scState = null;
+  $(document).bind("soundcloud:onMediaPlay", function () {
+    scState = "playing";
+    sendEvent(onStateChanged);
+  });
+  $(document).bind("soundcloud:onMediaPause", function () {
+    scState = "paused";
+    sendEvent(onStateChanged);
+  });
+  $(document).bind("soundcloud:onMediaEnd", function () {
+    scState = "ended";
+    sendEvent(onStateChanged);
+  });
+
+  var state = function () {
+    return scState;
+  };
+
   var isPlaying = function () {
-    return ytPlayer ? (ytPlayer.getPlayerState() === 1) : undefined;
+    return scPlayer ? (scState === "playing") : undefined;
   };
 
   var currentTime = function () {
-    return ytPlayer ? ytPlayer.getCurrentTime() : undefined;
+    return scPlayer ? scPlayer.api_getTrackPosition() : undefined;
   };
 
   var duration = function () {
-    return ytPlayer ? ytPlayer.getDuration() : undefined;
+    return scPlayer ? scPlayer.api_getTrackDuration() : undefined;
   };
 
-  var videoUrl = function () {
-    return ytPlayer ? ytPlayer.getVideoUrl() : undefined;
-  };
-*/
 
 // ========================
 
   return {
-/*
-    logInfo: logInfo,
-    resize: resize,
-    cue: cue,
+    setup: setup,
     cueByUrl: cueByUrl,
-    load: load,
     loadByUrl: loadByUrl,
-*/
     play: play,
     pause: pause,
     seekTo: seekTo,
     setVolume: setVolume,
     mute: mute,
     unMute: unMute,
-    setup: setup,
-/*
-    onYouTubePlayerReady: onYouTubePlayerReady,
-    byteStatus: byteStatus,
-    state: state,
-*/
+
     isCreated: isCreated,
-/*
     isPlaying: isPlaying,
+    bufferStatus: bufferStatus,
+    state: state,
     currentTime: currentTime,
     duration: duration,
-    videoUrl: videoUrl,
 
     // callback arrays
-*/
-    onReady: onReady
-/*
-    onStateChange: onStateChange,
-
-    // listeners for ytPlayer events, need to be globally available
-    doOnStateChange: doOnStateChange,
-    onError: onError
-*/
+    onReady: onReady,
+    onStateChanged: onStateChanged,
+    onTrackChanged: onTrackChanged
   };
 
 }());
 
 /*
-// This function must be defined (and globally available.)
-// It is called by youtube magic.
-var onYouTubePlayerReady = YouTube.onYouTubePlayerReady;
-
-*/
 
 $(document).ready(function () {
   soundcloud.debug = true;
@@ -336,3 +264,4 @@ $(document).ready(function () {
   });
 });
 
+*/

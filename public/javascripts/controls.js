@@ -24,13 +24,13 @@ var Controls = (function () {
 
   var updateBufferIndicator = function () {
     var bufferStatus = MediaPlayer.getBufferStatus();
-    if (!bufferStatus.total || bufferStatus.total < 0) {
+    if (!bufferStatus || !bufferStatus.fractionBuffered) {
       bufferIndicator.hide();
       return;
     }
-    var bufferStart = 1.0 * bufferStatus.startingAt / bufferStatus.total;
-    var bufferEnd = Math.min(1.0,
-      1.0 * (bufferStatus.startingAt + bufferStatus.loaded) / bufferStatus.total);
+    var bufferStart = Math.max(0.0, bufferStatus.fractionBuffered);
+    var bufferEnd = Math.min(1.0, bufferStatus.fractionBuffered +
+      bufferStatus.fractionStartingAt);
     bufferIndicator.css("left", asPercentage(bufferStart));
     bufferIndicator.css("right", asPercentage(1 - bufferEnd));
     bufferIndicator.show();
@@ -190,7 +190,7 @@ var Controls = (function () {
     });
     if (!isTrackSelectorSetup) {
       $('#track-select').change(function () {
-        MediaPlayer.gotoTrack($(this).val());
+        MediaPlayer.gotoTrack($(this).val(), MediaPlayer.isPlaying());
       });
     }
   };

@@ -33,14 +33,35 @@ var MediaPlayer = (function () {
       sendEvent(onAlbumSetup);
     }
   });
-  // XXX need to do the same for SC
+  SCloud.onReady.push(function () {
+    if (m_album.mediaType === "soundcloud") {
+      sendEvent(onAlbumSetup);
+    }
+  });
 
   YouTube.onStateChanged.push(function () {
     if (m_album.mediaType === "youtube") {
       sendEvent(onStateChanged);
     }
   });
-  // XXX need to do the same for SC
+  SCloud.onStateChanged.push(function () {
+    if (m_album.mediaType === "soundcloud") {
+      sendEvent(onStateChanged);
+    }
+  });
+
+
+  YouTube.onVideoChanged.push(function () {
+    if (m_album.mediaType === "youtube") {
+      sendEvent(onTrackChanged);
+    }
+  });
+  SCloud.onTrackChanged.push(function () {
+    if (m_album.mediaType === "soundcloud") {
+      sendEvent(onTrackChanged);
+    }
+  });
+
 
 // =============================================================
 // ALBUM SETUP
@@ -58,31 +79,38 @@ var MediaPlayer = (function () {
     isTimerSetup = true;
   };
 
+  var m_failureCallback = function () {};
+
   // Initialize player with specified album.
   // options can carry the following optional fields (defaults in parens)
   // * playWhenCued (default)
   // * failureCallback (null function)
   // * startAtTrack (0)
   // * startAtTime (0) XXX not yet implemented
-  var setupAlbum = function (album, newOptions) {
+  var setupAlbum = function (album, options) {
     var opts = $.extend({
       playWhenCued: false, // defaults
       failureCallback: function () {},
       startAtTrack: 0,
       startAtTime: 0
-    }, newOptions);
+    }, options);
     m_album = album;
     m_trackIndex = opts.startAtTrack;
+    m_failureCallback = opts.failureCallback;
     switch (m_album.mediaType) {
     case "youtube":
-      YouTube.setup($("#yt-player-standin"), "ytPlayer",
-        m_album.tracks[opts.startAtTrack].ytId, opts.playWhenCued,
-          opts.failureCallback);
+      YouTube.setup({
+        ytId: m_album.tracks[opts.startAtTrack].ytId,
+        playWhenCued: opts.playWhenCued,
+        failureCallback: opts.failureCallback
+      });
       break;
     case "soundcloud":
-      SCloud.setup($("#sc-player-standin"), "scPlayer",
-        m_album.tracks[opts.startAtTrack].scUrl, opts.playWhenCued,
-        opts.failureCallback);
+      SCloud.setup({
+        scUrl: m_album.tracks[opts.startAtTrack].scUrl,
+        playWhenCued: opts.playWhenCued,
+        failureCallback: opts.failureCallback
+      });
       break;
     default:
       safeLogger("bad album source type: ");
@@ -101,14 +129,18 @@ var MediaPlayer = (function () {
   var gotoTrack = function (trackIndex, playImmediately) {
     switch (m_album.mediaType) {
     case "youtube":
-      YouTube.setup($("#yt-player-standin"), "ytPlayer",
-        m_album.tracks[trackIndex].ytId,
-        playImmediately, function () {
-          $('#media-error-dialog').dialog("open");
-        });
+      YouTube.setup({
+        ytId: m_album.tracks[trackIndex].ytId,
+        playWhenCued: playImmediately,
+        failureCallback: m_failureCallback
+      });
       break;
     case "soundcloud":
-      // XXX TO DO
+      SCloud.setup({
+        scUrl: m_album.tracks[trackIndex].scUrl,
+        playWhenCued: playImmediately,
+        failureCallback: m_failureCallback
+      });
       break;
     }
     m_trackIndex = trackIndex;
@@ -135,7 +167,17 @@ var MediaPlayer = (function () {
       }
     }
   });
-  // XXX need to do the same for SoundCloud
+  SCloud.onStateChanged.push(function (state) {
+    if (state === "ended") {
+      var tempDateTime = new Date();
+      if (!lastAdvanceDateTime || (tempDateTime - lastAdvanceDateTime) >
+           ADVANCE_HYSTERESIS_IN_SEC * 1000) {
+        lastAdvanceDateTime = tempDateTime;
+        advanceTrack();
+      }
+    }
+  });
+
 
 // =============================================================
 // INTRA-TRACK PLAY CONTROL
@@ -159,7 +201,7 @@ var MediaPlayer = (function () {
       }
       break;
     case "soundcloud":
-      // XXX TO DO
+      SCloud.seekTo(seconds);
       break;
     }
   };
@@ -209,27 +251,44 @@ var MediaPlayer = (function () {
   };
 
   var getTime = function () {
-    switch (m_album.mediaType) {
-    case "youtube":
-      return YouTube.currentTime();
-      break;
-    case "soundcloud":
-      // XXX
-      break;
-    }
-    return null;
+    return m_controllerObjs[m_album.mediaType].currentTime();
+  };
+
+  var getDuration = function () {
+    return m_controllerObjs[m_album.mediaType].currentTime();
   };
 
   var getBufferStatus = function () {
     switch (m_album.mediaType) {
     case "youtube":
-      return YouTube.byteStatus();
+      var ytByteStatus = YouTube.byteStatus();
+      if (ytByteStatus && !ytByteStatus.total) {
+        return {
+          fractionBuffered: ytByteStatus.loaded / ytByteStatus.total,
+          fractionStartingAt: ytByteStatus.startingAt / ytByteStatus.total
+        };
+      } else {
+        return {
+          fractionBuffered: 0,
+          fractionStartingAt: 0
+        };
+      }
       break;
     case "soundcloud":
-      // XXX
+      var scBufferStatus = SCloud.bufferStatus();
+      if (scBufferStatus) {
+        return {
+          fractionBuffered: scBufferStatus.percentLoaded / 100.0,
+          fractionStartingAt: 0
+        };
+      } else {
+        return {
+          fractionBuffered: 0,
+          fractionStartingAt: 0
+        };
+      }
       break;
     }
-    return {};
   };
 
   return {
@@ -262,28 +321,3 @@ var MediaPlayer = (function () {
 
 }());
 
-// Test data
-
-/*
-var ytAlbum = {};
-SampleData.getAlbum("wikipedia", function (results) {
-  ytAlbum.tracks = results;
-  ytAlbum.sourceType = "youtube";
-});
-
-var scAlbum = {
-  artist: "Girl Talk",
-  title: "All Day",
-  sourceType: "soundcloud",
-  tracks: [{
-    title: "Oh No",
-    scUrl: "http://soundcloud.com/user5904919/01-girl-talk-oh-no"
-  }, {
-    title: "Let It Out",
-    scUrl: "http://soundcloud.com/user5904919/02-girl-talk-let-it-out"
-  }, {
-    title: "That's Right",
-    scUrl: "http://soundcloud.com/user5904919/03-girl-talk-thats-right"
-  }]
-};
-*/
