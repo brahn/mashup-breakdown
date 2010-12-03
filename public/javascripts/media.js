@@ -127,6 +127,7 @@ var MediaPlayer = (function () {
   // manual transition
 
   var gotoTrack = function (trackIndex, playImmediately) {
+    trackIndex = parseInt(trackIndex);
     switch (m_album.mediaType) {
     case "youtube":
       YouTube.setup({
