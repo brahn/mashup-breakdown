@@ -228,6 +228,7 @@ div.flash-player-container {
   width: 48px;
   border: solid 1px #666;
   background: #000;
+  display: none; /* gets revealed by javascript */
 }
 
 div.flash-player-container div.flash-player-standin,
@@ -238,10 +239,6 @@ div.flash-player-container div.flash-player {
   right: 0px;
   bottom: 0px;
   background: #000;
-}
-
-div#sc-container {
-  bottom: -28px;
 }
 
 /* VISUALIZER */

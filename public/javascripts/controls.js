@@ -264,7 +264,7 @@ var Controls = (function () {
   };
 
 // ================================================
-// ALBUM TITLE DISPLAY
+// MISC
 
   var setAlbumTitle = function (album) {
     var titleStr = album.title + " by " + album.artist + " - Mashup Breakdown";
@@ -272,15 +272,27 @@ var Controls = (function () {
     $('#page-title').text(titleStr);
   };
 
+  var showFlashPlayer = function (album) {
+    $('.flash-player-container').hide();
+    switch(album.mediaType) {
+    case ('soundcloud'):
+      $("#sc-container").show();
+      break;
+    case ('youtube'):
+      $("#yt-container").show();
+    }
+  };
+
 // =================================================
 
   var setupAlbum = function (album) {
+    setAlbumTitle(album);
+    showFlashPlayer(album);
     MediaPlayer.setupAlbum(album, {
       failureCallback: function () {
         $("#media-error-dialog").dialog("open");
       }
     });
-    setAlbumTitle(album);
     setDataSourceOptions(album.sampleDataSources);
     setTrackOptions(album.tracks);
 
