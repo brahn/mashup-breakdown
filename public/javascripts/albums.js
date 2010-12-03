@@ -1,5 +1,20 @@
 var ALBUMS = [
-  { id: "all-day",
+  { id: "mass.rsrction.7",
+    artist: "scntfc",
+    title: "mass.rsrction.7",
+    mediaType: "soundcloud",
+    tracks: [
+      { scUrl: "http://soundcloud.com/scientificamerican/mass-rsrction-7",
+        duration: 2054}
+    ],
+    sampleDataSources: [
+      { id: "artist-data",
+        prettyText: "(courtesty of the artist)",
+        type: "text",
+        url: "/data/mass.rsrction.7.txt"
+      }
+    ]
+  },{ id: "all-day",
     artist: "Girl Talk",
     title: "All Day",
     mediaType: "youtube",
