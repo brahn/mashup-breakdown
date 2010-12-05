@@ -35,21 +35,16 @@ h2 {
   margin-top: 1.5em;
 }
 
-/* LAYOUT */
-
 body {
   font-family: "Lucida Grande", "Arial";
   font-size: 13px;
   background: #000;
   color: #FFF;
-  min-width: 700px;
 }
 
-div#page {
-  margin: 0;
-}
+/* LAYOUT */
 
-div.viewport-size {
+div.viewport-size { /* div#page */
   position: absolute;
   top: 0px;
   left: 0px;
@@ -57,45 +52,62 @@ div.viewport-size {
   bottom: 0px;
 }
 
-div#hd {
-  position: absolute;
-  top: 17px;
-  right: 40px;
-  left: 40px;
-  height: 35px;
-}
-
-div#bd {
-  margin: 80px 40px;
-}
-
-div.viewport-size div#bd {
-  margin: 0px;
-  position: absolute;
-  top: 80px;
-  right: 40px;
-  left: 40px;
-  bottom: 80px;
-}
-
-div#ft {
-  position: absolute;
-  height: 50px;
-  bottom: 0px;
-  left: 40px;
-  right: 40px;
-  font-size: 11px;
-}
-
 div.viewport-size #hd,
 div.viewport-size #bd,
 div.viewport-size #ft {
+  position: absolute;
+  left: 40px;
+  right: 40px;
   min-width: 760px;
 }
 
 div.viewport-size #ft {
   left: 90px;
 }
+
+
+div.viewport-size div#hd {
+  top: 17px;
+  height: 35px;
+}
+
+div.viewport-size div#bd {
+  top: 80px;
+  bottom: 80px;
+}
+
+div.viewport-size #ft {
+  bottom: 0px;
+  height: 50px;
+}
+
+div.vertical-scroll {
+  min-width: 700px;
+}
+
+div.vertical-scroll div#hd,
+div.vertical-scroll div#bd,
+div.vertical-scroll div#ft {
+  margin: 0px 40px;
+  position: relative;
+}
+
+
+div.vertical-scroll div#hd {
+  padding-top: 17px;
+  padding-bottom: 28px;
+  height: 35px;
+}
+
+div.vertical-scroll div#bd {
+}
+
+div.vertical-scroll div#ft {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  height: 50px;
+}
+
 
 /* APPLICATION HEADER */
 
@@ -200,6 +212,10 @@ div#visualizer-header div#header-links {
 */
 
 /* FOOTER */
+
+div#ft {
+  font-size: 11px;
+}
 
 div.footer-content {
   position: absolute;

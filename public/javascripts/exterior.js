@@ -12,10 +12,6 @@ $(document).ready(function () {
     }));
   });
 
-  $('#about-link').click(function () {
-    $('#about-dialog-container').dialog("open");
-  });
-
   var addr = "brahn" + "@" + "mashupbreakdown" + "." + "com";
    $('#email-link').html('<a href="mailto:' + addr + '" target="_blank">' + addr + '</a>');
 
