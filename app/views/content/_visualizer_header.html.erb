@@ -6,6 +6,13 @@
 </script>
 
 <div id="visualizer-header">
+  <h1>
+    <span style="float: left" id="page-title"><%= @title %></span>
+    <div id="share-buttons-container">
+      <%= render :partial => "content/visualizer_header_share_buttons" %>
+    </div>
+    <div style="clear:both"></div>
+  </h1>
   <div class="label-and-field" id="track-select-container">
     <label for="track-select" style="display:none">Track</label>
     <select id="track-select"></select>
