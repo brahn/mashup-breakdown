@@ -126,7 +126,7 @@ var Controls = (function () {
             // Problem.  Show it.
             $('#media-error-dialog').dialog("open");
           }
-        }, 1000);
+        }, 1500);
       }
     });
   };
