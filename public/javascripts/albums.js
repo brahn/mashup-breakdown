@@ -45,6 +45,7 @@ var ALBUMS = [
       }
     ]
   },
+/*
   { id: "feed-the-animals-youtube",
     artist: "Girl Talk",
     title: "Feed the Animals",
@@ -78,7 +79,8 @@ var ALBUMS = [
       }
     ]
   },
-  { id: "feed-the-animals-soundcloud",
+*/
+  { id: "feed-the-animals",
     artist: "Girl Talk",
     title: "Feed the Animals",
     mediaType: "soundcloud",

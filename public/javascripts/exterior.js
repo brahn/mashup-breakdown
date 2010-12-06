@@ -14,10 +14,20 @@ var dimHeader = function (suppressAnimation) {
   }
 };
 
+var gotoAlbum = function (albumId) {
+  Controls.setupAlbum(getAlbumById(albumId));
+  $('#artists-and-albums-dialog').dialog("close");
+};
+
 
 $(document).ready(function () {
 
-  $('#about-dialog-container').dialog(dialogOptions({title: "About"}));
+  $('#artists-and-albums-dialog').dialog(dialogOptions({
+    title: "More Breakdowns"
+  }));
+  $('#artists-and-albums-link').click(function () {
+    $('#artists-and-albums-dialog').dialog("open");
+  });
 
   $("#media-error-dialog").dialog(dialogOptions({
     title: "Dang!",

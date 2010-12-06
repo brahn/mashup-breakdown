@@ -139,17 +139,19 @@ div#application-header {
   cursor: default;
 }
 
-div#application-header a#logo {
+div#application-header span#header-content-left {
   font-weight: bold;
   font-size: 14px;
   text-shadow: 0 1px 1px #222;
-/*
-  display: block;
-  background-image: url(/images/mubd-logo-1.png);
-  background-repeat: no-repeat;
-  height: 22px;
-  width: 457px;
-*/
+}
+
+div#application-header div#header-content-right {
+  float: right;
+  padding-right: 5px;
+  position: relative;
+  top: 2px;
+  font-size: 11px;
+  color: #888;
 }
 
 
@@ -285,7 +287,7 @@ div.flash-player-container {
   border-width: 1px;
   border-color: #666;
   background: #000;
-  display: none; /* gets revealed by javascript */
+  z-index: 0; /* gets adjusted by javascript */
 }
 
 div.flash-player-container div.flash-player-standin,

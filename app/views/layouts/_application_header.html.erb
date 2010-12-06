@@ -1,5 +1,5 @@
 <div id="application-header">
-  <div class="header-content-right" style="color: #888; float: right; font-size: 11px; padding-right: 5px; position: relative; top: 2px">
+  <div id="header-content-right">
   <%= link_to "About", BLOG_URL_BASE + "/pages/about",
       {:target => "_blank"} %>
    &nbsp;&nbsp;|&nbsp;&nbsp;
@@ -8,5 +8,20 @@
   <%= link_to_unless_current "Feedback", {:controller => "content", :action => "feedback"}, {:target => "_blank"} %>
   </div>
 
-  <a id="logo" href="/">MASHUP BREAKDOWN</a>
+  <span id="header-content-left">
+    <a id="logo" href="/">MASHUP BREAKDOWN</a>
+    &nbsp;|&nbsp;
+  <a id="artists-and-albums-link" href="#">More Artists & Albums</a>
+  </span>
+</div>
+
+<div id="artists-and-albums-dialog" style="display:none">
+  <ul>
+    <li><%= link_to_function "Girl Talk - All Day",
+            "gotoAlbum('all-day')" %></li>
+    <li><%= link_to_function "Girl Talk - Feed the Animals",
+            "gotoAlbum('feed-the-animals')" %></li>
+    <li><%= link_to_function "scntfc - mass.rsrction.7",
+            "gotoAlbum('mass.rsrction.7')" %></li>
+  </ul>
 </div>

@@ -127,6 +127,9 @@ var MediaPlayer = (function () {
   // manual transition
 
   var gotoTrack = function (trackIndex, playImmediately) {
+    if (!m_album) {
+      return;
+    }
     trackIndex = parseInt(trackIndex);
     switch (m_album.mediaType) {
     case "youtube":
@@ -154,6 +157,9 @@ var MediaPlayer = (function () {
       ADVANCE_HYSTERESIS_IN_SEC = 2;
 
   var advanceTrack = function () {
+    if (!m_album) {
+      return;
+    }
     if (m_trackIndex < m_album.tracks.length - 1) {
       gotoTrack(m_trackIndex + 1, true);
     }
@@ -184,14 +190,23 @@ var MediaPlayer = (function () {
 // INTRA-TRACK PLAY CONTROL
 
   var play = function () {
+    if (!m_album) {
+      return;
+    }
     m_controllerObjs[m_album.mediaType].play();
   };
   var pause = function () {
+    if (!m_album) {
+      return;
+    }
     m_controllerObjs[m_album.mediaType].pause();
   };
 
   // Seek to specified point in the current track.  (Time is in seconds)
   var seekTo = function (seconds) {
+    if (!m_album) {
+      return;
+    }
     switch (m_album.mediaType) {
     case "youtube":
       if (YouTube.isPlaying()) {
@@ -211,13 +226,22 @@ var MediaPlayer = (function () {
 // VOLUME
 
   var setVolume = function (volume) {
+    if (!m_album) {
+      return;
+    }
     m_controllerObjs[m_album.mediaType].setVolume(volume);
   };
   var mute = function () {
-    return m_controllerObjs[m_album.mediaType].mute();
+    if (!m_album) {
+      return;
+    }
+    m_controllerObjs[m_album.mediaType].mute();
   };
   var unmute = function () {
-    return m_controllerObjs[m_album.mediaType].unmute();
+    if (!m_album) {
+      return;
+    }
+    m_controllerObjs[m_album.mediaType].unmute();
   };
 
 
@@ -225,10 +249,16 @@ var MediaPlayer = (function () {
 // GET INFORMATION ABOUT PLAYER
 
   var isCreated = function () {
+    if (!m_album) {
+      return undefined;
+    }
     return m_controllerObjs[m_album.mediaType].isCreated();
   };
 
   var isPlaying = function () {
+    if (!m_album) {
+      return undefined;
+    }
     return m_controllerObjs[m_album.mediaType].isPlaying();
   };
 
@@ -241,7 +271,7 @@ var MediaPlayer = (function () {
   };
 
   var getTrack = function () {
-    if (!m_album && !m_album.tracks) {
+    if (!m_album || !m_album.tracks) {
       return null;
     }
     if (m_trackIndex >= m_album.tracks.length || m_trackIndex < 0) {
@@ -252,14 +282,23 @@ var MediaPlayer = (function () {
   };
 
   var getTime = function () {
+    if (!m_album) {
+      return undefined;
+    }
     return m_controllerObjs[m_album.mediaType].currentTime();
   };
 
   var getDuration = function () {
+    if (!m_album) {
+      return undefined;
+    }
     return m_controllerObjs[m_album.mediaType].currentTime();
   };
 
   var getBufferStatus = function () {
+    if (!m_album) {
+      return undefined;
+    }
     switch (m_album.mediaType) {
     case "youtube":
       var ytByteStatus = YouTube.byteStatus();
@@ -290,6 +329,7 @@ var MediaPlayer = (function () {
       }
       break;
     }
+    return undefined;
   };
 
   return {

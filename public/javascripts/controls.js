@@ -273,19 +273,20 @@ var Controls = (function () {
   };
 
   var showFlashPlayer = function (album) {
-    $('.flash-player-container').hide();
+    $('.flash-player-container').css({zIndex: 0});
     switch(album.mediaType) {
     case ('soundcloud'):
-      $("#sc-container").show();
+      $("#sc-container").css({zIndex: 10});
       break;
     case ('youtube'):
-      $("#yt-container").show();
+      $("#yt-container").css({zIndex: 10});
     }
   };
 
 // =================================================
 
   var setupAlbum = function (album) {
+    MediaPlayer.pause();
     if (album.id === "all-day") {
       $("#all-day-license-note").show();
     } else {
