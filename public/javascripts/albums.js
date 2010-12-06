@@ -1,7 +1,7 @@
 var ALBUMS = [
   { id: "nhh-continuous",
     artist: "The Kleptones",
-    title: "A Night at the Hip-Hopera (single track)",
+    title: "A Night at the Hip-Hopera",
     mediaType: "soundcloud",
     tracks: [ {
       scUrl: "http://soundcloud.com/kleptones/a-night-at-the-hip-hopera",
@@ -15,7 +15,7 @@ var ALBUMS = [
       }
     ]
   },
-  { id: "nhh-tracks",
+  { id: "nhh",
     artist: "The Kleptones",
     title: "A Night at the Hip-Hopera",
     mediaType: "soundcloud",
