@@ -117,8 +117,8 @@ var Controls = (function () {
       } else if (MediaPlayer.isCreated()) {
         MediaPlayer.play();
       } else {
-        // check again in 1 second
-        setInterval(function () {
+        // check again in 1.5 second
+        setTimeout(function () {
           if (MediaPlayer.isCreated()) {
             // It worked this time!  Play it.
             MediaPlayer.play();
@@ -267,7 +267,7 @@ var Controls = (function () {
 // MISC
 
   var setAlbumTitle = function (album) {
-    var titleStr = album.title + " by " + album.artist;
+    var titleStr = album.artist + " - " + album.title;
     document.title = titleStr;
     $('#page-title').text(titleStr);
   };
