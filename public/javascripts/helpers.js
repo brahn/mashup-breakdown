@@ -116,3 +116,43 @@ var dialogOptions = function (newOptions) {
   return opts;
 };
 
+
+// ===========================
+// Converting map object to url hash
+
+var objToQueryParams = function (obj) {
+  var urlHash = "";
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      urlHash += key + "=" + encodeURIComponent(obj[key]) + "&";
+    }
+  }
+  // remove trailing "&"
+  return urlHash.slice(0, urlHash.length - 1);
+};
+
+// Returns the object with keys coerced as specified.
+// Form of keysToCoerce:
+//   { integer: [key1, key2, ...]  }
+// (currently only implemented for integer coersion)
+var coerceVals = function (obj, keysToCoerce) {
+  if (!keysToCoerce || keysToCoerce === {}) {
+    return obj;
+  }
+  if (keysToCoerce.integer) {
+    $.each(keysToCoerce.integer, function(index, key) {
+      obj[key] = parseInt(obj[key], 10);
+    });
+  }
+  return obj;
+};
+
+var queryParamsToObj = function (urlHash, keysToCoerce) {
+  var obj = {};
+  var pat = new RegExp("(^|#|&)?([^#&=]+)=([^&#=]*)(&|$)", "g")
+  var result = null;
+  while (!!(result = pat.exec(urlHash))) {
+    obj[result[2]] = decodeURIComponent(result[3]);
+  }
+  return coerceVals(obj, keysToCoerce);
+};

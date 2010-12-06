@@ -42,8 +42,14 @@
   <%= stylesheet_link_tag "visualizer" %>
   <%= yield :page_javascript %>
   <% javascript_tag do %>
+
     $(document).ready(function () {
-      <%= setup_js_var "albumId", params[:album_id], "all-day" %>
+      <% if params[:album_id] %>
+        <%= setup_js_var "albumId", params[:album_id], "all-day" %>
+      <% else %>
+        var paramsObj = queryParamsToObj(window.location.hash);
+        var albumId = paramsObj.a || "all-day";
+      <% end %>
       Controls.setupAlbum(getAlbumById(albumId));
     });
   <% end %>
