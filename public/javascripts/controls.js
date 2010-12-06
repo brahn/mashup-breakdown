@@ -286,7 +286,6 @@ var Controls = (function () {
 // =================================================
 
   var setupAlbum = function (album) {
-    MediaPlayer.pause();
     if (album.id === "all-day") {
       $("#all-day-license-note").show();
     } else {

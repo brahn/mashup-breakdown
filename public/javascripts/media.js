@@ -88,6 +88,7 @@ var MediaPlayer = (function () {
   // * startAtTrack (0)
   // * startAtTime (0) XXX not yet implemented
   var setupAlbum = function (album, options) {
+    pause();
     var opts = $.extend({
       playWhenCued: false, // defaults
       failureCallback: function () {},
