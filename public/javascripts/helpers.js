@@ -16,6 +16,25 @@ var secToMmss = function (time) {
   return mins + ":" + (secs < 10 ? '0' + secs : secs);
 };
 
+/* Requires at least one colon separating minutes and seconds.
+ * Hours and decimals of seconds optional; decimals kept to milliseconds */
+var timeStrPattern = /((\d*):)?(\d*):(\d*)(\.(\d*))?/;
+
+var timeStrToSec = function (timeStr) {
+  var results = timeStr.match(timeStrPattern);
+  if (!results) {
+    return null;
+  }
+  var fraction = 0;
+  if (results[6]) {
+    var decimalStr = results[6].slice(0,3);
+    fraction = parseInt(decimalStr, 10) / Math.pow(10, decimalStr.length);
+  }
+  return 3600 * (parseInt(results[2], 10) || 0) +
+    60 * (parseInt(results[3], 10) || 0) +
+    (parseInt(results[4], 10) || 0) + fraction;
+};
+
 var safeLogger = function (str) {
   if (window.console && window.console.log) {
     window.console.log(str);

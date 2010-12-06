@@ -13,28 +13,28 @@ var AlbumData = (function () {
     var trackData = [],
         sampleData = [],
         currentTrackSamples = null,
-        trackPattern = /^(\d+)\. "([^"]*)" - (\d+):(\d+)/,
-        samplePattern = /(\d+):(\d+) - (\d+):(\d+) (.*) - "([^"]*)"/,
-        samplePatternNoStop = /(\d+):(\d+)(\s-\s\?:\?\?)?\s([^ -].*) - "([^"]*)"/;
+        trackPattern = /^(\d+)\.\s"([^"]*)"\s-\s([0-9:]*)/,
+        samplePattern = /([0-9:]*)\s-\s([0-9:]*)\s(.*)\s-\s"([^"]*)"/,
+        samplePatternNoStop = /([0-9:]*)\s(.*)\s-\s"([^"]*)"/;
     var lines = text.split('\n');
     $.each(lines, function (index, line) {
       line = line.replace(/\[.*\] */g, "");
       var sampleResults = line.match(samplePattern);
       if (sampleResults) {
         currentTrackSamples.push({
-          start: 60 * parseInt(sampleResults[1]) + parseInt(sampleResults[2]),
-          end: 60 * parseInt(sampleResults[3]) + parseInt(sampleResults[4]),
-          artist: sampleResults[5],
-          title: sampleResults[6]
+          start: timeStrToSec(sampleResults[1]),
+          end: timeStrToSec(sampleResults[2]),
+          artist: sampleResults[3],
+          title: sampleResults[4]
         });
         return;
       }
       sampleResults = line.match(samplePatternNoStop);
       if (sampleResults) {
         currentTrackSamples.push({
-          start: 60 * parseInt(sampleResults[1]) + parseInt(sampleResults[2]),
-          artist: sampleResults[4],
-          title: sampleResults[5]
+          start: timeStrToSec(sampleResults[1]),
+          artist: sampleResults[2],
+          title: sampleResults[3]
         });
         return;
       }
@@ -42,7 +42,7 @@ var AlbumData = (function () {
       if (trackResults) {
         trackData.push({
           title: trackResults[2],
-          duration: 60 * parseInt(trackResults[3]) + parseInt(trackResults[4])
+          duration: timeStrToSec(trackResults[3])
         });
         currentTrackSamples = [];
         sampleData.push(currentTrackSamples);
