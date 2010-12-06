@@ -218,7 +218,6 @@ var Visualizer = (function () {
 
   $(document).ready(function () {
     $(window).resize(function () {
-      safeLogger(currentTime);
       if (currentTime !== undefined) {
         clearToolTips();
         updateSampleActivity(currentTime, false, true);

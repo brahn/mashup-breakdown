@@ -28,9 +28,4 @@ $(document).ready(function () {
   $("#application-header").mouseenter(function () {highlightHeader();}).
     mouseleave(function () {dimHeader();});
 
-/*
-  var addr = "brahn" + "@" + "mashupbreakdown" + "." + "com";
-   $('#email-link').html('<a href="mailto:' + addr + '" target="_blank">' + addr + '</a>');
-*/
-
 });

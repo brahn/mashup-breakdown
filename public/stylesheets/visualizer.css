@@ -120,7 +120,6 @@ div.vertical-scroll div#ft {
 /* APPLICATION HEADER */
 
 div#application-header {
-  opacity: 0.5;
   position: absolute;
   top: 0px;
   bottom: 0px;

@@ -286,6 +286,11 @@ var Controls = (function () {
 // =================================================
 
   var setupAlbum = function (album) {
+    if (album.id === "all-day") {
+      $("#all-day-license-note").show();
+    } else {
+      $("#all-day-license-note").hide();
+    }
     setAlbumTitle(album);
     showFlashPlayer(album);
     MediaPlayer.setupAlbum(album, {
