@@ -178,7 +178,6 @@ var SCloud = (function () {
   var bufferPercentLoaded = null;
 
   $(document).bind('soundcloud:onMediaBuffering soundcloud:onMediaDoneBuffering', function (event, data) {
-    safeLogger("buffering: " + data.percent);
     bufferPercentLoaded = data.percent;
   });
 
