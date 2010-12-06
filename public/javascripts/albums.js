@@ -1,4 +1,57 @@
 var ALBUMS = [
+  { id: "nhh-continuous",
+    artist: "The Kleptones",
+    title: "A Night at the Hip-Hopera (single track)",
+    mediaType: "soundcloud",
+    tracks: [ {
+      scUrl: "http://soundcloud.com/kleptones/a-night-at-the-hip-hopera",
+      duration: 4698
+    }],
+    sampleDataSources: [
+      { id: "artist-data",
+        prettyText: "(courtesy of the artist)",
+        type: "text",
+        url: "/data/nhh-continuous.txt"
+      }
+    ]
+  },
+  { id: "nhh-tracks",
+    artist: "The Kleptones",
+    title: "A Night at the Hip-Hopera",
+    mediaType: "soundcloud",
+    tracks: [
+      {scUrl: "http://soundcloud.com/brahn/01-precession", duration: 127},
+      {scUrl: "http://soundcloud.com/brahn/02-see", duration: 254},
+      {scUrl: "http://soundcloud.com/brahn/03-live", duration: 190},
+      {scUrl: "http://soundcloud.com/brahn/04-bite", duration: 242},
+      {scUrl: "http://soundcloud.com/brahn/05-jazz", duration: 288},
+      {scUrl: "http://soundcloud.com/brahn/06-rock", duration: 165},
+      {scUrl: "http://soundcloud.com/brahn/07-love", duration: 31},
+      {scUrl: "http://soundcloud.com/brahn/08-fight", duration: 200},
+      {scUrl: "http://soundcloud.com/brahn/09-fuck", duration: 69},
+      {scUrl: "http://soundcloud.com/brahn/10-play", duration: 221},
+      {scUrl: "http://soundcloud.com/brahn/11-ride", duration: 191},
+      {scUrl: "http://soundcloud.com/brahn/12-sniff", duration: 260},
+      {scUrl: "http://soundcloud.com/brahn/13-ridicule", duration: 37},
+      {scUrl: "http://soundcloud.com/brahn/14-plan", duration: 289},
+      {scUrl: "http://soundcloud.com/brahn/15-break", duration: 191},
+      {scUrl: "http://soundcloud.com/brahn/16-listen", duration: 240},
+      {scUrl: "http://soundcloud.com/brahn/17-work", duration: 142},
+      {scUrl: "http://soundcloud.com/brahn/18-come", duration: 266},
+      {scUrl: "http://soundcloud.com/brahn/19-expose", duration: 195},
+      {scUrl: "http://soundcloud.com/brahn/20-jerk", duration: 304},
+      {scUrl: "http://soundcloud.com/brahn/21-save", duration: 253},
+      {scUrl: "http://soundcloud.com/brahn/22-stop", duration: 209},
+      {scUrl: "http://soundcloud.com/brahn/23-question", duration: 329}
+    ],
+    sampleDataSources: [
+      { id: "artist-data",
+        prettyText: "(courtesy of the artist)",
+        type: "text",
+        url: "/data/nhh-tracks.txt"
+      }
+    ]
+  },
   { id: "mass.rsrction.7",
     artist: "scntfc",
     title: "mass.rsrction.7",
@@ -14,7 +67,8 @@ var ALBUMS = [
         url: "/data/mass.rsrction.7.txt"
       }
     ]
-  },{ id: "all-day",
+  },
+  { id: "all-day",
     artist: "Girl Talk",
     title: "All Day",
     mediaType: "youtube",
