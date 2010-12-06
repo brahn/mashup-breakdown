@@ -10,11 +10,13 @@
 
   <span id="header-content-left">
     <a id="logo" href="/">MASHUP BREAKDOWN</a>
-    &nbsp;|&nbsp;
-  <a id="artists-and-albums-link" href="#">More Artists & Albums</a>
+    <% if false %>
+      &nbsp;|&nbsp;
+      <a id="artists-and-albums-link" href="#">More Artists & Albums</a>
+    <% end %>
   </span>
 </div>
-
+<% if false %>
 <div id="artists-and-albums-dialog" style="display:none">
   <ul>
     <li><%= link_to_function "Girl Talk - All Day",
@@ -29,3 +31,4 @@
             "gotoAlbum('mass.rsrction.7')" %></li>
   </ul>
 </div>
+<% end %>
