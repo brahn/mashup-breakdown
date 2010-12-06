@@ -6,7 +6,7 @@
 
 </div>
 
-
+<% if false %>
 <div class="footer-content footer-right" style="color: #888">
   <%= link_to "About/Thanks/Contact", BLOG_URL_BASE + "/pages/about",
       {:target => "_blank"} %>
@@ -15,84 +15,4 @@
    &nbsp;&nbsp;|&nbsp;&nbsp;
   <%= link_to_unless_current "Feedback", {:controller => "content", :action => "feedback"}, {:target => "_blank"} %>
 </div>
-
-<% if false %>
-  <div id="comments-dialog" style="display:none">
-    <div id='disqus_thread'></div>
-      <script type='text/javascript'>
-      var disqus_shortname = 'mashupbreakdown'; // required
-      var disqus_identifier = 'all_day_2010_11_22';
-      var disqus_url = 'http://mashupbreakdown.com/';
-      (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-      </script>
-      <noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
-      <a href='http://disqus.com' class='dsq-brlink'>blog comments powered by <span class='logo-disqus'>Disqus</span></a>
-  </div>
 <% end %>
-
-<div id="about-dialog-container" style="display:none">
-  <div class="text-content" %>
-  <p>
-    <%= link_to "All Day", "http://illegal-art.net/allday/", :target => "_blank" %>
-    is the 5th album by the spectacular <%= link_to "Girl Talk",
-    "http://www.facebook.com/girltalkmusic", :target => "_blank" %>, composed
-    from samples of <%= link_to "372 songs",
-    "http://illegal-art.net/allday/samples.html", :target => "_blank" %> by other artists.
-    This visual breakdown is an attempt to give a sense of
-    what's going on.
-  </p>
-  <p>
-    The information about the timing of the samples comes from
-    <%= link_to "Wikipedia",
-    "http://en.wikipedia.org/wiki/All_Day#Track_listing_and_samples_used", :target => "_blank"
-    %>.  If you find a sample that's missing, wrong, or needs its time adjusted,
-    you can <%= link_to "fix it yourself", "http://blog.mashupbreakdown.com/find-a-missing-sample-add-it-to-the-breakdown" %>!
-  </p>
-  <p>
-    When this site was first launched, the sample info came
-    from the heroic efforts of <%= link_to "Travis McLeskey at AllDaySamples",
-    "http://blog.mashupbreakdown.com/huge-thanks-props-to-alldaysamples" %>; his
-    data have since been integrated into Wikipedia.
-  </p>
-
-  <h3>Thanks to...</h3>
-
-  <ul>
-    <li>
-      <%= link_to "Girl Talk", "http://www.facebook.com/girltalkmusic", :target => "_blank" %> for
-      the album, licensing it for remixing via
-      <%= link_to "Creative Commons", "http://creativecommons.org/licenses/by-nc/3.0/us/", :target => "_blank" %>, and being awesome.
-    </li>
-    <li>
-      Angela Watercutter at <%= link_to "Wired", "http://www.wired.com/", :target => "_blank" %> for
-      posting the inspiring
-      <%= link_to "Beat-by-beat breakdown", "http://www.wired.com/special_multimedia/2008/pl_music_1609", :target => "_blank" %> of "What It's All About" off Girl Talk's
-      previous album.
-    </li>
-    <li>
-      <%= link_to "TheHPJC", "http://www.youtube.com/user/TheHPJC", :target => "_blank" %> for
-      posting the album to YouTube.
-    </li>
-    <li>Travis McLeskey at of <%= link_to "AllDaySamples",
-        "http://alldaysamples.com/", :target => "_blank" %> for including sample end times
-        in his data.
-    </li>
-    <li>
-      Ben Bodien at <%= link_to "Neutron Creations",
-      "http://neutroncreations.com/", :target => "_blank" %> for
-      his post about <%= link_to "building a custom playback widget",
-      "http://neutroncreations.com/blog/building-a-custom-html5-audio-player-with-jquery/", :target => "_blank" %>, from which I shamelessly stole the styling.
-    </li>
-  </ul>
-
-  <h3>Contact</h3>
-  <p>
-    E-mail: <span id="email-link"></span><br />
-    Twitter: <%= link_to "@brahn", "http://twitter.com/brahn" %>
-  </p>
-  </div>
-</div>

@@ -40,11 +40,14 @@ body {
   font-size: 13px;
   background: #000;
   color: #FFF;
+  margin: 0;
+  padding: 0;
 }
 
 /* LAYOUT */
 
 div.viewport-size { /* div#page */
+  min-width: 760px;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -56,23 +59,26 @@ div.viewport-size #hd,
 div.viewport-size #bd,
 div.viewport-size #ft {
   position: absolute;
-  left: 40px;
-  right: 40px;
-  min-width: 760px;
 }
 
 div.viewport-size #ft {
+  left: 40px;
+  right: 40px;
   left: 90px;
 }
 
 
 div.viewport-size div#hd {
-  top: 17px;
-  height: 35px;
+  top: 0px;
+  height: 25px;
+  left: 0px;
+  right: 0px;
 }
 
 div.viewport-size div#bd {
   top: 40px;
+  left: 40px;
+  right: 40px;
   bottom: 80px;
 }
 
@@ -88,22 +94,63 @@ div.vertical-scroll {
 div.vertical-scroll div#hd,
 div.vertical-scroll div#bd,
 div.vertical-scroll div#ft {
-  margin: 0px 40px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   position: relative;
 }
 
 
 div.vertical-scroll div#hd {
-  height: 40px;
+  height: 25px;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 div.vertical-scroll div#bd {
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 div.vertical-scroll div#ft {
   padding-top: 0px;
   padding-bottom: 0px;
   height: 50px;
+}
+
+/* APPLICATION HEADER */
+
+div#application-header {
+  opacity: 0.5;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 4px;
+  -webkit-box-shadow: 0 -1px 0 rgba(20, 30, 40, .75);
+  -moz-box-shadow: 0 -1px 0 rgba(20, 30, 40, .75);
+  -o-box-shadow: 0 -1px 0 rgba(20, 30, 40, .75);
+  box-shadow: 0 -1px 0 rgba(20, 30, 40, .75);
+  background: #282d32;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(61, 68, 77, .9)), to(rgba(40, 45, 50, .9)));
+  background: -moz-linear-gradient(top, rgba(61, 68, 77, .9), rgba(50, 45, 50, .9));
+  background: linear-gradient(top, rgba(61, 68, 77, .9), rgba(50, 45, 50, .9));
+  cursor: default;
+}
+
+div#application-header a#logo {
+  font-weight: bold;
+  font-size: 14px;
+  text-shadow: 0 1px 1px #222;
+/*
+  display: block;
+  background-image: url(/images/mubd-logo-1.png);
+  background-repeat: no-repeat;
+  height: 22px;
+  width: 457px;
+*/
 }
 
 

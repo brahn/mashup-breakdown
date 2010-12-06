@@ -267,7 +267,7 @@ var Controls = (function () {
 // MISC
 
   var setAlbumTitle = function (album) {
-    var titleStr = album.title + " by " + album.artist + " - Mashup Breakdown";
+    var titleStr = album.title + " by " + album.artist;
     document.title = titleStr;
     $('#page-title').text(titleStr);
   };

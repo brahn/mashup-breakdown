@@ -1,1 +1,12 @@
+<div id="application-header">
+  <div class="header-content-right" style="color: #888; float: right; font-size: 11px; padding-right: 5px; position: relative; top: 2px">
+  <%= link_to "About", BLOG_URL_BASE + "/pages/about",
+      {:target => "_blank"} %>
+   &nbsp;&nbsp;|&nbsp;&nbsp;
+  <%= link_to "Blog", BLOG_URL_BASE, {:target => "_blank"} %>
+   &nbsp;&nbsp;|&nbsp;&nbsp;
+  <%= link_to_unless_current "Feedback", {:controller => "content", :action => "feedback"}, {:target => "_blank"} %>
+  </div>
 
+  <a id="logo" href="/">MASHUP BREAKDOWN</a>
+</div>
