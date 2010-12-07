@@ -1,5 +1,5 @@
 var ALBUMS = [
-  { id: "nhh-continuous",
+  { id: "nhh1",
     artist: "The Kleptones",
     title: "A Night at the Hip-Hopera",
     mediaType: "soundcloud",
