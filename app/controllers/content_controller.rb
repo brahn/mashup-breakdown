@@ -3,6 +3,7 @@ class ContentController < ApplicationController
   def visualizer
     @page_class = "viewport-size"
     @use_visualizer_js = true
+    @is_visualizer = true
   end
 
   def feedback

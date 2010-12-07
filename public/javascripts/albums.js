@@ -1,20 +1,4 @@
 var ALBUMS = [
-  { id: "nhh1",
-    artist: "The Kleptones",
-    title: "A Night at the Hip-Hopera",
-    mediaType: "soundcloud",
-    tracks: [ {
-      scUrl: "http://soundcloud.com/kleptones/a-night-at-the-hip-hopera",
-      duration: 4698
-    }],
-    sampleDataSources: [
-      { id: "artist-data",
-        prettyText: "(courtesy of the artist)",
-        type: "text",
-        url: "/data/nhh-continuous.txt"
-      }
-    ]
-  },
   { id: "nhh",
     artist: "The Kleptones",
     title: "A Night at the Hip-Hopera",
@@ -52,7 +36,7 @@ var ALBUMS = [
       }
     ]
   },
-  { id: "mass.rsrction.7",
+  { id: "mass-rsrction-7",
     artist: "scntfc",
     title: "mass.rsrction.7",
     mediaType: "soundcloud",

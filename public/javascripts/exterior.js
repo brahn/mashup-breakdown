@@ -23,13 +23,18 @@ var gotoAlbum = function (albumId) {
 $(document).ready(function () {
 
   $('#artists-and-albums-dialog').dialog(dialogOptions({
-    title: "More Breakdowns"
+    title: "Choose an Album"
   }));
   $('#artists-and-albums-link').click(function () {
     $('#artists-and-albums-dialog').dialog("open");
   });
 
   $("#media-error-dialog").dialog(dialogOptions({
+    title: "Dang!",
+    height: 250
+  }));
+
+  $("#no-album-dialog").dialog(dialogOptions({
     title: "Dang!",
     height: 250
   }));

@@ -21,12 +21,12 @@
     google.load("jqueryui", "1.8.6");
     google.load("swfobject", "2.1");
   <% end %>
+  <%= javascript_include_tag "third/jquery.outerhtml" %>
+  <%= javascript_include_tag "third/jquery.scrollTo" %>
+  <%= javascript_include_tag "third/jquery.tmpl" %>
+  <%= javascript_include_tag "third/jquery.tipsy" %>
+  <%= javascript_include_tag "helpers" %>
   <% if @use_visualizer_js %>
-    <%= javascript_include_tag "third/jquery.outerhtml" %>
-    <%= javascript_include_tag "third/jquery.scrollTo" %>
-    <%= javascript_include_tag "third/jquery.tmpl" %>
-    <%= javascript_include_tag "third/jquery.tipsy" %>
-    <%= javascript_include_tag "helpers" %>
     <%= javascript_include_tag "albums" %>
     <%= javascript_include_tag "data" %>
     <%= javascript_include_tag "youtube" %>
@@ -44,13 +44,17 @@
   <% javascript_tag do %>
 
     $(document).ready(function () {
-      <% if params[:album_id] %>
-        <%= setup_js_var "albumId", params[:album_id], "all-day" %>
-      <% else %>
-        var paramsObj = queryParamsToObj(window.location.hash);
-        var albumId = paramsObj.a || "all-day";
-      <% end %>
-      Controls.setupAlbum(getAlbumById(albumId));
+      <%= setup_js_var "albumId", params[:album_id], "all-day" %>
+      var album = getAlbumById(albumId);
+      if (album) {
+        Controls.setupAlbum(album);
+      } else {
+        $("#no-album-dialog").dialog("open")
+      }
+      <%= setup_js_var "show_album_index", params[:show_album_index], nil %>
+      if (show_album_index) {
+        $("#artists-and-albums-dialog").dialog("open");
+      }
     });
   <% end %>
 

@@ -15,4 +15,9 @@ module ApplicationHelper
     end
   end
 
+  def link_to_album (title, album_id)
+    link_to title, {:controller => :content, :action => :visualizer,
+      :album_id => album_id}
+  end
+
 end

@@ -12,24 +12,39 @@
     <a id="logo" href="/">MASHUP BREAKDOWN</a>
     <% if SHOW_ARTISTS_AND_ALBUMS %>
       &nbsp;|&nbsp;
-      <a id="artists-and-albums-link" href="#">More Artists & Albums</a>
+      <a id="artists-and-albums-link" style="cursor: pointer">
+        <%= @is_visualizer ? "More Artists & Albums" : "Artists & Albums" %>
+      </a>
     <% end %>
   </span>
 </div>
 
 <% if SHOW_ARTISTS_AND_ALBUMS %>
 <div id="artists-and-albums-dialog" style="display:none">
-  <ul>
-    <li><%= link_to_function "Girl Talk - All Day",
-            "gotoAlbum('all-day')" %></li>
-    <li><%= link_to_function "Girl Talk - Feed the Animals",
-            "gotoAlbum('feed-the-animals')" %></li>
-    <li><%= link_to_function "The Kleptones - A Night at the Hip-Hopera (23 tracks)",
-            "gotoAlbum('nhh-tracks')" %></li>
-    <li><%= link_to_function "The Kleptones - A Night at the Hip-Hopera (1 continuous track)",
-            "gotoAlbum('nhh-continuous')" %></li>
-    <li><%= link_to_function "scntfc - mass.rsrction.7",
-            "gotoAlbum('mass.rsrction.7')" %></li>
+  <ul class="compact">
+    <li><%= link_to_album "Girl Talk - All Day", "all-day" %></li>
+    <li><%= link_to_album "Girl Talk - Feed the Animals",
+              "feed-the-animals" %></li>
+    <li><%= link_to_album "The Kleptones - A Night at the Hip-Hopera",
+              "nhh" %></li>
+    <li><%= link_to_album "scntfc - mass.rsrction.7", "mass-rsrction-7" %></li>
   </ul>
+  <p>&nbsp;</p>
+  <p class="text-content">
+    Want a breakdown of an album not listed here?<br />
+    <%= link_to "Make it happen",
+        "http://blog.mashupbreakdown.com/making-more-breakdowns",
+         {:target => "_blank"} %>.
+  </p>
 </div>
 <% end %>
+
+<div id="no-album-dialog" style="display:none">
+  <p>
+    Sorry, couldn't find that album.
+  </p>
+  <p>
+    <%= link_to_function "Complete Album Listing",
+      "$('#no-album-dialog').dialog('close'); $('#artists-and-albums-dialog').dialog('open')" %>
+  </p>
+</div>

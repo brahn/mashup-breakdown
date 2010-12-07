@@ -23,6 +23,10 @@ li + li {
 
 }
 
+.compact li + li {
+  margin-top: 0.5em;
+}
+
 h1 {
   font-size: 1.8em;
 }
@@ -233,13 +237,19 @@ div#visualizer-header div#data-source-select-container {
   float: right;
 }
 
-div#visualizer-header label {
+div#visualizer-header label, 
+div#visualizer-header span.text {
   font-size: 11px;
+  color: #888;
 }
 
 div#visualizer-header select {
   font-size: 11px;
   margin: 0;
+}
+
+div#visualizer-header span.label-text {
+
 }
 
 /*
@@ -549,17 +559,22 @@ div.strip-5 {
   padding: 1em 2em;
 }
 
+.ui-widget-overlay {
+  background-image: none;
+  background-color: #333;
+}
+
 /* knock out annoying theme background image */
 .ui-widget-content {
   background-image: none;
 }
 
-div.text-content {
+.text-content {
   line-height: 1.5em;
   font-size: 12px;
 }
 
-div.text-content h3 {
+.text-content h3 {
   margin-top: 3em;
 }
 
