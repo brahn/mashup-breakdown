@@ -183,7 +183,11 @@ var Controls = (function () {
   };
 
   var setTrackOptions = function (tracks) {
-    $('#track-select').empty();
+    if (!tracks || tracks.length < 2) {
+      $('#track-select').hide();
+      return;
+    }
+    $('#track-select').empty().show();
     $.each(tracks, function (index, track) {
       $('#track-select').append('<option value="' + index + '">' +
         trackOptionText(track.title, index) + '</option>');
