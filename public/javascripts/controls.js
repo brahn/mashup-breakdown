@@ -300,6 +300,12 @@ var Controls = (function () {
     });
   };
 
+  var setupAlbumLicense = function (album) {
+    $('#license-note-container').css("opacity", 0.3);
+    $('.license-note').hide();
+    $('#' + album.id + "-license-note").show();
+  };
+
   var showFlashPlayer = function (album) {
     $('.flash-player-container').css({zIndex: 0});
     switch(album.mediaType) {
@@ -321,6 +327,7 @@ var Controls = (function () {
     }
     setAlbumTitle(album);
     setAlbumInfo(album);
+    setupAlbumLicense(album);
     showFlashPlayer(album);
     MediaPlayer.setupAlbum(album, {
       failureCallback: function () {

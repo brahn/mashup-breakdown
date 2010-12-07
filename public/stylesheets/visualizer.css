@@ -283,7 +283,9 @@ div.footer-left {
   left: 0px;
 }
 
-
+span.license-note {
+  display:none;
+}
 
 /* YOUTUBE */
 
