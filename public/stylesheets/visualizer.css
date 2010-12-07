@@ -238,7 +238,7 @@ div#visualizer-header div#data-source-select-container {
 }
 
 div#visualizer-header label, 
-div#visualizer-header span.text {
+div#visualizer-header .text {
   font-size: 11px;
   color: #888;
 }

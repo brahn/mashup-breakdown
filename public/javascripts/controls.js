@@ -252,6 +252,13 @@ var Controls = (function () {
   var setDataSourceOptions = function (sources) {
     AlbumData.clearCache();
     m_sampleDataSources = sources;
+    if (sources.length === 1) {
+      $("#data-source-text-container").html("Sample info " +
+        sources[0].prettyText);
+      $("#data-source-select-container").hide();
+      $("#data-source-text-container").show();
+      return;
+    }
     $('#data-source-select').html($('#data-option-template').
       tmpl(m_sampleDataSources));
     if (!isDataSourceSelectorSetup) {
@@ -265,6 +272,8 @@ var Controls = (function () {
       });
       isDataSourceSelectorSetup = true;
     }
+    $("#data-source-text-container").hide();
+    $("#data-source-select-container").show();
   };
 
 // ================================================

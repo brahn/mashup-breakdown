@@ -30,7 +30,7 @@ var ALBUMS = [
     ],
     sampleDataSources: [
       { id: "artist-data",
-        prettyText: "(courtesy of the artist)",
+        prettyText: "courtesy of the artist",
         type: "text",
         url: "/data/nhh-tracks.txt"
       }
@@ -50,7 +50,7 @@ var ALBUMS = [
     ],
     sampleDataSources: [
       { id: "artist-data",
-        prettyText: "(courtesty of the artist)",
+        prettyText: "courtesy of the artist",
         type: "text",
         url: "/data/mass.rsrction.7.txt"
       }
