@@ -164,8 +164,8 @@ var Visualizer = (function () {
     updateSampleActivity(time, animate);
 /*
     if (WIDTH_MULTIPLIER !== 1) {
-      samplesDiv.css("left",
-        -100.0 * (WIDTH_MULTIPLIER - 1) * (time / duration) + "%");
+      samplesDiv.stop().animate({left: 
+        -100.0 * (WIDTH_MULTIPLIER - 1) * (time / m_duration) + "%"});
     }
 */
   };
