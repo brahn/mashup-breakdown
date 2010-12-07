@@ -272,6 +272,21 @@ var Controls = (function () {
     $('#page-title').text(titleStr);
   };
 
+  var setAlbumInfo = function (album) {
+    $('#album-links').empty();
+    if (!album.links) {
+      return;
+    }
+    $.each(album.links, function (index, linkObj) {
+      $('#album-links').append(
+        '<a href="' + linkObj.url + '" target="_blank">' + linkObj.title + "</a>"
+      );
+      if (index < album.links.length - 1) {
+        $('#album-links').append("&nbsp;&nbsp;|&nbsp;&nbsp;");
+      }
+    });
+  };
+
   var showFlashPlayer = function (album) {
     $('.flash-player-container').css({zIndex: 0});
     switch(album.mediaType) {
@@ -292,6 +307,7 @@ var Controls = (function () {
       $("#all-day-license-note").hide();
     }
     setAlbumTitle(album);
+    setAlbumInfo(album);
     showFlashPlayer(album);
     MediaPlayer.setupAlbum(album, {
       failureCallback: function () {
