@@ -10,13 +10,14 @@
 
   <span id="header-content-left">
     <a id="logo" href="/">MASHUP BREAKDOWN</a>
-    <% if false %>
+    <% if SHOW_ARTISTS_AND_ALBUMS %>
       &nbsp;|&nbsp;
       <a id="artists-and-albums-link" href="#">More Artists & Albums</a>
     <% end %>
   </span>
 </div>
-<% if false %>
+
+<% if SHOW_ARTISTS_AND_ALBUMS %>
 <div id="artists-and-albums-dialog" style="display:none">
   <ul>
     <li><%= link_to_function "Girl Talk - All Day",
