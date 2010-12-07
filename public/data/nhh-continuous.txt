@@ -294,7 +294,7 @@
 
 
 01:00:01 - 01:00:11 Neon Genesis Evangelion - ""
-01:00:11 - 01:00:17 5 Headed Retard - "Skit"
+01:00:11 - 01:00:17 5 Headed Retard - ""
 01:00:17 - 01:00:18 Method Man & Redman - "Whatever Man"
 01:00:18 - 01:00:21 Alan Ruck - "Ferris Bueller's Day Off"
 01:00:21 - 01:01:11 The Kinks - "Brian Matthew BBC Interview"
@@ -360,7 +360,7 @@
 01:13:04 - 01:13:07 Alfasound - "Radio Jingle"
 01:13:07 - 01:13:23 Jam Productions - "Jingle CD Copyright Messages"
 01:13:23 - 01:13:36 Ignignokt, Err & Frylock - "Aqua Teen Hunger Squad"
-01:13:36 - 01:13:40 Dan Rather - "ABC Evening News - 2004-03-09"
+01:13:36 - 01:13:40 Dan Rather - "ABC Evening News - 9th March 2004"
 01:13:40 - 01:13:54 Ignignokt & Err - "Aqua Teen Hunger Squad"
 01:13:54 - 01:14:36 Hoffmann, Bridges & Huddleston - "The Big Lebowski"
 01:14:36 - 01:14:56 Armand Van Helden - "Gangsters"
