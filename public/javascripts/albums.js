@@ -83,7 +83,7 @@ var ALBUMS = [
     ],
     sampleDataSources: [
       { id: "wikipedia-snapshot",
-        prettyText: "Wikipedia (Dec. 2)",
+        prettyText: "Wikipedia (Dec. 8)",
         type: "text",
         url: "/data/all-day.txt"
       },
@@ -124,7 +124,7 @@ var ALBUMS = [
     ],
     sampleDataSources: [
       { id: "wikipedia-snapshot",
-        prettyText: "Wikipedia (Dec. 2)",
+        prettyText: "Wikipedia (Dec. 7)",
         type: "text",
         url: "/data/feed-the-animals.txt"
       },
