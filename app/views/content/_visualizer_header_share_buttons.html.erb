@@ -10,18 +10,9 @@ setTimeout(function() {document.getElementById("BF_WIDGET_1").appendChild(BF_WID
 
 <%# #### TWEET BUTTON #### %>
 
-<% noun_phrase_options = ["interactive breakdown", "visual breakdown", "visualization"]
-   noun_phrase = noun_phrase_options[rand noun_phrase_options.length]
-   tweet_text_options = [
-"Fascinating #{noun_phrase} of hundreds of samples used in Girl Talk's new album",
-"See how Girl Talk's magic works! #{noun_phrase.capitalize} of the new album's 100s of samples",
-"Check it out -- #{noun_phrase} of hundreds of samples in Girl Talk's new album"
-  ]
-tweet_text = tweet_text_options[rand tweet_text_options.length]
-%>
 <div style="margin-left: 10px; float: left">
 <%# from http://twitter.com/about/resources/tweetbutton %>
-<a href="http://twitter.com/share" class="twitter-share-button" data-url="http://mashupbreakdown.com" data-text="<%= tweet_text %>" data-count="horizontal" data-via="brahn">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= request.url %>" data-text="<%=h @tweet_text %>" data-count="horizontal" data-via="brahn">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 </div>
 
 <%# #### FACEBOOK SHARE #### %>
