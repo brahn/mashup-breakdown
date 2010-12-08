@@ -12,9 +12,13 @@
     <a id="logo" href="/">MASHUP BREAKDOWN</a>
     <% if SHOW_ARTISTS_AND_ALBUMS %>
       &nbsp;|&nbsp;
-      <a id="artists-and-albums-link" style="cursor: pointer">
-        <%= @is_visualizer ? "More Artists & Albums" : "Artists & Albums" %>
-      </a>
+      <% if @is_visualizer %>
+        <a id="artists-and-albums-link" style="cursor: pointer">
+          More Artists & Albums
+        </a>
+      <% else %>
+        <%= link_to "Artists & Albums", "/index" %>
+      <% end %>
     <% end %>
   </span>
 </div>
