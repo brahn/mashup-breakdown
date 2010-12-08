@@ -37,7 +37,7 @@ ActionController::Routing::Routes.draw do |map|
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   map.root :controller => "content", :action => "visualizer", :album_id => "all-day"
   map.connect 'index', :controller => "content", :action => "visualizer",
-    :show_album_index => "true"
+    :album_id => "all-day", :show_album_index => "true"
   map.connect ':album_id', :controller => "content", :action => "visualizer"
 
   # See how all your routes lay out with "rake routes"
