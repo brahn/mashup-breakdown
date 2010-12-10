@@ -83,15 +83,17 @@ var ALBUMS = [
     ],
     sampleDataSources: [
       { id: "wikipedia-snapshot",
-        prettyText: "Wikipedia (Dec. 8)",
+        prettyText: "from Wikipedia (Dec. 9)",
         type: "text",
         url: "/data/all-day.txt"
       },
+/*
       { id: "wikipedia-live",
         prettyText: "Wikipedia (live)",
         type: "wikipedia",
         pageName: "All_Day_(album)"
       }
+*/
     ],
     links: [
       { title: "Artist Info",
@@ -124,15 +126,17 @@ var ALBUMS = [
     ],
     sampleDataSources: [
       { id: "wikipedia-snapshot",
-        prettyText: "Wikipedia (Dec. 7)",
+        prettyText: "from Wikipedia (Dec. 8)",
         type: "text",
         url: "/data/feed-the-animals.txt"
       },
+/*
       { id: "wikipedia-live",
         prettyText: "Wikipedia (live)",
         type: "wikipedia",
         pageName: "Feed_the_Animals"
       }
+*/
     ],
     links: [
       { title: "Artist Info",
