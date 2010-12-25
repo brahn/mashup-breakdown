@@ -5,6 +5,8 @@ var Visualizer = (function () {
 
   var m_samples, m_duration;
 
+  var m_featureVideo = false;
+
 // ======================================
 // SAMPLE DIV
 
@@ -103,30 +105,33 @@ var Visualizer = (function () {
         tipHover: true,
         gravity: 'c',
         html: true,
-        fallback: tooltipHTML(sample)
+        fallback: tooltipHTML(sample),
+        opacity: m_featureVideo ? 0.5 : 1.0
       });
   };
 
   var activateBlock = function (block, animate) {
+    var newOpacity = m_featureVideo ? 0.4 : 1.0;
     if (animate) {
       block.tipsy("enableFade");
       block.tipsy("showWithOverride");
-      block.stop().animate({opacity: 1});
+      block.stop().animate({opacity: newOpacity});
     } else {
       block.tipsy("disableFade");
       block.tipsy("showWithOverride");
-      block.stop().css("opacity", 1);
+      block.stop().css("opacity", newOpacity);
     }
   };
 
   var deactivateBlock = function (block, animate) {
+    var newOpacity = m_featureVideo ? 0.1 : 0.2;
     if (animate) {
       block.tipsy("enableFade");
       block.tipsy("hide");
-      block.stop().animate({opacity: 0.2});
+      block.stop().animate({opacity: newOpacity});
     } else {
       block.tipsy("disableFade");
-      block.stop().css("opacity", 0.2).tipsy("hide");
+      block.stop().css("opacity", newOpacity).tipsy("hide");
     }
   };
 
@@ -209,6 +214,7 @@ var Visualizer = (function () {
       return;
     }
     var currentData = AlbumData.getData();
+    m_featureVideo = MediaPlayer.getAlbum().featureVideo;
     setup(currentData.samples[currentTrackIndex],
       currentData.tracks[currentTrackIndex].duration,
       MediaPlayer.getTime());

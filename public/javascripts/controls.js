@@ -279,6 +279,14 @@ var Controls = (function () {
 // ================================================
 // MISC
 
+  var setFormat = function (album) {
+    if (album.featureVideo) {
+      $('#page').addClass('feature-video');
+    } else {
+      $('#page').removeClass('feature-video');
+    }
+  };
+
   var setAlbumTitle = function (album) {
     var titleStr = album.artist + " - " + album.title;
     document.title = titleStr;
@@ -320,11 +328,7 @@ var Controls = (function () {
 // =================================================
 
   var setupAlbum = function (album) {
-    if (album.id === "all-day") {
-      $("#all-day-license-note").show();
-    } else {
-      $("#all-day-license-note").hide();
-    }
+    setFormat(album);
     setAlbumTitle(album);
     setAlbumInfo(album);
     setupAlbumLicense(album);

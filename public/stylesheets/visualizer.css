@@ -330,6 +330,19 @@ a#sc-logo {
   background-image: url(/images/powered-by-soundcloud.png);
 }
 
+.feature-video div.flash-player-container {
+  top: 113px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: auto;
+  width: auto;
+}
+
+.feature-video div#yt-container {
+  border: none 0px #000;
+}
+
 /* VISUALIZER */
 
 div#visualizer {
@@ -338,6 +351,7 @@ div#visualizer {
   bottom: 0px;
   left: 0px;
   right: 0px;
+  z-index: 20;
 }
 
 /* PLAYER

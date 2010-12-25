@@ -148,6 +148,7 @@ var ALBUMS = [
     ]
   },
   { id: "feed-the-animals-video",
+    featureVideo: true,
     artist: "Girl Talk",
     title: "Feed the Animals",
     mediaType: "youtube",
