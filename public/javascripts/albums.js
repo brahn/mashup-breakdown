@@ -166,7 +166,8 @@ var ALBUMS = [
       {ytId: "9w5YodoJ6nU", duration: 244},
       {ytId: "iHwxUZyWcRY", duration: 286},
       {ytId: "v6MaXIY5uAU", duration: 178},
-      {ytId: "YyVtrZ3KHOk", duration: 205}
+      {ytId: "iNzrwh2Z2hQ", duration: 285} // XXX testing ONLY
+//      {ytId: "YyVtrZ3KHOk", duration: 205} // XXX correct value
     ],
     sampleDataSources: [
       { id: "wikipedia-snapshot",
