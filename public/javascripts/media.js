@@ -1,5 +1,6 @@
 /*jslint indent:2, browser:true, onevar:false */
 /*global $, window, YouTube, SCloud, sendEvent, safeLogger */
+/*global Album */
 
 // interface for multiple types of media
 // calls YouTube and SCloud javascript objects as appropriate.
@@ -358,8 +359,16 @@ var MediaPlayer = (function () {
     onTrackChanged: onTrackChanged,
     onTimeChanged: onTimeChanged,
     onStateChanged: onStateChanged
+
   };
 
 
 }());
 
+Album.onInit.push(function () {
+  MediaPlayer.setupAlbum(Album.get(), {
+    failureCallback: function () {
+      $("#media-error-dialog").dialog("open");
+    }
+  });
+});

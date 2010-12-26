@@ -1,6 +1,6 @@
 /*jslint indent:2, browser:true, onevar:false */
 /*global $, window, safeLogger, asPercentage, secToMmss */
-/*global YouTube, Visualizer, AlbumData, MediaPlayer */
+/*global YouTube, Visualizer, Album, MediaPlayer */
 
 var PlaybackControls = (function () {
 
@@ -159,11 +159,11 @@ var PlaybackControls = (function () {
   });
 
   var refreshPlaybackControls = function () {
-    setPlaybackDuration(AlbumData.getData().tracks[MediaPlayer.getTrackIndex()].duration);
+    setPlaybackDuration(Album.get("tracks")[MediaPlayer.getTrackIndex()].duration);
   };
 
   MediaPlayer.onTrackChanged.push(refreshPlaybackControls);
-  AlbumData.onDataChanged.push(refreshPlaybackControls);
+  Album.onDataChanged.push(refreshPlaybackControls);
 
   $(document).ready(function () {
     $(window).resize(setHandleTailHeight);

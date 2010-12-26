@@ -26,8 +26,9 @@
   <%= javascript_include_tag "third/jquery.tipsy" %>
   <%= javascript_include_tag "helpers" %>
   <% if @use_visualizer_js %>
-    <%= javascript_include_tag "albums" %>
-    <%= javascript_include_tag "data" %>
+    <%= javascript_include_tag "album-seeds" %>
+    <%= javascript_include_tag "data-retriever" %>
+    <%= javascript_include_tag "album" %>
     <%= javascript_include_tag "youtube" %>
     <%= javascript_include_tag "third/soundcloud.player.api.js" %>
     <%= javascript_include_tag "soundcloud" %>
@@ -45,9 +46,9 @@
 
     $(document).ready(function () {
       <%= setup_js_var "albumId", params[:album_id], "all-day" %>
-      var album = getAlbumById(albumId);
-      if (album) {
-        AlbumControls.setup(album);
+      var albumSeed = getAlbumSeedById(albumId);
+      if (albumSeed) {
+        Album.init(albumSeed);
       } else {
         $("#no-album-dialog").dialog("open")
       }

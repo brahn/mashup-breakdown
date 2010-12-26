@@ -1,6 +1,6 @@
 /*jslint indent:2, browser:true, onevar:false */
 /*global $, window, safeLogger, asPercentage, secToMmss */
-/*global YouTube, Visualizer, AlbumData, MediaPlayer */
+/*global YouTube, Visualizer, Album, MediaPlayer */
 
 var AlbumControls = (function () {
 
@@ -44,8 +44,8 @@ var AlbumControls = (function () {
         html(trackOptionText(track.title, index));
     });
   };
-  AlbumData.onDataChanged.push(function () {
-    refreshTrackOptionText(AlbumData.getData().tracks);
+  Album.onDataChanged.push(function () {
+    refreshTrackOptionText(Album.get("tracks"));
   });
 
 // ================================
@@ -67,11 +67,11 @@ var AlbumControls = (function () {
     $('#data-source-reload-link-container').hide();
     $('#data-source-label-text').hide();
     $('#data-source-loading-indicator').show();
-    AlbumData.setSource(findSourceById(sourceId), forceReload);
+    Album.setDataSource(findSourceById(sourceId), forceReload);
   };
   // callback to change in data source, which results from setDataSource
-  AlbumData.onDataChanged.push(function () {
-    var sourceId = AlbumData.getSource().id;
+  Album.onDataChanged.push(function () {
+    var sourceId = Album.getDataSource().id;
     $('#data-source-select').val(sourceId);
     $('#data-source-loading-indicator').hide();
     $('#data-source-label-text').show();
@@ -85,7 +85,6 @@ var AlbumControls = (function () {
   var isDataSourceSelectorSetup = false;
 
   var setDataSourceOptions = function (sources) {
-    AlbumData.clearCache();
     m_sampleDataSources = sources;
     if (sources.length === 1) {
       $("#data-source-text-container").html("Sample info " +
@@ -151,7 +150,7 @@ var AlbumControls = (function () {
 
   var showFlashPlayer = function (album) {
     $('.flash-player-container').css({zIndex: 0});
-    switch(album.mediaType) {
+    switch (album.mediaType) {
     case ('soundcloud'):
       $("#sc-container").css({zIndex: 10});
       break;
@@ -162,27 +161,17 @@ var AlbumControls = (function () {
 
 // =================================================
 
-  var setup = function (album) {
+  var setup = function () {
+    var album = Album.get();
     setFormat(album);
     setAlbumTitle(album);
     setAlbumInfo(album);
     setupAlbumLicense(album);
     showFlashPlayer(album);
-    MediaPlayer.setupAlbum(album, {
-      failureCallback: function () {
-        $("#media-error-dialog").dialog("open");
-      }
-    });
     setDataSourceOptions(album.sampleDataSources);
     setTrackOptions(album.tracks);
-
-    // when setting new data source options, go get the first data source
-    setDataSource(album.sampleDataSources[0].id);
   };
-
-  return {
-    setup: setup
-  };
+  Album.onInit.push(setup);
 
 }());
 

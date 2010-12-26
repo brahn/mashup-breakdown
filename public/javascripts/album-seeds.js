@@ -1,4 +1,4 @@
-var ALBUMS = [
+var ALBUM_SEEDS = [
   { id: "nhh",
     artist: "The Kleptones",
     title: "A Night at the Hip-Hopera",
@@ -195,10 +195,10 @@ var ALBUMS = [
 
 ];
 
-var getAlbumById = function (id) {
-  for (var i = 0; i < ALBUMS.length; i +=1) {
-    if (ALBUMS[i].id === id) {
-      return ALBUMS[i];
+var getAlbumSeedById = function (id) {
+  for (var i = 0; i < ALBUM_SEEDS.length; i +=1) {
+    if (ALBUM_SEEDS[i].id === id) {
+      return ALBUM_SEEDS[i];
     }
   }
   return null;

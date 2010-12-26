@@ -1,7 +1,7 @@
 /*jslint indent:2, browser:true, onevar:false regexp:false */
-/*global $, window, sendEvent, safeLogger, eachKey */
+/*global $, window, sendEvent, safeLogger, eachKey, timeStrToSec */
 
-var AlbumData = (function () {
+var DataRetriever = (function () {
 
   // stores cached data for an album, keyed by data source id
   var m_data = {};
@@ -92,51 +92,30 @@ var AlbumData = (function () {
 // =================================
 // INTERFACE
 
-  // Data source on which returned data is currently based.
-  var m_currentSource = null;
-
-  // callbacks to data changes
-  var onDataChanged = [];
-
-  var getSource = function () {
-    return m_currentSource;
-  };
-
-  var getData = function () {
-    return m_data[m_currentSource.id];
-  };
-
   var clearCache = function () {
     m_data = {};
-    m_currentSource = null;
   };
 
   // use sample data from a particular source;
-  var setSource = function (source, forceReload) {
+  var getFromSource = function (source, forceReload, successFunc) {
     if (m_data[source.id] && !forceReload) {
       // we've already retrieved this album's data, so don't do it again.
-      m_currentSource = source;
-      sendEvent(onDataChanged);
+      successFunc(m_data[source.id]);
     } else if (source.type === "wikipedia") {
       getDataFromWikipedia(source.pageName, function (results) {
-        m_currentSource = source;
         m_data[source.id] = results;
-        sendEvent(onDataChanged);
+        successFunc(m_data[source.id]);
       });
     } else if (source.type === "text") {
       getDataFromText(source.url, function (results) {
-        m_currentSource = source;
         m_data[source.id] = results;
-        sendEvent(onDataChanged);
+        successFunc(m_data[source.id]);
       });
     }
   };
 
   return {
-    onDataChanged: onDataChanged,
-    setSource: setSource,
-    getSource: getSource,
-    getData: getData,
+    getFromSource: getFromSource,
     clearCache: clearCache
   };
 

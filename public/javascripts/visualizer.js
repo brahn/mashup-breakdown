@@ -1,5 +1,6 @@
 /*jslint indent:2, browser:true, onevar:false */
-/*global $, window, MediaPlayer, asPercentage, AlbumData, safeLogger */
+/*global $, window, MediaPlayer, asPercentage, Album, safeLogger */
+/*global PlaybackControls */
 
 var Visualizer = (function () {
 
@@ -213,13 +214,13 @@ var Visualizer = (function () {
     if (currentTrackIndex === null || currentTrackIndex === undefined) {
       return;
     }
-    var currentData = AlbumData.getData();
-    m_featureVideo = MediaPlayer.getAlbum().featureVideo;
+    var currentData = Album.get();
+    m_featureVideo = Album.get("featureVideo");
     setup(currentData.samples[currentTrackIndex],
       currentData.tracks[currentTrackIndex].duration,
       MediaPlayer.getTime());
   };
-  AlbumData.onDataChanged.push(refresh);
+  Album.onDataChanged.push(refresh);
   MediaPlayer.onTrackChanged.push(refresh);
 
   $(document).ready(function () {

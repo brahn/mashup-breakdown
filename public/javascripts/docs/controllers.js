@@ -1,24 +1,40 @@
 // =====================
-// AlbumData
+// DataRetriever
+//
+// Object is Responsible for getting album data from specified source
+// (e.g. text file, wikipedia).  By default, caches data.
 
-  // Set the data source object on which data is based.
-  // By default, data will be pulled from cache if it is available.
-  // To ignore cached version and reload data, set forceReload to true.
-  var setSource = function (source, forceReload) {};
-
-  // Returns current data _source_ object
-  var getSource = function () {};
-
-  // Returns current data.  The returned object has two fields:
-  // * results.tracks -- array of track objects
-  // * results.samples -- album sample data object
-  var getData = function () {};
+  // successFunc takes an object "results" with two fields:
+  // * tracks
+  // * samples
+  var getFromSource = function (source, forceReload, successFunc) {};
 
   // Clear all stored data
   var clearCache = function () {};
 
+// =====================
+// Album
+
+  // Callbacks to album change, which would result from init
+  var onInit = [];
+
+  // Specify the album with sufficient data to kick things off.
+  var init = function (albumSeed) {};
+
+  // Returns the album object, or if key is passed, just the
+  // requested field
+  var get = function (key) {};
+
   // Callbacks to data change, which would result from setSource
   var onDataChanged = [];
+
+  // Set the data source object on which album data is based.
+  // By default, data will be pulled from cache if it is available.
+  // To ignore cached version and reload data, set forceReload to true.
+  var setDataSource = function (source, forceReload) {};
+
+  // Returns current data _source_ object
+  var getDataSource = function () {};
 
 // ======================
 // MediaPlayer
