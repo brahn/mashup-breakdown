@@ -106,7 +106,7 @@ var Visualizer = (function () {
         gravity: 'c',
         html: true,
         fallback: tooltipHTML(sample),
-        opacity: m_featureVideo ? 0.5 : 1.0
+        opacity: m_featureVideo ? 0.5 : 0.8
       });
   };
 
