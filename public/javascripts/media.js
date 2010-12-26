@@ -384,20 +384,3 @@ var MediaPlayer = (function () {
 
 }());
 
-Album.onInit.push(function () {
-  MediaPlayer.setupAlbum(Album.get(), {
-    failureCallback: function () {
-      $("#media-error-dialog").dialog("open");
-    }
-  });
-});
-
-MediaPlayer.onAlbumSetup.push(function () {
-  if (Album.get("featureVideo")) {
-    $('#page').addClass('feature-video');
-  } else {
-    $('#page').removeClass('feature-video');
-  }
-  MediaPlayer.resizeToContainer();
-});
-

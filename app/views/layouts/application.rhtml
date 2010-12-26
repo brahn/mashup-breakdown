@@ -25,39 +25,15 @@
   <%= javascript_include_tag "third/jquery.tmpl" %>
   <%= javascript_include_tag "third/jquery.tipsy" %>
   <%= javascript_include_tag "helpers" %>
+
   <% if @use_visualizer_js %>
-    <%= javascript_include_tag "album-seeds" %>
-    <%= javascript_include_tag "data-retriever" %>
-    <%= javascript_include_tag "album" %>
-    <%= javascript_include_tag "youtube" %>
-    <%= javascript_include_tag "third/soundcloud.player.api.js" %>
-    <%= javascript_include_tag "soundcloud" %>
-    <%= javascript_include_tag "media" %>
-    <%= javascript_include_tag "visualizer" %>
-    <%= javascript_include_tag "playback-controls" %>
-    <%= javascript_include_tag "album-controls" %>
+
   <% end %>
   <%= javascript_include_tag "exterior" %>
   <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/dark-hive/jquery-ui.css" %>
   <%= stylesheet_link_tag "third/tipsy" %>
   <%= stylesheet_link_tag "visualizer" %>
   <%= yield :page_javascript %>
-  <% javascript_tag do %>
-
-    $(document).ready(function () {
-      <%= setup_js_var "albumId", params[:album_id], "all-day" %>
-      var albumSeed = getAlbumSeedById(albumId);
-      if (albumSeed) {
-        Album.init(albumSeed);
-      } else {
-        $("#no-album-dialog").dialog("open")
-      }
-      <%= setup_js_var "show_album_index", params[:show_album_index], nil %>
-      if (show_album_index) {
-        $("#artists-and-albums-dialog").dialog("open");
-      }
-    });
-  <% end %>
 
 <script type="text/javascript">
 

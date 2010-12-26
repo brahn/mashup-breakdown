@@ -39,7 +39,6 @@ class ContentController < ApplicationController
   def visualizer
     get_share_text_and_meta_data params[:album_id]
     @page_class = "viewport-size"
-    @use_visualizer_js = true
     @is_visualizer = true
   end
 
