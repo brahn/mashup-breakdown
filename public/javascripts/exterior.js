@@ -14,12 +14,6 @@ var dimHeader = function (suppressAnimation) {
   }
 };
 
-var gotoAlbum = function (albumId) {
-  Controls.setupAlbum(getAlbumById(albumId));
-  $('#artists-and-albums-dialog').dialog("close");
-};
-
-
 $(document).ready(function () {
 
   $('#artists-and-albums-dialog').dialog(dialogOptions({

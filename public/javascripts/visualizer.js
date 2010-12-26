@@ -176,7 +176,7 @@ var Visualizer = (function () {
   };
 
   MediaPlayer.onTimeChanged.push(function () {
-    if (!Controls.isManuallySeeking()) {
+    if (!PlaybackControls.isManuallySeeking()) {
       setTime(MediaPlayer.getTime(), true);
     }
   });

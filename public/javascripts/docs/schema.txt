@@ -5,7 +5,8 @@ ALBUM objects have the following fields:
 * mediaType ("soundcloud" or "youtube") -- for now we assume all albums come
     from the same sourceType rather than cobbled together as tracks from
     different sources
-* tracks -- array of track objects
+* tracks -- array of track objects (initially, need only supply
+    media source, e.g. scUrl or ytId)
 * sampleDataSources -- array of sampleDataSource objects
 
 =======
@@ -13,7 +14,7 @@ TRACK objects have the following fields:
 * title
 * artist (optional, defaults to album artist)
 * duration
-* scUrl OR ytId
+* scUrl OR ytId (or other identifier as appropriate for media type)
 
 ========
 ALBUM DATA SOURCE objects have the following fields

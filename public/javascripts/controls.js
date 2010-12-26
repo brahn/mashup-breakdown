@@ -2,7 +2,7 @@
 /*global $, window, safeLogger, asPercentage, secToMmss */
 /*global YouTube, Visualizer, AlbumData, MediaPlayer */
 
-var Controls = (function () {
+var PlaybackControls = (function () {
 
 // ==============================
 // PLAYBACK CONTROLS
@@ -168,6 +168,18 @@ var Controls = (function () {
   $(document).ready(function () {
     $(window).resize(setHandleTailHeight);
   });
+
+  var isManuallySeeking = function () {
+    return manualSeek;
+  };
+
+  return {
+    isManuallySeeking: isManuallySeeking
+  };
+
+}());
+
+var AlbumControls = (function () {
 
 // ================================
 // TRACK SELECTOR
@@ -345,12 +357,7 @@ var Controls = (function () {
     setDataSource(album.sampleDataSources[0].id);
   };
 
-  var isManuallySeeking = function () {
-    return manualSeek;
-  };
-
   return {
-    isManuallySeeking: isManuallySeeking,
     setupAlbum: setupAlbum
   };
 
