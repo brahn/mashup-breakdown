@@ -68,6 +68,10 @@
   var getTime = function () {};
   var getDuration = function () {};
 
+  var resize = function (width, height) {};
+  // resize player to fill its container
+  var resizeToContainer = function () {};
+
   // buffering information returns object with two keys:
   // fractionBuffered, fractionStartingAt (both real-valued between
   // 0.0 and 1.0)
@@ -92,13 +96,31 @@
 // ========================
 // Visualizer
 
+  // Visualizer listens to
+  // * MediaPlayer.onTimeChanged
+  // * MediaPlayer.onTrackChanged
+  // * Album.onDataChanged
+  //
+  // Either of MediaPlayer.onTrackChanged or Album.onDataChanged are
+  // sufficient to kick off initialization
+
+
   // for animation that has already been set up, jump to specified time.
   // optionally, set argument 'animate' to animate transition (e.g. for
   // standard time-advance while track is playing)
   var setTime = function (time, animate) {};
 
+
 // ======================
 // PlaybackControls
+
+  // PlaybackControls listens to
+  // * MediaPlayer.onStateChanged
+  // * MediaPlayer.onTimeChanged
+  // * MediaPlayer.onTrackChanged
+  // * Album.onDataChanged
+  //
+  // Either of the last two are sufficient to kick off initialization
 
   // check whether user is in the midst of dragging the playback point
   var isManuallySeeking = function () {};
@@ -106,5 +128,9 @@
 // ======================
 // AlbumControls
 
-  var setup = function (album) {};
-
+   // AlbumControls listens to
+   // * MediaPlayer.onTrackChanged
+   // * Album.onDataChanged
+   // * Album.onInit
+   //
+   // Album.onInit kicks off initialization
