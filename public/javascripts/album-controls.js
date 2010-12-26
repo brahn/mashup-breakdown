@@ -113,14 +113,6 @@ var AlbumControls = (function () {
 // ================================================
 // MISC
 
-  var setFormat = function (album) {
-    if (album.featureVideo) {
-      $('#page').addClass('feature-video');
-    } else {
-      $('#page').removeClass('feature-video');
-    }
-  };
-
   var setAlbumTitle = function (album) {
     var titleStr = album.artist + " - " + album.title;
     document.title = titleStr;
@@ -163,7 +155,6 @@ var AlbumControls = (function () {
 
   var setup = function () {
     var album = Album.get();
-    setFormat(album);
     setAlbumTitle(album);
     setAlbumInfo(album);
     setupAlbumLicense(album);

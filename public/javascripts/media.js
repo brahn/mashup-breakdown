@@ -246,6 +246,23 @@ var MediaPlayer = (function () {
     m_controllerObjs[m_album.mediaType].unmute();
   };
 
+// ==============================================================
+// RESIZING
+
+  var resize = function (width, height) {
+    if (!m_album || !m_controllerObjs[m_album.mediaType].resize) {
+      return;
+    }
+    m_controllerObjs[m_album.mediaType].resize(width, height);
+  };
+
+  var resizeToContainer = function () {
+    if (!m_album || !m_controllerObjs[m_album.mediaType].resizeToContainer) {
+      return;
+    }
+    m_controllerObjs[m_album.mediaType].resizeToContainer();
+  };
+
 
 // ==============================================================
 // GET INFORMATION ABOUT PLAYER
@@ -358,8 +375,10 @@ var MediaPlayer = (function () {
     onAlbumSetup: onAlbumSetup,
     onTrackChanged: onTrackChanged,
     onTimeChanged: onTimeChanged,
-    onStateChanged: onStateChanged
+    onStateChanged: onStateChanged,
 
+    resize: resize,
+    resizeToContainer: resizeToContainer
   };
 
 
@@ -372,3 +391,13 @@ Album.onInit.push(function () {
     }
   });
 });
+
+MediaPlayer.onAlbumSetup.push(function () {
+  if (Album.get("featureVideo")) {
+    $('#page').addClass('feature-video');
+  } else {
+    $('#page').removeClass('feature-video');
+  }
+  MediaPlayer.resizeToContainer();
+});
+

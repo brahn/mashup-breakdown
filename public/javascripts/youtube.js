@@ -162,6 +162,13 @@ var YouTube = (function () {
     }
   };
 
+  var resizeToContainer = function () {
+    if (ytPlayer) {
+      ytPlayer.width = $(ytPlayer).parent().innerWidth();
+      ytPlayer.height = $(ytPlayer).parent().innerHeight();
+    }
+  };
+
 // =================================
 // QUEUEING VIDEO
 
@@ -290,6 +297,7 @@ var YouTube = (function () {
   return {
     setup: setup,
     resize: resize,
+    resizeToContainer: resizeToContainer,
     cue: cue,
     cueByUrl: cueByUrl,
     load: load,
