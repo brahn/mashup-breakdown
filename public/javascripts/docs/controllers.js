@@ -1,8 +1,6 @@
 // =====================
 // AlbumData
 
-  // Pulls track and sample data from data source
-
   // Set the data source object on which data is based.
   // By default, data will be pulled from cache if it is available.
   // To ignore cached version and reload data, set forceReload to true.
@@ -31,6 +29,7 @@
   // * failureCallback (null function)
   // * startAtTrack (0)
   // * startAtTime (0) XXX not yet implemented
+
   var setupAlbum = function (album, options) {};
   var gotoTrack = function (trackIndex, playImmediately) {};
 
@@ -91,5 +90,5 @@
 // ======================
 // AlbumControls
 
-  var setupAlbum = function (album) {};
+  var setup = function (album) {};
 

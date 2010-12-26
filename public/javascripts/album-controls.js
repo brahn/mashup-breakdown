@@ -162,7 +162,7 @@ var AlbumControls = (function () {
 
 // =================================================
 
-  var setupAlbum = function (album) {
+  var setup = function (album) {
     setFormat(album);
     setAlbumTitle(album);
     setAlbumInfo(album);
@@ -181,7 +181,7 @@ var AlbumControls = (function () {
   };
 
   return {
-    setupAlbum: setupAlbum
+    setup: setup
   };
 
 }());

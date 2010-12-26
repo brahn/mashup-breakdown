@@ -47,7 +47,7 @@
       <%= setup_js_var "albumId", params[:album_id], "all-day" %>
       var album = getAlbumById(albumId);
       if (album) {
-        AlbumControls.setupAlbum(album);
+        AlbumControls.setup(album);
       } else {
         $("#no-album-dialog").dialog("open")
       }
