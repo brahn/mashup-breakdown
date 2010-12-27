@@ -1,4 +1,4 @@
-<% content_for :page_javascript do %>
+<% content_for :page_header do %>
   <%= javascript_include_tag "album-seeds" %>
   <%= javascript_include_tag "data-retriever" %>
   <%= javascript_include_tag "album" %>
@@ -42,6 +42,12 @@
       }
       MediaPlayer.resizeToContainer();
     });
+    $(document).ready(function () {
+      $(window).resize(function () {
+        waitForFinalEvent(MediaPlayer.resizeToContainer,
+          WINDOW_RESIZE_CALLBACK_DELAY, "MediaPlayer.resizeToContainer");
+      });
+    })
 
   <% end %>
 <% end %>

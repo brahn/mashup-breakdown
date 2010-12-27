@@ -79,7 +79,7 @@ var Visualizer = (function () {
 // ============================================
 // REPRESENTING SAMPLES AS VISUAL BLOCKS
 
-  var VERTICAL_PADDING_PERCENTAGE = 10.0;
+  var VERTICAL_PADDING_PERCENTAGE = 4.0;
 
   var blockHeight, blockVerticalPadding; // expressed as a %age of div#samples
 
@@ -223,10 +223,12 @@ var Visualizer = (function () {
 
   $(document).ready(function () {
     $(window).resize(function () {
-      if (currentTime !== undefined) {
-        clearToolTips();
-        updateSampleActivity(currentTime, false, true);
-      }
+      waitForFinalEvent(function () {
+        if (currentTime !== undefined) {
+          clearToolTips();
+          updateSampleActivity(currentTime, false, true);
+        }
+      }, WINDOW_RESIZE_CALLBACK_DELAY, "updateSampleActivity");
     });
   });
 

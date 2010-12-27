@@ -156,3 +156,24 @@ var queryParamsToObj = function (urlHash, keysToCoerce) {
   }
   return coerceVals(obj, keysToCoerce);
 };
+
+// Use this function to avoid constantly triggering a callback on
+// (e.g.) resizing and instead trigger callback only after the last
+// event in specified time period.
+// from http://stackoverflow.com/questions/2854407/javascript-jquery-window-resize-how-to-fire-after-the-resize-is-completed/2854467#2854467
+//
+// to use: waitForFinalEvent(callback, ms, uniqueId)
+var waitForFinalEvent = (function () {
+  var timers = {};
+  return function (callback, ms, uniqueId) {
+    if (!uniqueId) {
+      uniqueId = "Don't call this twice without a uniqueId";
+    }
+    if (timers[uniqueId]) {
+      clearTimeout (timers[uniqueId]);
+    }
+    timers[uniqueId] = setTimeout(callback, ms);
+  };
+})();
+
+var WINDOW_RESIZE_CALLBACK_DELAY = 200;

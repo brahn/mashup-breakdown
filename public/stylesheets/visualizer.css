@@ -484,7 +484,7 @@ div#samples-container {
   position: absolute;
   left: 50px;  /* match gutter */
   right: 90px; /* match gutter */
-  top: 50px;
+  top: 55px;
   bottom: 0px;
   overflow: visible;
 }
@@ -502,7 +502,7 @@ div.sample-block {
   position: absolute;
   background: #f2f5f2;
   font-size: 11px;
-  padding: 5px;
+  padding: 0px 5px;
   color: #fff;
   text-shadow: #546374 0px 1px 0px;
   overflow: hidden;

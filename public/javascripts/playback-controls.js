@@ -67,7 +67,7 @@ var PlaybackControls = (function () {
   $(document).ready(setupHandleTimePoint);
 
   var setHandleTailHeight = function () {
-    $(".player #handle-tail").height(24 + $('#samples').height());
+    $(".player #handle-tail").height(29 + $('#samples').height());
   };
 
   var setupPositionControl = function () {
@@ -166,7 +166,10 @@ var PlaybackControls = (function () {
   Album.onDataChanged.push(refreshPlaybackControls);
 
   $(document).ready(function () {
-    $(window).resize(setHandleTailHeight);
+    $(window).resize(function () {
+      waitForFinalEvent(setHandleTailHeight, WINDOW_RESIZE_CALLBACK_DELAY,
+        "setHandleTailHeight");
+    });
   });
 
   var isManuallySeeking = function () {
