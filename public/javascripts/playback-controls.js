@@ -166,7 +166,9 @@ var PlaybackControls = (function () {
   Album.onDataChanged.push(refreshPlaybackControls);
 
   $(document).ready(function () {
-    $(window).resize(setHandleTailHeight);
+    $(window).resize(function () {
+      waitForFinalEvent(setHandleTailHeight, WINDOW_RESIZE_CALLBACK_DELAY);
+    });
   });
 
   var isManuallySeeking = function () {

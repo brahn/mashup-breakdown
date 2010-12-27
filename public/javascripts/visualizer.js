@@ -223,10 +223,12 @@ var Visualizer = (function () {
 
   $(document).ready(function () {
     $(window).resize(function () {
-      if (currentTime !== undefined) {
-        clearToolTips();
-        updateSampleActivity(currentTime, false, true);
-      }
+      waitForFinalEvent(function () {
+        if (currentTime !== undefined) {
+          clearToolTips();
+          updateSampleActivity(currentTime, false, true);
+        }
+      }, WINDOW_RESIZE_CALLBACK_DELAY);
     });
   });
 
