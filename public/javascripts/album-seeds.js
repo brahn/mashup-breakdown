@@ -1,9 +1,10 @@
 var ALBUM_SEEDS = [
   { id: "uspop2009",
+    featureVideo: true,
+    editable: true,
     artist: "DJ Earworm",
     title: "United States of Pop 2009",
     mediaType: "youtube",
-    featureVideo: true,
     tracks: [{ytId: "iNzrwh2Z2hQ"}],
     sampleDataSources: [{
       id: "blank",

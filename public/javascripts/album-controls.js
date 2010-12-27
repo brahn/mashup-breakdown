@@ -89,10 +89,12 @@ var AlbumControls = (function () {
     var sources = Album.get("sampleDataSources");
     m_sampleDataSources = sources;
     if (sources.length === 1) {
-      $("#data-source-text-container").html("Sample info " +
-        sources[0].prettyText);
-      $("#data-source-select-container").hide();
-      $("#data-source-text-container").show();
+      if (sources[0].prettyText) {
+        $("#data-source-text-container").html("Sample info " +
+          sources[0].prettyText);
+        $("#data-source-select-container").hide();
+        $("#data-source-text-container").show();
+      }
       return;
     }
     $('#data-source-select').html($('#data-option-template').
