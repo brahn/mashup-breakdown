@@ -79,7 +79,7 @@ var Visualizer = (function () {
 // ============================================
 // REPRESENTING SAMPLES AS VISUAL BLOCKS
 
-  var VERTICAL_PADDING_PERCENTAGE = 10.0;
+  var VERTICAL_PADDING_PERCENTAGE = 4.0;
 
   var blockHeight, blockVerticalPadding; // expressed as a %age of div#samples
 
