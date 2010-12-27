@@ -162,13 +162,18 @@ var queryParamsToObj = function (urlHash, keysToCoerce) {
 // event in specified time period.
 // from http://stackoverflow.com/questions/2854407/javascript-jquery-window-resize-how-to-fire-after-the-resize-is-completed/2854467#2854467
 //
-// to use: waitForFinalEvent(callback, ms)
+// to use: waitForFinalEvent(callback, ms, uniqueId)
 var waitForFinalEvent = (function () {
-  var timer = 0;
-  return function (callback, ms) {
-    clearTimeout (timer);
-    timer = setTimeout(callback, ms);
+  var timers = {};
+  return function (callback, ms, uniqueId) {
+    if (!uniqueId) {
+      uniqueId = "Don't call this twice without a uniqueId";
+    }
+    if (timers[uniqueId]) {
+      clearTimeout (timers[uniqueId]);
+    }
+    timers[uniqueId] = setTimeout(callback, ms);
   };
 })();
 
-var WINDOW_RESIZE_CALLBACK_DELAY = 100;
+var WINDOW_RESIZE_CALLBACK_DELAY = 200;

@@ -41,6 +41,12 @@
       }
       MediaPlayer.resizeToContainer();
     });
+    $(document).ready(function () {
+      $(window).resize(function () {
+        waitForFinalEvent(MediaPlayer.resizeToContainer,
+          WINDOW_RESIZE_CALLBACK_DELAY, "MediaPlayer.resizeToContainer");
+      });
+    })
 
   <% end %>
 <% end %>

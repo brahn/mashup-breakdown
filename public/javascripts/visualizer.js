@@ -228,7 +228,7 @@ var Visualizer = (function () {
           clearToolTips();
           updateSampleActivity(currentTime, false, true);
         }
-      }, WINDOW_RESIZE_CALLBACK_DELAY);
+      }, WINDOW_RESIZE_CALLBACK_DELAY, "updateSampleActivity");
     });
   });
 

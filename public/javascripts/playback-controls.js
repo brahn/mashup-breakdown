@@ -167,7 +167,8 @@ var PlaybackControls = (function () {
 
   $(document).ready(function () {
     $(window).resize(function () {
-      waitForFinalEvent(setHandleTailHeight, WINDOW_RESIZE_CALLBACK_DELAY);
+      waitForFinalEvent(setHandleTailHeight, WINDOW_RESIZE_CALLBACK_DELAY,
+        "setHandleTailHeight");
     });
   });
 
