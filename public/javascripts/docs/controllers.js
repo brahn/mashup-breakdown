@@ -1,132 +1,48 @@
 // =====================
-// AlbumData
+// DataRetriever
+//
+// Object is Responsible for getting album data from specified source
+// (e.g. text file, wikipedia).  By default, caches data.
 
-  // Provides the track and sample data for the current album.
+  // successFunc takes an object "results" with two fields:
+  // * tracks
+  // * samples
+  var getFromSource = function (source, forceReload, successFunc) {};
 
-  // Set the data source object on which data is based.
-  // By default, data will be pulled from cache if it is available.
-  // To ignore cached version and reload data, set forceReload to true.
-  var setSource = function (source, forceReload) {};
+  // Clear all stored data
+  var clearCache = function () {};
 
-  // Returns current data _source_ object
-  var getSource = function () {};
+// =====================
+// Album
 
-  // Returns current data.  The returned object has two fields:
-  // * results.tracks -- array of track objects
-  // * results.samples -- album sample data object
-  var getData = function () {};
+  // Callbacks to album change, which would result from init
+  var onInit = [];
+
+  // Specify the album with sufficient data to kick things off.
+  var init = function (albumSeed) {};
+
+  // Returns the album object, or if key is passed, just the
+  // requested field
+  var get = function (key) {};
+
+  // Returns
+  // * currently playing track object (if key is null)
+  // * samples for currently playing track (if key == "samples")
+  // * key field of currently playing track (otherwise)
+  // Note that this function relies on MediaPlayer to determine the
+  // currently playing track
+  var getCurrentTrack = function (key) {};
 
   // Callbacks to data change, which would result from setSource
   var onDataChanged = [];
 
-// =====================
-// YouTube
-// Interface to YouTube API; called only by MediaPlayer.
+  // Set the data source object on which album data is based.
+  // By default, data will be pulled from cache if it is available.
+  // To ignore cached version and reload data, set forceReload to true.
+  var setDataSource = function (source, forceReload) {};
 
-  // Create the YouTube flash object.  Options object can take the
-  // following fields (defaults)
-  // * ytId ("Srmdij0CU1U") -- id of video to be cued, default is test pattern
-  // * divToReplace ($("#yt-player-standin"));
-  // * playerObjectId ("yt-player")
-  // * playWhenCued (false)
-  // * createFailureCallback (null function)
-  var setup = function (options) {};
-
-  // Callbacks to YouTube flash object creation; take no arguments.
-  var onReady = [];
-
-  // Callbacks to YouTube flash object state change.  See
-  // http://code.google.com/apis/youtube/js_api_reference.html#Events
-  // Callback functions take the state as the argument: possible
-  // values are unstarted (-1), ended (0), playing (1), paused (2),
-  // buffering (3), video cued (5).
-  var onStateChanged = [];
-
-  // Callbacks to a new video being loaded (including when player
-  // becomes ready for the first time).  Note that if a video is cued,
-  // and then re-cued, these callbacks still fire.
-  var onVideoChanged = [];
-
-  var resize = function (width, height) {};
-
-  // cue movies, don't automatically play
-  var cue = function (ytId) {};
-  var cueByUrl = function (ytUrl) {};
-  // cue movies and play when ready
-  var load = function (ytId) {};
-  var loadByUrl = function (ytUrl) {};
-
-  var play = function () {};
-  var pause = function () {};
-
-  // http://code.google.com/apis/youtube/js_api_reference.html#Functions
-  // recommend that you set 'allowSeekAhead' to false while the user
-  // is dragging the mouse along a video progress bar and then set the
-  // parameter to true when the user releases the mouse.
-  var seekTo = function (seconds, allowSeekAhead) {};
-
-  var setVolume = function (volume) {};
-  var mute = function () {};
-  var unmute = function () {};
-
-  // returns an object with three fields
-  // * total (bytes in video)
-  // * loaded (bytes buffered)
-  // * startingAt (where the buffering begins)
-  var byteStatus = function () {};
-
-  var isCreated = function () {};
-  var state = function () {};
-  var isPlaying = function () {};
-  var currentTime = function () {};
-  var videoUrl = function () {};
-  var duration = function () {};
-
-// =====================
-// SoundCloud
-
-  // Creates the soundcloud flash object.
-  // options object can take the following fields (defaults)
-  // * scUrl ("http://soundcloud.com/forss/flickermood") -- url of track
-  //     to be cued, default track is mostly harmless
-  // * divToReplace ($("#sc-player-standin"));
-  // * playerObjectId ("sc-player")
-  // * playWhenCued (false)
-  // * createFailureCallback (null function)
-  var setup = function (options) {};
-
-  // Callbacks to SoundCloud flash object creation; take no arguments.
-  // NB: this is different from the SoundCloud onPlayerReady event, which
-  // fires every time a new track is cued.
-  var onReady = [];
-
-  // Callbacks to state changed; arguments are values of the state.
-  // Possible values: "playing", "paused", "ended" or null/undefined
-  var onStateChagned = [];
-
-
-  var cueByUrl = function (scUrl) {};
-  var loadByUrl = function (scUrl) {};
-
-  var play = function () {};
-  var pause = function () {};
-  var seekTo = function (seconds) {};
-  var setVolume = function (volume) {};
-  var mute = function () {};
-  var unMute = function () {};
-
-  var isCreated = function () {};
-  var isPlaying = function () {};
-  // Possible state values: "playing", "paused", "ended" or null/undefined
-  var state = function () {};
-  var currentTime = function () {};
-  var duration = function () {};
-
-  // returns an object with the field "percentLoaded" (integer 0-100)
-  var bufferStatus = function () {};
-
-
-
+  // Returns current data _source_ object
+  var getDataSource = function () {};
 
 // ======================
 // MediaPlayer
@@ -137,6 +53,7 @@
   // * failureCallback (null function)
   // * startAtTrack (0)
   // * startAtTime (0) XXX not yet implemented
+
   var setupAlbum = function (album, options) {};
   var gotoTrack = function (trackIndex, playImmediately) {};
 
@@ -159,12 +76,14 @@
   var getTime = function () {};
   var getDuration = function () {};
 
-  // buffering status: returns an object with three fields:
-  // (follows YouTube's byte status stuff)
-  // * loaded
-  // * total
-  // * startingAt
-  var byteStatus = function () {};
+  var resize = function (width, height) {};
+  // resize player to fill its container
+  var resizeToContainer = function () {};
+
+  // buffering information returns object with two keys:
+  // fractionBuffered, fractionStartingAt (both real-valued between
+  // 0.0 and 1.0)
+  var getBufferStatus = function () {};
 
   // arrays of callbacks to album setup; callbacks take no arguments
   var onAlbumSetup = [];
@@ -181,22 +100,42 @@
   // no arguments
   var onStateChanged = [];
 
-  // XXX haven't dealt with buffering yet
-
 
 // ========================
 // Visualizer
+
+  // Visualizer listens to
+  // * MediaPlayer.onTimeChanged
+  // * MediaPlayer.onTrackChanged
+  // * Album.onDataChanged
+  // Either of the last two are sufficent to kick off initialization
 
   // for animation that has already been set up, jump to specified time.
   // optionally, set argument 'animate' to animate transition (e.g. for
   // standard time-advance while track is playing)
   var setTime = function (time, animate) {};
 
+
 // ======================
-// Controls
+// PlaybackControls
 
-  // setup selectors for tracks and data source options
-  var setupAlbum = function (album) {};
+  // PlaybackControls listens to
+  // * MediaPlayer.onStateChanged
+  // * MediaPlayer.onTimeChanged
+  // * MediaPlayer.onTrackChanged
+  // * Album.onDataChanged
+  // Either of the last two are sufficient to kick off initialization
 
+  // check whether user is in the midst of dragging the playback point
   var isManuallySeeking = function () {};
+
+// ======================
+// AlbumControls
+
+   // AlbumControls listens to
+   // * MediaPlayer.onTrackChanged
+   // * Album.onDataChanged
+   // * Album.onInit
+   //
+   // Album.onInit kicks off initialization
 

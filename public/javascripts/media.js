@@ -1,5 +1,6 @@
 /*jslint indent:2, browser:true, onevar:false */
 /*global $, window, YouTube, SCloud, sendEvent, safeLogger */
+/*global Album */
 
 // interface for multiple types of media
 // calls YouTube and SCloud javascript objects as appropriate.
@@ -245,6 +246,23 @@ var MediaPlayer = (function () {
     m_controllerObjs[m_album.mediaType].unmute();
   };
 
+// ==============================================================
+// RESIZING
+
+  var resize = function (width, height) {
+    if (!m_album || !m_controllerObjs[m_album.mediaType].resize) {
+      return;
+    }
+    m_controllerObjs[m_album.mediaType].resize(width, height);
+  };
+
+  var resizeToContainer = function () {
+    if (!m_album || !m_controllerObjs[m_album.mediaType].resizeToContainer) {
+      return;
+    }
+    m_controllerObjs[m_album.mediaType].resizeToContainer();
+  };
+
 
 // ==============================================================
 // GET INFORMATION ABOUT PLAYER
@@ -357,7 +375,10 @@ var MediaPlayer = (function () {
     onAlbumSetup: onAlbumSetup,
     onTrackChanged: onTrackChanged,
     onTimeChanged: onTimeChanged,
-    onStateChanged: onStateChanged
+    onStateChanged: onStateChanged,
+
+    resize: resize,
+    resizeToContainer: resizeToContainer
   };
 
 

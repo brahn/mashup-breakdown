@@ -1,5 +1,6 @@
 /*jslint indent:2, browser:true, onevar:false */
-/*global $, window, MediaPlayer, asPercentage, AlbumData, safeLogger */
+/*global $, window, MediaPlayer, asPercentage, Album, safeLogger */
+/*global PlaybackControls */
 
 var Visualizer = (function () {
 
@@ -176,14 +177,21 @@ var Visualizer = (function () {
   };
 
   MediaPlayer.onTimeChanged.push(function () {
-    if (!Controls.isManuallySeeking()) {
+    if (!PlaybackControls.isManuallySeeking()) {
       setTime(MediaPlayer.getTime(), true);
     }
   });
 
 // ===========================================
 
-  var setup = function (samples, trackDuration, time) {
+  var refresh = function () {
+    var samples = Album.getCurrentTrack("samples"),
+        trackDuration = Album.getCurrentTrack("duration"),
+        time = MediaPlayer.getTime();
+    if (!samples || !trackDuration) {
+      return;
+    }
+    m_featureVideo = Album.get("featureVideo");
     $('.tipsy').remove();
     m_duration = trackDuration;
     // make sure samples are sorted by start time
@@ -207,19 +215,7 @@ var Visualizer = (function () {
       setTime(time);
     }
   };
-
-  var refresh = function () {
-    var currentTrackIndex = MediaPlayer.getTrackIndex();
-    if (currentTrackIndex === null || currentTrackIndex === undefined) {
-      return;
-    }
-    var currentData = AlbumData.getData();
-    m_featureVideo = MediaPlayer.getAlbum().featureVideo;
-    setup(currentData.samples[currentTrackIndex],
-      currentData.tracks[currentTrackIndex].duration,
-      MediaPlayer.getTime());
-  };
-  AlbumData.onDataChanged.push(refresh);
+  Album.onDataChanged.push(refresh);
   MediaPlayer.onTrackChanged.push(refresh);
 
   $(document).ready(function () {
