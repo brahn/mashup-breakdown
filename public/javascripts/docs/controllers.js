@@ -25,6 +25,14 @@
   // requested field
   var get = function (key) {};
 
+  // Returns
+  // * currently playing track object (if key is null)
+  // * samples for currently playing track (if key == "samples")
+  // * key field of currently playing track (otherwise)
+  // Note that this function relies on MediaPlayer to determine the
+  // currently playing track
+  var getCurrentTrack = function (key) {};
+
   // Callbacks to data change, which would result from setSource
   var onDataChanged = [];
 
@@ -100,10 +108,7 @@
   // * MediaPlayer.onTimeChanged
   // * MediaPlayer.onTrackChanged
   // * Album.onDataChanged
-  //
-  // Either of MediaPlayer.onTrackChanged or Album.onDataChanged are
-  // sufficient to kick off initialization
-
+  // Either of the last two are sufficent to kick off initialization
 
   // for animation that has already been set up, jump to specified time.
   // optionally, set argument 'animate' to animate transition (e.g. for
@@ -119,7 +124,6 @@
   // * MediaPlayer.onTimeChanged
   // * MediaPlayer.onTrackChanged
   // * Album.onDataChanged
-  //
   // Either of the last two are sufficient to kick off initialization
 
   // check whether user is in the midst of dragging the playback point
@@ -134,3 +138,4 @@
    // * Album.onInit
    //
    // Album.onInit kicks off initialization
+

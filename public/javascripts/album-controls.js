@@ -17,7 +17,8 @@ var AlbumControls = (function () {
     }
   };
 
-  var setTrackOptions = function (tracks) {
+  var setTrackOptions = function () {
+    var tracks = Album.get("tracks");
     if (!tracks || tracks.length < 2) {
       $('#track-select').hide();
       return;
@@ -38,15 +39,15 @@ var AlbumControls = (function () {
     $('#track-select').val(MediaPlayer.getTrackIndex());
   });
 
-  var refreshTrackOptionText = function (tracks) {
-    $.each(tracks, function (index, track) {
+  // update only track titles, rather than entire selector,
+  // so as not to disrupt currently set value
+  var refreshTrackOptionText = function () {
+    $.each(Album.get("tracks"), function (index, track) {
       $('#track-select').find('option[value=' + index + ']').
         html(trackOptionText(track.title, index));
     });
   };
-  Album.onDataChanged.push(function () {
-    refreshTrackOptionText(Album.get("tracks"));
-  });
+  Album.onDataChanged.push(refreshTrackOptionText);
 
 // ================================
 // DATA SOURCE SELECTOR
@@ -84,7 +85,8 @@ var AlbumControls = (function () {
 
   var isDataSourceSelectorSetup = false;
 
-  var setDataSourceOptions = function (sources) {
+  var setDataSourceOptions = function () {
+    var sources = Album.get("sampleDataSources");
     m_sampleDataSources = sources;
     if (sources.length === 1) {
       $("#data-source-text-container").html("Sample info " +
@@ -113,36 +115,37 @@ var AlbumControls = (function () {
 // ================================================
 // MISC
 
-  var setAlbumTitle = function (album) {
-    var titleStr = album.artist + " - " + album.title;
+  var setAlbumTitle = function () {
+    var titleStr = Album.get("artist") + " - " + Album.get("title");
     document.title = titleStr;
     $('#page-title').text(titleStr);
   };
 
-  var setAlbumInfo = function (album) {
+  var setAlbumInfo = function () {
+    var links = Album.get("links");
     $('#album-links').empty();
-    if (!album.links) {
+    if (!links) {
       return;
     }
-    $.each(album.links, function (index, linkObj) {
+    $.each(links, function (index, linkObj) {
       $('#album-links').append(
         '<a href="' + linkObj.url + '" target="_blank">' + linkObj.title + "</a>"
       );
-      if (index < album.links.length - 1) {
+      if (index < links.length - 1) {
         $('#album-links').append("&nbsp;&nbsp;|&nbsp;&nbsp;");
       }
     });
   };
 
-  var setupAlbumLicense = function (album) {
+  var setupAlbumLicense = function () {
     $('#license-note-container').css("opacity", 0.3);
     $('.license-note').hide();
-    $('#' + album.id + "-license-note").show();
+    $('#' + Album.get("id") + "-license-note").show();
   };
 
-  var showFlashPlayer = function (album) {
+  var showFlashPlayer = function () {
     $('.flash-player-container').css({zIndex: 0});
-    switch (album.mediaType) {
+    switch (Album.get("mediaType")) {
     case ('soundcloud'):
       $("#sc-container").css({zIndex: 10});
       break;
@@ -154,13 +157,12 @@ var AlbumControls = (function () {
 // =================================================
 
   var setup = function () {
-    var album = Album.get();
-    setAlbumTitle(album);
-    setAlbumInfo(album);
-    setupAlbumLicense(album);
-    showFlashPlayer(album);
-    setDataSourceOptions(album.sampleDataSources);
-    setTrackOptions(album.tracks);
+    setAlbumTitle();
+    setAlbumInfo();
+    setupAlbumLicense();
+    showFlashPlayer();
+    setDataSourceOptions();
+    setTrackOptions();
   };
   Album.onInit.push(setup);
 

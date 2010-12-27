@@ -18,6 +18,27 @@ var Album = (function () {
     }
   };
 
+  // Returns 
+  // * currently playing track object (if key is null)
+  // * samples for currently playing track (if key == "samples")
+  // * key field of currently playing track (otherwise)
+  var getCurrentTrack = function (key) {
+    var currentTrackIndex = MediaPlayer.getTrackIndex();
+    if (currentTrackIndex === null || currentTrackIndex === undefined) {
+      return undefined;
+    }
+    if (key == "samples") {
+      return m_album.samples && m_album.samples[currentTrackIndex];
+    } else {
+      var currentTrack = m_album.tracks && m_album.tracks[currentTrackIndex];
+      if (key) {
+        return currentTrack && currentTrack[key];
+      } else {
+        return currentTrack;
+      }
+    }
+  };
+
 
 // ===================================
 // CHANGING DATA SOURCES
@@ -63,6 +84,7 @@ var Album = (function () {
     onInit: onInit,
     init: init,
     get: get,
+    getCurrentTrack: getCurrentTrack,
 
     onDataChanged: onDataChanged,
     setDataSource: setDataSource,

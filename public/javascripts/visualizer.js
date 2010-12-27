@@ -184,7 +184,14 @@ var Visualizer = (function () {
 
 // ===========================================
 
-  var setup = function (samples, trackDuration, time) {
+  var refresh = function () {
+    var samples = Album.getCurrentTrack("samples"),
+        trackDuration = Album.getCurrentTrack("duration"),
+        time = MediaPlayer.getTime();
+    if (!samples || !trackDuration) {
+      return;
+    }
+    m_featureVideo = Album.get("featureVideo");
     $('.tipsy').remove();
     m_duration = trackDuration;
     // make sure samples are sorted by start time
@@ -207,18 +214,6 @@ var Visualizer = (function () {
     if (time !== null && time !== undefined) {
       setTime(time);
     }
-  };
-
-  var refresh = function () {
-    var currentTrackIndex = MediaPlayer.getTrackIndex();
-    if (currentTrackIndex === null || currentTrackIndex === undefined) {
-      return;
-    }
-    var currentData = Album.get();
-    m_featureVideo = Album.get("featureVideo");
-    setup(currentData.samples[currentTrackIndex],
-      currentData.tracks[currentTrackIndex].duration,
-      MediaPlayer.getTime());
   };
   Album.onDataChanged.push(refresh);
   MediaPlayer.onTrackChanged.push(refresh);
