@@ -150,6 +150,9 @@ var Visualizer = (function () {
 // TIME-DEPENDENT EFFECTS
 
   var updateSampleActivity = function (time, animate, forceRedoEffect) {
+    if (!m_samples) {
+      return;
+    }
     $.each(m_samples, function (index, sample) {
       if (isTimeInSample(sample, time)) {
         if (!sample.block.hasClass("active") || forceRedoEffect) {

@@ -1,4 +1,23 @@
 var ALBUM_SEEDS = [
+  { id: "uspop2009",
+    artist: "DJ Earworm",
+    title: "United States of Pop 2009",
+    mediaType: "youtube",
+    featureVideo: true,
+    tracks: [{ytId: "iNzrwh2Z2hQ"}],
+    sampleDataSources: [{
+      id: "blank",
+      type: "text",
+      url: "/data/uspop2009-blank.txt"
+    }],
+    links: [{
+      title: "Artist Info",
+      url: "http://djearworm.com"
+    }, {
+      title: "YouTube Channel",
+      url: "http://youtube.com/djearworm"
+    }]
+  },
   { id: "nhh",
     artist: "The Kleptones",
     title: "A Night at the Hip-Hopera",
