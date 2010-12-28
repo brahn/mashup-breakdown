@@ -594,3 +594,100 @@ div.strip-5 {
   margin-top: 3em;
 }
 
+
+/* Editor */
+
+div#editor {
+  position: fixed;
+  height: 80px;
+  bottom: 0px;
+  left: 90px;
+  right: 130px;
+  padding: 10px;
+  display: none;
+}
+
+div.show-editor div#editor {
+  display: block;
+}
+
+div.show-editor div#ft {
+  display: none;
+}
+
+div.show-editor div#samples-container {
+  bottom: 35px;
+}
+
+div#editor {
+  border-top: 1px solid #556;
+  background: #282d32;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(61, 68, 77, .9)), to(rgba(40, 45, 50, .9)));
+  background: -moz-linear-gradient(top, rgba(61, 68, 77, .9), rgba(50, 45, 50, .9));
+  background: linear-gradient(top, rgba(61, 68, 77, .9), rgba(50, 45, 50, .9));
+  color: #FFF;
+  font-size: 11px;
+}
+
+div#sample-controls {
+  height: 100%;
+  float: left;
+  margin-right: 30px;
+}
+
+div#sample-controls button {
+  width: 60px;
+  display: block;
+}
+
+div#editor div.label-and-field {
+  float: left;
+  margin-right: 10px;
+}
+
+div#editor label,
+div#editor input {
+  display: block;
+  width: 120px;
+}
+
+div#editor div.short-input label,
+div#editor div.short-input input {
+  width: 80px;
+}
+
+div#editor label {
+  color: #FFF;
+  font-size: 11px;
+  padding-left: 3px;
+}
+
+div#editor input {
+  color: #000;
+  font-size: 12px;
+}
+
+div#current-time-container {
+  margin-top: 10px;
+}
+
+div#editor div#landing-text {
+  font-size: 12px;
+}
+
+div#editor div#landing-text ul,
+div#editor div#landing-text li {
+  margin: 0px;
+  line-height: 1.5em;
+}
+
+div#editor div.close-button {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  height: 24px;
+  width: 24px;
+  background: url(/images/close-button.png);
+  cursor: pointer;
+  z-index: 100;
+}

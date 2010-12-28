@@ -4,8 +4,20 @@
 
 var Editor = (function () {
 
-  var updateEditLink = function () {
-    if (!Album.get("editable")) {
+  var showEditor = function () {
+    $("#page").addClass('show-editor');
+    $(window).triggerHandler('resize');
+  };
+
+  var hideEditor = function () {
+    $("#page").removeClass('show-editor');
+    $(window).triggerHandler('resize');
+  };
+
+  var setupEditShowHide = function (forceReveal) {
+    $('#edit-samples-link').click(showEditor);
+    $('#editor div.close-button').click(hideEditor);
+    if (!Album.get("editable") && !forceReveal) {
       $('#edit-samples-link-container').hide();
       return;
     }
@@ -18,20 +30,11 @@ var Editor = (function () {
     }
     $('#edit-samples-link-container').show();
   };
-  Album.onInit.push(updateEditLink);
+  Album.onInit.push(setupEditShowHide);
 
-  var setupEditorDialog = function () {
-    $('#editor-dialog').dialog(dialogOptions({
-      title: "Samples Editor"
-    }));
-    $('#edit-samples-link').click(function () {
-      $('#editor-dialog').dialog("open");
-    });
-  };
-
-  $(document).ready(function () {
-    setupEditorDialog();
-  });
+  // XXX TESTING ONLY
+  Album.onInit.push(showEditor);
 
 }());
+
 
