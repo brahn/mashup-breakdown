@@ -14,6 +14,9 @@
   <%# link domain to facebook page %>
   <meta property="fb:page_id" content="143007779084766" />
 
+  <%# post token %>
+  <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" %>
+
   <script src="http://www.google.com/jsapi" type="text/javascript"></script>
   <% javascript_tag do %>
     google.load("jquery", "1.4.4");

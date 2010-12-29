@@ -302,14 +302,36 @@ var Editor = (function () {
       tracks: Album.get("tracks"),
       samples: sampleEssentials(Album.get("samples"))
     };
-    $.get("/samplestash/write_json" +
-      "?album_short_name=" + encodeURIComponent(Album.get("id")) +
-      "&sample_data=" + encodeURIComponent(JSON.stringify(data)));
+    $.post("/samplestash/write_json",
+      { album_short_name: Album.get("id"),
+        sample_data: JSON.stringify(data),
+        authenticity_token: AUTH_TOKEN
+      });
   };
   $(document).ready(function () {
     $("#save-button").click(saveSampleData);
   });
-  
+
+// =====================================
+// PRE-FILLING ARTIST/TITLE INFO
+
+/*
+  var setPrefillOptions = function () {
+    var sampleList = Album.get("sampleList");
+    if (!sampleList || sampleList.length === 0) {
+      $('#editor div#sample-list-container').hide();
+    } else {
+      $.each(sampleList, function (index, sample) {
+        $('#editor select#sample-list').insert(
+          '<option value="' + index + '">' +
+          sample.artist + ' - "' + sample.title + '"' +
+         '</option>');
+      });
+      $('#editor div#sample-list-container').show();
+    }
+  };
+  Album.onInit.push(setPrefillOptions);
+*/
 
 // ======================================
 
