@@ -122,8 +122,12 @@ var PlaybackControls = (function () {
 
   var spaceTogglesPlay = true;
 
-  var setSpaceTogglesPlay = function (val) {
-    spaceTogglesPlay = !!val;
+  var enableSpaceTogglesPlay = function () {
+    spaceTogglesPlay = true;
+  };
+
+  var disableSpaceTogglesPlay = function () {
+    spaceTogglesPlay = false;
   };
 
   var setupPlayToggle = function () {
@@ -192,7 +196,8 @@ var PlaybackControls = (function () {
 
   return {
     isManuallySeeking: isManuallySeeking,
-    setSpaceTogglesPlay: setSpaceTogglesPlay
+    enableSpaceTogglesPlay: enableSpaceTogglesPlay,
+    disableSpaceTogglesPlay: disableSpaceTogglesPlay
   };
 
 }());
