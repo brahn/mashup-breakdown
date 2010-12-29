@@ -4,6 +4,9 @@
 
 var Editor = (function () {
 
+// ===================================
+// SHOWING/HIDING EDITOR
+
   var setDisplayMode = function (mode) {
     switch (mode) {
     case "landing":
@@ -51,8 +54,16 @@ var Editor = (function () {
   };
   Album.onInit.push(setupEditShowHide);
 
-  // XXX TESTING ONLY
-  Album.onInit.push(showEditor);
+// =========================================
+// CURRENT PLAYPOINT INFORMATION
+
+  var updatePlaypoint = function () {
+    $('#editor #current-time').html(secToMmss(MediaPlayer.getTime() || 0, 2));
+  };
+  MediaPlayer.onTimeChanged.push(updatePlaypoint);
+
+// ========================================
+// 
 
   return {
     show: showEditor,
@@ -62,4 +73,10 @@ var Editor = (function () {
 
 }());
 
+
+// XXX TESTING ONLY
+Album.onInit.push(function () {
+  Editor.show();
+  Editor.setDisplayMode();
+});
 
