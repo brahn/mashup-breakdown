@@ -101,6 +101,31 @@ var PlaybackControls = (function () {
     $(".player #handle-tail").css("opacity", 0.5).show();
   };
 
+  var attemptPlayToggle = function () {
+    if (MediaPlayer.isPlaying()) {
+      MediaPlayer.pause();
+    } else if (MediaPlayer.isCreated()) {
+      MediaPlayer.play();
+    } else {
+      // check again in 1.5 second
+      setTimeout(function () {
+        if (MediaPlayer.isCreated()) {
+          // It worked this time!  Play it.
+          MediaPlayer.play();
+        } else {
+          // Problem.  Show it.
+          $('#media-error-dialog').dialog("open");
+        }
+      }, 1500);
+    }
+  };
+
+  var spaceTogglesPlay = true;
+
+  var setSpaceTogglesPlay = function (val) {
+    spaceTogglesPlay = !!val;
+  };
+
   var setupPlayToggle = function () {
     // change play toggle when youtube player state changes
     MediaPlayer.onStateChanged.push(function () {
@@ -111,22 +136,11 @@ var PlaybackControls = (function () {
       }
     });
     // clicking play toggle changes state of media player
-    $("#playtoggle").click(function () {
-      if (MediaPlayer.isPlaying()) {
-        MediaPlayer.pause();
-      } else if (MediaPlayer.isCreated()) {
-        MediaPlayer.play();
-      } else {
-        // check again in 1.5 second
-        setTimeout(function () {
-          if (MediaPlayer.isCreated()) {
-            // It worked this time!  Play it.
-            MediaPlayer.play();
-          } else {
-            // Problem.  Show it.
-            $('#media-error-dialog').dialog("open");
-          }
-        }, 1500);
+    $("#playtoggle").click(attemptPlayToggle);
+    // pressing space also toggles state of mediaPlayer
+    $(document).keydown(function (event) {
+      if (event.which === 32 && spaceTogglesPlay) {
+        attemptPlayToggle();
       }
     });
   };
@@ -177,7 +191,8 @@ var PlaybackControls = (function () {
   };
 
   return {
-    isManuallySeeking: isManuallySeeking
+    isManuallySeeking: isManuallySeeking,
+    setSpaceTogglesPlay: setSpaceTogglesPlay
   };
 
 }());
