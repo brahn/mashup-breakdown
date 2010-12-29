@@ -141,6 +141,7 @@ var Visualizer = (function () {
     blockHeight = (100.0 - 2 * VERTICAL_PADDING_PERCENTAGE) / totalStrips;
     $.each(m_samples, function (index, sample) {
       sample.block = createSampleBlock(sample);
+      $(sample.block).data("sample", sample);
       deactivateBlock(sample.block);
       $('#samples').append(sample.block);
     });
@@ -177,6 +178,10 @@ var Visualizer = (function () {
         -100.0 * (WIDTH_MULTIPLIER - 1) * (time / m_duration) + "%"});
     }
 */
+  };
+
+  var getTime = function () {
+    return currentTime;
   };
 
   MediaPlayer.onTimeChanged.push(function () {
@@ -233,7 +238,10 @@ var Visualizer = (function () {
   });
 
   return {
-    setTime: setTime
+    setTime: setTime,
+    getTime: getTime,
+    activateBlock: activateBlock,
+    deactivateBlock: deactivateBlock
   };
 
 }());
