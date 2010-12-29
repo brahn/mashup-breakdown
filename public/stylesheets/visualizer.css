@@ -674,9 +674,13 @@ div#editor input {
   width: 120px;
 }
 
-div#editor div.short-input label,
-div#editor div.short-input input {
+div#editor div.time-input label,
+div#editor div.time-input input {
   width: 80px;
+}
+
+div#editor div.time-input input {
+  text-align: right;
 }
 
 div#editor label {
@@ -688,7 +692,15 @@ div#editor label {
 div#editor input {
   color: #000;
   font-size: 12px;
+  background-color: #FFF;
 }
+
+div#editor input.invalid {
+  color: #000;
+  font-size: 12px;
+  background-color: #F99;
+}
+
 
 div#current-time-container {
   margin-top: 10px;
