@@ -222,3 +222,7 @@ var watchForChanges = function (elts, callback) {
     });
   });
 };
+
+var isOrAncestorIs = function (elt, selector) {
+  return $(elt).is(selector) || ($(elt).parents(selector).length > 0);
+};

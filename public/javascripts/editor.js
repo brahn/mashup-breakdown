@@ -113,7 +113,7 @@ var Editor = (function () {
     m_selectedBlock.css({
       "outline-style": "none"
     });
-    var visualizerTime = Visualizer.getTime();
+    var visualizerTime = Visualizer.getTime() || -1;
     if (visualizerTime < m_selectedSample.start ||
       visualizerTime > m_selectedSample.end) {
       Visualizer.deactivateBlock(m_selectedBlock);
@@ -124,6 +124,9 @@ var Editor = (function () {
 // SELECTING SAMPLES FOR EDITING
 
   var deselectSample = function () {
+    if (!m_selectedSample) {
+      return;
+    }
     removeHighlightFromSelectedBlock();
     m_selectedSample = null;
     m_selectedBlock = null;
@@ -154,8 +157,17 @@ var Editor = (function () {
   };
 
   $(document).ready(function () {
+    // selection
     $('.sample-block').live("click", function () {
       maybeSelectBlock(this);
+    });
+    // deselection
+    $(document).click(function (event) {
+      if (!isOrAncestorIs(event.target,
+        '#editor, .player, .flash-player-container, .sample-block, .tipsy')) {
+        deselectSample();
+        setDisplayMode("landing");
+      }
     });
   });
 
@@ -202,6 +214,52 @@ var Editor = (function () {
     $('#sample-info-container input').
       focus(PlaybackControls.disableSpaceTogglesPlay).
       blur(PlaybackControls.enableSpaceTogglesPlay);
+  });
+
+// ======================================
+// CREATING AND DESTROYING SAMPLES
+
+  var createSample = function () {
+    var newSample = {
+      start: Visualizer.getTime() || 0,
+      end: Math.min(Visualizer.getTime() + 5,
+        Album.getCurrentTrack("duration")),
+      artist: "",
+      title: ""
+    };
+    Album.getCurrentTrack("samples").push(newSample);
+    m_selectedBlock = null;
+    Visualizer.refresh(Visualizer.getTime());
+    selectSample(newSample);
+  };
+
+  var deleteSelectedSample = function () {
+    var samples = Album.getCurrentTrack("samples");
+    for (var i = 0; i < samples.length ; i += 1) {
+      if (samples[i] === m_selectedSample) {
+        samples.splice(i, 1);
+        return;
+      }
+    }
+  };
+
+  var maybeDeleteSelectedSample = function () {
+    if (!m_selectedSample) {
+      return;
+    }
+    var c = confirm("Delete the selected sample?");
+    if (!c) {
+      return;
+    }
+    deleteSelectedSample();
+    m_selectedBlock = null;
+    Visualizer.refresh(Visualizer.getTime());
+    setDisplayMode("landing");
+  };
+
+  $(document).ready(function () {
+    $("#editor #new-sample-button").click(createSample);
+    $("#editor #delete-sample-button").click(maybeDeleteSelectedSample);
   });
 
 // ======================================
