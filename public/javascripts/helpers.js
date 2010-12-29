@@ -45,7 +45,7 @@ var timeStrPattern = /((\d*):)?(\d*):(\d*)(\.(\d*))?/;
 
 var timeStrToSec = function (timeStr) {
   var results = timeStr.match(timeStrPattern);
-  if (!results) {
+  if (!results || results[0] !== timeStr) {
     return null;
   }
   var fraction = 0;
@@ -201,3 +201,24 @@ var waitForFinalEvent = (function () {
 })();
 
 var WINDOW_RESIZE_CALLBACK_DELAY = 200;
+
+// watch for changes to text input, fire callback immediately
+// from http://forum.jquery.com/topic/can-change-handle-immediate-text-changes#14737000000967875
+
+var watchForChanges = function (elts, callback) {
+  $(elts).each(function() {
+    // Save current value of element
+    $(this).data('oldVal', $(this).val());
+
+    // Look for changes in the value
+    $(this).bind("propertychange keyup input cut paste", function(event){
+       // If value has changed...
+       if ($(this).data('oldVal') != $(this).val()) {
+        // Updated stored value
+        $(this).data('oldVal', $(this).val());
+        // Do action
+        callback();
+      }
+    });
+  });
+};
