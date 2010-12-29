@@ -157,7 +157,6 @@ var Editor = (function () {
     $('.sample-block').live("click", function () {
       maybeSelectBlock(this);
     });
-    // XXX need to make this also work when tipsy is clicked
   });
 
 // =========================================
