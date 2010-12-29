@@ -32,7 +32,7 @@
             var title = this.getTitle();
             if (title && this.enabled) {
                 var $tip = this.tip();
-                
+
                 $tip.find('.tipsy-inner')[this.options.html ? 'html' : 'text'](title);
                 $tip[0].className = 'tipsy'; // reset classname in case of dynamic gravity
                 $tip.remove().css({top: 0, left: 0, visibility: 'hidden', display: 'block'}).appendTo(document.body);
@@ -74,6 +74,12 @@
                 }
                 
                 $tip.css(tp).addClass('tipsy-' + gravity);
+
+                if (gravity.charAt(0) === 'c') {
+                  $tip.click({element: this.$element}, function (event) {
+                    event.data.element.trigger("click");
+                  });
+                }
 
                 if (this.options.fade) {
                     $tip.stop().css({opacity: 0, display: 'block', visibility: 'visible'}).animate({opacity: this.options.opacity});
