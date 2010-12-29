@@ -597,7 +597,7 @@ div.strip-5 {
 
 /* Editor */
 
-div#editor {
+div#editor-container {
   position: fixed;
   height: 80px;
   bottom: 0px;
@@ -605,9 +605,15 @@ div#editor {
   right: 130px;
   padding: 10px;
   display: none;
+  z-index: 50;
+  border-top: 1px solid #556;
+  background: #282d32;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(61, 68, 77, .9)), to(rgba(40, 45, 50, .9)));
+  background: -moz-linear-gradient(top, rgba(61, 68, 77, .9), rgba(50, 45, 50, .9));
+  background: linear-gradient(top, rgba(61, 68, 77, .9), rgba(50, 45, 50, .9));
 }
 
-div.show-editor div#editor {
+div.show-editor div#editor-container {
   display: block;
 }
 
@@ -619,25 +625,42 @@ div.show-editor div#samples-container {
   bottom: 35px;
 }
 
+div#editor-container div.close-button {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  height: 24px;
+  width: 24px;
+  background: url(/images/close-button.png);
+  cursor: pointer;
+  z-index: 100;
+}
+
 div#editor {
-  border-top: 1px solid #556;
-  background: #282d32;
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(61, 68, 77, .9)), to(rgba(40, 45, 50, .9)));
-  background: -moz-linear-gradient(top, rgba(61, 68, 77, .9), rgba(50, 45, 50, .9));
-  background: linear-gradient(top, rgba(61, 68, 77, .9), rgba(50, 45, 50, .9));
+  position: relative;
+  width: 100%;
+  height: 100%;
   color: #FFF;
   font-size: 11px;
 }
 
-div#sample-controls {
-  height: 100%;
-  float: left;
-  margin-right: 30px;
+div#editor div#sample-controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 110px;
 }
 
-div#sample-controls button {
+div#editor div#sample-controls button {
   width: 60px;
   display: block;
+}
+
+div#editor div#editor-main-column {
+  position: absolute;
+  top: 0;
+  left: 110px;
+  right: 0; // XXX (?)
 }
 
 div#editor div.label-and-field {
@@ -681,13 +704,3 @@ div#editor div#landing-text li {
   line-height: 1.5em;
 }
 
-div#editor div.close-button {
-  position: absolute;
-  top: -12px;
-  right: -12px;
-  height: 24px;
-  width: 24px;
-  background: url(/images/close-button.png);
-  cursor: pointer;
-  z-index: 100;
-}

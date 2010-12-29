@@ -1,35 +1,37 @@
+<div class="close-button"></div>
 <div id="editor">
-  <div class="close-button"></div>
-  <div id="sample-controls" style="float: left; height: 60px">
-    <button id="new-sample" style="display:none">New</button>
-    <button id="delete-sample" style="display:none">Delete</button>
+  <div id="sample-controls">
+    <button id="new-sample-button" style="display:none">New</button>
+    <button id="delete-sample-button" style="display:none">Delete</button>
   </div>
-  <div id="landing-text" style="display:none">
-    <ul>
-      <li>Click a sample to edit, or</li>
-      <li>Create a new sample with the button on the left</li>
-    </ul>
-  </div>
-  <div id="sample-info-container" style="display:none">
-    <div class="label-and-field short-input">
-      <label>Start</label>
-      <%= text_field_tag "start", "" %>
+  <div id="editor-main-column">
+    <div id="sample-info-container" style="display:none">
+      <div class="label-and-field short-input">
+        <label>Start</label>
+        <%= text_field_tag "start", "" %>
+      </div>
+      <div class="label-and-field short-input">
+        <label>Stop</label>
+        <%= text_field_tag "stop", "" %>
+      </div>
+      <div class="label-and-field">
+        <label>Artist</label>
+        <%= text_field_tag "artist", "" %>
+      </div>
+      <div class="label-and-field">
+        <label>Title</label>
+        <%= text_field_tag "title", "" %>
+      </div>
+      <div style="clear:both"></div>
+      <div id="current-time-container">
+        Playpoint: <span id="current-time">0:00.00</span>
+      </div>
     </div>
-    <div class="label-and-field short-input">
-      <label>Stop</label>
-      <%= text_field_tag "stop", "" %>
-    </div>
-    <div class="label-and-field">
-      <label>Artist</label>
-      <%= text_field_tag "artist", "" %>
-    </div>
-    <div class="label-and-field">
-      <label>Title</label>
-      <%= text_field_tag "title", "" %>
-    </div>
-    <div style="clear:both"></div>
-    <div id="current-time-container">
-      Playpoint: <span id="current-time">0:00.00</span>
+    <div id="landing-text" style="display:none">
+      <ul>
+        <li>Click a sample to edit, or</li>
+        <li>Create a new sample with the button on the left</li>
+      </ul>
     </div>
   </div>
 </div>

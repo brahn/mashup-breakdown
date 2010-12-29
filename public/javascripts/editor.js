@@ -4,7 +4,26 @@
 
 var Editor = (function () {
 
+  var setDisplayMode = function (mode) {
+    switch (mode) {
+    case "landing":
+      $('#editor #sample-info-container').hide();
+      $('#editor #landing-text').show(); 
+      $('#editor #delete-sample-button').hide();
+      $('#editor #new-sample-button').show();
+      $('#editor #sample-controls').show();
+      break;
+    default:
+      $('#editor #landing-text').hide();
+      $('#editor #sample-info-container').show();
+      $('#editor #delete-sample-button').show();
+      $('#editor #new-sample-button').show();
+      $('#editor #sample-controls').show();
+    }
+  };
+
   var showEditor = function () {
+    setDisplayMode("landing");
     $("#page").addClass('show-editor');
     $(window).triggerHandler('resize');
   };
@@ -16,7 +35,7 @@ var Editor = (function () {
 
   var setupEditShowHide = function (forceReveal) {
     $('#edit-samples-link').click(showEditor);
-    $('#editor div.close-button').click(hideEditor);
+    $('#editor-container div.close-button').click(hideEditor);
     if (!Album.get("editable") && !forceReveal) {
       $('#edit-samples-link-container').hide();
       return;
@@ -34,6 +53,12 @@ var Editor = (function () {
 
   // XXX TESTING ONLY
   Album.onInit.push(showEditor);
+
+  return {
+    show: showEditor,
+    hide: hideEditor,
+    setDisplayMode: setDisplayMode
+  };
 
 }());
 
