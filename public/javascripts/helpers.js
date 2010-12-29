@@ -9,11 +9,34 @@ var asPercentage = function (x, numDecimals) {
     Math.pow(10, numDecimals)) + "%";
 };
 
-var secToMmss = function (time) {
-  time = time ? parseInt(time, 10) : 0;
-  var mins = Math.floor(time / 60, 10),
-      secs = time - mins * 60;
-  return mins + ":" + (secs < 10 ? '0' + secs : secs);
+var roundTo = function (x, decimalPlaces) {
+  decimalPlaces = decimalPlaces || 0;
+  var powerOfTen = Math.pow(10.0, decimalPlaces);
+  return Math.round(x * powerOfTen) / powerOfTen;
+};
+
+var padStringWithZeros = function (str, minLength) {
+  var newStr = str;
+  for (var i = 0 ; i < minLength - str.length ; i += 1) {
+    newStr = "0" + newStr;
+  }
+  return newStr;
+};
+
+var secToMmss = function (time, decimalPlaces) {
+  decimalPlaces = decimalPlaces || 0;
+  time = time ? roundTo(parseFloat(time), decimalPlaces) : 0;
+  var mins = Math.floor(time / 60),
+      secs = time - mins * 60,
+      wholeSecs = Math.floor(secs),
+      fraction = roundTo(secs - wholeSecs, decimalPlaces);
+  var str = mins + ":" + padStringWithZeros(wholeSecs.toString(10), 2);
+  if (decimalPlaces) {
+    str += "." + padStringWithZeros(
+      Math.round(fraction * Math.pow(10.0, decimalPlaces)).toString(10),
+      decimalPlaces);
+  }
+  return str;
 };
 
 /* Requires at least one colon separating minutes and seconds.
@@ -27,8 +50,9 @@ var timeStrToSec = function (timeStr) {
   }
   var fraction = 0;
   if (results[6]) {
-    var decimalStr = results[6].slice(0,3);
-    fraction = parseInt(decimalStr, 10) / Math.pow(10, decimalStr.length);
+    var decimalStr = results[6].slice(0,4);
+    fraction = 
+      roundTo(parseInt(decimalStr, 10) / Math.pow(10, decimalStr.length), 3);
   }
   return 3600 * (parseInt(results[2], 10) || 0) +
     60 * (parseInt(results[3], 10) || 0) +
