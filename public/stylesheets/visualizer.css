@@ -651,7 +651,14 @@ div#editor div#sample-controls {
   width: 110px;
 }
 
-div#editor div#sample-controls button {
+div#editor div#file-controls { 
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 110px;
+}
+
+div#editor button {
   width: 60px;
   display: block;
 }
@@ -660,7 +667,7 @@ div#editor div#editor-main-column {
   position: absolute;
   top: 0;
   left: 110px;
-  right: 0; // XXX (?)
+  right: 110px;
 }
 
 div#editor div.label-and-field {

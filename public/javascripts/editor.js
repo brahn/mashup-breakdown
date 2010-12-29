@@ -277,6 +277,41 @@ var Editor = (function () {
   });
 
 // ======================================
+// SAVING 
+// XXX shouldn't really be here
+
+  var sampleEssentials = function (albumSamples) {
+    var albumEssentials = [];
+    $.each(albumSamples, function (index, trackSamples) {
+      var trackEssentials = [];
+      albumEssentials.push(trackEssentials);
+      $.each(trackSamples, function (index2, sample) {
+        trackEssentials.push({
+          start: sample.start,
+          end: sample.end,
+          artist: sample.artist,
+          title: sample.title
+        });
+      });
+    });
+    return albumEssentials;
+  };
+
+  var saveSampleData = function () {
+    var data = {
+      tracks: Album.get("tracks"),
+      samples: sampleEssentials(Album.get("samples"))
+    };
+    $.get("/samplestash/write_json" +
+      "?album_short_name=" + encodeURIComponent(Album.get("id")) +
+      "&sample_data=" + encodeURIComponent(JSON.stringify(data)));
+  };
+  $(document).ready(function () {
+    $("#save-button").click(saveSampleData);
+  });
+  
+
+// ======================================
 
   return {
     show: showEditor,
@@ -286,10 +321,11 @@ var Editor = (function () {
 
 }());
 
-
+/*
 // XXX TESTING ONLY
 Album.onInit.push(function () {
   Editor.show();
   Editor.setDisplayMode();
 });
+*/
 

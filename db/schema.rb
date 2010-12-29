@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101115222817) do
+ActiveRecord::Schema.define(:version => 20101229115148) do
 
   create_table "samples", :force => true do |t|
     t.string   "title"
@@ -17,6 +17,14 @@ ActiveRecord::Schema.define(:version => 20101115222817) do
     t.float    "start"
     t.float    "stop"
     t.integer  "track_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "samplestashes", :force => true do |t|
+    t.string   "album_short_name"
+    t.integer  "track_num"
+    t.text     "sample_data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -89,6 +89,15 @@ var DataRetriever = (function () {
     });
   };
 
+// ============================================
+// SAMPLE DATA VIA JSON
+
+  var getDataFromJSON = function (jsonURL, successFunc) {
+    $.getJSON(jsonURL, function (results) {
+      successFunc(results);
+    });
+  };
+
 // =================================
 // INTERFACE
 
@@ -108,6 +117,11 @@ var DataRetriever = (function () {
       });
     } else if (source.type === "text") {
       getDataFromText(source.url, function (results) {
+        m_data[source.id] = results;
+        successFunc(m_data[source.id]);
+      });
+    } else if (source.type === "json") {
+      getDataFromJSON(source.url, function (results) {
         m_data[source.id] = results;
         successFunc(m_data[source.id]);
       });

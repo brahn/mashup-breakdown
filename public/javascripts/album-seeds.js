@@ -1,15 +1,37 @@
 var ALBUM_SEEDS = [
-  { id: "uspop2009",
+  { id: "uspop2009-editable",
     featureVideo: true,
     editable: true,
     artist: "DJ Earworm",
     title: "United States of Pop 2009",
     mediaType: "youtube",
-    tracks: [{ytId: "iNzrwh2Z2hQ"}],
+    tracks: [{ytId: "iNzrwh2Z2hQ", duration: 286}],
     sampleDataSources: [{
-      id: "blank",
-      type: "text",
-      url: "/data/uspop2009-blank.txt"
+      id: "temp",
+      type: "json",
+      url: "/samplestash/read_json?album_short_name=uspop2009-editable",
+      prettyText: "live edit"
+    }],
+    links: [{
+      title: "Artist Info",
+      url: "http://djearworm.com"
+    }, {
+      title: "YouTube Channel",
+      url: "http://youtube.com/djearworm"
+    }]
+  },
+  { id: "uspop2010-editable",
+    featureVideo: true,
+    editable: true,
+    artist: "DJ Earworm",
+    title: "United States of Pop 2010",
+    mediaType: "youtube",
+    tracks: [{ytId: "LLA7JMPE_xU", duration: 334}],
+    sampleDataSources: [{
+      id: "temp",
+      type: "json",
+      url: "/samplestash/read_json?album_short_name=uspop2010-editable",
+      prettyText: "live edit"
     }],
     links: [{
       title: "Artist Info",
