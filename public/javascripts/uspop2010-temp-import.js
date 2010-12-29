@@ -119,7 +119,7 @@ var uspop2010Import = [{start:8, end:16, artist: "Ke$ha", title: "Tik Tok"},
   {start:67, end:68, artist: "Mike Posner", title: "Cooler Than Me"},
   {start:174, end:176, artist: "Mike Posner", title: "Cooler Than Me"},
   
- {start:16, end:18, artist: "The Black Eyed Peas", title: "Imma Be"},
+ {start:15.828, end:18.414, artist: "The Black Eyed Peas", title: "Imma Be"},
   {start:78, end:79, artist: "The Black Eyed Peas", title: "Imma Be"},
   {start:131, end:133, artist: "The Black Eyed Peas", title: "Imma Be"},
   
