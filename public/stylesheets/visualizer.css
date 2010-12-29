@@ -716,3 +716,7 @@ div#editor div#landing-text li {
   line-height: 1.5em;
 }
 
+div#editor a#start-at-current,
+div#editor a#end-at-current {
+  cursor: pointer;
+}

@@ -262,6 +262,20 @@ var Editor = (function () {
     $("#editor #delete-sample-button").click(maybeDeleteSelectedSample);
   });
 
+// =====================================
+// SETTING START/END TO CURRENT PLAYPOINT
+
+  $(document).ready(function () {
+    $('#editor #start-at-current').click(function () {
+      $('#editor input#start').val($('#editor #current-time').text());
+      maybeUpdateSampleFromInputs();
+    });
+    $('#editor #end-at-current').click(function () {
+      $('#editor input#end').val($('#editor #current-time').text());
+      maybeUpdateSampleFromInputs();
+    });
+  });
+
 // ======================================
 
   return {
