@@ -168,6 +168,10 @@ var Editor = (function () {
     m_selectedSample.end = roundTo(timeStrToSec($inputEnd.val()), 3);
     m_selectedSample.artist = $inputArtist.val();
     m_selectedSample.title = $inputTitle.val();
+    m_selectedBlock = null;
+    Visualizer.refresh(Visualizer.getTime());
+    m_selectedBlock = m_selectedSample.block;
+    highlightSelectedBlock();
   };
 
   var validateInputs = function () {

@@ -192,10 +192,10 @@ var Visualizer = (function () {
 
 // ===========================================
 
-  var refresh = function () {
+  var refresh = function (time) {
     var samples = Album.getCurrentTrack("samples"),
-        trackDuration = Album.getCurrentTrack("duration"),
-        time = MediaPlayer.getTime();
+        trackDuration = Album.getCurrentTrack("duration");
+    time = time || MediaPlayer.getTime();
     if (!samples || !trackDuration) {
       return;
     }
@@ -241,7 +241,8 @@ var Visualizer = (function () {
     setTime: setTime,
     getTime: getTime,
     activateBlock: activateBlock,
-    deactivateBlock: deactivateBlock
+    deactivateBlock: deactivateBlock,
+    refresh: refresh
   };
 
 }());
