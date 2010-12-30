@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20101230033744) do
     t.text     "sample_data"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "sample_set_name"
+    t.string   "stash_name"
   end
 
   create_table "tracks", :force => true do |t|

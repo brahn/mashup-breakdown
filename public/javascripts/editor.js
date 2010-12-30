@@ -414,7 +414,7 @@ var Editor = (function () {
     };
     $.post("/samplestash/write_json",
       { album_short_name: Album.get("id"),
-        sample_set_name: sampleSetName,
+        stash_name: sampleSetName,
         sample_data: JSON.stringify(data),
         authenticity_token: AUTH_TOKEN
       });
@@ -428,7 +428,7 @@ var Editor = (function () {
       type: "json",
       url: "/samplestash/read_json" +
         "?album_short_name=" + encodeURIComponent(Album.get("id")) +
-        "&sample_set_name=" + encodeURIComponent(sampleSetName),
+        "&stash_name=" + encodeURIComponent(sampleSetName),
       prettyText: "live edit"
     };
     Album.setDataSource(source, true);
