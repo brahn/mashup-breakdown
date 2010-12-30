@@ -311,7 +311,8 @@ var Editor = (function () {
       maybeUpdateSampleFromInputs();
     });
     $('select#sample-list').change(maybeUpdateSampleFromInputs);
-    $('#sample-info-container input, #sample-info-container select').
+    $('#sample-info-container input, #sample-info-container select, ' +
+      'input#sample_set_name').
       focus(PlaybackControls.disableSpaceTogglesPlay).
       blur(PlaybackControls.enableSpaceTogglesPlay);
   });
@@ -401,18 +402,41 @@ var Editor = (function () {
   };
 
   var saveSampleData = function () {
+    var sampleSetName = $('input#sample_set_name').val().trim().toLowerCase();
+    $('input#sample_set_name').val(sampleSetName);
+    if (!sampleSetName) {
+      alert("Please enter a sample set name to save");
+      return;
+    }
     var data = {
       tracks: Album.get("tracks"),
       samples: sampleEssentials(Album.get("samples"))
     };
     $.post("/samplestash/write_json",
       { album_short_name: Album.get("id"),
+        sample_set_name: sampleSetName,
         sample_data: JSON.stringify(data),
         authenticity_token: AUTH_TOKEN
       });
   };
+
+  var loadSampleData = function () {
+    var sampleSetName = $('input#sample_set_name').val().trim().toLowerCase();
+    $('input#sample_set_name').val(sampleSetName);
+    var source = {
+      id: Album.get("id") + "_" + sampleSetName,
+      type: "json",
+      url: "/samplestash/read_json" +
+        "?album_short_name=" + encodeURIComponent(Album.get("id")) +
+        "&sample_set_name=" + encodeURIComponent(sampleSetName),
+      prettyText: "live edit"
+    };
+    Album.setDataSource(source, true);
+  };
+
   $(document).ready(function () {
     $("#save-button").click(saveSampleData);
+    $("#load-button").click(loadSampleData);
   });
 
 

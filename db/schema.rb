@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101229115148) do
+ActiveRecord::Schema.define(:version => 20101230033744) do
 
   create_table "samples", :force => true do |t|
     t.string   "title"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20101229115148) do
     t.text     "sample_data"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "sample_set_name"
   end
 
   create_table "tracks", :force => true do |t|

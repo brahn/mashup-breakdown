@@ -655,12 +655,16 @@ div#editor div#file-controls {
   position: absolute;
   top: 0;
   right: 0;
-  width: 110px;
+  width: 150px;
 }
 
 div#editor button {
   width: 60px;
   display: block;
+}
+
+div#file-controls button {
+  float: left;
 }
 
 div#editor div#editor-main-column {
