@@ -107,12 +107,12 @@ var Visualizer = (function () {
         gravity: 'c',
         html: true,
         fallback: tooltipHTML(sample),
-        opacity: m_featureVideo ? 0.5 : 0.8
+        opacity: m_featureVideo ? 0.8 : 0.8
       });
   };
 
   var activateBlock = function (block, animate) {
-    var newOpacity = m_featureVideo ? 0.4 : 1.0;
+    var newOpacity = m_featureVideo ? 0.8 : 1.0;
     if (animate) {
       block.tipsy("enableFade");
       block.tipsy("showWithOverride");
@@ -125,7 +125,7 @@ var Visualizer = (function () {
   };
 
   var deactivateBlock = function (block, animate) {
-    var newOpacity = m_featureVideo ? 0.1 : 0.2;
+    var newOpacity = m_featureVideo ? 0.2 : 0.2;
     if (animate) {
       block.tipsy("enableFade");
       block.tipsy("hide");
