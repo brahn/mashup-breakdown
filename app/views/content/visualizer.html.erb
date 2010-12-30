@@ -35,13 +35,17 @@
       });
     });
 
-    MediaPlayer.onAlbumSetup.push(function () {
-      if (Album.get("featureVideo")) {
+    var featureVideo = function (doFeature) {
+      if (doFeature) {
         $('#page').addClass('feature-video');
       } else {
         $('#page').removeClass('feature-video');
       }
       MediaPlayer.resizeToContainer();
+    };
+
+    MediaPlayer.onAlbumSetup.push(function () {
+      featureVideo(Album.get("featureVideo"));
     });
     $(document).ready(function () {
       $(window).resize(function () {
