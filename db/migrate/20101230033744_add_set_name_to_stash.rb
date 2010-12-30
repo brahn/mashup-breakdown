@@ -7,7 +7,7 @@ class AddSetNameToStash < ActiveRecord::Migration
 
   def self.down
     change_table :samplestashes do |t|
-      t.remove :sample_set_name
+      t.remove :stash_name
     end
   end
 end
