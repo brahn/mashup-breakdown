@@ -1,8 +1,8 @@
 <div class="close-button"></div>
 <div id="editor">
   <div id="sample-controls">
-    <button id="new-sample-button" style="display:none">New</button>
-    <button id="delete-sample-button" style="display:none">Delete</button>
+    <button id="new-sample-button">New</button>
+    <button id="delete-sample-button">Delete</button>
   </div>
   <div id="editor-main-column">
     <div id="sample-info-container" style="display:none">
@@ -14,13 +14,19 @@
         <label>End</label>
         <%= text_field_tag "end", "" %>
       </div>
-      <div class="label-and-field">
+      <div class="label-and-field" id="artist-input-container"
         <label>Artist</label>
         <%= text_field_tag "artist", "" %>
       </div>
-      <div class="label-and-field">
+      <div class="label-and-field" id="title-input-container">
         <label>Title</label>
         <%= text_field_tag "title", "" %>
+      </div>
+      <div class="label-and-field" style="display:none" id="sample-list-container">
+        <label>Sampled Tracks</label>
+        <select id="sample-list">
+          <option value="-1"></option>
+        </select>
       </div>
       <div style="clear:both"></div>
       <div id="current-time-container">
