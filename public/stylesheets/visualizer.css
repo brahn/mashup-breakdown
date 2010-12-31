@@ -625,6 +625,10 @@ div.show-editor div#samples-container {
   bottom: 35px;
 }
 
+div.show-editor div.sample-block.flagged {
+  border: solid 3px #FF0;
+}
+
 div#editor-container div.close-button {
   position: absolute;
   top: -12px;

@@ -11,7 +11,8 @@ var Editor = (function () {
       $inputEnd = null,
       $inputArtist = null,
       $inputTitle = null,
-      $selectFromList = null;
+      $selectFromList = null,
+      $flaggedCheckbox = null;
 
   $(document).ready(function () {
     $inputStart = $('#editor input#start');
@@ -19,6 +20,7 @@ var Editor = (function () {
     $inputArtist = $('#editor input#artist');
     $inputTitle = $('#editor input#title');
     $selectFromList = $('#editor select#sample-list');
+    $flaggedCheckbox = $('#editor input#flagged-checkbox');
   });
 
 // ===================================
@@ -43,6 +45,7 @@ var Editor = (function () {
       $('#editor #sample-info-container input').attr('disabled', '');
       $('#editor #sample-info-container select').attr('disabled', '');
       $('#editor #delete-sample-button').attr('disabled', '');
+      $flaggedCheckbox.attr('disabled', '');
       $('#editor #sample-info-container').show();
       break;
     case "no-sample-selected":
@@ -52,6 +55,7 @@ var Editor = (function () {
       $('#editor #sample-info-container input').attr('disabled', 'disabled');
       $('#editor #sample-info-container select').attr('disabled', 'disabled');
       $('#editor #delete-sample-button').attr('disabled', 'disabled');
+      $flaggedCheckbox.attr('checked',"").attr('disabled', 'disabled');
       $('#editor #sample-info-container').show();
       break;
     }
@@ -229,6 +233,7 @@ var Editor = (function () {
     m_updateOnInputChange = false;
     $inputStart.val(secToMmss(sample.start, 3));
     $inputEnd.val(secToMmss(sample.end, 3));
+    $flaggedCheckbox.attr('checked', sample.flagged ? 'checked' : '');
     if (m_sampleList) {
       $selectFromList.val(sample.sampledTrackId);
     } else {
@@ -265,6 +270,7 @@ var Editor = (function () {
   var updateSampleFromInputs = function () {
     m_selectedSample.start = roundTo(timeStrToSec($inputStart.val()), 3);
     m_selectedSample.end = roundTo(timeStrToSec($inputEnd.val()), 3);
+    m_selectedSample.flagged = $flaggedCheckbox.attr('checked');
     if (m_sampleList) {
       var sampleIndex = parseInt($selectFromList.val(), 10);
       m_selectedSample.sampledTrackId = sampleIndex;
@@ -312,7 +318,7 @@ var Editor = (function () {
     watchForChanges($('#sample-info-container input'), function () {
       maybeUpdateSampleFromInputs();
     });
-    $('select#sample-list').change(maybeUpdateSampleFromInputs);
+    $('select#sample-list, input#flagged-checkbox').change(maybeUpdateSampleFromInputs);
     $('#sample-info-container input, #sample-info-container select, ' +
       'input#sample_set_name').
       focus(PlaybackControls.disableSpaceTogglesPlay).
@@ -382,6 +388,19 @@ var Editor = (function () {
     });
   });
 
+// =====================================
+// FLAGGING SAMPLES
+
+  var flagSample = function (sample, isFlagged) {
+    sample.flagged = isFlagged;
+  };
+
+  var flagAll = function (isFlagged) {
+    $.each(Album.getCurrentTrack("samples"), function (index, sample) {
+      flagSample(sample, isFlagged);
+    });
+  };
+
 // ======================================
 // SAVING 
 // XXX shouldn't really be here
@@ -396,7 +415,8 @@ var Editor = (function () {
           start: sample.start,
           end: sample.end,
           artist: sample.artist,
-          title: sample.title
+          title: sample.title,
+          flagged: sample.flagged
         });
       });
     });
@@ -447,7 +467,10 @@ var Editor = (function () {
   return {
     show: showEditor,
     hide: hideEditor,
-    setDisplayMode: setDisplayMode
+    setDisplayMode: setDisplayMode,
+
+    flagSample: flagSample,
+    flagAll: flagAll
   };
 
 }());

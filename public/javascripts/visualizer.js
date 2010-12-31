@@ -106,6 +106,7 @@ var Visualizer = (function () {
         left: asPercentage(1.0 * start / m_duration),
         right: asPercentage(1 - 1.0 * end / m_duration)
       }).
+      addClass(sample.flagged ? "flagged" : "").
       tipsy({
         trigger: 'hoverWithOverride',
         tipHover: true,
