@@ -67,6 +67,7 @@ var Editor = (function () {
     }
     $("#page").addClass('show-editor');
     $(window).triggerHandler('resize');
+    Visualizer.setWidthMultiplier(5);
   };
 
   var hideEditor = function () {
@@ -74,6 +75,7 @@ var Editor = (function () {
     $("#page").removeClass('show-editor');
     $(window).triggerHandler('resize');
     deselectSample();
+    Visualizer.setWidthMultiplier(1);
   };
 
   var setupEditShowHide = function (forceReveal) {

@@ -13,7 +13,7 @@ var Visualizer = (function () {
 
   var samplesDiv = null;
 
-  var WIDTH_MULTIPLIER = 1;
+  var m_widthMultiplier = 1;
 
   var clearToolTips = function () {
     $('.tipsy').remove();
@@ -21,7 +21,9 @@ var Visualizer = (function () {
 
   var setupSamplesDiv = function () {
     clearToolTips();
-    samplesDiv = $("#samples").width((WIDTH_MULTIPLIER * 100) + "%").empty();
+    var time = currentTime || 0;
+    samplesDiv = $("#samples").empty().width((m_widthMultiplier * 100) + "%").
+      css({left: -100.0 * (m_widthMultiplier - 1) * (time / m_duration) + "%"});
   };
 
 // ======================================
@@ -88,9 +90,12 @@ var Visualizer = (function () {
   };
 
   var createSampleBlock = function (sample) {
+    var start = sample.start,
+        end = sample.end;
     // force samples to be represented as at least 1 second long
-    if (sample.end - sample.start < 1) {
-      sample.end = sample.start + 1;
+
+    if (end - start < 1) {
+      end = start + 1;
     }
     return $('<div></div>').
       addClass("sample-block strip-" + (sample.strip % 6)).
@@ -98,8 +103,8 @@ var Visualizer = (function () {
         top: (sample.strip * blockHeight +
                (2 * sample.strip + 1) * blockVerticalPadding) + "%",
         height: blockHeight + "%",
-        left: asPercentage(1.0 * sample.start / m_duration),
-        right: asPercentage(1 - 1.0 * sample.end / m_duration)
+        left: asPercentage(1.0 * start / m_duration),
+        right: asPercentage(1 - 1.0 * end / m_duration)
       }).
       tipsy({
         trigger: 'hoverWithOverride',
@@ -172,12 +177,10 @@ var Visualizer = (function () {
   var setTime = function (time, animate) {
     currentTime = time;
     updateSampleActivity(time, animate);
-/*
-    if (WIDTH_MULTIPLIER !== 1) {
+    if (m_widthMultiplier !== 1) {
       samplesDiv.stop().animate({left: 
-        -100.0 * (WIDTH_MULTIPLIER - 1) * (time / m_duration) + "%"});
+        -100.0 * (m_widthMultiplier - 1) * (time / m_duration) + "%"});
     }
-*/
   };
 
   var getTime = function () {
@@ -226,6 +229,11 @@ var Visualizer = (function () {
   Album.onDataChanged.push(refresh);
   MediaPlayer.onTrackChanged.push(refresh);
 
+  var setWidthMultiplier = function (val) {
+    m_widthMultiplier = val;
+    refresh(currentTime);
+  };
+
   $(document).ready(function () {
     $(window).resize(function () {
       waitForFinalEvent(function () {
@@ -242,7 +250,8 @@ var Visualizer = (function () {
     getTime: getTime,
     activateBlock: activateBlock,
     deactivateBlock: deactivateBlock,
-    refresh: refresh
+    refresh: refresh,
+    setWidthMultiplier: setWidthMultiplier
   };
 
 }());
