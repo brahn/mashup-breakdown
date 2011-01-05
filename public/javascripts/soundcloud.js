@@ -84,6 +84,7 @@ var SCloud = (function () {
       onTrackChanged = [];
 
   var firstReady = true;
+  // XXX presumably this shouldn't happen until $(document).ready ? 
   $(document).bind('soundcloud:onPlayerReady', function (event, data) {
     if (!scPlayer) {
       scPlayer = document.getElementById("sc-player");
