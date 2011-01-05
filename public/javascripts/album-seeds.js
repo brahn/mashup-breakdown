@@ -214,6 +214,49 @@ var ALBUM_SEEDS = [
       }
     ]
   },
+  { id: "feed-the-animals-audio",
+    artist: "Girl Talk",
+    title: "Feed the Animals",
+    mediaType: "audio",
+    tracks: [
+      {srcUrl: "http://soundcloud.com/brahn/01-play-your-part-pt-1/download", duration: 285},
+      {srcUrl: "http://soundcloud.com/brahn/02-shut-the-club-down/download", duration: 187},
+      {srcUrl: "http://soundcloud.com/brahn/03-still-here/download", duration: 237},
+      {srcUrl: "http://soundcloud.com/brahn/04-what-its-all-about/download", duration: 255},
+      {srcUrl: "http://soundcloud.com/brahn/05-set-it-off/download", duration: 222},
+      {srcUrl: "http://soundcloud.com/brahn/06-no-pause/download", duration: 192},
+      {srcUrl: "http://soundcloud.com/brahn/07-like-this/download", duration: 201},
+      {srcUrl: "http://soundcloud.com/brahn/08-give-me-a-beat/download", duration: 252},
+      {srcUrl: "http://soundcloud.com/brahn/09-hands-in-the-air/download", duration: 260},
+      {srcUrl: "http://soundcloud.com/brahn/10-in-step/download", duration: 203},
+      {srcUrl: "http://soundcloud.com/brahn/11-let-me-see-you-1/download", duration: 244},
+      {srcUrl: "http://soundcloud.com/brahn/12-heres-the-thing-1/download", duration: 286},
+      {srcUrl: "http://soundcloud.com/brahn/13-dont-stop-1/download", duration: 178},
+      {srcUrl: "http://soundcloud.com/brahn/14-play-your-part-pt-2-1/download", duration: 205}
+    ],
+    sampleDataSources: [
+      { id: "wikipedia-snapshot",
+        prettyText: "from Wikipedia (Dec. 8)",
+        type: "text",
+        url: "/data/feed-the-animals.txt"
+      },
+/*
+      { id: "wikipedia-live",
+        prettyText: "Wikipedia (live)",
+        type: "wikipedia",
+        pageName: "Feed_the_Animals"
+      }
+*/
+    ],
+    links: [
+      { title: "Artist Info",
+        url: "http://www.facebook.com/girltalkmusic"
+      },
+      { title: "Download",
+        url: "http://illegal-art.net/shop#release117"
+      }
+    ]
+  },
   { id: "feed-the-animals-video",
     featureVideo: true,
     artist: "Girl Talk",

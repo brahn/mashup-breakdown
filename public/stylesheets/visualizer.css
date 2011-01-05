@@ -316,7 +316,7 @@ div#yt-container {
   border-color: #666;
 }
 
-div#sc-container {
+div#sc-container, div#audio-container {
   border-color: #000;
 }
 

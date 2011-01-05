@@ -1,17 +1,17 @@
 /*jslint indent:2, browser:true, onevar:false */
-/*global $, window, YouTube, SCloud, sendEvent, safeLogger */
-/*global Album */
+/*global $, window, YouTube, SCloud, Html5Audio, sendEvent, safeLogger */
 
 // interface for multiple types of media
 // calls YouTube and SCloud javascript objects as appropriate.
 
 var MediaPlayer = (function () {
 
-  var MEDIA_SOURCE_TYPES = ["soundcloud", "youtube"];
+  var MEDIA_SOURCE_TYPES = ["soundcloud", "youtube", "audio"];
 
   var m_controllerObjs = {
     soundcloud: SCloud,
-    youtube: YouTube
+    youtube: YouTube,
+    audio: Html5Audio
   };
 
   var m_album, m_trackIndex; // currently playing album, track number
@@ -39,15 +39,25 @@ var MediaPlayer = (function () {
       sendEvent(onAlbumSetup);
     }
   });
-
-  YouTube.onStateChanged.push(function () {
-    if (m_album.mediaType === "youtube") {
-      sendEvent(onStateChanged);
+  Html5Audio.onReady.push(function () {
+    if (m_album.mediaType === "audio") {
+      sendEvent(onAlbumSetup);
     }
   });
-  SCloud.onStateChanged.push(function () {
+
+  YouTube.onStateChanged.push(function (state) {
+    if (m_album.mediaType === "youtube") {
+      sendEvent(onStateChanged, state);
+    }
+  });
+  SCloud.onStateChanged.push(function (state) {
     if (m_album.mediaType === "soundcloud") {
-      sendEvent(onStateChanged);
+      sendEvent(onStateChanged, state);
+    }
+  });
+  Html5Audio.onStateChanged.push(function (state) {
+    if (m_album.mediaType === "audio") {
+      sendEvent(onStateChanged, state);
     }
   });
 
@@ -59,6 +69,11 @@ var MediaPlayer = (function () {
   });
   SCloud.onTrackChanged.push(function () {
     if (m_album.mediaType === "soundcloud") {
+      sendEvent(onTrackChanged);
+    }
+  });
+  Html5Audio.onTrackChanged.push(function () {
+    if (m_album.mediaType === "audio") {
       sendEvent(onTrackChanged);
     }
   });
@@ -114,6 +129,13 @@ var MediaPlayer = (function () {
         failureCallback: opts.failureCallback
       });
       break;
+    case "audio":
+      Html5Audio.setup({
+        srcUrl: m_album.tracks[opts.startAtTrack].srcUrl,
+        playWhenCued: opts.playWhenCued,
+        failureCallback: opts.failureCallback
+      });
+      break;
     default:
       safeLogger("bad album source type: ");
       safeLogger(album.source);
@@ -148,6 +170,13 @@ var MediaPlayer = (function () {
         failureCallback: m_failureCallback
       });
       break;
+    case "audio":
+      Html5Audio.setup({
+        srcUrl: m_album.tracks[trackIndex].srcUrl,
+        playWhenCued: playImmediately,
+        failureCallback: m_failureCallback
+      });
+      break;
     }
     m_trackIndex = trackIndex;
     sendEvent(onTrackChanged);
@@ -177,6 +206,16 @@ var MediaPlayer = (function () {
     }
   });
   SCloud.onStateChanged.push(function (state) {
+    if (state === "ended") {
+      var tempDateTime = new Date();
+      if (!lastAdvanceDateTime || (tempDateTime - lastAdvanceDateTime) >
+           ADVANCE_HYSTERESIS_IN_SEC * 1000) {
+        lastAdvanceDateTime = tempDateTime;
+        advanceTrack();
+      }
+    }
+  });
+  Html5Audio.onStateChanged.push(function (state) {
     if (state === "ended") {
       var tempDateTime = new Date();
       if (!lastAdvanceDateTime || (tempDateTime - lastAdvanceDateTime) >
@@ -220,6 +259,9 @@ var MediaPlayer = (function () {
       break;
     case "soundcloud":
       SCloud.seekTo(seconds);
+      break;
+    case "audio":
+      Html5Audio.seekTo(seconds);
       break;
     }
   };
@@ -340,6 +382,17 @@ var MediaPlayer = (function () {
           fractionBuffered: scBufferStatus.percentLoaded / 100.0,
           fractionStartingAt: 0
         };
+      } else {
+        return {
+          fractionBuffered: 0,
+          fractionStartingAt: 0
+        };
+      }
+      break;
+    case "audio":
+      var audioBufferStatus = Html5Audio.bufferStatus();
+      if (audioBufferStatus) {
+        return audioBufferStatus;
       } else {
         return {
           fractionBuffered: 0,

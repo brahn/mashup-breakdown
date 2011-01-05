@@ -151,6 +151,9 @@ var AlbumControls = (function () {
     case ('soundcloud'):
       $("#sc-container").css({zIndex: 10});
       break;
+    case ('audio'):
+      $("#audio-container").css({zIndex: 10});
+      break;
     case ('youtube'):
       $("#yt-container").css({zIndex: 10});
     }

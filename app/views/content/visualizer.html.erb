@@ -5,6 +5,7 @@
   <%= javascript_include_tag "youtube" %>
   <%= javascript_include_tag "third/soundcloud.player.api.js" %>
   <%= javascript_include_tag "soundcloud" %>
+  <%= javascript_include_tag "html5audio" %>
   <%= javascript_include_tag "media" %>
   <%= javascript_include_tag "visualizer" %>
   <%= javascript_include_tag "playback-controls" %>
@@ -71,6 +72,14 @@
   <%= link_to "", "http://soundcloud.com", {:id => "sc-logo",
       :target => "_blank"} %>
 </div>
+
+<div id="audio-container" class="flash-player-container">
+  <%# gets replaced when player inserted %>
+  <div id="audio-player-standin" class="flash-player"></div>
+  <%= link_to "", "http://soundcloud.com", {:id => "sc-logo",
+      :target => "_blank"} %>
+</div>
+
 
 <div id="media-error-dialog" style="display:none">
   <p>
