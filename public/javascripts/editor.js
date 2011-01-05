@@ -167,12 +167,13 @@ var Editor = (function () {
   };
 
   var setupListOrFreeInput = function () {
-    m_sampleList = Album.get("sampleList").sort(sampledTrackSort);
+    m_sampleList = Album.get("sampleList");
     if (!m_sampleList || m_sampleList.length === 0) {
       m_sampleList = null;
       $('#editor div#sample-list-container').hide();
       $('#artist-input-container, #title-input-container').show();
     } else {
+      m_sampleList = m_sampleList.sort(sampledTrackSort);
       $.each(m_sampleList, function (index, sample) {
         $selectFromList.append(
           '<option value="' + index + '">' +
