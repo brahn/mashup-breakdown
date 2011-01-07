@@ -10,14 +10,23 @@
 <script src="/javascripts/helpers.js" type="text/javascript"></script>
 <script src="/javascripts/html5audio.js" type="text/javascript"></script>
 <script type="text/javascript">
+/*
 Html5Audio.onReady.push(function () {safeLogger("READY EVENT FIRED!")})
 Html5Audio.onTrackChanged.push(function () {safeLogger("TRACK CHANGED EVENT FIRED!")})
 Html5Audio.onStateChanged.push(function (s) {safeLogger("STATE CHANGED EVENT FIRED! state = " + s)})
+*/
+$(document).ready(function () {
+  setTimeout(function () {
+    safeLogger('calling js play')
+    $('#foo')[0].play();
+    safeLogger('called')
+  }, 5000);
+});
 </script>
 </head>
 <body>
 
-  <audio src="http://soundcloud.com/brahn/03-live/download" controls="controls">
+  <audio id="foo" src="http://soundcloud.com/brahn/03-live/download" controls="controls">
     Foo
   </audio>
   <div style="width: 100px; height: 100px">
