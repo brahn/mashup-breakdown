@@ -18,6 +18,11 @@
       <%= setup_js_var "albumId", params[:album_id], "all-day" %>
       var albumSeed = getAlbumSeedById(albumId);
       if (albumSeed) {
+        if (!swfobject.hasFlashPlayerVersion("9.0.0") &&
+          albumSeed.flashFreeAvailable && Html5Audio.isSupported()) {
+          safeLogger("Flash not supported, switching to html5audio");
+          albumSeed = flashFreeSeed(albumSeed);
+        }
         Album.init(albumSeed);
       } else {
         $("#no-album-dialog").dialog("open")

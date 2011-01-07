@@ -70,6 +70,7 @@ var ALBUM_SEEDS = [
     artist: "The Kleptones",
     title: "A Night at the Hip-Hopera",
     mediaType: "soundcloud",
+    flashFreeAvailable: true,
     tracks: [
       {scUrl: "http://soundcloud.com/brahn/01-precession", duration: 127},
       {scUrl: "http://soundcloud.com/brahn/02-see", duration: 254},
@@ -111,6 +112,7 @@ var ALBUM_SEEDS = [
     artist: "scntfc",
     title: "mass.rsrction.7",
     mediaType: "soundcloud",
+    flashFreeAvailable: true,
     tracks: [
       { scUrl: "http://soundcloud.com/scientificamerican/mass-rsrction-7",
         duration: 2054}
@@ -131,6 +133,48 @@ var ALBUM_SEEDS = [
     }]
   },
   { id: "all-day",
+    artist: "Girl Talk",
+    title: "All Day",
+    mediaType: "soundcloud",
+    flashFreeAvailable: true,
+    tracks: [
+      {scUrl: "http://soundcloud.com/brahn/01-oh-no", duration: 339},
+      {scUrl: "http://soundcloud.com/brahn/02-let-it-out", duration: 389},
+      {scUrl: "http://soundcloud.com/brahn/03-thats-right", duration: 323},
+      {scUrl: "http://soundcloud.com/brahn/04-jump-on-stage-1", duration: 382},
+      {scUrl: "http://soundcloud.com/brahn/05-this-is-the-remix-1", duration: 362},
+      {scUrl: "http://soundcloud.com/brahn/06-on-and-on", duration: 309},
+      {scUrl: "http://soundcloud.com/brahn/07-get-it-get-it", duration: 333},
+      {scUrl: "http://soundcloud.com/brahn/08-down-for-the-count-1", duration: 398},
+      {scUrl: "http://soundcloud.com/brahn/09-make-me-wanna", duration: 383},
+      {scUrl: "http://soundcloud.com/brahn/10-steady-shock", duration: 348},
+      {scUrl: "http://soundcloud.com/brahn/11-triple-double", duration: 388},
+      {scUrl: "http://soundcloud.com/brahn/12-every-day", duration: 311}
+    ],
+    sampleDataSources: [
+      { id: "wikipedia-snapshot",
+        prettyText: "from Wikipedia (Dec. 9)",
+        type: "text",
+        url: "/data/all-day.txt"
+      },
+/*
+      { id: "wikipedia-live",
+        prettyText: "Wikipedia (live)",
+        type: "wikipedia",
+        pageName: "All_Day_(album)"
+      }
+*/
+    ],
+    links: [
+      { title: "Artist Info",
+        url: "http://www.facebook.com/girltalkmusic"
+      },
+      { title: "Download",
+        url: "http://illegal-art.net/allday/"
+      }
+    ]
+  },
+  { id: "all-day-youtube",
     artist: "Girl Talk",
     title: "All Day",
     mediaType: "youtube",
@@ -175,6 +219,7 @@ var ALBUM_SEEDS = [
     artist: "Girl Talk",
     title: "Feed the Animals",
     mediaType: "soundcloud",
+    flashFreeAvailable: true,
     tracks: [
       {scUrl: "http://soundcloud.com/brahn/01-play-your-part-pt-1", duration: 285},
       {scUrl: "http://soundcloud.com/brahn/02-shut-the-club-down", duration: 187},
@@ -190,49 +235,6 @@ var ALBUM_SEEDS = [
       {scUrl: "http://soundcloud.com/brahn/12-heres-the-thing-1", duration: 286},
       {scUrl: "http://soundcloud.com/brahn/13-dont-stop-1", duration: 178},
       {scUrl: "http://soundcloud.com/brahn/14-play-your-part-pt-2-1", duration: 205}
-    ],
-    sampleDataSources: [
-      { id: "wikipedia-snapshot",
-        prettyText: "from Wikipedia (Dec. 8)",
-        type: "text",
-        url: "/data/feed-the-animals.txt"
-      },
-/*
-      { id: "wikipedia-live",
-        prettyText: "Wikipedia (live)",
-        type: "wikipedia",
-        pageName: "Feed_the_Animals"
-      }
-*/
-    ],
-    links: [
-      { title: "Artist Info",
-        url: "http://www.facebook.com/girltalkmusic"
-      },
-      { title: "Download",
-        url: "http://illegal-art.net/shop#release117"
-      }
-    ]
-  },
-  { id: "feed-the-animals-audio",
-    artist: "Girl Talk",
-    title: "Feed the Animals",
-    mediaType: "audio",
-    tracks: [
-      {srcUrl: "http://soundcloud.com/brahn/01-play-your-part-pt-1/download", duration: 285},
-      {srcUrl: "http://soundcloud.com/brahn/02-shut-the-club-down/download", duration: 187},
-      {srcUrl: "http://soundcloud.com/brahn/03-still-here/download", duration: 237},
-      {srcUrl: "http://soundcloud.com/brahn/04-what-its-all-about/download", duration: 255},
-      {srcUrl: "http://soundcloud.com/brahn/05-set-it-off/download", duration: 222},
-      {srcUrl: "http://soundcloud.com/brahn/06-no-pause/download", duration: 192},
-      {srcUrl: "http://soundcloud.com/brahn/07-like-this/download", duration: 201},
-      {srcUrl: "http://soundcloud.com/brahn/08-give-me-a-beat/download", duration: 252},
-      {srcUrl: "http://soundcloud.com/brahn/09-hands-in-the-air/download", duration: 260},
-      {srcUrl: "http://soundcloud.com/brahn/10-in-step/download", duration: 203},
-      {srcUrl: "http://soundcloud.com/brahn/11-let-me-see-you-1/download", duration: 244},
-      {srcUrl: "http://soundcloud.com/brahn/12-heres-the-thing-1/download", duration: 286},
-      {srcUrl: "http://soundcloud.com/brahn/13-dont-stop-1/download", duration: 178},
-      {srcUrl: "http://soundcloud.com/brahn/14-play-your-part-pt-2-1/download", duration: 205}
     ],
     sampleDataSources: [
       { id: "wikipedia-snapshot",
@@ -303,6 +305,19 @@ var ALBUM_SEEDS = [
   }
 
 ];
+
+var flashFreeSeed = function (albumSeed) {
+  if (!albumSeed.flashFreeAvailable) {
+    return null;
+  }
+  // make a deep clone of the seed
+  var seed = $.extend(true, {}, albumSeed);
+  seed.mediaType = "audio";
+  $.each(seed.tracks, function (index, track) {
+    track.srcUrl = track.scUrl ? (track.scUrl + "/download") : null;
+  });
+  return seed;
+};
 
 var getAlbumSeedById = function (id) {
   for (var i = 0; i < ALBUM_SEEDS.length; i +=1) {
