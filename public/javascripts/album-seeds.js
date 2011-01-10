@@ -1,4 +1,39 @@
 var ALBUM_SEEDS = [
+  { id: "torn-up",
+    artist: "E-603",
+    title: "Torn Up",
+    mediaType: "youtube",
+    tracks:[
+      {ytId: "tqPxxGfNcqs"},
+      {ytId: "w7p1mnBaiT4"},
+      {ytId: "RDtUP9rAVAQ"},
+      {ytId: "gqXgLJNJbOc"},
+      {ytId: "A0PCCCP4Abs"},
+      {ytId: "YfABu_kmDOk"},
+      {ytId: "tymrGoqpQO4"},
+      {ytId: "t1fNTRoN2Eo"},
+      {ytId: "SgloZImd7Ok"},
+      {ytId: "Y1ysKQCCoNs"},
+      {ytId: "PrDg6111d_o"},
+      {ytId: "87HUcnwdiM4"},
+      {ytId: "zBaVws1xWzU"},
+      {ytId: "7T7_mv91UEA"},
+      {ytId: "0D51-DWzrm4"}
+   ],
+   sampleDataSources: [{
+     id: "nick-heer",
+     type: "text",
+     url: "/data/torn-up-nick-heer.txt",
+     prettyText: "compiled by <a href='http://nickheer.com' target='_blank'>Nick Heer</a>"
+   }],
+   links: [{
+     title: "Artist Info",
+     url: "http://www.e-603.com/"
+   }, {
+     title: "Download",
+     url: "https://www.tornup.net/TORNUP"
+   }]
+  },
   { id: "uspop2009-editable",
     featureVideo: true,
     editable: true,
