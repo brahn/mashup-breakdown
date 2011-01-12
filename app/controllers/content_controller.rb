@@ -8,12 +8,14 @@ class ContentController < ApplicationController
       when "all-day", "feed-the-animals" then "Girl Talk"
       when "nhh" then "The Kleptones"
       when "mass-rsrction-7" then "scntfc"
+      when "torn-up" then "E-603"
     end
     album_title = case album_id
       when "all-day" then "All Day"
       when "feed-the-animals" then "Feed the Animals"
       when "nhh" then "A Night at the Hip-Hopera"
       when "mass-rsrction-7" then "mass.rsrction.7"
+      when "torn-up" then "Torn Up"
     end
     tweet_text_options = case album_id
       when "all-day"
@@ -24,7 +26,10 @@ class ContentController < ApplicationController
       when "nhh"
         ["Must see/hear: visual breakdown of the Kleptones' brilliant Queen mashup, A Night at the Hip-Hopera"]
       when "mass-rsrction-7"
-        ["More mashup breakdowns! Here's mass.rsrction.7 by mashup artist scntfc."]   else
+        ["More mashup breakdowns! Here's mass.rsrction.7 by mashup artist scntfc."]
+      when "torn-up"
+        ["Girl Talk fans: check out this breakdown of mega-mashup Torn Up by E-603, with 268 sampled tracks."]
+      else
         [""]
       end
     @tweet_text = tweet_text_options[rand tweet_text_options.length]
