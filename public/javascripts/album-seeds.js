@@ -23,7 +23,7 @@ var ALBUM_SEEDS = [
    sampleDataSources: [{
      id: "nick-heer",
      type: "text",
-     url: "/data/torn-up-nick-heer.txt",
+     url: "/data/torn-up.txt",
      prettyText: "compiled by <a href='http://nickheer.com' target='_blank'>Nick Heer</a>"
    }],
    links: [{
