@@ -89,13 +89,14 @@ var Visualizer = (function () {
     return sample.artist + "<br />" + sample.title;
   };
 
+  var MINIMUM_VISUAL_SAMPLE_LENGTH = 1;
+
   var createSampleBlock = function (sample) {
     var start = sample.start,
         end = sample.end;
-    // force samples to be represented as at least 1 second long
-
-    if (end - start < 1) {
-      end = start + 1;
+    // force samples to be visually represented as at least 1 second long
+    if (end - start < MINIMUM_VISUAL_SAMPLE_LENGTH) {
+      end = start + MINIMUM_VISUAL_SAMPLE_LENGTH;
     }
     return $('<div></div>').
       addClass("sample-block strip-" + (sample.strip % 6)).
@@ -196,6 +197,8 @@ var Visualizer = (function () {
 
 // ===========================================
 
+  var MINIMUM_SAMPLE_TIME = 0.5;
+
   var refresh = function (time) {
     var samples = Album.getCurrentTrack("samples"),
         trackDuration = Album.getCurrentTrack("duration");
@@ -218,6 +221,12 @@ var Visualizer = (function () {
         return (a.title > b.title) ? 1 : -1;
       } else {
         return -1;
+      }
+    });
+    // make sure sample length is at least 0.5sec for purposes of timing
+    $.each(m_samples, function (index, sample) {
+      if (sample.end - sample.start < MINIMUM_SAMPLE_TIME) {
+        sample.end = sample.start + MINIMUM_SAMPLE_TIME;
       }
     });
     setupSamplesDiv();
