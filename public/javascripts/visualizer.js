@@ -197,7 +197,7 @@ var Visualizer = (function () {
 
 // ===========================================
 
-  var MINIMUM_SAMPLE_TIME = 0.5;
+  var MINIMUM_SAMPLE_TIME = 0.7;
 
   var refresh = function (time) {
     var samples = Album.getCurrentTrack("samples"),
