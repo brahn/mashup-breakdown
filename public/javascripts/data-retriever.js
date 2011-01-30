@@ -14,8 +14,8 @@ var DataRetriever = (function () {
         sampleData = [],
         currentTrackSamples = null,
         trackPattern = /^(\d+)\.\s"([^"]*)"\s-\s([0-9:]+)/,
-        samplePattern = /^([0-9:]+)\s-\s([0-9:]+)\s(.*)\s-\s"([^"]*)"/,
-        samplePatternNoStop = /^([0-9:]+)\s(.*)\s-\s"([^"]*)"/;
+        samplePattern = /^([0-9\.:]+)\s-\s([0-9\.:]+)\s(.*)\s-\s"([^"]*)"/,
+        samplePatternNoStop = /^([0-9\.:]+)\s(.*)\s-\s"([^"]*)"/;
     var lines = text.split('\n');
     $.each(lines, function (index, line) {
       line = line.replace(/\[.*\] */g, "");
