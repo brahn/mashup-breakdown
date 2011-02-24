@@ -33,7 +33,9 @@
       }
     });
 
-    <%= setup_js_var "trackIndex", params[:track], 0 %>
+    <%= setup_js_var "trackIndex",
+        (params[:track] && params[:track].to_i > 0 ) ? (params[:track].to_i - 1) : 0,
+        nil %>
     Album.onInit.push(function () {
       MediaPlayer.setupAlbum(Album.get(), {
         failureCallback: function () {
