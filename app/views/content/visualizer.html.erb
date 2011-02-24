@@ -33,11 +33,13 @@
       }
     });
 
+    <%= setup_js_var "trackIndex", params[:track], 0 %>
     Album.onInit.push(function () {
       MediaPlayer.setupAlbum(Album.get(), {
         failureCallback: function () {
           $("#media-error-dialog").dialog("open");
-        }
+        },
+        startAtTrack: trackIndex
       });
     });
 
