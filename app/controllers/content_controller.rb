@@ -9,6 +9,7 @@ class ContentController < ApplicationController
       when "nhh" then "The Kleptones"
       when "mass-rsrction-7" then "scntfc"
       when "torn-up" then "E-603"
+      when "culture-shock" then "Titus Jones"
     end
     album_title = case album_id
       when "all-day" then "All Day"
@@ -16,6 +17,7 @@ class ContentController < ApplicationController
       when "nhh" then "A Night at the Hip-Hopera"
       when "mass-rsrction-7" then "mass.rsrction.7"
       when "torn-up" then "Torn Up"
+      when "culture-shock" then "Culture Shock"
     end
     tweet_text_options = case album_id
       when "all-day"
@@ -29,6 +31,8 @@ class ContentController < ApplicationController
         ["More mashup breakdowns! Here's mass.rsrction.7 by mashup artist scntfc."]
       when "torn-up"
         ["Girl Talk fans: check out this breakdown of mega-mashup Torn Up by E-603, with 268 sampled tracks."]
+      when "culture-shock"
+        ["Come dance your a$$ off with Titus Jones' pop mashup album Culture Shock.  Complete with visual mashup breakdown:"]
       else
         [""]
       end

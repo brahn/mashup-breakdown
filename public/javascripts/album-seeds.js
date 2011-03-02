@@ -1,4 +1,38 @@
 var ALBUM_SEEDS = [
+  { id: "culture-shock",
+    artist: "Titus Jones",
+    title: "Culture Shock",
+    mediaType: "audio",
+    tracks:[
+      {srcUrl: "http://www.titusjones.com/Mashups/2011/Culture Shock GAPLESS/01 Titus Jones - Introduction.mp3"},
+      {srcUrl: "http://www.titusjones.com/Mashups/2011/Culture Shock GAPLESS/02 Titus Jones - Hold Your Sexy Arms Against Me.mp3"},
+      {srcUrl: "http://www.titusjones.com/Mashups/2011/Culture Shock GAPLESS/03 Titus Jones - College Is Crazy.mp3"},
+      {srcUrl: "http://www.titusjones.com/Mashups/2011/Culture Shock GAPLESS/04 Titus Jones - Touchin' On A Firework Sucks.mp3"},
+      {srcUrl: "http://www.titusjones.com/Mashups/2011/Culture Shock GAPLESS/05 Titus Jones - Cold Woman Uprising.mp3"},
+      {srcUrl: "http://www.titusjones.com/Mashups/2011/Culture Shock GAPLESS/06 Titus Jones - Teenage Kids.mp3"},
+      {srcUrl: "http://www.titusjones.com/Mashups/2011/Culture Shock GAPLESS/07 - Titus Jones - PokeStar.mp3"},
+      {srcUrl: "http://www.titusjones.com/Mashups/2011/Culture Shock GAPLESS/08 - Titus Jones - Rock Your S&M Fantasy Down Low.mp3"},
+      {srcUrl: "http://www.titusjones.com/Mashups/2011/Culture Shock GAPLESS/09 - Titus Jones - Oops, I Shot Jolene's Mom.mp3"},
+      {srcUrl: "http://www.titusjones.com/Mashups/2011/Culture Shock GAPLESS/10 Titus Jones - We Love Hustlin' Drugs.mp3"},
+      {srcUrl: "http://www.titusjones.com/Mashups/2011/Culture Shock GAPLESS/11 Titus Jones - Never Givin' Up My Only Barbie.mp3"},
+      {srcUrl: "http://www.titusjones.com/Mashups/2011/Culture Shock GAPLESS/12 Titus Jones - How We Go Out (The Stomp! Remix).mp3"},
+      {srcUrl: "http://www.titusjones.com/Mashups/2011/Culture Shock GAPLESS/13 Titus Jones - Unfaithful Sex.mp3"},
+      {srcUrl: "http://www.titusjones.com/Mashups/2011/Culture Shock GAPLESS/14 Titus Jones - Don't Stop Believin' In This Love On Earth.mp3"}
+   ],
+   sampleDataSources: [{
+     id: "artist-data",
+     type: "text",
+     url: "/data/culture-shock.txt",
+     prettyText: "courtesy of the artist"
+   }],
+   links: [{
+     title: "Artist Info",
+     url: "http://titusjones.com/"
+   }, {
+     title: "Download",
+     url: "http://www.titusjones.com/"
+   }]
+  },
   { id: "torn-up",
     artist: "E-603",
     title: "Torn Up",
