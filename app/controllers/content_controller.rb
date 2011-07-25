@@ -32,7 +32,7 @@ class ContentController < ApplicationController
       when "torn-up"
         ["Girl Talk fans: check out this breakdown of mega-mashup Torn Up by E-603, with 268 sampled tracks."]
       when "culture-shock"
-        ["Come dance your a$$ off with Titus Jones' pop mashup album Culture Shock.  Complete with visual mashup breakdown:"]
+        ["Dance your a$$ off with Titus Jones' pop mashup Culture Shock.  Complete with visual breakdown:"]
       else
         [""]
       end
