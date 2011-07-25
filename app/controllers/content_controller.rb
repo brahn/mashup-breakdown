@@ -37,9 +37,9 @@ class ContentController < ApplicationController
       when "torn-up"
         ["Girl Talk fans: check out this breakdown of mega-mashup Torn Up by E-603, with 268 sampled tracks."]
       when "culture-shock"
-        ["Dance your a$$ off with Titus Jones' pop mashup Culture Shock.  Complete with visual breakdown:"]
+        ["Dance your a$$ off with Titus Jones' pop mashup Culture Shock.  Complete with visual breakdown"]
       when "hdmdml"
-        ["The Abrahammer's latest album, 50 mins of old&new mashed together, now on Mashup Breakdown:"]
+        ["The Abrahammer's latest album, 50 mins of old&new mashed together, now on Mashup Breakdown"]
       else
         [""]
       end
