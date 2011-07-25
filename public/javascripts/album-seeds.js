@@ -1,4 +1,39 @@
 var ALBUM_SEEDS = [
+  { id: "hdmdml",
+    artist: "The Abrahammer",
+    title: "How Dubstep Music Destroyed My Life",
+    mediaType: "soundcloud",
+    flashFreeAvailable: false,
+    tracks:[
+      {scUrl: "http://soundcloud.com/the-abrahammer/lets-start-the-trek/", duration: 53},
+      {scUrl: "http://soundcloud.com/the-abrahammer/i-usually-drop-it-like-this/", duration: 164},
+      {scUrl: "http://soundcloud.com/the-abrahammer/turn-it-too/", duration: 251},
+      {scUrl: "http://soundcloud.com/the-abrahammer/youre-my-diamonds-my-honey/", duration: 254},
+      {scUrl: "http://soundcloud.com/the-abrahammer/gangster-of-success/", duration: 256},
+      {scUrl: "http://soundcloud.com/the-abrahammer/im-still-on-the-cake/", duration: 299},
+      {scUrl: "http://soundcloud.com/the-abrahammer/hold-the-right-to-spin/", duration: 249},
+      {scUrl: "http://soundcloud.com/the-abrahammer/back-in-it/", duration: 240},
+      {scUrl: "http://soundcloud.com/the-abrahammer/break-it-down-too-fast/", duration: 235},
+      {scUrl: "http://soundcloud.com/the-abrahammer/music-sounds-better-with-all-that-junk/", duration: 217},
+      {scUrl: "http://soundcloud.com/the-abrahammer/shake-it-right-get-it-started/", duration: 220},
+      {scUrl: "http://soundcloud.com/the-abrahammer/plus-im-a-laptop/", duration: 266},
+      {scUrl: "http://soundcloud.com/the-abrahammer/stray-dog-and-the-legend-of-the-best/", duration: 197},
+      {scUrl: "http://soundcloud.com/the-abrahammer/all-the-times-we-had-together/", duration: 58}
+   ],
+   sampleDataSources: [{
+     id: "artist-data",
+     type: "text",
+     url: "/data/hdmdml.txt",
+     prettyText: "courtesy of the artist"
+   }],
+   links: [{
+     title: "Artist Info",
+     url: "http://www.theabrahammer.com/"
+   }, {
+     title: "Download",
+     url: "http://www.theabrahammer.com/hdmdml/"
+   }]
+  },
   { id: "culture-shock",
     artist: "Titus Jones",
     title: "Culture Shock",
@@ -371,7 +406,45 @@ var ALBUM_SEEDS = [
         url: "http://illegal-art.net/shop#release117"
       }
     ]
-  }
+  },
+  { id: "night-ripper",
+    artist: "Girl Talk",
+    title: "Night Ripper",
+    mediaType: "youtube",
+    tracks: [
+      {ytId: "p8zM5HSvfRI", duration: 160},
+      {ytId: "8zMPQ6JP9U8", duration: 128},
+      {ytId: "MiTdCmBGLiY", Duration: 171},
+      {ytId: "S7UF5vNNC9c", duration: 149},
+      {ytId: "TW_dk0lZqOM", duration: 181},
+      {ytId: "tuF3F_Zeu90", duration: 192},
+      {ytId: "qRQRdvjk-0k", duration: 146},
+      {ytId: "HiLrMuBJ-ls", duration: 137},
+      {ytId: "1yPbCF7D5Fc", duration: 192},
+      {ytId: "dC6f3cwkXpM", duration: 113},
+      {ytId: "9Di74-gYQ4k", duration: 173},
+      {ytId: "fQCncBt58-Y", duration: 203},
+      {ytId: "VK5wh5VilrY", duration: 135},
+      {ytId: "In-c8623y7o", duration: 105},
+      {ytId: "KO17epPCeAQ", duration: 135},
+      {ytId: "l1nA7ndPSJ0", duration: 200}
+    ],
+    sampleDataSources: [{
+      id: "corbin-whittington",
+      type: "text",
+      url: "/data/night-ripper.txt",
+      prettyText: "compiled by <a href='https://www.facebook.com/whittyboy15' target='_blank'>Corbin Whittington</a>"
+   }],
+    links: [
+      { title: "Artist Info",
+        url: "http://www.facebook.com/girltalkmusic"
+      },
+      { title: "Get the Album",
+        url: "http://illegalart.net/girltalk/"
+      }
+    ]
+  },
+
 
 ];
 
