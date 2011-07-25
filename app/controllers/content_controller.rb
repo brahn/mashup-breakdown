@@ -11,6 +11,8 @@ class ContentController < ApplicationController
       when "torn-up" then "E-603"
       when "culture-shock" then "Titus Jones"
       when "hdmdml" then "The Abrahammer"
+      when "oldskool" then "Tapehead"
+      when "dhbjptf" then "Don't Hold Back, just Push Things Forward"
     end
     album_title = case album_id
       when "all-day" then "All Day"
@@ -21,6 +23,8 @@ class ContentController < ApplicationController
       when "torn-up" then "Torn Up"
       when "culture-shock" then "Culture Shock"
       when "hdmdml" then "How Dubstep Music Destroyed My Life"
+      when "oldskool" then "Oldskool Mashup"
+      when "dhbjptf" then "Ithaca Audio"
     end
     tweet_text_options = case album_id
       when "all-day"
@@ -40,6 +44,10 @@ class ContentController < ApplicationController
         ["Dance your a$$ off with Titus Jones' pop mashup Culture Shock.  Complete with visual breakdown"]
       when "hdmdml"
         ["The Abrahammer's latest album, 50 mins of old&new mashed together, now on Mashup Breakdown"]
+      when "oldskool"
+        ["Tapehead's Oldskool Mashup, now on Mashup Breakdown"]
+      when "dhbjptf"
+        ["Don't Hold Back just Push Things Forward, now on Mashup Breakdown"]
       else
         [""]
       end

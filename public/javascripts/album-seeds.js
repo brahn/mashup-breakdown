@@ -444,8 +444,75 @@ var ALBUM_SEEDS = [
       }
     ]
   },
-
-
+  { id: "oldskool",
+    artist: "Tapehead",
+    title: "Oldskool Mashup",
+    mediaType: "soundcloud",
+    flashFreeAvailable: false,
+    tracks: [
+      { scUrl: "http://soundcloud.com/trialanderror/oldskool-mashup",
+        duration: 341}
+    ],
+    sampleDataSources: [
+      { id: "artist-data",
+        prettyText: "courtesy of the artist",
+        type: "text",
+        url: "/data/oldskool.txt"
+      }
+    ],
+    links: [{
+      title: "Artist Info",
+      url: "http://tapehead.org/"
+    }]
+  },
+  { id: "dhbjptf",
+    artist: "Ithaca Audio",
+    title: "Don't Hold Back, just Push Things Forward",
+    mediaType: "youtube",
+    flashFreeAvailable: false,
+    featureVideo: false,
+    tracks: [
+      { ytId:"IiZXRZANYmA", duration: 190 }
+    ],
+    sampleDataSources: [
+      { id: "artist-data",
+        prettyText: "courtesy of the artist",
+        type: "text",
+        url: "/data/dhbjptf.txt"
+      }
+    ],
+    links: [{
+      title: "Extended Mix & Download",
+      url: "http://soundcloud.com/ithaca-audio/dont-hold-back-just-push-1"
+    },{
+      title: "More from Ithaca Audio",
+      url: "http://soundcloud.com/ithaca-audio"
+    }]
+  },
+  { id: "dhbjptf-video",
+    artist: "Ithaca Audio",
+    title: "Don't Hold Back, just Push Things Forward",
+    mediaType: "youtube",
+    flashFreeAvailable: false,
+    featureVideo: true,
+    tracks: [
+      { ytId:"IiZXRZANYmA", duration: 190 }
+    ],
+    sampleDataSources: [
+      { id: "artist-data",
+        prettyText: "courtesy of the artist",
+        type: "text",
+        url: "/data/dhbjptf.txt"
+      }
+    ],
+    links: [{
+      title: "Extended Mix & Download",
+      url: "http://soundcloud.com/ithaca-audio/dont-hold-back-just-push-1"
+    },{
+      title: "More from Ithaca Audio",
+      url: "http://soundcloud.com/ithaca-audio"
+    }]
+  }
 ];
 
 var flashFreeSeed = function (albumSeed) {
