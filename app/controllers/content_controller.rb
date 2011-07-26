@@ -11,7 +11,7 @@ class ContentController < ApplicationController
       when "torn-up" then "E-603"
       when "culture-shock" then "Titus Jones"
       when "hdmdml" then "The Abrahammer"
-      when "oldskool" then "Tapehead"
+      when "oldskool" then "Trial & Error"
       when "dhbjptf" then "Don't Hold Back, just Push Things Forward"
     end
     album_title = case album_id

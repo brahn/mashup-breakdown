@@ -445,10 +445,10 @@ var ALBUM_SEEDS = [
     ]
   },
   { id: "oldskool",
-    artist: "Tapehead",
+    artist: "Trial & Error",
     title: "Oldskool Mashup",
     mediaType: "soundcloud",
-    flashFreeAvailable: false,
+    flashFreeAvailable: true,
     tracks: [
       { scUrl: "http://soundcloud.com/trialanderror/oldskool-mashup",
         duration: 341}
@@ -462,7 +462,7 @@ var ALBUM_SEEDS = [
     ],
     links: [{
       title: "Artist Info",
-      url: "http://tapehead.org/"
+      url: "http://twitter.com/t_pk"
     }]
   },
   { id: "dhbjptf",
