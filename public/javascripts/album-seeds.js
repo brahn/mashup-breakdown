@@ -468,11 +468,11 @@ var ALBUM_SEEDS = [
   { id: "dhbjptf",
     artist: "Ithaca Audio",
     title: "Don't Hold Back, just Push Things Forward",
-    mediaType: "youtube",
-    flashFreeAvailable: false,
+    mediaType: "audio",
+    flashFreeAvailable: true,
     featureVideo: false,
     tracks: [
-      { ytId:"IiZXRZANYmA", duration: 190 }
+      { srcUrl:"http://www.ithacaaudio.com/mashup/Dont%20Hold%20Back.mp3", duration: 190 }
     ],
     sampleDataSources: [
       { id: "artist-data",
@@ -486,7 +486,7 @@ var ALBUM_SEEDS = [
       url: "http://soundcloud.com/ithaca-audio/dont-hold-back-just-push-1"
     },{
       title: "More from Ithaca Audio",
-      url: "http://soundcloud.com/ithaca-audio"
+      url: " http://vimeo.com/ithacaaudio"
     }]
   },
   { id: "dhbjptf-video",
