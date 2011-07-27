@@ -45,7 +45,7 @@ class ContentController < ApplicationController
       when "hdmdml"
         ["The Abrahammer's latest album, 50 mins of old&new mashed together, now on Mashup Breakdown"]
       when "oldskool"
-        ["Tapehead's Oldskool Mashup, now on Mashup Breakdown"]
+        ["Trial & Error's Oldskool Mashup, now on Mashup Breakdown"]
       when "dhbjptf"
         ["Don't Hold Back just Push Things Forward, now on Mashup Breakdown"]
       else
