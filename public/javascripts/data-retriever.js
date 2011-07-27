@@ -13,28 +13,43 @@ var DataRetriever = (function () {
     var trackData = [],
         sampleData = [],
         currentTrackSamples = null,
+        commentPattern = /^#/,
+        blankPattern = /^\s*$/,
         trackPattern = /^(\d+)\.\s"([^"]*)"\s-\s([0-9:]+)/,
-        samplePattern = /^([0-9\.:]+)\s-\s([0-9\.:]+)\s(.*)\s-\s"([^"]*)"/,
-        samplePatternNoStop = /^([0-9\.:]+)\s(.*)\s-\s"([^"]*)"/;
+        samplePattern = /^((?:(?:[0-9\.:]+)(?:\s-\s(?:[0-9\.:]+))?(?:,\s*)?)*)\s(.*)\s-\s"([^"]*)"/,
+        startAndEndPattern = /\s*([0-9\.:]+)\s-\s([0-9\.:]+)\s*/,
+        startOnlyPattern = /\s*([0-9\.:]+)\s*/;
     var lines = text.split('\n');
     $.each(lines, function (index, line) {
       line = line.replace(/\[.*\] */g, "");
-      var sampleResults = line.match(samplePattern);
-      if (sampleResults) {
-        currentTrackSamples.push({
-          start: timeStrToSec(sampleResults[1]),
-          end: timeStrToSec(sampleResults[2]),
-          artist: sampleResults[3],
-          title: sampleResults[4]
-        });
+      if (line.match(blankPattern) || line.match(commentPattern)) {
         return;
       }
-      sampleResults = line.match(samplePatternNoStop);
+      var sampleResults = line.match(samplePattern);
       if (sampleResults) {
-        currentTrackSamples.push({
-          start: timeStrToSec(sampleResults[1]),
-          artist: sampleResults[2],
-          title: sampleResults[3]
+        var sampleTimeStrings = sampleResults[1].split(",");
+        $.each(sampleTimeStrings, function (index, sampleTimeString) {
+          var startAndEndResults = sampleTimeString.match(startAndEndPattern);
+          if (startAndEndResults) {
+            currentTrackSamples.push({
+              start: timeStrToSec(startAndEndResults[1]),
+              end: timeStrToSec(startAndEndResults[2]),
+              artist: sampleResults[2],
+              title: sampleResults[3]
+            });
+            return;
+          }
+          var startOnlyResults = sampleTimeString.match(startOnlyPattern);
+          if (startOnlyResults) {
+            currentTrackSamples.push({
+              start: timeStrToSec(startOnlyResults[1]),
+              artist: sampleResults[2],
+              title: sampleResults[3]
+            });
+            return;
+          }
+          safeLogger("Unable to parse '" + sampleTimeString + "' in ");
+          safeLogger(line);
         });
         return;
       }
@@ -46,7 +61,10 @@ var DataRetriever = (function () {
         });
         currentTrackSamples = [];
         sampleData.push(currentTrackSamples);
+        return;
       }
+      safeLogger("Unable to parse line: ");
+      safeLogger(line);
     });
     return {
       tracks: trackData,
