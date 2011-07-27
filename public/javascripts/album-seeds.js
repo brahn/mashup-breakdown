@@ -31,7 +31,7 @@ var ALBUM_SEEDS = [
      url: "http://www.theabrahammer.com/"
    }, {
      title: "Download",
-     url: "http://www.theabrahammer.com/hdmdml/"
+     url: "http://www.theabrahammer.com/download/"
    }]
   },
   { id: "culture-shock",
