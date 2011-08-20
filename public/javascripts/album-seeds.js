@@ -465,6 +465,27 @@ var ALBUM_SEEDS = [
       url: "http://twitter.com/t_pk"
     }]
   },
+  { id: "autobob-pop",
+    artist: "DJ AutoBoB",
+    title: "AutoBoB Pop",
+    mediaType: "soundcloud",
+    flashFreeAvailable: false,
+    tracks: [
+      { scUrl: "http://soundcloud.com/dj-autobob/autobob-pop",
+        duration: 748}
+    ],
+    sampleDataSources: [
+      { id: "artist-data",
+        prettyText: "courtesy of the artist",
+        type: "text",
+        url: "/data/autobob-pop.txt"
+      }
+    ],
+    links: [{
+      title: "Artist Info",
+      url: "http://autobob.bandcamp.com/"
+    }]
+  },
   { id: "dhbjptf",
     artist: "Ithaca Audio",
     title: "Don't Hold Back, just Push Things Forward",

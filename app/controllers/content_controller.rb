@@ -13,6 +13,7 @@ class ContentController < ApplicationController
       when "hdmdml" then "The Abrahammer"
       when "oldskool" then "Trial & Error"
       when "dhbjptf" then "Don't Hold Back, just Push Things Forward"
+      when "autobob-pop" then "DJ AutoBoB"
     end
     album_title = case album_id
       when "all-day" then "All Day"
@@ -25,6 +26,7 @@ class ContentController < ApplicationController
       when "hdmdml" then "How Dubstep Music Destroyed My Life"
       when "oldskool" then "Oldskool Mashup"
       when "dhbjptf" then "Ithaca Audio"
+      when "autobob-pop" then "AutoBoB Pop"
     end
     tweet_text_options = case album_id
       when "all-day"
@@ -48,6 +50,8 @@ class ContentController < ApplicationController
         ["Trial & Error's Oldskool Mashup, now on Mashup Breakdown"]
       when "dhbjptf"
         ["Don't Hold Back just Push Things Forward, now on Mashup Breakdown"]
+      when "autobob-pop"
+        ["DJ AutoBoB's pop mashup masterpiece, now on Mashup Breakdown"]
       else
         [""]
       end
