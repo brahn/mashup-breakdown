@@ -484,6 +484,9 @@ var ALBUM_SEEDS = [
     links: [{
       title: "Artist Info",
       url: "http://autobob.bandcamp.com/"
+    },{
+      title: "Video",
+      url: "http://www.youtube.com/watch?v=WjlNcZ9Z1So"
     }]
   },
   { id: "dhbjptf",
