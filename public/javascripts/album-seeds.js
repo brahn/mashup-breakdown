@@ -512,29 +512,36 @@ var ALBUM_SEEDS = [
       url: " http://vimeo.com/ithacaaudio"
     }]
   },
-  { id: "dhbjptf-video",
-    artist: "Ithaca Audio",
-    title: "Don't Hold Back, just Push Things Forward",
-    mediaType: "youtube",
+  { id: "summer-style",
+    artist: "DJ 0dH",
+    title: "The Summer Style LP",
+    mediaType: "soundcloud",
     flashFreeAvailable: false,
-    featureVideo: true,
     tracks: [
-      { ytId:"IiZXRZANYmA", duration: 190 }
+      {scUrl: "http://soundcloud.com/dj-0dh/intro-1/", duration: 85},
+      {scUrl: "http://soundcloud.com/dj-0dh/post-up/", duration: 202},
+      {scUrl: "http://soundcloud.com/dj-0dh/tape-rock/", duration: 291},
+      {scUrl: "http://soundcloud.com/dj-0dh/so-empty/", duration: 130},
+      {scUrl: "http://soundcloud.com/dj-0dh/lets-go/", duration: 183},
+      {scUrl: "http://soundcloud.com/dj-0dh/want-that/", duration: 59},
+      {scUrl: "http://soundcloud.com/dj-0dh/low-key/", duration: 212},
+      {scUrl: "http://soundcloud.com/dj-0dh/double-ds/", duration: 113},
+      {scUrl: "http://soundcloud.com/dj-0dh/like-this/", duration: 121},
+      {scUrl: "http://soundcloud.com/dj-0dh/girl-problems/", duration: 149},
+      {scUrl: "http://soundcloud.com/dj-0dh/my-room/", duration: 85}
     ],
     sampleDataSources: [
       { id: "artist-data",
         prettyText: "courtesy of the artist",
         type: "text",
-        url: "/data/dhbjptf.txt"
+        url: "/data/summer-style.txt"
       }
     ],
-    links: [{
-      title: "Extended Mix & Download",
-      url: "http://soundcloud.com/ithaca-audio/dont-hold-back-just-push-1"
-    },{
-      title: "More from Ithaca Audio",
-      url: "http://soundcloud.com/ithaca-audio"
-    }]
+    links: [
+      { title: "DJ 0dH on Facebook",
+        url: "https://www.facebook.com/DJ0dH"
+      }
+    ]
   }
 ];
 
