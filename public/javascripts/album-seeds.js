@@ -469,7 +469,7 @@ var ALBUM_SEEDS = [
     artist: "DJ AutoBoB",
     title: "AutoBoB Pop",
     mediaType: "soundcloud",
-    flashFreeAvailable: false,
+    flashFreeAvailable: true,
     tracks: [
       { scUrl: "http://soundcloud.com/dj-autobob/autobob-pop",
         duration: 748}
