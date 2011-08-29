@@ -15,6 +15,7 @@ class ContentController < ApplicationController
       when "dhbjptf" then "Don't Hold Back, just Push Things Forward"
       when "autobob-pop" then "DJ AutoBoB"
       when "summer-style" then "DJ 0dH"
+      when "uspop2010" then "DJ Earworm"
     end
     album_title = case album_id
       when "all-day" then "All Day"
@@ -29,6 +30,7 @@ class ContentController < ApplicationController
       when "dhbjptf" then "Ithaca Audio"
       when "autobob-pop" then "AutoBoB Pop"
       when "summer-style" then "The Summer Style LP"
+      when "uspop2010" then "United States of Pop 2010"
     end
     tweet_text_options = case album_id
       when "all-day"
@@ -56,6 +58,8 @@ class ContentController < ApplicationController
         ["DJ AutoBoB's pop mashup masterpiece, now on Mashup Breakdown"]
       when "summer-style"
         ["DJ 0dH's Summer Style LP, now on Mashup Breakdown"]
+      when "uspop2010"
+        ["DJ Earworm's United States of Pop 2010, now on Mashup Breakdown"]
       else
         [""]
       end

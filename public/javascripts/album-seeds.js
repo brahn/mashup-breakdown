@@ -124,13 +124,38 @@ var ALBUM_SEEDS = [
       url: "http://youtube.com/djearworm"
     }]
   },
+  { id: "uspop2010",
+    featureVideo: false,
+    editable: false,
+    artist: "DJ Earworm",
+    title: "United States of Pop 2010",
+//    mediaType: "youtube",
+//    tracks: [{ytId: "LLA7JMPE_xU", duration: 334}],
+    mediaType: "soundcloud",
+    tracks: [{scUrl: "http://soundcloud.com/watts-krackinov/dj-earworm-united-states-of-pop-2010", duration: 311}],
+    sampleDataSources: [{
+      id: "ab",
+      type: "text",
+      url: "/data/uspop2010-ab.txt",
+      prettyText: "compiled by DJ AutoBoB"
+    }],
+    links: [{
+      title: "Artist Info",
+      url: "http://djearworm.com"
+    }, {
+      title: "YouTube Channel",
+      url: "http://youtube.com/djearworm"
+    }]
+  },
   { id: "uspop2010-editable",
-    featureVideo: true,
+    featureVideo: false,
     editable: true,
     artist: "DJ Earworm",
     title: "United States of Pop 2010",
-    mediaType: "youtube",
-    tracks: [{ytId: "LLA7JMPE_xU", duration: 334}],
+//    mediaType: "youtube",
+//    tracks: [{ytId: "LLA7JMPE_xU", duration: 334}],
+    mediaType: "soundcloud",
+    tracks: [{scUrl: "http://soundcloud.com/watts-krackinov/dj-earworm-united-states-of-pop-2010", duration: 334}],
     sampleDataSources: [{
       id: "temp",
       type: "json",
