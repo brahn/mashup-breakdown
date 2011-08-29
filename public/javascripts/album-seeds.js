@@ -538,6 +538,9 @@ var ALBUM_SEEDS = [
       }
     ],
     links: [
+      { title: "DJ 0dH on Bandcamp",
+        url: "http://dj0dh.bandcamp.com/"
+      },
       { title: "DJ 0dH on Facebook",
         url: "https://www.facebook.com/DJ0dH"
       }
