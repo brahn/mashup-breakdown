@@ -137,7 +137,17 @@ var ALBUM_SEEDS = [
       id: "ab",
       type: "text",
       url: "/data/uspop2010-ab.txt",
-      prettyText: "compiled by DJ AutoBoB"
+      prettyText: "compiled by Marcus Mangel and DJ AutoBoB (all)"
+    }, {
+      id: "ab-acapella",
+      type: "text",
+      url: "/data/uspop2010-ab-acapella.txt",
+      prettyText: "compiled by Marcus Mangel and DJ AutoBoB (acapella only)"
+    }, {
+      id: "ab-instrumental",
+      type: "text",
+      url: "/data/uspop2010-ab-instrumental.txt",
+      prettyText: "compiled by Marcus Mangel and DJ AutoBoB (instrumental only)"
     }],
     links: [{
       title: "Artist Info",
