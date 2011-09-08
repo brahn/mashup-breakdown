@@ -8,7 +8,7 @@ class ContentController < ApplicationController
       when "all-day", "feed-the-animals", "night-ripper" then "Girl Talk"
       when "nhh" then "The Kleptones"
       when "mass-rsrction-7" then "scntfc"
-      when "torn-up" then "E-603"
+      when "torn-up", "smokeshow" then "E-603"
       when "culture-shock" then "Titus Jones"
       when "hdmdml" then "The Abrahammer"
       when "oldskool" then "Trial & Error"
@@ -24,6 +24,7 @@ class ContentController < ApplicationController
       when "nhh" then "A Night at the Hip-Hopera"
       when "mass-rsrction-7" then "mass.rsrction.7"
       when "torn-up" then "Torn Up"
+      when "smokeshow" then "Smokeshow"
       when "culture-shock" then "Culture Shock"
       when "hdmdml" then "How Dubstep Music Destroyed My Life"
       when "oldskool" then "Oldskool Mashup"
@@ -60,6 +61,8 @@ class ContentController < ApplicationController
         ["DJ 0dH's Summer Style LP, now on Mashup Breakdown"]
       when "uspop2010"
         ["DJ Earworm's United States of Pop 2010, now on Mashup Breakdown"]
+      when "smokeshow"
+        [".@e603's SMOKESHOW, now on Mashup Breakdown"]
       else
         [""]
       end

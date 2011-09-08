@@ -103,6 +103,36 @@ var ALBUM_SEEDS = [
      url: "https://www.tornup.net/TORNUP"
    }]
   },
+  { id: "smokeshow",
+    artist: "E-603",
+    title: "Smokeshow",
+    mediaType: "soundcloud",
+    tracks:[
+{scUrl: "http://soundcloud.com/e-603/bang-bang/", duration: 271},
+{scUrl: "http://soundcloud.com/e-603/swag-me-out/", duration: 202},
+{scUrl: "http://soundcloud.com/e-603/all-the-kids/", duration: 169},
+{scUrl: "http://soundcloud.com/e-603/like-this/", duration: 319},
+{scUrl: "http://soundcloud.com/e-603/down-low/", duration: 271},
+{scUrl: "http://soundcloud.com/e-603/what-they-do/", duration: 353},
+{scUrl: "http://soundcloud.com/e-603/gotta-get/", duration: 202},
+{scUrl: "http://soundcloud.com/e-603/watch-me/", duration: 189},
+{scUrl: "http://soundcloud.com/e-603/every-weekend/", duration: 183},
+{scUrl: "http://soundcloud.com/e-603/tear-it-up/", duration: 236}
+   ],
+   sampleDataSources: [{
+     id: "artist-data",
+     type: "text",
+     url: "/data/smokeshow.txt",
+     prettyText: "courtesy of the artist"
+   }],
+   links: [{
+     title: "Artist Info",
+     url: "http://www.e-603.com/"
+   }, {
+     title: "Download",
+     url: "http://www.e-603.com/smokeshow/"
+   }]
+  },
   { id: "uspop2009-editable",
     featureVideo: true,
     editable: true,
