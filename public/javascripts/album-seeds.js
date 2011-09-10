@@ -610,6 +610,36 @@ var ALBUM_SEEDS = [
         url: "https://www.facebook.com/DJ0dH"
       }
     ]
+  },  { id: "aphrodisiac",
+    artist: "Edit Undo",
+    title: "Aphrodisiac",
+    mediaType: "soundcloud",
+    flashFreeAvailable: false,
+    tracks: [
+{scUrl: "http://soundcloud.com/edit-undo-music/take-one-for-the-team-1/", duration: 176},
+{scUrl: "http://soundcloud.com/edit-undo-music/come-here-often-2/", duration: 164},
+{scUrl: "http://soundcloud.com/edit-undo-music/pants-party-3/", duration: 311},
+{scUrl: "http://soundcloud.com/edit-undo-music/is-that-a-mirror-in-your/", duration: 291},
+{scUrl: "http://soundcloud.com/edit-undo-music/rearrange-the-alphabet-5/", duration: 208},
+{scUrl: "http://soundcloud.com/edit-undo-music/i-lost-my-number-can-i-have/", duration: 350},
+{scUrl: "http://soundcloud.com/edit-undo-music/whats-your-sign-7/", duration: 189},
+{scUrl: "http://soundcloud.com/edit-undo-music/if-being-sexy-was-a-crime-8-1/", duration: 255}
+    ],
+    sampleDataSources: [
+      { id: "artist-data",
+        prettyText: "courtesy of the artist",
+        type: "text",
+        url: "/data/aphrodisiac.txt"
+      }
+    ],
+    links: [
+      { title: "About",
+        url: "http://www.editundomusic.com/"
+      },
+      { title: "Edit Undo on Facebook",
+        url: "https://www.facebook.com/pages/Edit-Undo/205458852834959"
+      }
+    ]
   }
 ];
 
