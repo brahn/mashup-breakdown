@@ -167,8 +167,10 @@ var ALBUM_SEEDS = [
       id: "ab",
       type: "text",
       url: "/data/uspop2010-ab.txt",
-      prettyText: "compiled by Marcus Mangel and DJ AutoBoB (all)"
-    }, {
+      prettyText: "compiled by Marcus Mangel and DJ AutoBoB"
+    }
+/*
+, {
       id: "ab-acapella",
       type: "text",
       url: "/data/uspop2010-ab-acapella.txt",
@@ -178,7 +180,9 @@ var ALBUM_SEEDS = [
       type: "text",
       url: "/data/uspop2010-ab-instrumental.txt",
       prettyText: "compiled by Marcus Mangel and DJ AutoBoB (instrumental only)"
-    }],
+    }
+*/
+    ],
     links: [{
       title: "Artist Info",
       url: "http://djearworm.com"
