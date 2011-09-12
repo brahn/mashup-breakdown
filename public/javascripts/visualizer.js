@@ -56,7 +56,15 @@ var Visualizer = (function () {
   var setSampleStrips = function () {
     clearSampleStrips();
     totalStrips = 0;
+    var currentSampleGroup = 0,
+        currentSampleGroupMinStripNum = 0;
     $.each(m_samples, function (index, sample) {
+      // check if this is a new sampleGroup
+      if (sample.sampleGroup !== currentSampleGroup) {
+        // if so, begin laying out samples in a new set of strips
+        currentSampleGroupMinStripNum = totalStrips;
+        currentSampleGroup = sample.sampleGroup;
+      }
       // identify all strips already in use at sample start time
       var stripsInUse = {};
       $.each(m_samples, function (index, sample2) {
@@ -66,7 +74,7 @@ var Visualizer = (function () {
         }
       });
       // find the first strip not in use, and assign it to the sample
-      var stripNum = 0;
+      var stripNum = currentSampleGroupMinStripNum;
       while (stripsInUse[stripNum]) {
         stripNum += 1;
       }
@@ -209,9 +217,11 @@ var Visualizer = (function () {
     m_featureVideo = Album.get("featureVideo");
     $('.tipsy').remove();
     m_duration = trackDuration;
-    // make sure samples are sorted by start time
+    // make sure samples are sorted by sample group and then by start time
     m_samples = samples.sort(function (a, b) {
-      if ((1.0 * a.start) !== (1.0 * b.start)) {
+      if ((1.0 * a.sampleGroup !== 1.0 * b.sampleGroup)) {
+        return a.sampleGroup - b.sampleGroup;
+      } else if ((1.0 * a.start) !== (1.0 * b.start)) {
         return a.start - b.start;
       } else if ((1.0 * a.end) !== (1.0 * b.end)) {
         return a.end - b.end;

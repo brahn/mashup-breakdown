@@ -14,16 +14,22 @@ var DataRetriever = (function () {
         sampleData = [],
         currentTrackSamples = null,
         commentPattern = /^#/,
+        sampleGroupDelimeterPattern = /^===/,
         blankPattern = /^\s*$/,
         trackPattern = /^(\d+)\.\s"([^"]*)"\s-\s([0-9:]+)/,
         samplePattern = /^((?:(?:[0-9\.:]+)(?:\s-\s(?:[0-9\.:]+))?(?:,\s*)?)*)\s(.*)\s-\s"([^"]*)"/,
         startAndEndPattern = /\s*([0-9\.:]+)\s-\s([0-9\.:]+)\s*/,
         startOnlyPattern = /\s*([0-9\.:]+)\s*/;
-    var lines = text.split('\n');
+    var lines = text.split('\n'),
+        sampleGroup = 0;
     $.each(lines, function (index, line) {
       line = line.replace(/\[.*\] */g, "");
       if (line.match(blankPattern) || line.match(commentPattern)) {
         return;
+      }
+      if (line.match(sampleGroupDelimeterPattern)) {
+        sampleGroup += 1;
+         return;
       }
       var sampleResults = line.match(samplePattern);
       if (sampleResults) {
@@ -35,7 +41,8 @@ var DataRetriever = (function () {
               start: timeStrToSec(startAndEndResults[1]),
               end: timeStrToSec(startAndEndResults[2]),
               artist: sampleResults[2],
-              title: sampleResults[3]
+              title: sampleResults[3],
+              sampleGroup: sampleGroup
             });
             return;
           }
@@ -44,7 +51,8 @@ var DataRetriever = (function () {
             currentTrackSamples.push({
               start: timeStrToSec(startOnlyResults[1]),
               artist: sampleResults[2],
-              title: sampleResults[3]
+              title: sampleResults[3],
+              sampleGroup: sampleGroup
             });
             return;
           }
@@ -60,6 +68,7 @@ var DataRetriever = (function () {
           duration: timeStrToSec(trackResults[3])
         });
         currentTrackSamples = [];
+        sampleGroup = 0;
         sampleData.push(currentTrackSamples);
         return;
       }
