@@ -177,6 +177,27 @@ var ALBUM_SEEDS = [
       url: "http://youtube.com/djearworm"
     }]
   },
+  { id: "uspop2009",
+    featureVideo: false,
+    editable: false,
+    artist: "DJ Earworm",
+    title: "United States of Pop 2009",
+    mediaType: "soundcloud",
+    tracks: [{scUrl: "http://soundcloud.com/pm199797/united-states-of-pop-2009", duration: 278}],
+    sampleDataSources: [{
+      id: "ab",
+      type: "text",
+      url: "/data/uspop2009-ab.txt",
+      prettyText: "compiled by <a href='http://mashuptimecoding.wordpress.com' target='_blank'>Marcus Mangel</a> and <a href='http://autobob.bandcamp.com/'  target='_blank'>DJ AutoBoB</a>."
+    }],
+    links: [{
+      title: "Artist Info",
+      url: "http://djearworm.com"
+    }, {
+      title: "YouTube Channel",
+      url: "http://youtube.com/djearworm"
+    }]
+  },
   { id: "uspop2010-editable",
     featureVideo: false,
     editable: true,
