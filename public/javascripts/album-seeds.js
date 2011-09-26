@@ -307,6 +307,34 @@ var ALBUM_SEEDS = [
       url: "http://www.kleptones.com/pages/downloads_hiphopera.html"
     }]
   },
+  { id: "whiskey-glitch",
+    artist: "Montauk Hustle Club",
+    title: "Whiskey Glitch EP",
+    mediaType: "soundcloud",
+    flashFreeAvailable: false,
+    tracks: [
+{scUrl: "http://soundcloud.com/tidbit-1/01-steal-stuff", duration: 280},
+{scUrl: "http://soundcloud.com/tidbit-1/02-ice-cream-socialist", duration: 137},
+{scUrl: "http://soundcloud.com/tidbit-1/03-gretchy", duration: 187},
+{scUrl: "http://soundcloud.com/tidbit-1/04-thwomp-circumstance", duration: 293},
+{scUrl: "http://soundcloud.com/tidbit-1/05-hustle-exchange-programme", duration: 200},
+{scUrl: "http://soundcloud.com/tidbit-1/06-double-tap", duration: 127},
+{scUrl: "http://soundcloud.com/tidbit-1/07-little-leauge", duration: 154},
+{scUrl: "http://soundcloud.com/tidbit-1/08-its-facebook-official", duration: 109},
+{scUrl: "http://soundcloud.com/tidbit-1/09-drop-classes-not-bombs", duration: 214}
+    ],
+    sampleDataSources: [
+      { id: "kyle-irwin",
+        prettyText: "compiled by Kyle Irwin",
+        type: "text",
+        url: "/data/whiskey-glitch.txt"
+      }
+    ],
+    links: [{
+      title: "Artist Info",
+      url: "http://montaukhustleclub.bandcamp.com/"
+    }]
+  },
   { id: "mass-rsrction-7",
     artist: "scntfc",
     title: "mass.rsrction.7",

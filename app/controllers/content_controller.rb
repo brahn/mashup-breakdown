@@ -18,6 +18,7 @@ class ContentController < ApplicationController
       when "uspop2010", "uspop2009" then "DJ Earworm"
       when "aphrodisiac" then "Edit Undo"
       when "gimme-intros" then "FatFuck"
+      when "whiskey-glitch" then "Montauk Hustle Club"
     end
     album_title = case album_id
       when "all-day" then "All Day"
@@ -37,6 +38,7 @@ class ContentController < ApplicationController
       when "uspop2009" then "United States of Pop 2009"
       when "aphrodisiac" then "Aphrodisiac"
       when "gimme-intros" then "Gimme Intros"
+      when "whiskey-glitch" then "Whiskey Glitch EP"
     end
     tweet_text_options = case album_id
       when "all-day"
@@ -73,7 +75,9 @@ class ContentController < ApplicationController
       when "aphrodisiac"
         ["Edit Undo's Aphrodisiac, now on Mashup Breakdown"]
       when "gimme-intros"
-        ["FF's Gimme Intros, now on MashupBreakdown"]
+        ["FF's Gimme Intros, now on Mashup Breakdown"]
+      when "whiskey-glitch"
+        ["Montauk Hustle Club's Whiskey Glitch EP, now on Mashup Breakdown"]
       else
         [""]
       end
