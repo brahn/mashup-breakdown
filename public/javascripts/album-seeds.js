@@ -325,7 +325,7 @@ var ALBUM_SEEDS = [
     ],
     sampleDataSources: [
       { id: "kyle-irwin",
-        prettyText: "compiled by Kyle Irwin",
+        prettyText: "compiled by Daniel Irwin",
         type: "text",
         url: "/data/whiskey-glitch.txt"
       }
