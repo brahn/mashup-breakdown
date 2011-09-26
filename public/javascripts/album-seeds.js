@@ -198,6 +198,25 @@ var ALBUM_SEEDS = [
       url: "http://youtube.com/djearworm"
     }]
   },
+  { id: "gimme-intros",
+    artist: "FatFuck",
+    title: "Gimme Intros",
+    mediaType: "soundcloud",
+    tracks: [{scUrl: "http://soundcloud.com/fatfuck/gimme-intros-better-version", duration: 257}],
+    sampleDataSources: [{
+      id: "artist-info",
+      type: "text",
+      url: "/data/gimme-intros.txt",
+      prettyText: "courtesy of the artist"
+    }],
+    links: [{
+      title: "SoundCloud",
+      url: "http://soundcloud.com/fatfuck"
+    }, {
+      title: "Facebook",
+      url: "http://www.facebook.com/pages/FatFUCK/142479735818030"
+    }]
+  },
   { id: "uspop2010-editable",
     featureVideo: false,
     editable: true,
