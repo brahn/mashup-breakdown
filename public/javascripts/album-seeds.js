@@ -635,6 +635,35 @@ var ALBUM_SEEDS = [
       url: " http://vimeo.com/ithacaaudio"
     }]
   },
+  { id: "rolling-in-the-beats",
+    artist: "Ithaca Audio",
+    title: "Rolling in the Beats",
+    mediaType: "youtube",
+//    mediaType: "soundcloud",
+    featureVideo: true,
+    flashFreeAvailable: true,
+    tracks: [{ytId: "-JrlLVPgC8E", duration: 245}],
+//    tracks: [
+//      { scUrl:"http://soundcloud.com/ithaca-audio/rolling-in-the-beats", duration: 245 }
+//    ],
+    sampleDataSources: [
+      { id: "artist-data",
+        prettyText: "courtesy of the artist",
+        type: "text",
+        url: "/data/rolling-in-the-beats.txt"
+      }
+    ],
+    links: [{
+      title: "Video",
+      url: "http://www.vimeo.com/ithacaaudio/rolling-in-the-beats"
+    },{
+      title: "Download",
+      url: "http://soundcloud.com/ithaca-audio/rolling-in-the-beats/download"
+    },{
+      title: "More from Ithaca Audio",
+      url: " http://vimeo.com/ithacaaudio"
+    }]
+  },
   { id: "summer-style",
     artist: "DJ 0dH",
     title: "The Summer Style LP",
