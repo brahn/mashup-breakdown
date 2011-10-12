@@ -12,7 +12,7 @@ class ContentController < ApplicationController
       when "culture-shock" then "Titus Jones"
       when "hdmdml" then "The Abrahammer"
       when "oldskool" then "Trial & Error"
-      when "dhbjptf" then "Don't Hold Back, just Push Things Forward"
+      when "dhbjptf" then "Ithaca Audio"
       when "autobob-pop" then "DJ AutoBoB"
       when "summer-style" then "DJ 0dH"
       when "uspop2010", "uspop2009" then "DJ Earworm"
@@ -31,7 +31,8 @@ class ContentController < ApplicationController
       when "culture-shock" then "Culture Shock"
       when "hdmdml" then "How Dubstep Music Destroyed My Life"
       when "oldskool" then "Oldskool Mashup"
-      when "dhbjptf" then "Ithaca Audio"
+      when "dhbjptf" then "Don't Hold Back, just Push Things Forward"
+      when "rolling-in-the-beats" then "Rolling in the Beats"
       when "autobob-pop" then "AutoBoB Pop"
       when "summer-style" then "The Summer Style LP"
       when "uspop2010" then "United States of Pop 2010"
@@ -62,6 +63,8 @@ class ContentController < ApplicationController
         ["Trial & Error's Oldskool Mashup, now on Mashup Breakdown"]
       when "dhbjptf"
         ["Don't Hold Back just Push Things Forward, now on Mashup Breakdown"]
+      when "rolling-in-the-beats"
+        ["Rolling in the Beats, now on Mashup Breakdown"]
       when "autobob-pop"
         ["DJ AutoBoB's pop mashup masterpiece, now on Mashup Breakdown"]
       when "summer-style"

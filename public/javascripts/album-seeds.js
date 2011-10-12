@@ -640,7 +640,7 @@ var ALBUM_SEEDS = [
     title: "Rolling in the Beats",
     mediaType: "youtube",
 //    mediaType: "soundcloud",
-    featureVideo: true,
+//    featureVideo: true,
     flashFreeAvailable: true,
     tracks: [{ytId: "-JrlLVPgC8E", duration: 245}],
 //    tracks: [
