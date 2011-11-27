@@ -17,7 +17,7 @@ class ContentController < ApplicationController
       when "summer-style" then "DJ 0dH"
       when "uspop2010", "uspop2009" then "DJ Earworm"
       when "aphrodisiac" then "Edit Undo"
-      when "gimme-intros" then "FatFuck"
+      when "gimme-intros" then "CROSSHATCH"
       when "whiskey-glitch" then "Montauk Hustle Club"
     end
     album_title = case album_id

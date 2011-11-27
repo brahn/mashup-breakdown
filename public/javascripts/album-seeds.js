@@ -199,10 +199,10 @@ var ALBUM_SEEDS = [
     }]
   },
   { id: "gimme-intros",
-    artist: "FatFuck",
+    artist: "CROSSHATCH",
     title: "Gimme Intros",
     mediaType: "soundcloud",
-    tracks: [{scUrl: "http://soundcloud.com/fatfuck/gimme-intros-better-version", duration: 257}],
+    tracks: [{scUrl: "http://soundcloud.com/cross_hatch/gimme-intros-better-version", duration: 257}],
     sampleDataSources: [{
       id: "artist-info",
       type: "text",
@@ -211,7 +211,7 @@ var ALBUM_SEEDS = [
     }],
     links: [{
       title: "SoundCloud",
-      url: "http://soundcloud.com/fatfuck"
+      url: "http://soundcloud.com/cross_hatch"
     }, {
       title: "Facebook",
       url: "http://www.facebook.com/pages/FatFUCK/142479735818030"
