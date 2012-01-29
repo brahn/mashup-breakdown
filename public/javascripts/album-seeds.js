@@ -799,7 +799,7 @@ var ALBUM_SEEDS = [
   { id: "one-hit-wonder",
     draftMode: true,
     artist: "DJ Topsider",
-    title: "One Hit Wonder",
+    title: "One-Hit Wonder",
     mediaType: "soundcloud",
     flashFreeAvailable: true,
     tracks: [
