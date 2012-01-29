@@ -32,7 +32,8 @@ var ALBUM_SEEDS = [
    }, {
      title: "Download",
      url: "http://www.theabrahammer.com/download/"
-   }]
+   }],
+   ccLicenseUrl: "http://creativecommons.org/licenses/by-nc/3.0/us/"
   },
   { id: "culture-shock",
     artist: "Titus Jones",
@@ -66,7 +67,13 @@ var ALBUM_SEEDS = [
    }, {
      title: "Download",
      url: "http://www.titusjones.com/"
-   }]
+   }],
+   licenseNote:
+    "Culture Shock is available for free download on the " +
+    "<a href='http://titusjones.com' target='blank'>artist's web site</a>. " +
+    "&nbsp;This site is " +
+    "<a href='http://creativecommons.org/licenses/by-nc/3.0/us/' " +
+    "target='blank'>Creative Commons licensed BY-NC 3.0</a>."
   },
   { id: "torn-up",
     artist: "E-603",
@@ -101,7 +108,8 @@ var ALBUM_SEEDS = [
    }, {
      title: "Download",
      url: "https://www.tornup.net/TORNUP"
-   }]
+   }],
+   ccLicenseUrl: "http://creativecommons.org/licenses/by-nc/3.0/us/"
   },
   { id: "smokeshow",
     artist: "E-603",
@@ -175,7 +183,13 @@ var ALBUM_SEEDS = [
     }, {
       title: "YouTube Channel",
       url: "http://youtube.com/djearworm"
-    }]
+    }],
+    licenseNote:
+      "Top three lines are vocals; bottom four are instrumentals." +
+      "<br /><br />This site is " +
+      "<a href='http://creativecommons.org/licenses/by-nc/3.0/us/' " +
+      "target='blank'>Creative Commons licensed BY-NC 3.0</a>. " +
+      "&nbsp;All musical elements retain copyrights of original artists."
   },
   { id: "uspop2009",
     featureVideo: false,
@@ -196,7 +210,13 @@ var ALBUM_SEEDS = [
     }, {
       title: "YouTube Channel",
       url: "http://youtube.com/djearworm"
-    }]
+    }],
+    licenseNote:
+      "Top three lines are vocals; bottom five are instrumentals." +
+      "<br /><br />This site is " +
+      "<a href='http://creativecommons.org/licenses/by-nc/3.0/us/' " +
+      "target='blank'>Creative Commons licensed BY-NC 3.0</a>. " +
+      "&nbsp;All musical elements retain copyrights of original artists."
   },
   { id: "gimme-intros",
     artist: "CROSSHATCH",
@@ -305,7 +325,11 @@ var ALBUM_SEEDS = [
     links: [{
       title: "Artist Info and Download",
       url: "http://www.kleptones.com/pages/downloads_hiphopera.html"
-    }]
+    }],
+    licenseNote: "A Night at the Hip-Hopera is available No Rights Reserved. " +
+      "&nbsp;Sweet. &nbsp;This site is " +
+      "<a href='http://creativecommons.org/licenses/by-nc/3.0/us/' " +
+      "target='blank'>Creative Commons licensed BY-NC 3.0</a>."
   },
   { id: "whiskey-glitch",
     artist: "Montauk Hustle Club",
@@ -333,7 +357,8 @@ var ALBUM_SEEDS = [
     links: [{
       title: "Artist Info",
       url: "http://montaukhustleclub.bandcamp.com/"
-    }]
+    }],
+    ccLicenseUrl: "http://creativecommons.org/licenses/by-nc/3.0/us/"
   },
   { id: "mass-rsrction-7",
     artist: "scntfc",
@@ -399,7 +424,8 @@ var ALBUM_SEEDS = [
       { title: "Download",
         url: "http://illegal-art.net/allday/"
       }
-    ]
+    ],
+    ccLicenseUrl: "http://creativecommons.org/licenses/by-nc/3.0/us/"
   },
   { id: "all-day-youtube",
     artist: "Girl Talk",
@@ -440,7 +466,8 @@ var ALBUM_SEEDS = [
       { title: "Download",
         url: "http://illegal-art.net/allday/"
       }
-    ]
+    ],
+    ccLicenseUrl: "http://creativecommons.org/licenses/by-nc/3.0/us/"
   },
   { id: "feed-the-animals",
     artist: "Girl Talk",
@@ -484,7 +511,8 @@ var ALBUM_SEEDS = [
       { title: "Download",
         url: "http://illegal-art.net/shop#release117"
       }
-    ]
+    ],
+    ccLicenseUrl: "http://creativecommons.org/licenses/by-nc/3.0/us/"
   },
   { id: "feed-the-animals-video",
     featureVideo: true,
@@ -528,7 +556,8 @@ var ALBUM_SEEDS = [
       { title: "Download",
         url: "http://illegal-art.net/shop#release117"
       }
-    ]
+    ],
+    ccLicenseUrl: "http://creativecommons.org/licenses/by-nc/3.0/us/"
   },
   { id: "night-ripper",
     artist: "Girl Talk",
@@ -696,8 +725,10 @@ var ALBUM_SEEDS = [
       { title: "DJ 0dH on Facebook",
         url: "https://www.facebook.com/DJ0dH"
       }
-    ]
-  },  { id: "aphrodisiac",
+    ],
+    ccLicenseUrl: "http://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  { id: "aphrodisiac",
     artist: "Edit Undo",
     title: "Aphrodisiac",
     mediaType: "soundcloud",
@@ -726,7 +757,8 @@ var ALBUM_SEEDS = [
       { title: "Edit Undo on Facebook",
         url: "https://www.facebook.com/pages/Edit-Undo/205458852834959"
       }
-    ]
+    ],
+    ccLicenseUrl: "http://creativecommons.org/licenses/by-nc/3.0/us/"
   }
 ];
 

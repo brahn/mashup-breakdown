@@ -139,10 +139,30 @@ var AlbumControls = (function () {
     });
   };
 
+  var ccLicenseNote = function (ccLicenseUrl) {
+    var tracks = Album.get("tracks"),
+        musicTerm = (tracks && tracks.length > 1) ? "album" : "track";
+    return "This " + musicTerm + " is available under " +
+      "<a href='" + ccLicenseUrl + "' target='_blank'>Creative Commons " +
+      "License</a>.  &nbsp;Sweet. &nbsp;(This site is, too: " +
+      "<a href='http://creativecommons.org/licenses/by-nc/3.0/us/' " +
+      "target='_blank'>CC BY-NC 3.0</a>.)";
+  };
+
+  var DEFAULT_LICENSE_NOTE = "This site is " +
+    "<a href='http://creativecommons.org/licenses/by-nc/3.0/us/' " +
+    "target = '_blank'>Creative Commons licensed BY-NC 3.0</a>. &nbsp;" +
+    "All musical elements retain copyrights of original artists.";
+
   var setupAlbumLicense = function () {
-    $('#license-note-container').css("opacity", 0.3);
-    $('.license-note').hide();
-    $('#' + Album.get("id") + "-license-note").show();
+    var licenseNoteHtml = Album.get("licenseNote");
+    if (!licenseNoteHtml && Album.get("ccLicenseUrl")) {
+      licenseNoteHtml = ccLicenseNote(Album.get("ccLicenseUrl"));
+    }
+    if (!licenseNoteHtml) {
+      licenseNoteHtml = DEFAULT_LICENSE_NOTE;
+    }
+    $('#license-note-container').css("opacity", 0.3).html(licenseNoteHtml);
   };
 
   var showFlashPlayer = function () {
