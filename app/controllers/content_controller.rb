@@ -12,7 +12,7 @@ class ContentController < ApplicationController
       when "culture-shock" then "Titus Jones"
       when "hdmdml" then "The Abrahammer"
       when "oldskool" then "Trial & Error"
-      when "dhbjptf" then "Ithaca Audio"
+      when "rolling-in-the-beats", "dhbjptf" then "Ithaca Audio"
       when "autobob-pop" then "DJ AutoBoB"
       when "summer-style" then "DJ 0dH"
       when "uspop2010", "uspop2009" then "DJ Earworm"
@@ -59,30 +59,12 @@ class ContentController < ApplicationController
         ["Dance your a$$ off with Titus Jones' pop mashup Culture Shock.  Complete with visual breakdown"]
       when "hdmdml"
         ["The Abrahammer's latest album, 50 mins of old&new mashed together, now on Mashup Breakdown"]
-      when "oldskool"
-        ["Trial & Error's Oldskool Mashup, now on Mashup Breakdown"]
-      when "dhbjptf"
-        ["Don't Hold Back just Push Things Forward, now on Mashup Breakdown"]
-      when "rolling-in-the-beats"
-        ["Rolling in the Beats, now on Mashup Breakdown"]
       when "autobob-pop"
         ["DJ AutoBoB's pop mashup masterpiece, now on Mashup Breakdown"]
-      when "summer-style"
-        ["DJ 0dH's Summer Style LP, now on Mashup Breakdown"]
-      when "uspop2010"
-        ["DJ Earworm's United States of Pop 2010, now on Mashup Breakdown"]
-      when "uspop2010"
-        ["DJ Earworm's United States of Pop 2009, now on Mashup Breakdown"]
       when "smokeshow"
         [".@e603's SMOKESHOW, now on Mashup Breakdown"]
-      when "aphrodisiac"
-        ["Edit Undo's Aphrodisiac, now on Mashup Breakdown"]
-      when "gimme-intros"
-        ["FF's Gimme Intros, now on Mashup Breakdown"]
-      when "whiskey-glitch"
-        ["Montauk Hustle Club's Whiskey Glitch EP, now on Mashup Breakdown"]
       else
-        [""]
+        ["#{artist}'s #{album_title}, now on Mashup Breakdown"]
       end
     @tweet_text = tweet_text_options[rand tweet_text_options.length]
     @fb_description = @tweet_text
