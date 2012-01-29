@@ -794,8 +794,7 @@ var ALBUM_SEEDS = [
       { title: "on SoundCloud",
         url: "http://soundcloud.com/kthrsis"
       }
-    ],
-    ccLicenseUrl: "http://creativecommons.org/licenses/by-nc/3.0/us/"
+    ]
   }
 ];
 
