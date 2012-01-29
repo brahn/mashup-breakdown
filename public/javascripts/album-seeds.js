@@ -142,6 +142,7 @@ var ALBUM_SEEDS = [
    }]
   },
   { id: "uspop2009-editable",
+    draftMode: true,
     featureVideo: true,
     editable: true,
     artist: "DJ Earworm",
@@ -238,6 +239,7 @@ var ALBUM_SEEDS = [
     }]
   },
   { id: "uspop2010-editable",
+    draftMode: true,
     featureVideo: false,
     editable: true,
     artist: "DJ Earworm",
@@ -428,6 +430,7 @@ var ALBUM_SEEDS = [
     ccLicenseUrl: "http://creativecommons.org/licenses/by-nc/3.0/us/"
   },
   { id: "all-day-youtube",
+    draftMode: true,
     artist: "Girl Talk",
     title: "All Day",
     mediaType: "youtube",
@@ -515,6 +518,7 @@ var ALBUM_SEEDS = [
     ccLicenseUrl: "http://creativecommons.org/licenses/by-nc/3.0/us/"
   },
   { id: "feed-the-animals-video",
+    draftMode: true,
     featureVideo: true,
     artist: "Girl Talk",
     title: "Feed the Animals",
@@ -759,8 +763,45 @@ var ALBUM_SEEDS = [
       }
     ],
     ccLicenseUrl: "http://creativecommons.org/licenses/by-nc/3.0/us/"
+  },
+  { id: "for-west-haven",
+    draftMode: true,
+    artist: "KTHRSIS",
+    title: "For West Haven",
+    mediaType: "soundcloud",
+    flashFreeAvailable: true,
+    tracks: [
+{scUrl: "http://soundcloud.com/kthrsis/track-1-digital-heroes", duration: 266},
+{scUrl: "http://soundcloud.com/kthrsis/track-2-move-it", duration: 277},
+{scUrl: "http://soundcloud.com/kthrsis/track-3-viva-la-flirt", duration: 271},
+{scUrl: "http://soundcloud.com/kthrsis/track-4-blame-cupid", duration: 258},
+{scUrl: "http://soundcloud.com/kthrsis/track-5-american-gangsta", duration: 337},
+{scUrl: "http://soundcloud.com/kthrsis/track-6-byebyebiggie", duration: 294},
+{scUrl: "http://soundcloud.com/kthrsis/track-7-cant-quit", duration: 308},
+{scUrl: "http://soundcloud.com/kthrsis/track-8-semi-charmed-lipgloss", duration: 298},
+{scUrl: "http://soundcloud.com/kthrsis/track-9-b-boys", duration: 194},
+{scUrl: "http://soundcloud.com/kthrsis/track-10-reeling-milkshakes", duration: 156}],
+    sampleDataSources: [{
+      id: "corbin-whittington",
+      type: "text",
+      url: "/data/for-west-haven.txt",
+      prettyText: "compiled by <a href='https://www.facebook.com/whittyboy15' target='_blank'>Corbin Whittington</a>"
+    }],
+    links: [
+      { title: "KTHRSIS on Facebook",
+        url: "https://www.facebook.com/pages/KTHRSIS/140139849338834"
+      },
+      { title: "on SoundCloud",
+        url: "http://soundcloud.com/kthrsis"
+      }
+    ],
+    ccLicenseUrl: "http://creativecommons.org/licenses/by-nc/3.0/us/"
   }
 ];
+
+var artistAndTitleString = function (albumSeed) {
+  return albumSeed.artist + " - " + albumSeed.title;
+};
 
 var flashFreeSeed = function (albumSeed) {
   if (!albumSeed.flashFreeAvailable) {

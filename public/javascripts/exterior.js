@@ -14,14 +14,44 @@ var dimHeader = function (suppressAnimation) {
   }
 };
 
-$(document).ready(function () {
+var albumLinkHtml = function (seed) {
+  return "<a href='/" + seed.id + "'>" + artistAndTitleString(seed) +
+    "</a>";
+};
 
+var sortSeeds = function (seedA, seedB) {
+  var strA = artistAndTitleString(seedA).toLowerCase(),
+      strB = artistAndTitleString(seedB).toLowerCase();
+  if (strA > strB) {
+    return 1;
+  } else if (strA < strB) {
+    return -1;
+  }
+  return 0;
+};
+
+var setupAlbumDialogLinks = function () {
+  var listElt = $("#artists-and-albums-dialog ul");
+  $.each(ALBUM_SEEDS.sort(sortSeeds), function (index, seed) {
+    if (!seed.draftMode) {
+      listElt.append("<li>" + albumLinkHtml(seed) + "</li>");
+    }
+  });
+};
+
+var setupAlbumDialog = function () {
   $('#artists-and-albums-dialog').dialog(dialogOptions({
     title: "Choose an Album"
   }));
   $('#artists-and-albums-link').click(function () {
     $('#artists-and-albums-dialog').dialog("open");
   });
+  setupAlbumDialogLinks();
+};
+
+$(document).ready(function () {
+
+  setupAlbumDialog();
 
   $("#media-error-dialog").dialog(dialogOptions({
     title: "Dang!",
