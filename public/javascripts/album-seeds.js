@@ -795,7 +795,48 @@ var ALBUM_SEEDS = [
         url: "http://soundcloud.com/kthrsis"
       }
     ]
+  },
+  { id: "one-hit-wonder",
+    draftMode: true,
+    artist: "DJ Topsider",
+    title: "One Hit Wonder",
+    mediaType: "soundcloud",
+    flashFreeAvailable: true,
+    tracks: [
+{scUrl: "http://soundcloud.com/dj-topsider/droptop", duration: 279},
+{scUrl: "http://soundcloud.com/dj-topsider/party-people", duration: 286},
+{scUrl: "http://soundcloud.com/dj-topsider/on-the-floor", duration: 261},
+{scUrl: "http://soundcloud.com/dj-topsider/get-loose", duration: 265},
+{scUrl: "http://soundcloud.com/dj-topsider/holdin-the-beat", duration: 265},
+{scUrl: "http://soundcloud.com/dj-topsider/wheres-the-after-party", duration: 267},
+{scUrl: "http://soundcloud.com/dj-topsider/ride-out-now", duration: 272},
+{scUrl: "http://soundcloud.com/dj-topsider/rockin-everywhere", duration: 339},
+{scUrl: "http://soundcloud.com/dj-topsider/when-the-weekend-comes", duration: 286},
+{scUrl: "http://soundcloud.com/dj-topsider/best-thing-goin", duration: 315},
+{scUrl: "http://soundcloud.com/dj-topsider/wilin-out", duration: 278},
+{scUrl: "http://soundcloud.com/dj-topsider/blow-up", duration: 340}],
+    sampleDataSources: [{
+      id: "artist-data",
+      type: "text",
+      url: "/data/one-hit-wonder.txt",
+      prettyText: "courtesy of the artist"
+    }],
+    links: [
+      { title: "Artist Site",
+        url: "http://djtopsider.bandcamp.com/"
+      },
+      { title: "Facebook",
+        url: "https://www.facebook.com/DJTopsider88"
+      },
+      { title: "SoundCloud",
+        url: "http://soundcloud.com/dj-topsider"
+      },
+      { title: "Twitter",
+        url: "https://twitter.com/#!/brycesail88"
+      }
+    ]
   }
+
 ];
 
 var artistAndTitleString = function (albumSeed) {

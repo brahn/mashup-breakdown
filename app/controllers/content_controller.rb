@@ -45,6 +45,10 @@ class ContentController < ApplicationController
         ["DJ Earworm", "United States of Pop 2010"]
       when "whiskey-glitch"
         ["Montauk Hustle Club", "Whiskey Glitch EP"]
+      when "one-hit-wonder"
+        ["DJ Topsider", "One Hit Wonder"]
+      when "for-west-haven"
+        ["KTHRSIS", "For West Haven"]
       else
         ["", ""]
       end
