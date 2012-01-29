@@ -4,43 +4,51 @@ class ContentController < ApplicationController
 
   # XXX this is clearly the wrong place for this
   def get_share_text_and_meta_data(album_id = 'all-day')
-    artist = case album_id
-      when "all-day", "feed-the-animals", "night-ripper" then "Girl Talk"
-      when "nhh" then "The Kleptones"
-      when "mass-rsrction-7" then "scntfc"
-      when "torn-up", "smokeshow" then "E-603"
-      when "culture-shock" then "Titus Jones"
-      when "hdmdml" then "The Abrahammer"
-      when "oldskool" then "Trial & Error"
-      when "rolling-in-the-beats", "dhbjptf" then "Ithaca Audio"
-      when "autobob-pop" then "DJ AutoBoB"
-      when "summer-style" then "DJ 0dH"
-      when "uspop2010", "uspop2009" then "DJ Earworm"
-      when "aphrodisiac" then "Edit Undo"
-      when "gimme-intros" then "CROSSHATCH"
-      when "whiskey-glitch" then "Montauk Hustle Club"
-    end
-    album_title = case album_id
-      when "all-day" then "All Day"
-      when "feed-the-animals" then "Feed the Animals"
-      when "night-ripper" then "Night Ripper"
-      when "nhh" then "A Night at the Hip-Hopera"
-      when "mass-rsrction-7" then "mass.rsrction.7"
-      when "torn-up" then "Torn Up"
-      when "smokeshow" then "Smokeshow"
-      when "culture-shock" then "Culture Shock"
-      when "hdmdml" then "How Dubstep Music Destroyed My Life"
-      when "oldskool" then "Oldskool Mashup"
-      when "dhbjptf" then "Don't Hold Back, just Push Things Forward"
-      when "rolling-in-the-beats" then "Rolling in the Beats"
-      when "autobob-pop" then "AutoBoB Pop"
-      when "summer-style" then "The Summer Style LP"
-      when "uspop2010" then "United States of Pop 2010"
-      when "uspop2009" then "United States of Pop 2009"
-      when "aphrodisiac" then "Aphrodisiac"
-      when "gimme-intros" then "Gimme Intros"
-      when "whiskey-glitch" then "Whiskey Glitch EP"
-    end
+    artist, album_title = case album_id
+      when "all-day", "all-day-youtube"
+        ["Girl Talk", "All Day"]
+      when "aphrodisiac"
+        ["Edit Undo", "Aphrodisiac"]
+      when "autobob-pop"
+        ["DJ AutoBoB", "AutoBoB Pop"]
+      when "culture-shock"
+        ["Titus Jones", "Culture Shock"]
+      when "dhbjptf"
+        ["Ithaca Audio", "Don't Hold Back, just Push Things Forward"]
+      when "feed-the-animals", "feed-the-animals-video"
+        ["Girl Talk", "Feed the Animals"]
+      when "for-west-haven"
+        ["KTHRSIS", "For West Haven"]
+      when "gimme-intros"
+        ["CROSSHATCH", "Gimme Intros"]
+      when "hdmdml"
+        ["The Abrahammer", "How Dubstep Music Destroyed My Life"]
+      when "mass-rsrction-7"
+        ["scntfc", "mass.rsrction.7"]
+      when "nhh"
+        ["The Klepstones", "A Night at the Hip-Hopera"]
+      when "night-ripper"
+        ["Girl Talk", "Night Ripper"]
+      when "oldskool"
+        ["Trial & Error", "OldSkool Mashup"]
+      when "rolling-in-the-beats"
+        ["Ithaca Audio", "Rolling in the Beats"]
+      when "smokeshow"
+        ["E-603", "Smokeshow"]
+      when "summer-style"
+        ["DJ 0dH", "The Summer Style LP"]
+      when "torn-up"
+        ["E-603", "Torn Up"]
+      when "uspop2009", "uspop2009-editable"
+        ["DJ Earworm", "United States of Pop 2009"]
+      when "uspop2010", "uspop2010-editable"
+        ["DJ Earworm", "United States of Pop 2010"]
+      when "whiskey-glitch"
+        ["Montauk Hustle Club", "Whiskey Glitch EP"]
+      else
+        ["", ""]
+      end
+
     tweet_text_options = case album_id
       when "all-day"
         [ "Fascinating visual breakdown of 100s of samples used in Girl Talk's new album",
