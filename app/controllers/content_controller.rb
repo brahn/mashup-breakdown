@@ -49,6 +49,8 @@ class ContentController < ApplicationController
         ["DJ Topsider", "One-Hit Wonder"]
       when "for-west-haven"
         ["KTHRSIS", "For West Haven"]
+      when "2011-aftermash"
+        ["DJ McFly", "2011: The Aftermash"]
       else
         ["", ""]
       end
