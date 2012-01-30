@@ -835,8 +835,34 @@ var ALBUM_SEEDS = [
         url: "https://twitter.com/#!/brycesail88"
       }
     ]
+  },
+  { id: "2011-aftermash",
+    draftMode: true,
+    artist: "DJ McFly",
+    title: "2011: The Aftermash",
+    mediaType: "youtube",
+    tracks: [
+      {ytId: "ZILL9b8f4Io", duration: 253}
+    ],
+    sampleDataSources: [
+      { id: "mm",
+        prettyText: "compiled by <a href='http://mashuptimecoding.wordpress.com' target='_blank'>Marcus Mangel</a>",
+        type: "text",
+        url: "/data/2011-aftermash.txt"
+      }
+    ],
+    links: [
+      { title: "Artist Info",
+        url: "http://dublejmedia.com/"
+      },
+      { title: "YouTube",
+        url: "http://www.youtube.com/user/DJMcFlyOfficial?"
+      },
+      { title: "Facebook",
+        url: "https://www.facebook.com/McFlyMusic"
+      }
+    ]
   }
-
 ];
 
 var artistAndTitleString = function (albumSeed) {
