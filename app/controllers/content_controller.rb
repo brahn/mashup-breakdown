@@ -51,6 +51,8 @@ class ContentController < ApplicationController
         ["KTHRSIS", "For West Haven"]
       when "2011-aftermash"
         ["DJ McFly", "2011: The Aftermash"]
+      when "falling-up"
+        ["Jump Juice", "Falling Up"]
       else
         ["", ""]
       end

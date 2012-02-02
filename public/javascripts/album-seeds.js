@@ -862,6 +862,51 @@ var ALBUM_SEEDS = [
         url: "https://www.facebook.com/McFlyMusic"
       }
     ]
+  },
+  { id: "falling-up",
+    draftMode: true,
+    artist: "Jump Juice",
+    title: "Falling Up",
+    mediaType: "soundcloud",
+    tracks: [
+{scUrl: "http://soundcloud.com/brahn/01-top-down-1", duration: 290},
+{scUrl: "http://soundcloud.com/jump-juice/02-its-a-party", duration: 185},
+{scUrl: "http://soundcloud.com/jump-juice/03-check-baby-check", duration: 161},
+{scUrl: "http://soundcloud.com/jump-juice/04-holdem-back", duration: 215},
+{scUrl: "http://soundcloud.com/jump-juice/05-um-well-excuse-me", duration: 208},
+{scUrl: "http://soundcloud.com/jump-juice/06-top-of-the-line", duration: 299},
+{scUrl: "http://soundcloud.com/jump-juice/07-freak-to-this-2", duration: 191},
+{scUrl: "http://soundcloud.com/jump-juice/08-like-we-do", duration: 210},
+{scUrl: "http://soundcloud.com/jump-juice/09-boom-its-on", duration: 248},
+{scUrl: "http://soundcloud.com/brahn/10-turn-it-up-1", duration: 216},
+{scUrl: "http://soundcloud.com/brahn/11-make-that-money", duration: 238},
+{scUrl: "http://soundcloud.com/brahn/12-hey-girl", duration: 189},
+{scUrl: "http://soundcloud.com/brahn/13-put-it-up", duration: 129},
+{scUrl: "http://soundcloud.com/jump-juice/14-sober-girls", duration: 270},
+{scUrl: "http://soundcloud.com/jump-juice/15-no-love", duration: 254},
+{scUrl: "http://soundcloud.com/jump-juice/16-24-7", duration: 158},
+{scUrl: "http://soundcloud.com/jump-juice/17-bump-that-shit", duration: 298},
+{scUrl: "http://soundcloud.com/brahn/18-butterfly", duration: 245},
+{scUrl: "http://soundcloud.com/jump-juice/19-get-on-my-level", duration: 126},
+{scUrl: "http://soundcloud.com/jump-juice/20-all-falls-up", duration: 277}
+    ],
+    sampleDataSources: [
+      { id: "artist-data",
+        prettyText: "courtesy of the artist",
+        type: "text",
+        url: "/data/falling-up.txt"
+      }
+    ],
+    links: [
+      { title: "Artist Info",
+        url: "http://jumpjuicemusic.com/"
+      },
+      { title: "Downloads",
+        url: "http://jumpjuicemusic.com/download.html"
+      },
+    ],
+    ccLicenseUrl: "http://creativecommons.org/licenses/by-nc/3.0/us/"
+
   }
 ];
 
