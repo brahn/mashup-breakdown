@@ -861,7 +861,14 @@ var ALBUM_SEEDS = [
       { title: "Facebook",
         url: "https://www.facebook.com/McFlyMusic"
       }
-    ]
+    ],
+    licenseNote:
+      "Top four lines are vocals; bottom five are instrumentals." +
+      "<br /><br />This site is " +
+      "<a href='http://creativecommons.org/licenses/by-nc/3.0/us/' " +
+      "target='blank'>Creative Commons licensed BY-NC 3.0</a>. " +
+      "&nbsp;All musical elements retain copyrights of original artists."
+
   },
   { id: "falling-up",
     draftMode: true,
