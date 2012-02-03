@@ -117,26 +117,26 @@
 0:36 - 0:53 The Cool Kids - "Gold and a Pager"
 0:45 - 0:54 Cash - "Walk Wit a Dip"
 0:54 - 1:47 Mark Ronson ft. Ghostface Killah, Nate Dogg and Trife - "Ooh Wee" [portion sampled samples “Sunny" by Boney M.]
-1:30 - 1:56 Kid ‘n Play - "Rolling With Kid n' Play"
-1:30 - 1:47 DJ Suss One - "Let ‘Em Lay"
+1:30 - 1:56 Kid 'n Play - "Rolling With Kid 'n Play"
+1:30 - 2:50 DJ Suss One - "Let 'Em Lay"
 1:56 - 2:59 The Eels - "Last Stop: This Town"
 2:03 - 2:05 The Chemical Brothers - "Block Rockin' Beats" [portion sampled samples “Gucci Again" by Schoolly D]
 2:05 - 2:59 Yin Yang Twins ft. Mike Jones and Mr. Collipark - "Badd"
 2:50 - 2:59 Beastie Boys - "Intergalactic" [portion sampled samples “Intergalactic" by Buzz Fuzz]
-2:45 - 2:59 Cassidy - "I'm a Hustla"
+2:50 - 2:59 Cassidy - "I'm a Hustla"
 
 7. "Freak To This" - 3:12
 0:00 - 0:35 Beastie Boys - "Intergalactic" [portion sampled samples “Intergalactic" by Buzz Fuzz]
 0:00 - 0:08 Cassidy - "I'm a Hustla"
 0:00 - 0:26 Eminem ft. Dina Rae - "Drug Ballad"
-0:00 - 0:09 The Hitman - "Super Mario Beat" [portion sampled samples “Ground Theme" by Koji Kondo]
+0:09 - 0:35.5 The Hitman - "Super Mario Beat" [portion sampled samples “Ground Theme" by Koji Kondo]
 0:33 - 1:53 Adele vs. Ohio Players - "Rolling In The Fire (Wick-it Remix)"
 0:35 - 1:49 Missy Elliot - "Pass That Dutch"
 0:35 - 1:36 Bee Gees - "Stayin' Alive"
 0:35 - 1:27 Unk - "Futuristic Slide"
 1:37 - 2:53 D-Lo - "Any Mini"
 1:54 - 2:54 Diana Ross - "I'm Coming Out"
-1:54 - 1:27 Whodini - "Escape (I Need A Break)"
+1:54 - 2:28 Whodini - "Escape (I Need A Break)"
 2:28 - 2:45 DMX - "Get It On The Floor"
 2:45 - 3:12 Lumidee - "Never Leave You (Uh-Oooh)"
 2:54 - 3:12 The Pack - "Got My Vans On"
@@ -245,8 +245,8 @@
 1:26 - 1:55 Ben E. King - "Stand By Me"
 1:39 - 2:10 Rob Base and DJ E-Z Rock - "It Takes Two" [portion sampled samples “Think (About It)" by Lyn Collins]
 1:41 - 2:10 Pussycat Dolls ft. Busta Rhymes - "Don't Cha"
-1:55 - 2:09 Kenny Loggins and Stevie Nicks - "Whenever I Call You ‘Friend'"
-1:55 - 2:10 J. J. Fad - "Supersonic"  
+1:55 - 2:09 Kenny Loggins and Stevie Nicks - "Whenever I Call You 'Friend'"
+1:55 - 2:10 J. J. Fad - "Supersonic"
 
 14. "Sober Girls" - 4:31
 0:00 - 0:14 Pussycat Dolls ft. Busta Rhymes - "Don't Cha"
@@ -326,8 +326,8 @@
 0:00 - 0:52 Gucci Mane ft. Ludacris - "Freaky Girl"
 0:53 - 2:33 Die Antwoord - "Enter The Ninja"
 1:31 - 2:44 Willow Smith - "Whip My Hair"
-2:20 - 4;05 The Cool Kids - "Gold and a Pager" [portion sampled samples “F*** Tha Police" by N.W.A.]
-2:33 - 2:45 - Young Money - "She Is Gone"
+2:20 - 2:56 The Cool Kids - "Gold and a Pager" [portion sampled samples "F*** Tha Police" by N.W.A.]
+2:33 - 2:45 Young Money - "She Is Gone"
 2:42 - 3:54 Macklemore & Ryan Lewis - "Irish Celebration" [portion sampled samples “Scenic World" by Beirut]
 2:48 - 4:05 Wiz Khalifa - "Black & Yellow"
 3:54 - 4:03 Trillville ft. Lil Jon and Lil Scrappy - "Neva Eva (Remix)"
@@ -338,7 +338,7 @@
 0:00 - 0:33 Queen - "We Will Rock You"
 0:00 - 0:32 Sleigh Bells - "Kids"
 0:00 - 0:46 Trillville ft. Lil Jon and Lil Scrappy - "Neva Eva (Remix)"
-0:32 - 0:46Chris Brown - "Look At Me Now"
+0:32 - 0:46 Chris Brown - "Look At Me Now"
 0:35 - 1:26 Brisco ft. Lil Wayne - "On The Wall"
 0:46 - 1:09 Jibbs - "Chain Hang Low"
 0:47 - 1:09 Blink 182 - "What's My Age Again?"
