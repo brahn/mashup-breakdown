@@ -2,7 +2,7 @@
 
 # Acapellas
 0:07 - 0:12 Flo Rida ft. Avicii - "Good Feeling"
-0:12 - 0:12.8 LMFAO - "Party Rock Anthem"
+0:12.1 - 0:12.8 LMFAO - "Party Rock Anthem"
 0:12.8 - 0:14.6 Rihanna - "S&M"
 0:14.6 - 0:21.2 Flo Rida ft. Avicii - "Good Feeling"
 0:21.2 - 0:21.6 LMFAO - "Party Rock Anthem"
@@ -22,8 +22,8 @@
 0:36.8 - 0:40 Enrique Iglacious ft. Ludacris - "Tonight (I'm Loving You)"
 0:40 - 0:41.4 The Black Eyed Peas - "The Time (Dirty Bit)"
 0:41.4 - 0:44.2 LMFAO - "Party Rock Anthem"
-0:44.9 - 0:47.7 J Lo ft. Pitbull - "On The Floor"
-0:47.5 - 0:51.2 T-Pain ft. Pitbull - "Hey Baby"
+0:44.7 - 0:47.7 J Lo ft. Pitbull - "On The Floor"
+0:47.4 - 0:51.2 T-Pain ft. Pitbull - "Hey Baby"
 0:51.6 - 0:57.5 The Black Eyed Peas - "The Time (Dirty Bit)"
 0:57.5 - 0:58.1 Cobra Starship - "You Make Me Feel...."
 0:58.1 - 1:00.5 Britney Spears - "Till The World Ends"
@@ -37,7 +37,7 @@
 1:09.1 - 1:13.9 Ke$ha - "Blow"
 1:14.1 - 1:18.3 Adele - "Rolling In The Deep"
 1:18.3 - 1:21.8 Gym Class Heros ft. Adam Levine - "Stereo Hearts"
-1:21.7 - 1:25.3 Adele - "Rolling In The Deep"
+1:21.6 - 1:25.3 Adele - "Rolling In The Deep"
 1:25.8 - 1:28.3 Gym Class Heros ft. Adam Levine - "Stereo Hearts"
 1:29.4 - 1:33 Katy Perry - "Firework"
 1:33 - 1:36.3 Rihanna - "We Found Love"
@@ -50,24 +50,24 @@
 1:50.6 - 1:51.4 Neyo ft. Pitbull - "Give Me Everything Tonight"
 1:51.2 - 1:52.7 Maroon 5 ft. Christina Aguilera - "Moves Like Jagger"
 1:52.7 - 1:52.4 Britney Spears - "I Wanna Go"
-1:52.4 - 1:56 Neyo ft. Pitbull - "Give Me Everything Tonight"
+1:52.5 - 1:56 Neyo ft. Pitbull - "Give Me Everything Tonight"
 1:55.7 - 1:57.6 Enrique Iglacious ft. Ludacris - "Tonight (I'm Loving You)"
 1:57.6 - 1:59.7 50 Cent ft. Jeremih - "Down On Me"
 1:59.7 - 2:04.4 Ke$ha - "Blow"
 2:04.4 - 2:14.5 LMFAO - "Party Rock Anthem"
-2:11.5 - 2:15.2 The Black Eyed Peas - "Just Can't Get Enough"
+2:11.5 - 2:15.2 The Black Eyed Peas - "The Time (Dirty Bit)"
 2:15.2 - 2:19.2 Maroon 5 ft. Christina Aguilera - "Moves Like Jagger"
 2:20.1 - 2:23.6 Katy Perry - "Last Friday Night"
 2:23.3 - 2:25.5 Pink - "Raise Your Glass"
 2:26 - 2:27.4 The Black Eyed Peas - "Just Can't Get Enough"
 2:27.6 - 2:31.5 Katy Perry - "Last Friday Night"
-2:31.8 - 2:34.1 Chris Brown ft. Lil' Wayne & Busta Rhymes - "Look At Me Now"
+2:31.7 - 2:34.1 Chris Brown ft. Lil' Wayne & Busta Rhymes - "Look At Me Now"
 2:34.1 - 2:48.1 Britney Spears - "Till The World Ends"
 2:34.5 - 2:38.5 Jason Derulo - "Don't Wanna Go Home"
 2:34.6 - 2:49.1 Katy Perry - "Last Friday Night"
 2:41 - 2:42 Jay Z & Kanye West - "Niggas In Paris"
 2:42 - 2:46 Jason Derulo - "Don't Wanna Go Home"
-2:49.2 - 2:54.9 Jay Z & Kanye West - "Niggas In Paris (film clip of Blades of Glory from music video)"
+2:49 - 2:54.9 Jay Z & Kanye West - "Niggas In Paris (film clip of Blades of Glory from music video)"
 2:54.9 - 3:09.5 Ke$ha - "We R Who We R"
 3:09.5 - 3:10.3 Cobra Starship - "You Make Me Feel...."
 3:10.3 - 3:11.6 Britney Spears - "Till The World Ends"
@@ -95,8 +95,6 @@
 
 # outtro
 3:46.1 - 3:50 Mick Jagger - "(Interview Clip)"
-
-
 
 ===
 
