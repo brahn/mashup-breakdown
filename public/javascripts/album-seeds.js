@@ -537,7 +537,7 @@ var ALBUM_SEEDS = [
       {ytId: "9w5YodoJ6nU", duration: 244},
       {ytId: "iHwxUZyWcRY", duration: 286},
       {ytId: "v6MaXIY5uAU", duration: 178},
-      {ytId: "YyVtrZ3KHOk", duration: 205} 
+      {ytId: "YyVtrZ3KHOk", duration: 205}
     ],
     sampleDataSources: [
       { id: "wikipedia-snapshot",
@@ -910,10 +910,45 @@ var ALBUM_SEEDS = [
       },
       { title: "Downloads",
         url: "http://jumpjuicemusic.com/download.html"
-      },
+      }
     ],
     ccLicenseUrl: "http://creativecommons.org/licenses/by-nc/3.0/us/"
 
+  },
+  { id: "pure-magic",
+    draftMode: true,
+    flashFreeAvailable: true,
+    artist: "Bruneaux",
+    title: "Pure Magic",
+    mediaType: "soundcloud",
+    tracks: [
+{scUrl: "http://soundcloud.com/bruneaux/01-cant-stop-me", duration: 303},
+{scUrl: "http://soundcloud.com/bruneaux/02-thats-my-word", duration: 142},
+{scUrl: "http://soundcloud.com/bruneaux/03-get-it-right-1", duration: 416},
+{scUrl: "http://soundcloud.com/bruneaux/04-lets-party", duration: 306},
+{scUrl: "http://soundcloud.com/bruneaux/05-hear-when-im-comin", duration: 331},
+{scUrl: "http://soundcloud.com/bruneaux/06-get-your-hands-up", duration: 272},
+{scUrl: "http://soundcloud.com/bruneaux/07-i-got-em", duration: 284},
+{scUrl: "http://soundcloud.com/bruneaux/08-payin-the-price", duration: 338},
+{scUrl: "http://soundcloud.com/bruneaux/09-bang-it-out", duration: 234},
+{scUrl: "http://soundcloud.com/bruneaux/10-make-me-dance", duration: 349},
+{scUrl: "http://soundcloud.com/bruneaux/11-takin-the-game", duration: 312}
+    ],
+    sampleDataSources: [
+      { id: "artist-data",
+        prettyText: "courtesy of the artist",
+        type: "text",
+        url: "/data/pure-magic.txt"
+      }
+    ],
+    links: [
+      { title: "Artist Info",
+        url: "http://www.iambruneaux.com/"
+      },
+      { title: "Download",
+        url: "http://bruneaux.tumblr.com/Puremagic"
+      }
+    ]
   }
 ];
 

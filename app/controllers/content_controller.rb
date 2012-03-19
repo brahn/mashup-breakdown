@@ -53,6 +53,8 @@ class ContentController < ApplicationController
         ["DJ McFly", "2011: The Aftermash"]
       when "falling-up"
         ["Jump Juice", "Falling Up"]
+      when "pure-magic"
+        ["Bruneaux", "Pure Magic"]
       else
         ["", ""]
       end
