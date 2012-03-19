@@ -943,7 +943,7 @@ var ALBUM_SEEDS = [
     ],
     links: [
       { title: "Artist Info",
-        url: "http://www.iambruneaux.com/"
+        url: "https://www.facebook.com/bruneauxmusic"
       },
       { title: "Download",
         url: "http://bruneaux.tumblr.com/Puremagic"
