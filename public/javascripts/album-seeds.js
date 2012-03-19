@@ -916,7 +916,6 @@ var ALBUM_SEEDS = [
 
   },
   { id: "pure-magic",
-    draftMode: true,
     flashFreeAvailable: true,
     artist: "Bruneaux",
     title: "Pure Magic",
