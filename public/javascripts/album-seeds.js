@@ -765,7 +765,6 @@ var ALBUM_SEEDS = [
     ccLicenseUrl: "http://creativecommons.org/licenses/by-nc/3.0/us/"
   },
   { id: "for-west-haven",
-    draftMode: true,
     artist: "KTHRSIS",
     title: "For West Haven",
     mediaType: "soundcloud",
@@ -797,7 +796,6 @@ var ALBUM_SEEDS = [
     ]
   },
   { id: "one-hit-wonder",
-    draftMode: true,
     artist: "DJ Topsider",
     title: "One-Hit Wonder",
     mediaType: "soundcloud",
@@ -837,7 +835,6 @@ var ALBUM_SEEDS = [
     ]
   },
   { id: "2011-aftermash",
-    draftMode: true,
     artist: "DJ McFly",
     title: "2011: The Aftermash",
     mediaType: "youtube",
@@ -871,7 +868,6 @@ var ALBUM_SEEDS = [
 
   },
   { id: "falling-up",
-    draftMode: true,
     artist: "Jump Juice",
     title: "Falling Up",
     mediaType: "soundcloud",
@@ -946,6 +942,51 @@ var ALBUM_SEEDS = [
       },
       { title: "Download",
         url: "http://bruneaux.tumblr.com/Puremagic"
+      }
+    ]
+  },
+  { id: "yacht-rock",
+    draftMode: true,
+    artist: "DJ Topsider",
+    title: "Yacht Rock",
+    mediaType: "soundcloud",
+    flashFreeAvailable: true,
+    tracks: [
+{scUrl: 'http://soundcloud.com/dj-topsider/high-volume', duration: 298},
+{scUrl: 'http://soundcloud.com/dj-topsider/slow-jam', duration: 343},
+{scUrl: 'http://soundcloud.com/dj-topsider/wired-up', duration: 278},
+{scUrl: 'http://soundcloud.com/dj-topsider/chain-reaction', duration: 259},
+{scUrl: 'http://soundcloud.com/dj-topsider/nautical-by-nature', duration: 266},
+{scUrl: 'http://soundcloud.com/dj-topsider/in-the-house', duration: 295},
+{scUrl: 'http://soundcloud.com/dj-topsider/at-the-dock-interlude', duration: 134},
+{scUrl: 'http://soundcloud.com/dj-topsider/brand-new-dance', duration: 313},
+{scUrl: 'http://soundcloud.com/dj-topsider/get-live', duration: 265},
+{scUrl: 'http://soundcloud.com/dj-topsider/dont-stop', duration: 318},
+{scUrl: 'http://soundcloud.com/dj-topsider/workin-it', duration: 287},
+{scUrl: 'http://soundcloud.com/dj-topsider/chicago-juke', duration: 240},
+{scUrl: 'http://soundcloud.com/dj-topsider/we-ready', duration: 332},
+{scUrl: 'http://soundcloud.com/dj-topsider/too-clean', duration: 337},
+{scUrl: 'http://soundcloud.com/dj-topsider/clap-your-hands-drop-it', duration: 241},
+{scUrl: 'http://soundcloud.com/dj-topsider/yacht-rock', duration: 374}
+],
+    sampleDataSources: [{
+      id: "artist-data",
+      type: "text",
+      url: "/data/yacht-rock.txt",
+      prettyText: "courtesy of the artist"
+    }],
+    links: [
+      { title: "Artist Site",
+        url: "http://djtopsider.bandcamp.com/"
+      },
+      { title: "Facebook",
+        url: "https://www.facebook.com/DJTopsider88"
+      },
+      { title: "SoundCloud",
+        url: "http://soundcloud.com/dj-topsider"
+      },
+      { title: "Twitter",
+        url: "https://twitter.com/#!/brycesail88"
       }
     ]
   }

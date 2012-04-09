@@ -55,6 +55,8 @@ class ContentController < ApplicationController
         ["Jump Juice", "Falling Up"]
       when "pure-magic"
         ["Bruneaux", "Pure Magic"]
+      when "yacht-rock"
+        ["DJ Topsider", "Yacht Rock"]
       else
         ["", ""]
       end
