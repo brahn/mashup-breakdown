@@ -24,6 +24,7 @@ GEM
     launchy (2.0.5)
       addressable (~> 2.2.6)
     mime-types (1.17.2)
+    nokogiri (1.5.2)
     pg (0.12.2)
     rack (1.1.3)
     rails (2.3.11)
@@ -45,5 +46,6 @@ PLATFORMS
 DEPENDENCIES
   heroku
   hoptoad_notifier
+  nokogiri
   pg
   rails (= 2.3.11)
