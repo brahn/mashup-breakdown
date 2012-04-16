@@ -946,7 +946,6 @@ var ALBUM_SEEDS = [
     ]
   },
   { id: "yacht-rock",
-    draftMode: true,
     artist: "DJ Topsider",
     title: "Yacht Rock",
     mediaType: "soundcloud",
