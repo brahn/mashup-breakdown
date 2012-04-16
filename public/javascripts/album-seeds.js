@@ -860,7 +860,7 @@ var ALBUM_SEEDS = [
       }
     ],
     licenseNote:
-      "Top four lines are vocals; bottom five are instrumentals." +
+      "Top two lines are vocals; bottom five are instrumentals." +
       "<br /><br />This site is " +
       "<a href='http://creativecommons.org/licenses/by-nc/3.0/us/' " +
       "target='blank'>Creative Commons licensed BY-NC 3.0</a>. " +
