@@ -837,13 +837,13 @@ var ALBUM_SEEDS = [
   { id: "2011-aftermash",
     artist: "DJ McFly",
     title: "2011: The Aftermash",
-    mediaType: "youtube",
+    mediaType: "soundcloud",
     tracks: [
-      {ytId: "ZILL9b8f4Io", duration: 253}
+      {scUrl:"http://soundcloud.com/dj_mcfly/2011-the-aftermash", duration: 220}
     ],
     sampleDataSources: [
       { id: "mm",
-        prettyText: "compiled by <a href='http://mashuptimecoding.wordpress.com' target='_blank'>Marcus Mangel</a>",
+        prettyText: "courtesy of the artist and <a href='http://mashuptimecoding.wordpress.com' target='_blank'>Marcus Mangel</a>",
         type: "text",
         url: "/data/2011-aftermash.txt"
       }
