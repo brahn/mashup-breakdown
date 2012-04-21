@@ -988,6 +988,30 @@ var ALBUM_SEEDS = [
         url: "https://twitter.com/#!/brycesail88"
       }
     ]
+  },
+  { id: "stampede",
+    draftMode: true,
+    artist: "Montauk Hustle Club",
+    title: "Stampede",
+    mediaType: "youtube",
+    flashFreeAvailable: false,
+    tracks: [
+      { ytId: "qGSJp-_6XgY",
+        duration: 220
+      }
+    ],
+    sampleDataSources: [
+      { id: "kyle-irwin",
+        prettyText: "compiled by Kyle Irwin",
+        type: "text",
+        url: "/data/stampede.txt"
+      }
+    ],
+    links: [{
+      title: "Artist Info",
+      url: "http://montaukhustleclub.bandcamp.com/"
+    }],
+    ccLicenseUrl: "http://creativecommons.org/licenses/by-nc/3.0/us/"
   }
 ];
 
