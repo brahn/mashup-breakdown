@@ -993,11 +993,11 @@ var ALBUM_SEEDS = [
     draftMode: true,
     artist: "Montauk Hustle Club",
     title: "Stampede",
-    mediaType: "youtube",
+    mediaType: "soundcloud",
     flashFreeAvailable: false,
     tracks: [
-      { ytId: "qGSJp-_6XgY",
-        duration: 220
+      { scUrl: "http://soundcloud.com/tidbit-1/stampede-you-cant-stop-it-demo",
+        duration: 222
       }
     ],
     sampleDataSources: [
