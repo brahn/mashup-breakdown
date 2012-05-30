@@ -407,7 +407,7 @@ var ALBUM_SEEDS = [
     ],
     sampleDataSources: [
       { id: "wikipedia-snapshot",
-        prettyText: "from Wikipedia (Dec. 9)",
+        prettyText: "from Wikipedia (Dec. 9, 2010)",
         type: "text",
         url: "/data/all-day.txt"
       },
@@ -1012,6 +1012,42 @@ var ALBUM_SEEDS = [
       url: "http://montaukhustleclub.bandcamp.com/"
     }],
     ccLicenseUrl: "http://creativecommons.org/licenses/by-nc/3.0/us/"
+  },
+  { id: "tip-your-haters",
+    artist: "DJ Whitt",
+    title: "Tip Your Haters",
+    mediaType: "soundcloud",
+    flashFreeAvailable: true,
+    tracks: [
+{scUrl: "http://soundcloud.com/dj-whitt/hands-in-the-air-4", duration: 122},
+{scUrl: "http://soundcloud.com/dj-whitt/yes-yes-yall", duration: 173},
+{scUrl: "http://soundcloud.com/dj-whitt/here-we-go-now", duration: 235},
+{scUrl: "http://soundcloud.com/dj-whitt/wild-style", duration: 117},
+{scUrl: "http://soundcloud.com/dj-whitt/smooth-it-out", duration: 146},
+{scUrl: "http://soundcloud.com/dj-whitt/time-again", duration: 166},
+{scUrl: "http://soundcloud.com/dj-whitt/off-the-wall", duration: 226},
+{scUrl: "http://soundcloud.com/dj-whitt/can-you-hear-me", duration: 217},
+{scUrl: "http://soundcloud.com/dj-whitt/every-day", duration: 157},
+{scUrl: "http://soundcloud.com/dj-whitt/do-your-thang", duration: 161},
+{scUrl: "http://soundcloud.com/dj-whitt/ask-about-me", duration: 206},
+{scUrl: "http://soundcloud.com/dj-whitt/im-on-it", duration: 187},
+{scUrl: "http://soundcloud.com/dj-whitt/where-you-at", duration: 167},
+{scUrl: "http://soundcloud.com/dj-whitt/blowin-up", duration: 183},
+{scUrl: "http://soundcloud.com/dj-whitt/dont-hate-me", duration: 171},
+{scUrl: "http://soundcloud.com/dj-whitt/get-on-my-level", duration: 238},
+{scUrl: "http://soundcloud.com/dj-whitt/have-a-heart", duration: 257}
+],
+    sampleDataSources: [{
+      id: "artist-data",
+      type: "text",
+      url: "/data/tip-your-haters.txt",
+      prettyText: "courtesy of the artist"
+    }],
+    links: [
+      { title: "Artist on SoundCloud",
+        url: "http://soundcloud.com/dj-whitt"
+      }
+    ]
   }
 ];
 
