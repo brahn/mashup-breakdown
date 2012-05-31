@@ -1048,6 +1048,37 @@ var ALBUM_SEEDS = [
         url: "http://soundcloud.com/dj-whitt"
       }
     ]
+  },
+  { id: "mixuptape",
+    draftMode: true,
+    artist: "Break the Breakdown",
+    title: "The Mixuptape",
+    mediaType: "youtube",
+    tracks: [
+      {ytId: "2TE0L84aBnI", duration: 1},
+      {ytId: "FBypEW1goSE", duration: 1},
+      {ytId: "eIqqQ-kEJak", duration: 1},
+      {ytId: "whK7xvfJ0vU", duration: 1},
+      {ytId: "CXIIRMMOrao", duration: 1},
+      {ytId: "FelRuFt2meU", duration: 1},
+      {ytId: "kls9vzswjiA", duration: 1},
+      {ytId: "AOOmpXRZsc4", duration: 1},
+      {ytId: "1gEx_k1rcaA", duration: 1},
+      {ytId: "umUWqRNs6cU", duration: 1},
+      {ytId: "0nQ0vM0LRbY", duration: 1}
+    ],
+    sampleDataSources: [
+      { id: "artist-data",
+        prettyText: "courtesy of the artist",
+        type: "text",
+        url: "/data/mixuptape.txt"
+      }
+    ],
+    links: [
+      { title: "Artist Info",
+        url: "http://breakthebreakdown.bandcamp.com"
+      }
+    ]
   }
 ];
 
