@@ -1079,6 +1079,47 @@ var ALBUM_SEEDS = [
         url: "http://breakthebreakdown.bandcamp.com"
       }
     ]
+  },
+  { id: "the-pod",
+    artist: "The Pod",
+    title: "The Pod EP",
+    mediaType: "soundcloud",
+    flashFreeAvailable: false,
+    tracks: [
+{scUrl: "https://soundcloud.com/thepod/the-pod-self-titled-mashup-ep", duration: 1855}
+],
+    sampleDataSources: [{
+      id: "artist-data",
+      type: "text",
+      url: "/data/the-pod.txt",
+      prettyText: "courtesy of the artist"
+    }],
+    links: [
+      { title: "Artist on SoundCloud",
+        url: "https://soundcloud.com/thepod"
+      }
+    ]
+  },
+  { id: "premier-league-2011-2012",
+    draftMode: true,
+    artist: "The Bootiful Game",
+    title: "Premier League 2011/12",
+    mediaType: "soundcloud",
+    flashFreeAvailable: false,
+    tracks: [
+{scUrl: "https://soundcloud.com/ben-huxley/bg-windchime-test-02", duration: 242}
+],
+    sampleDataSources: [{
+      id: "artist-data",
+      type: "text",
+      url: "/data/premier-league-2011-2012.txt",
+      prettyText: "courtesy of the Bootiful Game"
+    }],
+    links: [
+      { title: "More from the Bootiful Game",
+        url: "http://www.bootifulgame.com/"
+      }
+    ]
   }
 ];
 

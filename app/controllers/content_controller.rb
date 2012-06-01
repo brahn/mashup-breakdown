@@ -63,6 +63,10 @@ class ContentController < ApplicationController
         ["DJ Whitt", "Tip Your Haters"]
       when 'mixuptape'
         ["Break the Breakdown", "The Mixuptape"]
+      when 'the-pod'
+        ["The Pod", "The Pod EP"]
+      when 'premier-league-2011-2012'
+        ["The Bootiful Game", "Premier League 2011-12"]
       else
         ["", ""]
       end
