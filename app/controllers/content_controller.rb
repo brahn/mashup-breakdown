@@ -67,6 +67,8 @@ class ContentController < ApplicationController
         ["The Pod", "The Pod EP"]
       when 'premier-league-2011-2012'
         ["The Bootiful Game", "Premier League 2011-12"]
+      when "feast"
+        ["Montauk Hustle Club", "Feast"]
       else
         ["", ""]
       end

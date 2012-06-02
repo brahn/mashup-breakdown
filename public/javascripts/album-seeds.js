@@ -1120,6 +1120,38 @@ var ALBUM_SEEDS = [
         url: "http://www.bootifulgame.com/"
       }
     ]
+  },
+  { id: "feast",
+    draftMode: true,
+    artist: "Montauk Hustle Club",
+    title: "Feast",
+    mediaType: "soundcloud",
+    flashFreeAvailable: false,
+    tracks: [
+{ scUrl: "https://soundcloud.com/tidbit-1/stampede-you-cant-stop-us" },
+{ scUrl: "https://soundcloud.com/tidbit-1/02-dot-com" },
+{ scUrl: "https://soundcloud.com/tidbit-1/03-dead-sea-disco" },
+{ scUrl: "https://soundcloud.com/tidbit-1/conquistador" },
+{ scUrl: "https://soundcloud.com/tidbit-1/nerve-damage" },
+{ scUrl: "https://soundcloud.com/tidbit-1/this-club-kills" },
+{ scUrl: "https://soundcloud.com/tidbit-1/07-going-steady" },
+{ scUrl: "https://soundcloud.com/tidbit-1/hometown-hustle" },
+{ scUrl: "https://soundcloud.com/tidbit-1/09-quit-buggn" },
+{ scUrl: "https://soundcloud.com/tidbit-1/flamethrower" },
+{ scUrl: "https://soundcloud.com/tidbit-1/in-full-effect" },
+{ scUrl: "https://soundcloud.com/tidbit-1/mrs-brightside" }
+    ],
+    sampleDataSources: [
+      { id: "artist-data",
+        prettyText: "courtesy of the artist",
+        type: "text",
+        url: "/data/feast.txt"
+      }
+    ],
+    links: [{
+      title: "Artist Info",
+      url: "http://montaukhustleclub.bandcamp.com/"
+    }]
   }
 ];
 
