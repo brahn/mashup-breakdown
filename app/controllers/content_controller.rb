@@ -69,6 +69,8 @@ class ContentController < ApplicationController
         ["The Bootiful Game", "Premier League 2011-12"]
       when "feast"
         ["Montauk Hustle Club", "Feast"]
+      when "textbook-samples"
+        ["Lamestream", "Textbook Samples"]
       else
         ["", ""]
       end

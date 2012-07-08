@@ -1160,6 +1160,37 @@ var ALBUM_SEEDS = [
       title: "Download",
       url: "http://montaukhustleclub.bandcamp.com/"
     }]
+  },
+  { id: "textbook-samples",
+    draftMode: true,
+    artist: "Lamestream",
+    title: "Textbook Samples",
+    mediaType: "soundcloud",
+    flashFreeAvailable: false,
+    tracks: [
+{ scUrl: "http://soundcloud.com/lamestream/promiscuous-intro" },
+{ scUrl: "http://soundcloud.com/lamestream/passin-heartbeats" },
+{ scUrl: "http://soundcloud.com/lamestream/irreplaceable-88" },
+{ scUrl: "http://soundcloud.com/lamestream/midnight-love" },
+{ scUrl: "http://soundcloud.com/lamestream/ayerdynamic" },
+{ scUrl: "http://soundcloud.com/lamestream/say-rigby" },
+{ scUrl: "http://soundcloud.com/lamestream/kiss-mickey" }
+    ],
+    sampleDataSources: [
+      { id: "artist-data",
+        prettyText: "courtesy of the artist",
+        type: "text",
+        url: "/data/textbook-samples.txt"
+      }
+    ],
+    links: [{
+      title: "Artist Info",
+      url: "http://www.lamestreammusic.com/"
+      },
+      {
+      title: "Soundcloud",
+      url: "http://soundcloud.com/lamestream"
+    }]
   }
 ];
 
