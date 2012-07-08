@@ -1097,6 +1097,10 @@ var ALBUM_SEEDS = [
     links: [
       { title: "Artist on SoundCloud",
         url: "https://soundcloud.com/thepod"
+      },
+      {
+        title: "Artist on Facebook",
+        url: "http://www.facebook.com/JeffMentch"
       }
     ]
   },
