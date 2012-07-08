@@ -1111,7 +1111,7 @@ var ALBUM_SEEDS = [
     mediaType: "soundcloud",
     flashFreeAvailable: false,
     tracks: [
-{scUrl: "https://soundcloud.com/ben-huxley/bg-windchime-test-02", duration: 242}
+{scUrl: "http://soundcloud.com/ben-huxley/premier-league-2011-12", duration: 249}
 ],
     sampleDataSources: [{
       id: "artist-data",
