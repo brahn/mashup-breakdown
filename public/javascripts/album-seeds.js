@@ -1150,6 +1150,10 @@ var ALBUM_SEEDS = [
     ],
     links: [{
       title: "Artist Info",
+      url: " http://www.facebook.com/pages/Montauk-Hustle-Club/262630953749803"
+      },
+      {
+      title: "Download",
       url: "http://montaukhustleclub.bandcamp.com/"
     }]
   }
