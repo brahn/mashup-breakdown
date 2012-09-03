@@ -71,6 +71,8 @@ class ContentController < ApplicationController
         ["Montauk Hustle Club", "Feast"]
       when "textbook-samples"
         ["Lamestream", "Textbook Samples"]
+      when "freud-phobia"
+        ["DJ Bosselmeyer", "Freud Phobia"]
       else
         ["", ""]
       end

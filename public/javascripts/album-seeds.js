@@ -1190,6 +1190,27 @@ var ALBUM_SEEDS = [
       title: "Soundcloud",
       url: "http://soundcloud.com/lamestream"
     }]
+  },
+  { id: "freud-phobia",
+    draftMode: true,
+    artist: "DJ Bosselmeyer",
+    title: "Freud Phobia",
+    mediaType: "soundcloud",
+    flashFreeAvailable: false,
+    tracks: [
+{ scUrl: "http://soundcloud.com/bosselmeyer/freud-phobia" }
+    ],
+    sampleDataSources: [
+      { id: "artist-data",
+        prettyText: "courtesy of the artist",
+        type: "text",
+        url: "/data/freud-phobia.txt"
+      }
+    ],
+    links: [{
+      title: "Artist on Soundcloud",
+      url: "http://soundcloud.com/bosselmeyer"
+      }]
   }
 ];
 
