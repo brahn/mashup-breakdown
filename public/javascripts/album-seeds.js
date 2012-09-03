@@ -1122,7 +1122,6 @@ var ALBUM_SEEDS = [
     ]
   },
   { id: "feast",
-    draftMode: true,
     artist: "Montauk Hustle Club",
     title: "Feast",
     mediaType: "soundcloud",
@@ -1180,4 +1179,3 @@ var getAlbumSeedById = function (id) {
   }
   return null;
 };
-
